@@ -10,19 +10,10 @@ let package = Package(
         .watchOS(.v6)
     ],
     products: [
-        .library(name: "BoxSDK", targets: ["BoxSDK"]),
         .library(name: "BoxSdkGen", targets: ["BoxSdkGen"])
     ],
     dependencies: [],
     targets: [
-        .target(
-            name: "BoxSDK",
-            dependencies: [],
-            path: "BoxSDK/Sources",
-            resources: [
-                .copy("PrivacyInfo.xcprivacy")
-            ]
-        ),
         .target(
             name: "BoxSdkGen",
             dependencies: [],
