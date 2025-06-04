@@ -1,10 +1,10 @@
 import Foundation
 #if os(iOS) || os(tvOS)
-import UIKit
+    import UIKit
 #elseif os(watchOS)
-import WatchKit
+    import WatchKit
 #elseif os(OSX)
-import AppKit
+    import AppKit
 #endif
 
 /// Defines the Box SDK static informations
@@ -20,35 +20,35 @@ public enum BoxConstants {
     }
 }
 
-fileprivate class OSInformation {
+private class OSInformation {
     static let shared = OSInformation()
 
     lazy var name: String = {
-#if os(iOS) || os(tvOS)
-        return UIDevice.current.systemName
-#elseif os(watchOS)
-        return WKInterfaceDevice.current().systemName
-#elseif os(OSX)
-        return "macOS"
-#elseif os(visionOS)
-        return "visionOS"
-#elseif os(Linux)
-        return "Linux"
-#elseif os(Windows)
-        return "Windows"
-#else
-        return "N/A"
-#endif
+        #if os(iOS) || os(tvOS)
+            return UIDevice.current.systemName
+        #elseif os(watchOS)
+            return WKInterfaceDevice.current().systemName
+        #elseif os(OSX)
+            return "macOS"
+        #elseif os(visionOS)
+            return "visionOS"
+        #elseif os(Linux)
+            return "Linux"
+        #elseif os(Windows)
+            return "Windows"
+        #else
+            return "N/A"
+        #endif
     }()
 
     lazy var version: String = {
-#if os(iOS) || os(tvOS)
-        return UIDevice.current.systemVersion
-#elseif os(watchOS)
-        return WKInterfaceDevice.current().systemVersion
-#else
-        let version = ProcessInfo.processInfo.operatingSystemVersion
-        return "\(version.majorVersion).\(version.minorVersion).\(version.patchVersion)"
-#endif
+        #if os(iOS) || os(tvOS)
+            return UIDevice.current.systemVersion
+        #elseif os(watchOS)
+            return WKInterfaceDevice.current().systemVersion
+        #else
+            let version = ProcessInfo.processInfo.operatingSystemVersion
+            return "\(version.majorVersion).\(version.minorVersion).\(version.patchVersion)"
+        #endif
     }()
 }

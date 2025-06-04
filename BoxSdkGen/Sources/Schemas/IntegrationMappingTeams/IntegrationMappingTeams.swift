@@ -41,7 +41,7 @@ public class IntegrationMappingTeams: IntegrationMappingBase {
     ///     (part of a composite key together
     ///     with `integration_type`)
     ///   - partnerItem: Mapped item object for Teams
-    ///   - boxItem: 
+    ///   - boxItem:
     ///   - type: Mapping type
     ///   - integrationType: Identifies the Box partner app,
     ///     with which the mapping is associated.
@@ -63,7 +63,7 @@ public class IntegrationMappingTeams: IntegrationMappingBase {
         super.init(id: id, type: type)
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         partnerItem = try container.decode(IntegrationMappingPartnerItemTeamsUnion.self, forKey: .partnerItem)
         boxItem = try container.decode(FolderReference.self, forKey: .boxItem)
@@ -75,7 +75,7 @@ public class IntegrationMappingTeams: IntegrationMappingBase {
         try super.init(from: decoder)
     }
 
-    public override func encode(to encoder: Encoder) throws {
+    override public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(partnerItem, forKey: .partnerItem)
         try container.encode(boxItem, forKey: .boxItem)
@@ -85,5 +85,4 @@ public class IntegrationMappingTeams: IntegrationMappingBase {
         try container.encodeDateTimeIfPresent(field: modifiedAt, forKey: .modifiedAt)
         try super.encode(to: encoder)
     }
-
 }

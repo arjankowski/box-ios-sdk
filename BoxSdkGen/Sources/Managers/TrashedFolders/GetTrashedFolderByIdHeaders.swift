@@ -11,5 +11,4 @@ public class GetTrashedFolderByIdHeaders {
     public init(extraHeaders: [String: String?]? = [:]) {
         self.extraHeaders = extraHeaders
     }
-
 }

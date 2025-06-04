@@ -17,7 +17,7 @@ public class AppItemEventSource: Codable {
     public let appItemType: String
 
     /// The type of the source that this event represents. Can only be `app_item`.
-    /// 
+    ///
     public let type: AppItemEventSourceTypeField
 
     public let user: UserMini?
@@ -30,9 +30,9 @@ public class AppItemEventSource: Codable {
     ///   - id: The id of the `AppItem`
     ///   - appItemType: The type of the `AppItem`
     ///   - type: The type of the source that this event represents. Can only be `app_item`.
-    ///     
-    ///   - user: 
-    ///   - group: 
+    ///
+    ///   - user:
+    ///   - group:
     public init(id: String, appItemType: String, type: AppItemEventSourceTypeField = AppItemEventSourceTypeField.appItem, user: UserMini? = nil, group: GroupMini? = nil) {
         self.id = id
         self.appItemType = appItemType
@@ -41,7 +41,7 @@ public class AppItemEventSource: Codable {
         self.group = group
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
         appItemType = try container.decode(String.self, forKey: .appItemType)
@@ -58,5 +58,4 @@ public class AppItemEventSource: Codable {
         try container.encodeIfPresent(user, forKey: .user)
         try container.encodeIfPresent(group, forKey: .group)
     }
-
 }

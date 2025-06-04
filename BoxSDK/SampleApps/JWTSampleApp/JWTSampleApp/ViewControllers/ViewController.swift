@@ -27,7 +27,6 @@ class ViewController: UITableViewController {
         return errorView
     }()
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpBoxSDK()
@@ -134,16 +133,16 @@ private extension ViewController {
             usemarker: true,
             fields: ["modified_at", "name", "extension"]
         )
-        
+
         iterator.next { [weak self] result in
             guard let self = self else { return }
-            
+
             switch result {
             case let .success(page):
                 self.folderItems = []
-                
+
                 for (i, item) in page.entries.enumerated() {
-                    print ("Item #\(String(format: "%03d", i + 1)) | \(item.debugDescription))")
+                    print("Item #\(String(format: "%03d", i + 1)) | \(item.debugDescription))")
                     DispatchQueue.main.async {
                         self.folderItems.append(item)
                         self.tableView.reloadData()
@@ -177,7 +176,7 @@ private extension ViewController {
     }
 
     func obtainJWTTokenFromExternalSources() -> DelegatedAuthClosure {
-        return { uniqueID, completion in
+        return { _, _ in
             #error("Obtain a JWT Token from your own service or a Developer Token for your app in the Box Developer Console at https://app.box.com/developers/console and return it in the completion.")
             // The code below is an example implementation of the delegate function
             // Please provide your own implementation
@@ -218,7 +217,7 @@ private extension ViewController {
                 self.errorView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
                 self.errorView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
                 self.errorView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
-                ])
+            ])
             self.errorView.displayError(error)
         }
     }

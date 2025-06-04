@@ -21,7 +21,7 @@ public class CreateRetentionPolicyAssignmentRequestBody: Codable {
     public let filterFields: [CreateRetentionPolicyAssignmentRequestBodyFilterFieldsField]?
 
     /// The date the retention policy assignment begins.
-    /// 
+    ///
     /// If the `assigned_to` type is `metadata_template`,
     /// this field can be a date field's metadata attribute key id.
     public let startDateField: String?
@@ -36,7 +36,7 @@ public class CreateRetentionPolicyAssignmentRequestBody: Codable {
     ///     require an array of objects with a field entry and a value entry.
     ///     Currently only one object of `field` and `value` is supported.
     ///   - startDateField: The date the retention policy assignment begins.
-    ///     
+    ///
     ///     If the `assigned_to` type is `metadata_template`,
     ///     this field can be a date field's metadata attribute key id.
     public init(policyId: String, assignTo: CreateRetentionPolicyAssignmentRequestBodyAssignToField, filterFields: [CreateRetentionPolicyAssignmentRequestBodyFilterFieldsField]? = nil, startDateField: String? = nil) {
@@ -46,7 +46,7 @@ public class CreateRetentionPolicyAssignmentRequestBody: Codable {
         self.startDateField = startDateField
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         policyId = try container.decode(String.self, forKey: .policyId)
         assignTo = try container.decode(CreateRetentionPolicyAssignmentRequestBodyAssignToField.self, forKey: .assignTo)
@@ -61,5 +61,4 @@ public class CreateRetentionPolicyAssignmentRequestBody: Codable {
         try container.encodeIfPresent(filterFields, forKey: .filterFields)
         try container.encodeIfPresent(startDateField, forKey: .startDateField)
     }
-
 }

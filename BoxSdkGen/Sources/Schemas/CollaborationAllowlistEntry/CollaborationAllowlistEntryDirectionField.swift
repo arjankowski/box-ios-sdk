@@ -27,9 +27,8 @@ public enum CollaborationAllowlistEntryDirectionField: CodableStringEnum {
             return "outbound"
         case .both:
             return "both"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

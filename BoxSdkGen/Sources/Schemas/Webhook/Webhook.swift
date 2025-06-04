@@ -28,7 +28,7 @@ public class Webhook: WebhookMini {
     ///   - id: The unique identifier for this webhook.
     ///   - type: `webhook`
     ///   - target: The item that will trigger the webhook
-    ///   - createdBy: 
+    ///   - createdBy:
     ///   - createdAt: A timestamp identifying the time that
     ///     the webhook was created.
     ///   - address: The URL that is notified by this webhook
@@ -43,7 +43,7 @@ public class Webhook: WebhookMini {
         super.init(id: id, type: type, target: target)
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         createdBy = try container.decodeIfPresent(UserMini.self, forKey: .createdBy)
         createdAt = try container.decodeDateTimeIfPresent(forKey: .createdAt)
@@ -53,7 +53,7 @@ public class Webhook: WebhookMini {
         try super.init(from: decoder)
     }
 
-    public override func encode(to encoder: Encoder) throws {
+    override public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(createdBy, forKey: .createdBy)
         try container.encodeDateTimeIfPresent(field: createdAt, forKey: .createdAt)
@@ -61,5 +61,4 @@ public class Webhook: WebhookMini {
         try container.encodeIfPresent(triggers, forKey: .triggers)
         try super.encode(to: encoder)
     }
-
 }

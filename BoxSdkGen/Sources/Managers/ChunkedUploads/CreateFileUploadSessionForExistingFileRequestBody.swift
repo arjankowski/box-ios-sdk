@@ -22,7 +22,7 @@ public class CreateFileUploadSessionForExistingFileRequestBody: Codable {
         self.fileName = fileName
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         fileSize = try container.decode(Int64.self, forKey: .fileSize)
         fileName = try container.decodeIfPresent(String.self, forKey: .fileName)
@@ -33,5 +33,4 @@ public class CreateFileUploadSessionForExistingFileRequestBody: Codable {
         try container.encode(fileSize, forKey: .fileSize)
         try container.encodeIfPresent(fileName, forKey: .fileName)
     }
-
 }

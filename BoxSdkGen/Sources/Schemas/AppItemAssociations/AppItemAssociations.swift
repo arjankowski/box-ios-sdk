@@ -30,15 +30,15 @@ public class AppItemAssociations: Codable {
     ///     allowed. The maximum value varies by API.
     ///   - nextMarker: The marker for the start of the next page of results.
     ///   - prevMarker: The marker for the start of the previous page of results.
-    ///   - entries: 
+    ///   - entries:
     public init(limit: Int64? = nil, nextMarker: TriStateField<String> = nil, prevMarker: TriStateField<String> = nil, entries: [AppItemAssociation]? = nil) {
         self.limit = limit
-        self._nextMarker = CodableTriState(state: nextMarker)
-        self._prevMarker = CodableTriState(state: prevMarker)
+        _nextMarker = CodableTriState(state: nextMarker)
+        _prevMarker = CodableTriState(state: prevMarker)
         self.entries = entries
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         limit = try container.decodeIfPresent(Int64.self, forKey: .limit)
         nextMarker = try container.decodeIfPresent(String.self, forKey: .nextMarker)
@@ -53,5 +53,4 @@ public class AppItemAssociations: Codable {
         try container.encode(field: _prevMarker.state, forKey: .prevMarker)
         try container.encodeIfPresent(entries, forKey: .entries)
     }
-
 }

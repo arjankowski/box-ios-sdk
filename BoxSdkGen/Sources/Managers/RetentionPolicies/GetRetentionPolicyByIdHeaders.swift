@@ -11,5 +11,4 @@ public class GetRetentionPolicyByIdHeaders {
     public init(extraHeaders: [String: String?]? = [:]) {
         self.extraHeaders = extraHeaders
     }
-
 }

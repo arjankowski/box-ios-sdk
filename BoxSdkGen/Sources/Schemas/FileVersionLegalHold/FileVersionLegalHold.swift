@@ -34,8 +34,8 @@ public class FileVersionLegalHold: Codable {
     /// - Parameters:
     ///   - id: The unique identifier for this file version legal hold
     ///   - type: `file_version_legal_hold`
-    ///   - fileVersion: 
-    ///   - file: 
+    ///   - fileVersion:
+    ///   - file:
     ///   - legalHoldPolicyAssignments: List of assignments contributing to this Hold.
     ///   - deletedAt: Time that this File-Version-Legal-Hold was
     ///     deleted.
@@ -48,7 +48,7 @@ public class FileVersionLegalHold: Codable {
         self.deletedAt = deletedAt
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decodeIfPresent(String.self, forKey: .id)
         type = try container.decodeIfPresent(FileVersionLegalHoldTypeField.self, forKey: .type)
@@ -67,5 +67,4 @@ public class FileVersionLegalHold: Codable {
         try container.encodeIfPresent(legalHoldPolicyAssignments, forKey: .legalHoldPolicyAssignments)
         try container.encodeDateTimeIfPresent(field: deletedAt, forKey: .deletedAt)
     }
-
 }

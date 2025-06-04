@@ -1,10 +1,7 @@
 import Foundation
 
 public class RemoveSharedLinkFromWebLinkRequestBodySharedLinkField: Codable {
-    public init() {
-    }
+    public init() {}
 
-    required public init(from decoder: Decoder) throws {
-    }
-
+    public required init(from _: Decoder) throws {}
 }

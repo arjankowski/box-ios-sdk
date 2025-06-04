@@ -6,7 +6,7 @@ public class UpdateFolderWatermarkRequestBodyWatermarkField: Codable {
     }
 
     /// The type of watermark to apply.
-    /// 
+    ///
     /// Currently only supports one option.
     public let imprint: UpdateFolderWatermarkRequestBodyWatermarkImprintField
 
@@ -14,13 +14,13 @@ public class UpdateFolderWatermarkRequestBodyWatermarkField: Codable {
     ///
     /// - Parameters:
     ///   - imprint: The type of watermark to apply.
-    ///     
+    ///
     ///     Currently only supports one option.
     public init(imprint: UpdateFolderWatermarkRequestBodyWatermarkImprintField = UpdateFolderWatermarkRequestBodyWatermarkImprintField.default_) {
         self.imprint = imprint
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         imprint = try container.decode(UpdateFolderWatermarkRequestBodyWatermarkImprintField.self, forKey: .imprint)
     }
@@ -29,5 +29,4 @@ public class UpdateFolderWatermarkRequestBodyWatermarkField: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(imprint, forKey: .imprint)
     }
-
 }

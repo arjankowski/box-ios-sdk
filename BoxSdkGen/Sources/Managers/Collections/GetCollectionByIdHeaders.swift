@@ -11,5 +11,4 @@ public class GetCollectionByIdHeaders {
     public init(extraHeaders: [String: String?]? = [:]) {
         self.extraHeaders = extraHeaders
     }
-
 }

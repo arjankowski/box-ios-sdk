@@ -27,9 +27,8 @@ public enum CreateRetentionPolicyAssignmentRequestBodyAssignToTypeField: Codable
             return "folder"
         case .metadataTemplate:
             return "metadata_template"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

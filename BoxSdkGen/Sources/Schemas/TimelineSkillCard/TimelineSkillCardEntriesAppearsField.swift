@@ -26,7 +26,7 @@ public class TimelineSkillCardEntriesAppearsField: Codable {
         self.end = end
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         start = try container.decodeIfPresent(Int64.self, forKey: .start)
         end = try container.decodeIfPresent(Int64.self, forKey: .end)
@@ -37,5 +37,4 @@ public class TimelineSkillCardEntriesAppearsField: Codable {
         try container.encodeIfPresent(start, forKey: .start)
         try container.encodeIfPresent(end, forKey: .end)
     }
-
 }

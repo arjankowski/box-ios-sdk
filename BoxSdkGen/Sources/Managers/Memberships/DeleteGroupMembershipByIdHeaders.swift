@@ -11,5 +11,4 @@ public class DeleteGroupMembershipByIdHeaders {
     public init(extraHeaders: [String: String?]? = [:]) {
         self.extraHeaders = extraHeaders
     }
-
 }

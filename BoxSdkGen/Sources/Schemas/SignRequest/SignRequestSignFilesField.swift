@@ -18,7 +18,7 @@ public class SignRequestSignFilesField: Codable {
     /// Initializer for a SignRequestSignFilesField.
     ///
     /// - Parameters:
-    ///   - files: 
+    ///   - files:
     ///   - isReadyForDownload: Indicates whether the `sign_files` documents are processing
     ///     and the PDFs may be out of date. A change to any document
     ///     requires processing on all `sign_files`. We
@@ -29,7 +29,7 @@ public class SignRequestSignFilesField: Codable {
         self.isReadyForDownload = isReadyForDownload
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         files = try container.decodeIfPresent([FileMini].self, forKey: .files)
         isReadyForDownload = try container.decodeIfPresent(Bool.self, forKey: .isReadyForDownload)
@@ -40,5 +40,4 @@ public class SignRequestSignFilesField: Codable {
         try container.encodeIfPresent(files, forKey: .files)
         try container.encodeIfPresent(isReadyForDownload, forKey: .isReadyForDownload)
     }
-
 }

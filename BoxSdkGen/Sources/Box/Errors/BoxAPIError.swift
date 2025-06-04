@@ -1,6 +1,6 @@
 import Foundation
 #if canImport(FoundationNetworking)
-import FoundationNetworking
+    import FoundationNetworking
 #endif
 
 /// Describes API request related errors.
@@ -32,11 +32,10 @@ public class BoxAPIError: BoxSDKError {
     /// - Returns: A dictionary representing the APIError.
     override public func getDictionary() -> [String: Any] {
         var dict = super.getDictionary()
-        dict["request"] = requestInfo.getDictionary(dataSanitizer: self.dataSanitizer)
-        dict["response"] = responseInfo.getDictionary(dataSanitizer: self.dataSanitizer)
+        dict["request"] = requestInfo.getDictionary(dataSanitizer: dataSanitizer)
+        dict["response"] = responseInfo.getDictionary(dataSanitizer: dataSanitizer)
         return dict
     }
-
 }
 
 extension BoxAPIError {
@@ -50,10 +49,10 @@ extension BoxAPIError {
             method: conversation.options.method.uppercased(),
             url: conversation.options.url,
             queryParams: conversation.options.params ?? [:],
-            headers:  requestHeaders,
-            body:  requestHeaders[HTTPHeaderKey.contentType, default: ""].paramValue == HTTPHeaderContentTypeValue.urlEncoded
-            ? try? conversation.options.data?.toUrlParams()
-            : try? Utils.Strings.from(data: conversation.options.data?.toJson() ?? Data())
+            headers: requestHeaders,
+            body: requestHeaders[HTTPHeaderKey.contentType, default: ""].paramValue == HTTPHeaderContentTypeValue.urlEncoded
+                ? try? conversation.options.data?.toUrlParams()
+                : try? Utils.Strings.from(data: conversation.options.data?.toJson() ?? Data())
         )
 
         var body: SerializedData?
@@ -66,7 +65,7 @@ extension BoxAPIError {
             statusCode: conversation.urlResponse.statusCode,
             headers: conversation.urlResponse.allHeaderFields as? [String: String] ?? [:],
             body: body,
-            rawBody:  try? Utils.Strings.from(data: body?.toJson() ?? Data()),
+            rawBody: try? Utils.Strings.from(data: body?.toJson() ?? Data()),
             code: json?["code"] as? String,
             contextInfo: json?["context_info"] as? [String: Any],
             requestId: json?["request_id"] as? String,

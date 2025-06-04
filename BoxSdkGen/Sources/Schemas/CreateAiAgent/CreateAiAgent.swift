@@ -44,9 +44,9 @@ public class CreateAiAgent: Codable {
     ///   - iconReference: The icon reference of the AI Agent. It should have format of the URL `https://cdn01.boxcdn.net/app-assets/aistudio/avatars/<file_name>`
     ///     where possible values of `file_name` are: `logo_boxAi.png`,`logo_stamp.png`,`logo_legal.png`,`logo_finance.png`,`logo_config.png`,`logo_handshake.png`,`logo_analytics.png`,`logo_classification.png`
     ///   - allowedEntities: List of allowed users or groups.
-    ///   - ask: 
-    ///   - textGen: 
-    ///   - extract: 
+    ///   - ask:
+    ///   - textGen:
+    ///   - extract:
     public init(name: String, accessState: String, type: CreateAiAgentTypeField = CreateAiAgentTypeField.aiAgent, iconReference: String? = nil, allowedEntities: [AiAgentAllowedEntity]? = nil, ask: AiStudioAgentAsk? = nil, textGen: AiStudioAgentTextGen? = nil, extract: AiStudioAgentExtract? = nil) {
         self.name = name
         self.accessState = accessState
@@ -58,7 +58,7 @@ public class CreateAiAgent: Codable {
         self.extract = extract
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         name = try container.decode(String.self, forKey: .name)
         accessState = try container.decode(String.self, forKey: .accessState)
@@ -81,5 +81,4 @@ public class CreateAiAgent: Codable {
         try container.encodeIfPresent(textGen, forKey: .textGen)
         try container.encodeIfPresent(extract, forKey: .extract)
     }
-
 }

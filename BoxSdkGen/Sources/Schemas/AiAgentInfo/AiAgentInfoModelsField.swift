@@ -28,7 +28,7 @@ public class AiAgentInfoModelsField: Codable {
         self.supportedPurpose = supportedPurpose
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         name = try container.decodeIfPresent(String.self, forKey: .name)
         provider = try container.decodeIfPresent(String.self, forKey: .provider)
@@ -41,5 +41,4 @@ public class AiAgentInfoModelsField: Codable {
         try container.encodeIfPresent(provider, forKey: .provider)
         try container.encodeIfPresent(supportedPurpose, forKey: .supportedPurpose)
     }
-
 }

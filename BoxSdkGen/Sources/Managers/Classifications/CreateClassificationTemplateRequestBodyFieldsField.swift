@@ -17,7 +17,7 @@ public class CreateClassificationTemplateRequestBodyFieldsField: Codable {
     /// that is always enum.
     public let type: CreateClassificationTemplateRequestBodyFieldsTypeField
 
-    /// Defines classifications 
+    /// Defines classifications
     /// available in the enterprise.
     public let key: CreateClassificationTemplateRequestBodyFieldsKeyField
 
@@ -38,7 +38,7 @@ public class CreateClassificationTemplateRequestBodyFieldsField: Codable {
     ///     this template.
     ///   - type: The type of the field
     ///     that is always enum.
-    ///   - key: Defines classifications 
+    ///   - key: Defines classifications
     ///     available in the enterprise.
     ///   - displayName: A display name for the classification.
     ///   - hidden: Determines if the classification
@@ -54,7 +54,7 @@ public class CreateClassificationTemplateRequestBodyFieldsField: Codable {
         self.hidden = hidden
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         options = try container.decode([CreateClassificationTemplateRequestBodyFieldsOptionsField].self, forKey: .options)
         type = try container.decode(CreateClassificationTemplateRequestBodyFieldsTypeField.self, forKey: .type)
@@ -71,5 +71,4 @@ public class CreateClassificationTemplateRequestBodyFieldsField: Codable {
         try container.encode(displayName, forKey: .displayName)
         try container.encodeIfPresent(hidden, forKey: .hidden)
     }
-
 }

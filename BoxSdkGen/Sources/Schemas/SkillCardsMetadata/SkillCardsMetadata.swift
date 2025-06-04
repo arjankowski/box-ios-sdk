@@ -73,7 +73,7 @@ public class SkillCardsMetadata: Codable {
         self.cards = cards
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         canEdit = try container.decodeIfPresent(Bool.self, forKey: .canEdit)
         id = try container.decodeIfPresent(String.self, forKey: .id)
@@ -98,5 +98,4 @@ public class SkillCardsMetadata: Codable {
         try container.encodeIfPresent(version, forKey: .version)
         try container.encodeIfPresent(cards, forKey: .cards)
     }
-
 }

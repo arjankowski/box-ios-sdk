@@ -16,7 +16,7 @@ public class ClientErrorV2025R0ContextInfoField: Codable {
         self.message = message
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         message = try container.decodeIfPresent(String.self, forKey: .message)
     }
@@ -25,5 +25,4 @@ public class ClientErrorV2025R0ContextInfoField: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(message, forKey: .message)
     }
-
 }

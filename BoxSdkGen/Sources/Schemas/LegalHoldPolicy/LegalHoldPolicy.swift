@@ -48,7 +48,7 @@ public class LegalHoldPolicy: LegalHoldPolicyMini {
     /// When the policy release request was sent. (Because
     /// it can take time for a policy to fully delete, this
     /// isn't quite the same time that the policy is fully deleted).
-    /// 
+    ///
     /// If `null`, the policy was not deleted.
     public let deletedAt: Date?
 
@@ -78,14 +78,14 @@ public class LegalHoldPolicy: LegalHoldPolicyMini {
     ///       of being released
     ///     * 'released' - the policy is no longer active
     ///   - assignmentCounts: Counts of assignments within this a legal hold policy by item type
-    ///   - createdBy: 
+    ///   - createdBy:
     ///   - createdAt: When the legal hold policy object was created
     ///   - modifiedAt: When the legal hold policy object was modified.
     ///     Does not update when assignments are added or removed.
     ///   - deletedAt: When the policy release request was sent. (Because
     ///     it can take time for a policy to fully delete, this
     ///     isn't quite the same time that the policy is fully deleted).
-    ///     
+    ///
     ///     If `null`, the policy was not deleted.
     ///   - filterStartedAt: User-specified, optional date filter applies to
     ///     Custodian assignments only
@@ -108,7 +108,7 @@ public class LegalHoldPolicy: LegalHoldPolicyMini {
         super.init(id: id, type: type)
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         policyName = try container.decodeIfPresent(String.self, forKey: .policyName)
         description = try container.decodeIfPresent(String.self, forKey: .description)
@@ -125,7 +125,7 @@ public class LegalHoldPolicy: LegalHoldPolicyMini {
         try super.init(from: decoder)
     }
 
-    public override func encode(to encoder: Encoder) throws {
+    override public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(policyName, forKey: .policyName)
         try container.encodeIfPresent(description, forKey: .description)
@@ -140,5 +140,4 @@ public class LegalHoldPolicy: LegalHoldPolicyMini {
         try container.encodeIfPresent(releaseNotes, forKey: .releaseNotes)
         try super.encode(to: encoder)
     }
-
 }

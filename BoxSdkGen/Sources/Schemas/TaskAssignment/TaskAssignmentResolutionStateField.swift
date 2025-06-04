@@ -32,9 +32,8 @@ public enum TaskAssignmentResolutionStateField: CodableStringEnum {
             return "approved"
         case .rejected:
             return "rejected"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

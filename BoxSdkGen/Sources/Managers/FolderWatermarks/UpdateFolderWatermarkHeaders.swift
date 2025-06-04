@@ -11,5 +11,4 @@ public class UpdateFolderWatermarkHeaders {
     public init(extraHeaders: [String: String?]? = [:]) {
         self.extraHeaders = extraHeaders
     }
-
 }

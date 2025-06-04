@@ -32,5 +32,4 @@ public class MultipartItem {
         self.fileName = fileName
         self.contentType = contentType
     }
-
 }

@@ -22,7 +22,7 @@ public class TemplateSignerInputDimensionsField: Codable {
         self.height = height
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         width = try container.decodeIfPresent(Double.self, forKey: .width)
         height = try container.decodeIfPresent(Double.self, forKey: .height)
@@ -33,5 +33,4 @@ public class TemplateSignerInputDimensionsField: Codable {
         try container.encodeIfPresent(width, forKey: .width)
         try container.encodeIfPresent(height, forKey: .height)
     }
-
 }

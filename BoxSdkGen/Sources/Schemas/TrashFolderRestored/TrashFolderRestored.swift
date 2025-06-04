@@ -27,7 +27,7 @@ public class TrashFolderRestored: Codable {
     }
 
     /// The unique identifier that represent a folder.
-    /// 
+    ///
     /// The ID for any folder can be determined
     /// by visiting a folder in the web application
     /// and copying the ID from the URL. For example,
@@ -61,7 +61,7 @@ public class TrashFolderRestored: Codable {
     public let description: String?
 
     /// The folder size in bytes.
-    /// 
+    ///
     /// Be careful parsing this integer as its
     /// value can get very large.
     public let size: Int64?
@@ -102,7 +102,7 @@ public class TrashFolderRestored: Codable {
     public let parent: FolderMini?
 
     /// Defines if this item has been deleted or not.
-    /// 
+    ///
     /// * `active` when the item has is not in the trash
     /// * `trashed` when the item has been moved to the trash but not deleted
     /// * `deleted` when the item has been permanently deleted.
@@ -112,7 +112,7 @@ public class TrashFolderRestored: Codable {
     ///
     /// - Parameters:
     ///   - id: The unique identifier that represent a folder.
-    ///     
+    ///
     ///     The ID for any folder can be determined
     ///     by visiting a folder in the web application
     ///     and copying the ID from the URL. For example,
@@ -122,7 +122,7 @@ public class TrashFolderRestored: Codable {
     ///     endpoints in the `If-Match` and `If-None-Match` headers to only
     ///     perform changes on the folder if (no) changes have happened.
     ///   - type: `folder`
-    ///   - sequenceId: 
+    ///   - sequenceId:
     ///   - name: The name of the folder.
     ///   - createdAt: The date and time when the folder was created. This value may
     ///     be `null` for some folders such as the root folder or the trash
@@ -130,14 +130,14 @@ public class TrashFolderRestored: Codable {
     ///   - modifiedAt: The date and time when the folder was last updated. This value may
     ///     be `null` for some folders such as the root folder or the trash
     ///     folder.
-    ///   - description: 
+    ///   - description:
     ///   - size: The folder size in bytes.
-    ///     
+    ///
     ///     Be careful parsing this integer as its
     ///     value can get very large.
-    ///   - pathCollection: 
-    ///   - createdBy: 
-    ///   - modifiedBy: 
+    ///   - pathCollection:
+    ///   - createdBy:
+    ///   - modifiedBy:
     ///   - trashedAt: The time at which this folder was put in the
     ///     trash - becomes `null` after restore.
     ///   - purgedAt: The time at which this folder is expected to be purged
@@ -145,44 +145,44 @@ public class TrashFolderRestored: Codable {
     ///   - contentCreatedAt: The date and time at which this folder was originally
     ///     created.
     ///   - contentModifiedAt: The date and time at which this folder was last updated.
-    ///   - ownedBy: 
+    ///   - ownedBy:
     ///   - sharedLink: The shared link for this file. This will
     ///     be `null` if a folder had been trashed, even though the original shared
     ///     link does become active again.
     ///   - folderUploadEmail: The folder upload email for this folder. This will
     ///     be `null` if a folder has been trashed, even though the original upload
     ///     email does become active again.
-    ///   - parent: 
+    ///   - parent:
     ///   - itemStatus: Defines if this item has been deleted or not.
-    ///     
+    ///
     ///     * `active` when the item has is not in the trash
     ///     * `trashed` when the item has been moved to the trash but not deleted
     ///     * `deleted` when the item has been permanently deleted.
     public init(id: String? = nil, etag: TriStateField<String> = nil, type: TrashFolderRestoredTypeField? = nil, sequenceId: String? = nil, name: String? = nil, createdAt: TriStateField<Date> = nil, modifiedAt: TriStateField<Date> = nil, description: String? = nil, size: Int64? = nil, pathCollection: TrashFolderRestoredPathCollectionField? = nil, createdBy: UserMini? = nil, modifiedBy: UserMini? = nil, trashedAt: TriStateField<String> = nil, purgedAt: TriStateField<String> = nil, contentCreatedAt: TriStateField<Date> = nil, contentModifiedAt: TriStateField<Date> = nil, ownedBy: UserMini? = nil, sharedLink: TriStateField<String> = nil, folderUploadEmail: TriStateField<String> = nil, parent: FolderMini? = nil, itemStatus: TrashFolderRestoredItemStatusField? = nil) {
         self.id = id
-        self._etag = CodableTriState(state: etag)
+        _etag = CodableTriState(state: etag)
         self.type = type
         self.sequenceId = sequenceId
         self.name = name
-        self._createdAt = CodableTriState(state: createdAt)
-        self._modifiedAt = CodableTriState(state: modifiedAt)
+        _createdAt = CodableTriState(state: createdAt)
+        _modifiedAt = CodableTriState(state: modifiedAt)
         self.description = description
         self.size = size
         self.pathCollection = pathCollection
         self.createdBy = createdBy
         self.modifiedBy = modifiedBy
-        self._trashedAt = CodableTriState(state: trashedAt)
-        self._purgedAt = CodableTriState(state: purgedAt)
-        self._contentCreatedAt = CodableTriState(state: contentCreatedAt)
-        self._contentModifiedAt = CodableTriState(state: contentModifiedAt)
+        _trashedAt = CodableTriState(state: trashedAt)
+        _purgedAt = CodableTriState(state: purgedAt)
+        _contentCreatedAt = CodableTriState(state: contentCreatedAt)
+        _contentModifiedAt = CodableTriState(state: contentModifiedAt)
         self.ownedBy = ownedBy
-        self._sharedLink = CodableTriState(state: sharedLink)
-        self._folderUploadEmail = CodableTriState(state: folderUploadEmail)
+        _sharedLink = CodableTriState(state: sharedLink)
+        _folderUploadEmail = CodableTriState(state: folderUploadEmail)
         self.parent = parent
         self.itemStatus = itemStatus
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decodeIfPresent(String.self, forKey: .id)
         etag = try container.decodeIfPresent(String.self, forKey: .etag)
@@ -231,5 +231,4 @@ public class TrashFolderRestored: Codable {
         try container.encodeIfPresent(parent, forKey: .parent)
         try container.encodeIfPresent(itemStatus, forKey: .itemStatus)
     }
-
 }

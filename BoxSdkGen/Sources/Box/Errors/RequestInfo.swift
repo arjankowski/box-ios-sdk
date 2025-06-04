@@ -1,4 +1,5 @@
 import Foundation
+
 /// The class that represents the request information.
 public class RequestInfo {
     /// The HTTP method for the Request
@@ -27,7 +28,6 @@ public class RequestInfo {
         self.headers = headers
         self.body = body
     }
-
 }
 
 extension RequestInfo {

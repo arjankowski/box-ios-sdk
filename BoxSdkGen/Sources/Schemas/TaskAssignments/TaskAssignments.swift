@@ -23,7 +23,7 @@ public class TaskAssignments: Codable {
         self.entries = entries
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         totalCount = try container.decodeIfPresent(Int64.self, forKey: .totalCount)
         entries = try container.decodeIfPresent([TaskAssignment].self, forKey: .entries)
@@ -34,5 +34,4 @@ public class TaskAssignments: Codable {
         try container.encodeIfPresent(totalCount, forKey: .totalCount)
         try container.encodeIfPresent(entries, forKey: .entries)
     }
-
 }

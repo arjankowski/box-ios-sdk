@@ -22,9 +22,8 @@ public enum SearchForContentQueryParamsSortField: CodableStringEnum {
             return "modified_at"
         case .relevance:
             return "relevance"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

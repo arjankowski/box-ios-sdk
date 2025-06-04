@@ -27,9 +27,8 @@ public enum SignRequestCreateSignerRoleField: CodableStringEnum {
             return "approver"
         case .finalCopyReader:
             return "final_copy_reader"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

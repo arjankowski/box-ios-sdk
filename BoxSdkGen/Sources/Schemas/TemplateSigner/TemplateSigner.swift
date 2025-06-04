@@ -47,11 +47,11 @@ public class TemplateSigner: Codable {
     /// An identifier for the signer. This can be used to identify a signer within the template.
     public let publicId: String?
 
-    /// If true for signers with a defined email, the password provided when the template was created is used by default. 
+    /// If true for signers with a defined email, the password provided when the template was created is used by default.
     /// If true for signers without a specified / defined email, the creator needs to provide a password when using the template.
     @CodableTriState public private(set) var isPasswordRequired: Bool?
 
-    /// If true for signers with a defined email, the phone number provided when the template was created is used by default. 
+    /// If true for signers with a defined email, the phone number provided when the template was created is used by default.
     /// If true for signers without a specified / defined email, the template creator needs to provide a phone number when creating a request.
     @CodableTriState public private(set) var isPhoneNumberRequired: Bool?
 
@@ -61,7 +61,7 @@ public class TemplateSigner: Codable {
     /// Initializer for a TemplateSigner.
     ///
     /// - Parameters:
-    ///   - inputs: 
+    ///   - inputs:
     ///   - email: Email address of the signer
     ///   - role: Defines the role of the signer in the signature request. A role of
     ///     `signer` needs to sign the document, a role `approver`
@@ -77,26 +77,26 @@ public class TemplateSigner: Codable {
     ///     within Box Sign requests created from it.
     ///   - label: A placeholder label for the signer set by the template creator to differentiate between signers.
     ///   - publicId: An identifier for the signer. This can be used to identify a signer within the template.
-    ///   - isPasswordRequired: If true for signers with a defined email, the password provided when the template was created is used by default. 
+    ///   - isPasswordRequired: If true for signers with a defined email, the password provided when the template was created is used by default.
     ///     If true for signers without a specified / defined email, the creator needs to provide a password when using the template.
-    ///   - isPhoneNumberRequired: If true for signers with a defined email, the phone number provided when the template was created is used by default. 
+    ///   - isPhoneNumberRequired: If true for signers with a defined email, the phone number provided when the template was created is used by default.
     ///     If true for signers without a specified / defined email, the template creator needs to provide a phone number when creating a request.
     ///   - loginRequired: If true, the signer is required to login to access the document.
     public init(inputs: [TemplateSignerInput]? = nil, email: TriStateField<String> = nil, role: TemplateSignerRoleField? = nil, isInPerson: Bool? = nil, order: Int64? = nil, signerGroupId: TriStateField<String> = nil, label: TriStateField<String> = nil, publicId: String? = nil, isPasswordRequired: TriStateField<Bool> = nil, isPhoneNumberRequired: TriStateField<Bool> = nil, loginRequired: TriStateField<Bool> = nil) {
         self.inputs = inputs
-        self._email = CodableTriState(state: email)
+        _email = CodableTriState(state: email)
         self.role = role
         self.isInPerson = isInPerson
         self.order = order
-        self._signerGroupId = CodableTriState(state: signerGroupId)
-        self._label = CodableTriState(state: label)
+        _signerGroupId = CodableTriState(state: signerGroupId)
+        _label = CodableTriState(state: label)
         self.publicId = publicId
-        self._isPasswordRequired = CodableTriState(state: isPasswordRequired)
-        self._isPhoneNumberRequired = CodableTriState(state: isPhoneNumberRequired)
-        self._loginRequired = CodableTriState(state: loginRequired)
+        _isPasswordRequired = CodableTriState(state: isPasswordRequired)
+        _isPhoneNumberRequired = CodableTriState(state: isPhoneNumberRequired)
+        _loginRequired = CodableTriState(state: loginRequired)
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         inputs = try container.decodeIfPresent([TemplateSignerInput].self, forKey: .inputs)
         email = try container.decodeIfPresent(String.self, forKey: .email)
@@ -125,5 +125,4 @@ public class TemplateSigner: Codable {
         try container.encode(field: _isPhoneNumberRequired.state, forKey: .isPhoneNumberRequired)
         try container.encode(field: _loginRequired.state, forKey: .loginRequired)
     }
-
 }

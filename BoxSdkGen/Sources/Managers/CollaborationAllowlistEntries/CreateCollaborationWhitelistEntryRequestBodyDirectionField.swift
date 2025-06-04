@@ -27,9 +27,8 @@ public enum CreateCollaborationWhitelistEntryRequestBodyDirectionField: CodableS
             return "outbound"
         case .both:
             return "both"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

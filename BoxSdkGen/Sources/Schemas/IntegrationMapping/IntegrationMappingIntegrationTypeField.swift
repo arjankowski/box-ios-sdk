@@ -17,9 +17,8 @@ public enum IntegrationMappingIntegrationTypeField: CodableStringEnum {
         switch self {
         case .slack:
             return "slack"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

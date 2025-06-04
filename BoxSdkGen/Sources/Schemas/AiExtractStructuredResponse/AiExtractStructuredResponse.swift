@@ -22,10 +22,10 @@ public class AiExtractStructuredResponse: Codable {
     /// Initializer for a AiExtractStructuredResponse.
     ///
     /// - Parameters:
-    ///   - answer: 
+    ///   - answer:
     ///   - createdAt: The ISO date formatted timestamp of when the answer to the prompt was created.
     ///   - completionReason: The reason the response finishes.
-    ///   - aiAgentInfo: 
+    ///   - aiAgentInfo:
     public init(answer: AiExtractResponse, createdAt: Date, completionReason: String? = nil, aiAgentInfo: AiAgentInfo? = nil) {
         self.answer = answer
         self.createdAt = createdAt
@@ -33,7 +33,7 @@ public class AiExtractStructuredResponse: Codable {
         self.aiAgentInfo = aiAgentInfo
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         answer = try container.decode(AiExtractResponse.self, forKey: .answer)
         createdAt = try container.decodeDateTime(forKey: .createdAt)
@@ -48,5 +48,4 @@ public class AiExtractStructuredResponse: Codable {
         try container.encodeIfPresent(completionReason, forKey: .completionReason)
         try container.encodeIfPresent(aiAgentInfo, forKey: .aiAgentInfo)
     }
-
 }

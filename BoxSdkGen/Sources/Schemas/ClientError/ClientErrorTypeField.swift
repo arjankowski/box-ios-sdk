@@ -17,9 +17,8 @@ public enum ClientErrorTypeField: CodableStringEnum {
         switch self {
         case .error:
             return "error"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

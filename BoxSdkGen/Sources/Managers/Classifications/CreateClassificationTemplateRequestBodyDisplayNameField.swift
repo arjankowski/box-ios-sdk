@@ -17,9 +17,8 @@ public enum CreateClassificationTemplateRequestBodyDisplayNameField: CodableStri
         switch self {
         case .classification:
             return "Classification"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

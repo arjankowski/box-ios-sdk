@@ -46,7 +46,7 @@ public class AiExtractStructuredFieldsField: Codable {
         self.options = options
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         key = try container.decode(String.self, forKey: .key)
         description = try container.decodeIfPresent(String.self, forKey: .description)
@@ -65,5 +65,4 @@ public class AiExtractStructuredFieldsField: Codable {
         try container.encodeIfPresent(type, forKey: .type)
         try container.encodeIfPresent(options, forKey: .options)
     }
-
 }

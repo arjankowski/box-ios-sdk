@@ -26,17 +26,16 @@ public class AiStudioAgentBasicTextTool: AiAgentBasicTextTool {
         super.init(model: model, numTokensForCompletion: numTokensForCompletion, llmEndpointParams: llmEndpointParams, systemMessage: systemMessage, promptTemplate: promptTemplate)
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         isCustomInstructionsIncluded = try container.decodeIfPresent(Bool.self, forKey: .isCustomInstructionsIncluded)
 
         try super.init(from: decoder)
     }
 
-    public override func encode(to encoder: Encoder) throws {
+    override public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(isCustomInstructionsIncluded, forKey: .isCustomInstructionsIncluded)
         try super.encode(to: encoder)
     }
-
 }

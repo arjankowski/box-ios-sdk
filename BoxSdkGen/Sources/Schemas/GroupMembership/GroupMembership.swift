@@ -37,8 +37,8 @@ public class GroupMembership: Codable {
     /// - Parameters:
     ///   - id: The unique identifier for this group membership
     ///   - type: `group_membership`
-    ///   - user: 
-    ///   - group: 
+    ///   - user:
+    ///   - group:
     ///   - role: The role of the user in the group.
     ///   - createdAt: The time this membership was created.
     ///   - modifiedAt: The time this membership was last modified.
@@ -52,7 +52,7 @@ public class GroupMembership: Codable {
         self.modifiedAt = modifiedAt
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decodeIfPresent(String.self, forKey: .id)
         type = try container.decodeIfPresent(GroupMembershipTypeField.self, forKey: .type)
@@ -73,5 +73,4 @@ public class GroupMembership: Codable {
         try container.encodeDateTimeIfPresent(field: createdAt, forKey: .createdAt)
         try container.encodeDateTimeIfPresent(field: modifiedAt, forKey: .modifiedAt)
     }
-
 }

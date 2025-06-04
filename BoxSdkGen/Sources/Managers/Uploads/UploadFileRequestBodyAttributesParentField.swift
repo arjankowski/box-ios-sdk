@@ -18,7 +18,7 @@ public class UploadFileRequestBodyAttributesParentField: Codable {
         self.id = id
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
     }
@@ -27,5 +27,4 @@ public class UploadFileRequestBodyAttributesParentField: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
     }
-
 }

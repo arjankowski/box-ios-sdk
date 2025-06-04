@@ -16,7 +16,7 @@ public class CreateBoxSkillCardsOnFileRequestBody: Codable {
         self.cards = cards
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         cards = try container.decode([KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard].self, forKey: .cards)
     }
@@ -25,5 +25,4 @@ public class CreateBoxSkillCardsOnFileRequestBody: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(cards, forKey: .cards)
     }
-
 }

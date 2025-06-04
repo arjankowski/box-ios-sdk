@@ -31,7 +31,7 @@ public class AppItem: Codable {
         self.type = type
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
         applicationType = try container.decode(String.self, forKey: .applicationType)
@@ -44,5 +44,4 @@ public class AppItem: Codable {
         try container.encode(applicationType, forKey: .applicationType)
         try container.encode(type, forKey: .type)
     }
-
 }

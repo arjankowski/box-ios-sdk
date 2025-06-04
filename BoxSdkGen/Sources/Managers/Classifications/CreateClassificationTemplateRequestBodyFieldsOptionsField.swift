@@ -24,7 +24,7 @@ public class CreateClassificationTemplateRequestBodyFieldsOptionsField: Codable 
         self.staticConfig = staticConfig
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         key = try container.decode(String.self, forKey: .key)
         staticConfig = try container.decodeIfPresent(CreateClassificationTemplateRequestBodyFieldsOptionsStaticConfigField.self, forKey: .staticConfig)
@@ -35,5 +35,4 @@ public class CreateClassificationTemplateRequestBodyFieldsOptionsField: Codable 
         try container.encode(key, forKey: .key)
         try container.encodeIfPresent(staticConfig, forKey: .staticConfig)
     }
-
 }

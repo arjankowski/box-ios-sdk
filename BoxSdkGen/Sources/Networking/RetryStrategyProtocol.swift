@@ -12,7 +12,7 @@ public protocol RetryStrategyProtocol {
 }
 
 /// Exponential backoff retry strategy
-public class ExponentialBackoffRetryStrategy:  RetryStrategyProtocol {
+public class ExponentialBackoffRetryStrategy: RetryStrategyProtocol {
     /// The default base interval used to calculating retry timeout.
     public static let defaultBaseInterval: TimeInterval = 1.0
     /// The default base randomization factor used for calculating retry timeout.
@@ -42,12 +42,12 @@ public class ExponentialBackoffRetryStrategy:  RetryStrategyProtocol {
     ///   - attempt: The retry number.
     /// - Returns: The duration in seconds to wait before retrying the request.
     public func getRetryTimeout(attempt: Int) -> TimeInterval {
-        let min = max(1 - self.randomizationFactor, 0)
-        let max = max(1 + self.randomizationFactor, 1)
+        let min = max(1 - randomizationFactor, 0)
+        let max = max(1 + randomizationFactor, 1)
 
         let jitter = Double.random(in: min ... max)
         let expFactor = pow(2.0, Double(attempt - 1))
 
-        return self.baseInterval * jitter * expFactor
+        return baseInterval * jitter * expFactor
     }
 }

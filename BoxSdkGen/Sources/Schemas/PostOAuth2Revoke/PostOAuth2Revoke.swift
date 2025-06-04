@@ -33,7 +33,7 @@ public class PostOAuth2Revoke: Codable {
         self.token = token
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         clientId = try container.decodeIfPresent(String.self, forKey: .clientId)
         clientSecret = try container.decodeIfPresent(String.self, forKey: .clientSecret)
@@ -46,5 +46,4 @@ public class PostOAuth2Revoke: Codable {
         try container.encodeIfPresent(clientSecret, forKey: .clientSecret)
         try container.encodeIfPresent(token, forKey: .token)
     }
-
 }

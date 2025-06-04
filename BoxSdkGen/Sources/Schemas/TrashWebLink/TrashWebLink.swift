@@ -83,23 +83,23 @@ public class TrashWebLink: Codable {
     /// - Parameters:
     ///   - type: `web_link`
     ///   - id: The unique identifier for this web link
-    ///   - sequenceId: 
+    ///   - sequenceId:
     ///   - etag: The entity tag of this web link. Used with `If-Match`
     ///     headers.
     ///   - name: The name of the web link
     ///   - url: The URL this web link points to
-    ///   - parent: 
+    ///   - parent:
     ///   - description: The description accompanying the web link. This is
     ///     visible within the Box web application.
-    ///   - pathCollection: 
+    ///   - pathCollection:
     ///   - createdAt: When this file was created on Box’s servers.
     ///   - modifiedAt: When this file was last updated on the Box
     ///     servers.
     ///   - trashedAt: When this file was last moved to the trash.
     ///   - purgedAt: When this file will be permanently deleted.
-    ///   - createdBy: 
-    ///   - modifiedBy: 
-    ///   - ownedBy: 
+    ///   - createdBy:
+    ///   - modifiedBy:
+    ///   - ownedBy:
     ///   - sharedLink: The shared link for this bookmark. This will
     ///     be `null` if a bookmark has been trashed, since the link will no longer
     ///     be active.
@@ -118,16 +118,16 @@ public class TrashWebLink: Codable {
         self.pathCollection = pathCollection
         self.createdAt = createdAt
         self.modifiedAt = modifiedAt
-        self._trashedAt = CodableTriState(state: trashedAt)
-        self._purgedAt = CodableTriState(state: purgedAt)
+        _trashedAt = CodableTriState(state: trashedAt)
+        _purgedAt = CodableTriState(state: purgedAt)
         self.createdBy = createdBy
         self.modifiedBy = modifiedBy
         self.ownedBy = ownedBy
-        self._sharedLink = CodableTriState(state: sharedLink)
+        _sharedLink = CodableTriState(state: sharedLink)
         self.itemStatus = itemStatus
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         type = try container.decodeIfPresent(TrashWebLinkTypeField.self, forKey: .type)
         id = try container.decodeIfPresent(String.self, forKey: .id)
@@ -170,5 +170,4 @@ public class TrashWebLink: Codable {
         try container.encode(field: _sharedLink.state, forKey: .sharedLink)
         try container.encodeIfPresent(itemStatus, forKey: .itemStatus)
     }
-
 }

@@ -11,5 +11,4 @@ public class UpdateGroupByIdHeaders {
     public init(extraHeaders: [String: String?]? = [:]) {
         self.extraHeaders = extraHeaders
     }
-
 }

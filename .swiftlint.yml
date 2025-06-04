@@ -15,7 +15,8 @@ disabled_rules:
   # - trailing_whitespace
 
 #
-# Some rules are only opt-in. Find all the available rules by running: swiftlint rules
+# Some rules are only opt-in. 
+# Find all the available rules by running: swiftlint rules
 #
 opt_in_rules:
   - anyobject_protocol
@@ -124,8 +125,6 @@ line_length:
   ignores_function_declarations: yes
   ignores_comments: yes
   ignores_urls: yes
-
-line_length:
   error: 300
   warning: 200
 

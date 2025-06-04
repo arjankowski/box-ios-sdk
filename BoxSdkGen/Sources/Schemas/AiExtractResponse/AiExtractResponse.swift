@@ -4,10 +4,7 @@ import Foundation
 /// The content of this response may vary depending on
 /// the requested configuration.
 public class AiExtractResponse: Codable {
-    public init() {
-    }
+    public init() {}
 
-    required public init(from decoder: Decoder) throws {
-    }
-
+    public required init(from _: Decoder) throws {}
 }

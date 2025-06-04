@@ -1,12 +1,12 @@
 import Foundation
 
 /// The value to be set or tested.
-/// 
+///
 /// Required for `add`, `replace`, and `test` operations. For `add`,
 /// if the value exists already the previous value will be overwritten
 /// by the new value. For `replace`, the value must exist before
 /// replacing.
-/// 
+///
 /// For `test`, the existing value at the `path` location must match
 /// the specified value.
 public enum MetadataInstanceValue: Codable {
@@ -37,20 +37,18 @@ public enum MetadataInstanceValue: Codable {
         }
 
         throw DecodingError.typeMismatch(MetadataInstanceValue.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "The type of the decoded object cannot be determined."))
-
     }
 
     public func encode(to encoder: Encoder) throws {
         switch self {
-        case .stringArray(let stringArray):
+        case let .stringArray(stringArray):
             try stringArray.encode(to: encoder)
-        case .double(let double):
+        case let .double(double):
             try double.encode(to: encoder)
-        case .int64(let int64):
+        case let .int64(int64):
             try int64.encode(to: encoder)
-        case .string(let string):
+        case let .string(string):
             try string.encode(to: encoder)
         }
     }
-
 }

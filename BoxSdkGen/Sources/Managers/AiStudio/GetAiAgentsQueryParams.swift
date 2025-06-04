@@ -36,5 +36,4 @@ public class GetAiAgentsQueryParams {
         self.marker = marker
         self.limit = limit
     }
-
 }

@@ -20,7 +20,7 @@ public class FileFullRepresentationsEntriesInfoField: Codable {
         self.url = url
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         url = try container.decodeIfPresent(String.self, forKey: .url)
     }
@@ -29,5 +29,4 @@ public class FileFullRepresentationsEntriesInfoField: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(url, forKey: .url)
     }
-
 }

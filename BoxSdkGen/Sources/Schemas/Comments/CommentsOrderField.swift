@@ -22,7 +22,7 @@ public class CommentsOrderField: Codable {
         self.direction = direction
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         by = try container.decodeIfPresent(String.self, forKey: .by)
         direction = try container.decodeIfPresent(CommentsOrderDirectionField.self, forKey: .direction)
@@ -33,5 +33,4 @@ public class CommentsOrderField: Codable {
         try container.encodeIfPresent(by, forKey: .by)
         try container.encodeIfPresent(direction, forKey: .direction)
     }
-
 }

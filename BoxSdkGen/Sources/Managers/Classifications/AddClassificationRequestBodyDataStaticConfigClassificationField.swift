@@ -11,11 +11,11 @@ public class AddClassificationRequestBodyDataStaticConfigClassificationField: Co
 
     /// An internal Box identifier used to assign a color to
     /// a classification label.
-    /// 
+    ///
     /// Mapping between a `colorID` and a color may change
     /// without notice. Currently, the color mappings are as
     /// follows.
-    /// 
+    ///
     /// * `0`: Yellow
     /// * `1`: Orange
     /// * `2`: Watermelon red
@@ -32,11 +32,11 @@ public class AddClassificationRequestBodyDataStaticConfigClassificationField: Co
     ///   - classificationDefinition: A longer description of the classification.
     ///   - colorId: An internal Box identifier used to assign a color to
     ///     a classification label.
-    ///     
+    ///
     ///     Mapping between a `colorID` and a color may change
     ///     without notice. Currently, the color mappings are as
     ///     follows.
-    ///     
+    ///
     ///     * `0`: Yellow
     ///     * `1`: Orange
     ///     * `2`: Watermelon red
@@ -50,7 +50,7 @@ public class AddClassificationRequestBodyDataStaticConfigClassificationField: Co
         self.colorId = colorId
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         classificationDefinition = try container.decodeIfPresent(String.self, forKey: .classificationDefinition)
         colorId = try container.decodeIfPresent(Int64.self, forKey: .colorId)
@@ -61,5 +61,4 @@ public class AddClassificationRequestBodyDataStaticConfigClassificationField: Co
         try container.encodeIfPresent(classificationDefinition, forKey: .classificationDefinition)
         try container.encodeIfPresent(colorId, forKey: .colorId)
     }
-
 }

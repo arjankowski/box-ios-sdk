@@ -11,5 +11,4 @@ public class CopyFileHeaders {
     public init(extraHeaders: [String: String?]? = [:]) {
         self.extraHeaders = extraHeaders
     }
-
 }

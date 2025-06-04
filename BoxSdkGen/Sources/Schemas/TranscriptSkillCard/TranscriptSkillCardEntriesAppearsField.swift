@@ -18,7 +18,7 @@ public class TranscriptSkillCardEntriesAppearsField: Codable {
         self.start = start
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         start = try container.decodeIfPresent(Int64.self, forKey: .start)
     }
@@ -27,5 +27,4 @@ public class TranscriptSkillCardEntriesAppearsField: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(start, forKey: .start)
     }
-
 }

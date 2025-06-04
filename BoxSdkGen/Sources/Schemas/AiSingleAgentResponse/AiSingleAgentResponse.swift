@@ -77,7 +77,7 @@ public class AiSingleAgentResponse: Codable {
         self.allowedEntities = allowedEntities
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
         origin = try container.decode(String.self, forKey: .origin)
@@ -106,5 +106,4 @@ public class AiSingleAgentResponse: Codable {
         try container.encodeIfPresent(iconReference, forKey: .iconReference)
         try container.encodeIfPresent(allowedEntities, forKey: .allowedEntities)
     }
-
 }

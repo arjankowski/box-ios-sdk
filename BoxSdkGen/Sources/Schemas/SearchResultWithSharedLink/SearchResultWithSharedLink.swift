@@ -3,7 +3,7 @@ import Foundation
 /// A single of files, folder or web link that matched the search query,
 /// including the additional information about the shared link through
 /// which the item has been shared with the user.
-/// 
+///
 /// This response format is only returned when the
 /// `include_recent_shared_links` query parameter has been set to `true`.
 public class SearchResultWithSharedLink: Codable {
@@ -31,7 +31,7 @@ public class SearchResultWithSharedLink: Codable {
     ///     item. This value is only returned for items for which the user has
     ///     recently accessed the file through a shared link. For all other
     ///     items this value will return `null`.
-    ///   - item: 
+    ///   - item:
     ///   - type: The result type. The value is always `search_result`.
     public init(accessibleViaSharedLink: String? = nil, item: FileFullOrFolderFullOrWebLink? = nil, type: String? = nil) {
         self.accessibleViaSharedLink = accessibleViaSharedLink
@@ -39,7 +39,7 @@ public class SearchResultWithSharedLink: Codable {
         self.type = type
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         accessibleViaSharedLink = try container.decodeIfPresent(String.self, forKey: .accessibleViaSharedLink)
         item = try container.decodeIfPresent(FileFullOrFolderFullOrWebLink.self, forKey: .item)
@@ -52,5 +52,4 @@ public class SearchResultWithSharedLink: Codable {
         try container.encodeIfPresent(item, forKey: .item)
         try container.encodeIfPresent(type, forKey: .type)
     }
-
 }

@@ -17,9 +17,8 @@ public enum UpdateFolderWatermarkRequestBodyWatermarkImprintField: CodableString
         switch self {
         case .default_:
             return "default"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

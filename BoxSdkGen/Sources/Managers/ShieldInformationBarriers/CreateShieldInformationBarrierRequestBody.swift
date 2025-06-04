@@ -16,7 +16,7 @@ public class CreateShieldInformationBarrierRequestBody: Codable {
         self.enterprise = enterprise
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         enterprise = try container.decode(EnterpriseBase.self, forKey: .enterprise)
     }
@@ -25,5 +25,4 @@ public class CreateShieldInformationBarrierRequestBody: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(enterprise, forKey: .enterprise)
     }
-
 }

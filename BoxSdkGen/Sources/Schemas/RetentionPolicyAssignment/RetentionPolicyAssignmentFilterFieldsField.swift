@@ -20,11 +20,11 @@ public class RetentionPolicyAssignmentFilterFieldsField: Codable {
     ///   - value: The metadata attribute field id. For value, only
     ///     enum and multiselect types are supported.
     public init(field: TriStateField<String> = nil, value: TriStateField<String> = nil) {
-        self._field = CodableTriState(state: field)
-        self._value = CodableTriState(state: value)
+        _field = CodableTriState(state: field)
+        _value = CodableTriState(state: value)
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         field = try container.decodeIfPresent(String.self, forKey: .field)
         value = try container.decodeIfPresent(String.self, forKey: .value)
@@ -35,5 +35,4 @@ public class RetentionPolicyAssignmentFilterFieldsField: Codable {
         try container.encode(field: _field.state, forKey: .field)
         try container.encode(field: _value.state, forKey: .value)
     }
-
 }

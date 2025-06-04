@@ -32,9 +32,8 @@ public enum CreateLegalHoldPolicyAssignmentRequestBodyAssignToTypeField: Codable
             return "folder"
         case .user:
             return "user"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

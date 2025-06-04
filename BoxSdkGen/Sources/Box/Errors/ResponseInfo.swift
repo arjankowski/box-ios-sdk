@@ -10,7 +10,7 @@ public class ResponseInfo {
     public let body: SerializedData?
     /// The string representation of the response body
     public let rawBody: String?
-    ///A Box-specific error code
+    /// A Box-specific error code
     public let code: String?
     /// A free-form object that contains additional context about the error
     public let contextInfo: [String: Any]?
@@ -20,7 +20,6 @@ public class ResponseInfo {
     public let helpUrl: String?
     /// A short message describing the error
     public let message: String?
-
 
     /// Initializer
     ///
@@ -42,10 +41,9 @@ public class ResponseInfo {
         self.code = code
         self.contextInfo = contextInfo
         self.requestId = requestId
-        self.helpUrl = helperUrl
+        helpUrl = helperUrl
         self.message = message
     }
-
 }
 
 extension ResponseInfo {

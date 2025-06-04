@@ -8,7 +8,7 @@ public class UpdateClassificationOnFileRequestBody: Codable {
     }
 
     /// The name of the classification to apply to this file.
-    /// 
+    ///
     /// To list the available classifications in an enterprise,
     /// use the classification API to retrieve the
     /// [classification template](e://get_metadata_templates_enterprise_securityClassification-6VMVochwUWo_schema)
@@ -18,7 +18,7 @@ public class UpdateClassificationOnFileRequestBody: Codable {
     /// `replace`
     public let op: UpdateClassificationOnFileRequestBodyOpField
 
-    /// Defines classifications 
+    /// Defines classifications
     /// available in the enterprise.
     public let path: UpdateClassificationOnFileRequestBodyPathField
 
@@ -26,13 +26,13 @@ public class UpdateClassificationOnFileRequestBody: Codable {
     ///
     /// - Parameters:
     ///   - value: The name of the classification to apply to this file.
-    ///     
+    ///
     ///     To list the available classifications in an enterprise,
     ///     use the classification API to retrieve the
     ///     [classification template](e://get_metadata_templates_enterprise_securityClassification-6VMVochwUWo_schema)
     ///     which lists all available classification keys.
     ///   - op: `replace`
-    ///   - path: Defines classifications 
+    ///   - path: Defines classifications
     ///     available in the enterprise.
     public init(value: String, op: UpdateClassificationOnFileRequestBodyOpField = UpdateClassificationOnFileRequestBodyOpField.replace, path: UpdateClassificationOnFileRequestBodyPathField = UpdateClassificationOnFileRequestBodyPathField.boxSecurityClassificationKey) {
         self.value = value
@@ -40,7 +40,7 @@ public class UpdateClassificationOnFileRequestBody: Codable {
         self.path = path
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         value = try container.decode(String.self, forKey: .value)
         op = try container.decode(UpdateClassificationOnFileRequestBodyOpField.self, forKey: .op)
@@ -53,5 +53,4 @@ public class UpdateClassificationOnFileRequestBody: Codable {
         try container.encode(op, forKey: .op)
         try container.encode(path, forKey: .path)
     }
-
 }

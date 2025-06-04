@@ -19,15 +19,15 @@ public class AiAgentExtract: Codable {
     ///
     /// - Parameters:
     ///   - type: The type of AI agent to be used for extraction.
-    ///   - longText: 
-    ///   - basicText: 
+    ///   - longText:
+    ///   - basicText:
     public init(type: AiAgentExtractTypeField = AiAgentExtractTypeField.aiAgentExtract, longText: AiAgentLongTextTool? = nil, basicText: AiAgentBasicTextTool? = nil) {
         self.type = type
         self.longText = longText
         self.basicText = basicText
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         type = try container.decode(AiAgentExtractTypeField.self, forKey: .type)
         longText = try container.decodeIfPresent(AiAgentLongTextTool.self, forKey: .longText)
@@ -40,5 +40,4 @@ public class AiAgentExtract: Codable {
         try container.encodeIfPresent(longText, forKey: .longText)
         try container.encodeIfPresent(basicText, forKey: .basicText)
     }
-
 }

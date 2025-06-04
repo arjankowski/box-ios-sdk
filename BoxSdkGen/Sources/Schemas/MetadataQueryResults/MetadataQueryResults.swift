@@ -10,7 +10,7 @@ public class MetadataQueryResults: Codable {
 
     /// The mini representation of the files and folders that match the search
     /// terms.
-    /// 
+    ///
     /// By default, this endpoint returns only the most basic info about the
     /// items. To get additional fields for each item, including any of the
     /// metadata, use the `fields` attribute in the query.
@@ -29,7 +29,7 @@ public class MetadataQueryResults: Codable {
     /// - Parameters:
     ///   - entries: The mini representation of the files and folders that match the search
     ///     terms.
-    ///     
+    ///
     ///     By default, this endpoint returns only the most basic info about the
     ///     items. To get additional fields for each item, including any of the
     ///     metadata, use the `fields` attribute in the query.
@@ -43,7 +43,7 @@ public class MetadataQueryResults: Codable {
         self.nextMarker = nextMarker
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         entries = try container.decodeIfPresent([FileFullOrFolderFull].self, forKey: .entries)
         limit = try container.decodeIfPresent(Int64.self, forKey: .limit)
@@ -56,5 +56,4 @@ public class MetadataQueryResults: Codable {
         try container.encodeIfPresent(limit, forKey: .limit)
         try container.encodeIfPresent(nextMarker, forKey: .nextMarker)
     }
-
 }

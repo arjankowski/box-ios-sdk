@@ -28,12 +28,12 @@ public class DocGenBatchCreateRequestV2025R0: Codable {
     /// Initializer for a DocGenBatchCreateRequestV2025R0.
     ///
     /// - Parameters:
-    ///   - file: 
+    ///   - file:
     ///   - inputSource: Source of input. The value has to be `api` for all the API-based document generation requests.
-    ///   - destinationFolder: 
+    ///   - destinationFolder:
     ///   - outputType: Type of the output file.
-    ///   - documentGenerationData: 
-    ///   - fileVersion: 
+    ///   - documentGenerationData:
+    ///   - fileVersion:
     public init(file: FileReferenceV2025R0, inputSource: String, destinationFolder: DocGenBatchCreateRequestV2025R0DestinationFolderField, outputType: String, documentGenerationData: [DocGenDocumentGenerationDataV2025R0], fileVersion: FileVersionBaseV2025R0? = nil) {
         self.file = file
         self.inputSource = inputSource
@@ -43,7 +43,7 @@ public class DocGenBatchCreateRequestV2025R0: Codable {
         self.fileVersion = fileVersion
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         file = try container.decode(FileReferenceV2025R0.self, forKey: .file)
         inputSource = try container.decode(String.self, forKey: .inputSource)
@@ -62,5 +62,4 @@ public class DocGenBatchCreateRequestV2025R0: Codable {
         try container.encode(documentGenerationData, forKey: .documentGenerationData)
         try container.encodeIfPresent(fileVersion, forKey: .fileVersion)
     }
-
 }

@@ -29,7 +29,6 @@ public class BoxSDKError: Error {
         dict["error"] = error?.localizedDescription
         return dict
     }
-
 }
 
 /// Extension for `CustomStringConvertible` conformance

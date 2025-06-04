@@ -22,7 +22,7 @@ public class FolderLockLockedOperationsField: Codable {
         self.delete = delete
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         move = try container.decode(Bool.self, forKey: .move)
         delete = try container.decode(Bool.self, forKey: .delete)
@@ -33,5 +33,4 @@ public class FolderLockLockedOperationsField: Codable {
         try container.encode(move, forKey: .move)
         try container.encode(delete, forKey: .delete)
     }
-
 }

@@ -25,10 +25,10 @@ public class SignRequestSignerSignerDecisionField: Codable {
     public init(type: SignRequestSignerSignerDecisionTypeField? = nil, finalizedAt: Date? = nil, additionalInfo: TriStateField<String> = nil) {
         self.type = type
         self.finalizedAt = finalizedAt
-        self._additionalInfo = CodableTriState(state: additionalInfo)
+        _additionalInfo = CodableTriState(state: additionalInfo)
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         type = try container.decodeIfPresent(SignRequestSignerSignerDecisionTypeField.self, forKey: .type)
         finalizedAt = try container.decodeDateTimeIfPresent(forKey: .finalizedAt)
@@ -41,5 +41,4 @@ public class SignRequestSignerSignerDecisionField: Codable {
         try container.encodeDateTimeIfPresent(field: finalizedAt, forKey: .finalizedAt)
         try container.encode(field: _additionalInfo.state, forKey: .additionalInfo)
     }
-
 }

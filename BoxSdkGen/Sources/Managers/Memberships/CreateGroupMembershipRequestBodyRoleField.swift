@@ -22,9 +22,8 @@ public enum CreateGroupMembershipRequestBodyRoleField: CodableStringEnum {
             return "member"
         case .admin:
             return "admin"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

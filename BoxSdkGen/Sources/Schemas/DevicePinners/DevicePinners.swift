@@ -39,7 +39,7 @@ public class DevicePinners: Codable {
         self.order = order
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         entries = try container.decodeIfPresent([DevicePinner].self, forKey: .entries)
         limit = try container.decodeIfPresent(Int64.self, forKey: .limit)
@@ -54,5 +54,4 @@ public class DevicePinners: Codable {
         try container.encodeIfPresent(nextMarker, forKey: .nextMarker)
         try container.encodeIfPresent(order, forKey: .order)
     }
-
 }

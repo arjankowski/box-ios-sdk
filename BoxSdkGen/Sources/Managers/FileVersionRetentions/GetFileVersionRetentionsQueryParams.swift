@@ -27,7 +27,7 @@ public class GetFileVersionRetentionsQueryParams {
 
     /// Defines the position marker at which to begin returning results. This is
     /// used when paginating using marker-based pagination.
-    /// 
+    ///
     /// This requires `usemarker` to be set to `true`.
     public let marker: String?
 
@@ -46,7 +46,7 @@ public class GetFileVersionRetentionsQueryParams {
     ///   - limit: The maximum number of items to return per page.
     ///   - marker: Defines the position marker at which to begin returning results. This is
     ///     used when paginating using marker-based pagination.
-    ///     
+    ///
     ///     This requires `usemarker` to be set to `true`.
     public init(fileId: String? = nil, fileVersionId: String? = nil, policyId: String? = nil, dispositionAction: GetFileVersionRetentionsQueryParamsDispositionActionField? = nil, dispositionBefore: String? = nil, dispositionAfter: String? = nil, limit: Int64? = nil, marker: String? = nil) {
         self.fileId = fileId
@@ -58,5 +58,4 @@ public class GetFileVersionRetentionsQueryParams {
         self.limit = limit
         self.marker = marker
     }
-
 }

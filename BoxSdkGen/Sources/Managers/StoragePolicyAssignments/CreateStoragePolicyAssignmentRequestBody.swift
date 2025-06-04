@@ -26,7 +26,7 @@ public class CreateStoragePolicyAssignmentRequestBody: Codable {
         self.assignedTo = assignedTo
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         storagePolicy = try container.decode(CreateStoragePolicyAssignmentRequestBodyStoragePolicyField.self, forKey: .storagePolicy)
         assignedTo = try container.decode(CreateStoragePolicyAssignmentRequestBodyAssignedToField.self, forKey: .assignedTo)
@@ -37,5 +37,4 @@ public class CreateStoragePolicyAssignmentRequestBody: Codable {
         try container.encode(storagePolicy, forKey: .storagePolicy)
         try container.encode(assignedTo, forKey: .assignedTo)
     }
-
 }

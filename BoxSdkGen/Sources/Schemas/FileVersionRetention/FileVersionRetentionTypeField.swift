@@ -17,9 +17,8 @@ public enum FileVersionRetentionTypeField: CodableStringEnum {
         switch self {
         case .fileVersionRetention:
             return "file_version_retention"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

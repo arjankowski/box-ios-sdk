@@ -22,9 +22,8 @@ public enum FileRequestUpdateRequestStatusField: CodableStringEnum {
             return "active"
         case .inactive:
             return "inactive"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

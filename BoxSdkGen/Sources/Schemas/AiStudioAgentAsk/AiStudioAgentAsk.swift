@@ -40,22 +40,22 @@ public class AiStudioAgentAsk: Codable {
     ///   - description: The description of the AI Agent.
     ///   - type: The type of AI agent used to handle queries.
     ///   - customInstructions: Custom instructions for the agent.
-    ///   - longText: 
-    ///   - basicText: 
-    ///   - longTextMulti: 
-    ///   - basicTextMulti: 
+    ///   - longText:
+    ///   - basicText:
+    ///   - longTextMulti:
+    ///   - basicTextMulti:
     public init(accessState: String, description: String, type: AiStudioAgentAskTypeField = AiStudioAgentAskTypeField.aiAgentAsk, customInstructions: TriStateField<String> = nil, longText: AiStudioAgentLongTextTool? = nil, basicText: AiStudioAgentBasicTextTool? = nil, longTextMulti: AiStudioAgentLongTextTool? = nil, basicTextMulti: AiStudioAgentBasicTextTool? = nil) {
         self.accessState = accessState
         self.description = description
         self.type = type
-        self._customInstructions = CodableTriState(state: customInstructions)
+        _customInstructions = CodableTriState(state: customInstructions)
         self.longText = longText
         self.basicText = basicText
         self.longTextMulti = longTextMulti
         self.basicTextMulti = basicTextMulti
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         accessState = try container.decode(String.self, forKey: .accessState)
         description = try container.decode(String.self, forKey: .description)
@@ -78,5 +78,4 @@ public class AiStudioAgentAsk: Codable {
         try container.encodeIfPresent(longTextMulti, forKey: .longTextMulti)
         try container.encodeIfPresent(basicTextMulti, forKey: .basicTextMulti)
     }
-
 }

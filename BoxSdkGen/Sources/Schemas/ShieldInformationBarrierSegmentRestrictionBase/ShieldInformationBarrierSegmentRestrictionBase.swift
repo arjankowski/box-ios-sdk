@@ -27,7 +27,7 @@ public class ShieldInformationBarrierSegmentRestrictionBase: Codable {
         self.id = id
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         type = try container.decodeIfPresent(ShieldInformationBarrierSegmentRestrictionBaseTypeField.self, forKey: .type)
         id = try container.decodeIfPresent(String.self, forKey: .id)
@@ -38,5 +38,4 @@ public class ShieldInformationBarrierSegmentRestrictionBase: Codable {
         try container.encodeIfPresent(type, forKey: .type)
         try container.encodeIfPresent(id, forKey: .id)
     }
-
 }

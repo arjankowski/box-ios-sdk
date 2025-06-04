@@ -16,7 +16,7 @@ public class TerminateGroupsSessionsRequestBody: Codable {
         self.groupIds = groupIds
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         groupIds = try container.decode([String].self, forKey: .groupIds)
     }
@@ -25,5 +25,4 @@ public class TerminateGroupsSessionsRequestBody: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(groupIds, forKey: .groupIds)
     }
-
 }

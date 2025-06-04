@@ -3,14 +3,14 @@ import Foundation
 public class FindFileForSharedLinkHeaders {
     /// A header containing the shared link and optional password for the
     /// shared link.
-    /// 
+    ///
     /// The format for this header is as follows.
-    /// 
+    ///
     /// `shared_link=[link]&shared_link_password=[password]`
     public let boxapi: String
 
     /// Ensures an item is only returned if it has changed.
-    /// 
+    ///
     /// Pass in the item's last observed `etag` value
     /// into this header and the endpoint will fail
     /// with a `304 Not Modified` if the item has not
@@ -25,12 +25,12 @@ public class FindFileForSharedLinkHeaders {
     /// - Parameters:
     ///   - boxapi: A header containing the shared link and optional password for the
     ///     shared link.
-    ///     
+    ///
     ///     The format for this header is as follows.
-    ///     
+    ///
     ///     `shared_link=[link]&shared_link_password=[password]`
     ///   - ifNoneMatch: Ensures an item is only returned if it has changed.
-    ///     
+    ///
     ///     Pass in the item's last observed `etag` value
     ///     into this header and the endpoint will fail
     ///     with a `304 Not Modified` if the item has not
@@ -41,5 +41,4 @@ public class FindFileForSharedLinkHeaders {
         self.ifNoneMatch = ifNoneMatch
         self.extraHeaders = extraHeaders
     }
-
 }

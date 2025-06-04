@@ -11,5 +11,4 @@ public class GetFileVersionRetentionByIdHeaders {
     public init(extraHeaders: [String: String?]? = [:]) {
         self.extraHeaders = extraHeaders
     }
-
 }

@@ -72,9 +72,8 @@ public enum SignRequestStatusField: CodableStringEnum {
             return "finalizing"
         case .errorFinalizing:
             return "error_finalizing"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

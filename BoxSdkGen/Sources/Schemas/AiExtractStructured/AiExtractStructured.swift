@@ -30,7 +30,7 @@ public class AiExtractStructured: Codable {
     ///     For your request to work, you must provide either `metadata_template` or `fields`, but not both.
     ///   - fields: The fields to be extracted from the provided items.
     ///     For your request to work, you must provide either `metadata_template` or `fields`, but not both.
-    ///   - aiAgent: 
+    ///   - aiAgent:
     public init(items: [AiItemBase], metadataTemplate: AiExtractStructuredMetadataTemplateField? = nil, fields: [AiExtractStructuredFieldsField]? = nil, aiAgent: AiAgentExtractStructuredOrAiAgentReference? = nil) {
         self.items = items
         self.metadataTemplate = metadataTemplate
@@ -38,7 +38,7 @@ public class AiExtractStructured: Codable {
         self.aiAgent = aiAgent
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         items = try container.decode([AiItemBase].self, forKey: .items)
         metadataTemplate = try container.decodeIfPresent(AiExtractStructuredMetadataTemplateField.self, forKey: .metadataTemplate)
@@ -53,5 +53,4 @@ public class AiExtractStructured: Codable {
         try container.encodeIfPresent(fields, forKey: .fields)
         try container.encodeIfPresent(aiAgent, forKey: .aiAgent)
     }
-
 }

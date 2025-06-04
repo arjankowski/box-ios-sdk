@@ -17,9 +17,8 @@ public enum CompletionRuleVariableVariableTypeField: CodableStringEnum {
         switch self {
         case .taskCompletionRule:
             return "task_completion_rule"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

@@ -17,9 +17,8 @@ public enum MetadataCascadePolicyTypeField: CodableStringEnum {
         switch self {
         case .metadataCascadePolicy:
             return "metadata_cascade_policy"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

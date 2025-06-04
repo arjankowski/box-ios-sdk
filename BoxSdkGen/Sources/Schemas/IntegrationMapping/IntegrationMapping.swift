@@ -66,7 +66,7 @@ public class IntegrationMapping: IntegrationMappingBase {
     ///   - isManuallyCreated: Identifies whether the mapping has
     ///     been manually set
     ///     (as opposed to being automatically created)
-    ///   - options: 
+    ///   - options:
     ///   - createdBy: An object representing the user who
     ///     created the integration mapping
     ///   - modifiedBy: The user who
@@ -87,7 +87,7 @@ public class IntegrationMapping: IntegrationMappingBase {
         super.init(id: id, type: type)
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         partnerItem = try container.decode(IntegrationMappingPartnerItemSlackUnion.self, forKey: .partnerItem)
         boxItem = try container.decode(FolderMini.self, forKey: .boxItem)
@@ -102,7 +102,7 @@ public class IntegrationMapping: IntegrationMappingBase {
         try super.init(from: decoder)
     }
 
-    public override func encode(to encoder: Encoder) throws {
+    override public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(partnerItem, forKey: .partnerItem)
         try container.encode(boxItem, forKey: .boxItem)
@@ -115,5 +115,4 @@ public class IntegrationMapping: IntegrationMappingBase {
         try container.encodeDateTimeIfPresent(field: modifiedAt, forKey: .modifiedAt)
         try super.encode(to: encoder)
     }
-
 }

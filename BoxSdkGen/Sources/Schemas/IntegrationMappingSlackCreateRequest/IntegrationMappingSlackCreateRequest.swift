@@ -20,7 +20,7 @@ public class IntegrationMappingSlackCreateRequest: Codable {
         self.options = options
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         partnerItem = try container.decode(IntegrationMappingPartnerItemSlack.self, forKey: .partnerItem)
         boxItem = try container.decode(IntegrationMappingBoxItemSlack.self, forKey: .boxItem)
@@ -33,5 +33,4 @@ public class IntegrationMappingSlackCreateRequest: Codable {
         try container.encode(boxItem, forKey: .boxItem)
         try container.encodeIfPresent(options, forKey: .options)
     }
-
 }

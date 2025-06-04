@@ -30,7 +30,7 @@ public class StatusSkillCardStatusField: Codable {
         self.message = message
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         code = try container.decode(StatusSkillCardStatusCodeField.self, forKey: .code)
         message = try container.decodeIfPresent(String.self, forKey: .message)
@@ -41,5 +41,4 @@ public class StatusSkillCardStatusField: Codable {
         try container.encode(code, forKey: .code)
         try container.encodeIfPresent(message, forKey: .message)
     }
-
 }

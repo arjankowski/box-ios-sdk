@@ -54,12 +54,12 @@ public class ClientErrorV2025R0: Codable {
         self.status = status
         self.code = code
         self.message = message
-        self._contextInfo = CodableTriState(state: contextInfo)
+        _contextInfo = CodableTriState(state: contextInfo)
         self.helpUrl = helpUrl
         self.requestId = requestId
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         type = try container.decodeIfPresent(ClientErrorV2025R0TypeField.self, forKey: .type)
         status = try container.decodeIfPresent(Int.self, forKey: .status)
@@ -80,5 +80,4 @@ public class ClientErrorV2025R0: Codable {
         try container.encodeIfPresent(helpUrl, forKey: .helpUrl)
         try container.encodeIfPresent(requestId, forKey: .requestId)
     }
-
 }

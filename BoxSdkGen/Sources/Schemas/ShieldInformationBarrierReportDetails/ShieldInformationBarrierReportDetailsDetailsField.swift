@@ -16,7 +16,7 @@ public class ShieldInformationBarrierReportDetailsDetailsField: Codable {
         self.folderId = folderId
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         folderId = try container.decodeIfPresent(String.self, forKey: .folderId)
     }
@@ -25,5 +25,4 @@ public class ShieldInformationBarrierReportDetailsDetailsField: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(folderId, forKey: .folderId)
     }
-
 }

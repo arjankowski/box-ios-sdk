@@ -17,9 +17,8 @@ public enum RoleVariableVariableTypeField: CodableStringEnum {
         switch self {
         case .collaboratorRole:
             return "collaborator_role"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

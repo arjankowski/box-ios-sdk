@@ -11,5 +11,4 @@ public class GetAiAgentByIdQueryParams {
     public init(fields: [String]? = nil) {
         self.fields = fields
     }
-
 }

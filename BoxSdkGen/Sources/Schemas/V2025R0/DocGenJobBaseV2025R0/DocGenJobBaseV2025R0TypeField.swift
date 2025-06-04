@@ -17,9 +17,8 @@ public enum DocGenJobBaseV2025R0TypeField: CodableStringEnum {
         switch self {
         case .docgenJob:
             return "docgen_job"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

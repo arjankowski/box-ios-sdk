@@ -17,9 +17,8 @@ public enum WorkflowFlowsTriggerTriggerTypeField: CodableStringEnum {
         switch self {
         case .workflowManualStart:
             return "WORKFLOW_MANUAL_START"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

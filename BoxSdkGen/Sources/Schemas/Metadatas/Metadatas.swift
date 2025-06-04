@@ -23,7 +23,7 @@ public class Metadatas: Codable {
         self.limit = limit
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         entries = try container.decodeIfPresent([Metadata].self, forKey: .entries)
         limit = try container.decodeIfPresent(Int64.self, forKey: .limit)
@@ -34,5 +34,4 @@ public class Metadatas: Codable {
         try container.encodeIfPresent(entries, forKey: .entries)
         try container.encodeIfPresent(limit, forKey: .limit)
     }
-
 }

@@ -22,7 +22,7 @@ public class CreateInviteRequestBody: Codable {
         self.actionableBy = actionableBy
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         enterprise = try container.decode(CreateInviteRequestBodyEnterpriseField.self, forKey: .enterprise)
         actionableBy = try container.decode(CreateInviteRequestBodyActionableByField.self, forKey: .actionableBy)
@@ -33,5 +33,4 @@ public class CreateInviteRequestBody: Codable {
         try container.encode(enterprise, forKey: .enterprise)
         try container.encode(actionableBy, forKey: .actionableBy)
     }
-
 }

@@ -1,10 +1,10 @@
 import Foundation
 
 /// A collection of items, including files and folders.
-/// 
+///
 /// Currently, the only collection available
 /// is the `favorites` collection.
-/// 
+///
 /// The contents of a collection can be explored in a
 /// similar way to which the contents of a folder is
 /// explored.
@@ -46,7 +46,7 @@ public class Collection: Codable {
         self.collectionType = collectionType
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decodeIfPresent(String.self, forKey: .id)
         type = try container.decodeIfPresent(CollectionTypeField.self, forKey: .type)
@@ -61,5 +61,4 @@ public class Collection: Codable {
         try container.encodeIfPresent(name, forKey: .name)
         try container.encodeIfPresent(collectionType, forKey: .collectionType)
     }
-
 }

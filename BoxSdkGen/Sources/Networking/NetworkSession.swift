@@ -1,6 +1,6 @@
 import Foundation
 #if canImport(FoundationNetworking)
-import FoundationNetworking
+    import FoundationNetworking
 #endif
 
 /// The Networking Session class provides the URLSession object along with a network configuration parameters used in network communication.
@@ -21,11 +21,11 @@ open class NetworkSession {
     /// Additional network settings.
     public let networkSettings: NetworkSettings
 
-   /// Network client
-   public let networkClient: NetworkClient
+    /// Network client
+    public let networkClient: NetworkClient
 
-   /// Sensitive data sanitizer
-   public let dataSanitizer: DataSanitizer
+    /// Sensitive data sanitizer
+    public let dataSanitizer: DataSanitizer
 
     /// Initializer
     ///
@@ -45,7 +45,7 @@ open class NetworkSession {
         self.networkClient = networkClient
         self.additionalHeaders = additionalHeaders
         self.configuration = configuration
-        self.session = URLSession(configuration: configuration, delegate: nil, delegateQueue: nil)
+        session = URLSession(configuration: configuration, delegate: nil, delegateQueue: nil)
         self.networkSettings = networkSettings
         self.baseUrls = baseUrls
         self.dataSanitizer = dataSanitizer
@@ -57,7 +57,7 @@ open class NetworkSession {
     /// - Parameters:
     ///   - additionalHeaders: Dictionary of headers, which are appended to each API request
     public func withAdditionalHeaders(additionalHeaders: [String: String]) -> NetworkSession {
-        return NetworkSession(networkClient: self.networkClient, additionalHeaders: Utils.Dictionary.merge(self.additionalHeaders, additionalHeaders), configuration: self.configuration, networkSettings: self.networkSettings, baseUrls: self.baseUrls, dataSanitizer: self.dataSanitizer)
+        return NetworkSession(networkClient: networkClient, additionalHeaders: Utils.Dictionary.merge(self.additionalHeaders, additionalHeaders), configuration: configuration, networkSettings: networkSettings, baseUrls: baseUrls, dataSanitizer: dataSanitizer)
     }
 
     /// Generate a fresh network session by duplicating the existing configuration and network parameters,
@@ -66,7 +66,7 @@ open class NetworkSession {
     /// - Parameters:
     ///   - baseUrls: Custom base urls
     public func withCustomBaseUrls(baseUrls: BaseUrls) -> NetworkSession {
-        return NetworkSession(networkClient: self.networkClient, additionalHeaders: self.additionalHeaders, configuration: self.configuration, networkSettings: self.networkSettings, baseUrls: baseUrls, dataSanitizer: self.dataSanitizer)
+        return NetworkSession(networkClient: networkClient, additionalHeaders: additionalHeaders, configuration: configuration, networkSettings: networkSettings, baseUrls: baseUrls, dataSanitizer: dataSanitizer)
     }
 
     /// Generate a fresh network session by duplicating the existing configuration and network parameters,
@@ -75,7 +75,7 @@ open class NetworkSession {
     /// - Parameters:
     ///   - networkSettings: Additional network settings.
     public func withNetworkClient(networkClient: NetworkClient) -> NetworkSession {
-        return NetworkSession(networkClient: networkClient, additionalHeaders: self.additionalHeaders, configuration: self.configuration, networkSettings: self.networkSettings, baseUrls: self.baseUrls, dataSanitizer: self.dataSanitizer)
+        return NetworkSession(networkClient: networkClient, additionalHeaders: additionalHeaders, configuration: configuration, networkSettings: networkSettings, baseUrls: baseUrls, dataSanitizer: dataSanitizer)
     }
 
     /// Generate a fresh network session by duplicating the existing configuration and network parameters,
@@ -84,6 +84,6 @@ open class NetworkSession {
     /// - Parameters:
     ///   - dataSanitizer: Sensitive data sanitizer
     public func withDataSanitizer(dataSanitizer: DataSanitizer) -> NetworkSession {
-        return NetworkSession(networkClient: networkClient, additionalHeaders: self.additionalHeaders, configuration: self.configuration, networkSettings: self.networkSettings, baseUrls: self.baseUrls, dataSanitizer: dataSanitizer)
+        return NetworkSession(networkClient: networkClient, additionalHeaders: additionalHeaders, configuration: configuration, networkSettings: networkSettings, baseUrls: baseUrls, dataSanitizer: dataSanitizer)
     }
 }

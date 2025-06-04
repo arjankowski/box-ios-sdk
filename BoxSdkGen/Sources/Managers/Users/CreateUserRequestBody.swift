@@ -26,7 +26,7 @@ public class CreateUserRequestBody: Codable {
     public let name: String
 
     /// The email address the user uses to log in
-    /// 
+    ///
     /// Required, unless `is_platform_access_only`
     /// is set to `true`.
     public let login: String?
@@ -93,7 +93,7 @@ public class CreateUserRequestBody: Codable {
     /// - Parameters:
     ///   - name: The name of the user
     ///   - login: The email address the user uses to log in
-    ///     
+    ///
     ///     Required, unless `is_platform_access_only`
     ///     is set to `true`.
     ///   - isPlatformAccessOnly: Specifies that the user is an app user.
@@ -142,7 +142,7 @@ public class CreateUserRequestBody: Codable {
         self.externalAppUserId = externalAppUserId
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         name = try container.decode(String.self, forKey: .name)
         login = try container.decodeIfPresent(String.self, forKey: .login)
@@ -185,5 +185,4 @@ public class CreateUserRequestBody: Codable {
         try container.encodeIfPresent(status, forKey: .status)
         try container.encodeIfPresent(externalAppUserId, forKey: .externalAppUserId)
     }
-
 }

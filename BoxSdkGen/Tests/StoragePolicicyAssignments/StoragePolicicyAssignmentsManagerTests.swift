@@ -1,5 +1,5 @@
-import Foundation
 import BoxSdkGen
+import Foundation
 import XCTest
 
 class StoragePolicicyAssignmentsManagerTests: XCTestCase {
@@ -15,7 +15,6 @@ class StoragePolicicyAssignmentsManagerTests: XCTestCase {
             if Utils.Strings.toString(value: storagePolicyAssignments.entries![0].assignedTo!.type) == "user" {
                 return storagePolicyAssignments.entries![0]
             }
-
         }
 
         let storagePolicyAssignment: StoragePolicyAssignment = try await client.storagePolicyAssignments.createStoragePolicyAssignment(requestBody: CreateStoragePolicyAssignmentRequestBody(storagePolicy: CreateStoragePolicyAssignmentRequestBodyStoragePolicyField(id: policyId), assignedTo: CreateStoragePolicyAssignmentRequestBodyAssignedToField(type: CreateStoragePolicyAssignmentRequestBodyAssignedToTypeField.user, id: userId)))

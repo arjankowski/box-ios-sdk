@@ -75,21 +75,21 @@ public class SignRequestBase: Codable {
     ///   - externalSystemName: Used as an optional system name to appear in the signature log next to the signers who have been assigned the `embed_url_external_id`.
     public init(isDocumentPreparationNeeded: Bool? = nil, redirectUrl: TriStateField<String> = nil, declinedRedirectUrl: TriStateField<String> = nil, areTextSignaturesEnabled: Bool? = nil, emailSubject: TriStateField<String> = nil, emailMessage: TriStateField<String> = nil, areRemindersEnabled: Bool? = nil, name: String? = nil, prefillTags: [SignRequestPrefillTag]? = nil, daysValid: TriStateField<Int64> = nil, externalId: TriStateField<String> = nil, templateId: TriStateField<String> = nil, externalSystemName: TriStateField<String> = nil) {
         self.isDocumentPreparationNeeded = isDocumentPreparationNeeded
-        self._redirectUrl = CodableTriState(state: redirectUrl)
-        self._declinedRedirectUrl = CodableTriState(state: declinedRedirectUrl)
+        _redirectUrl = CodableTriState(state: redirectUrl)
+        _declinedRedirectUrl = CodableTriState(state: declinedRedirectUrl)
         self.areTextSignaturesEnabled = areTextSignaturesEnabled
-        self._emailSubject = CodableTriState(state: emailSubject)
-        self._emailMessage = CodableTriState(state: emailMessage)
+        _emailSubject = CodableTriState(state: emailSubject)
+        _emailMessage = CodableTriState(state: emailMessage)
         self.areRemindersEnabled = areRemindersEnabled
         self.name = name
         self.prefillTags = prefillTags
-        self._daysValid = CodableTriState(state: daysValid)
-        self._externalId = CodableTriState(state: externalId)
-        self._templateId = CodableTriState(state: templateId)
-        self._externalSystemName = CodableTriState(state: externalSystemName)
+        _daysValid = CodableTriState(state: daysValid)
+        _externalId = CodableTriState(state: externalId)
+        _templateId = CodableTriState(state: templateId)
+        _externalSystemName = CodableTriState(state: externalSystemName)
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         isDocumentPreparationNeeded = try container.decodeIfPresent(Bool.self, forKey: .isDocumentPreparationNeeded)
         redirectUrl = try container.decodeIfPresent(String.self, forKey: .redirectUrl)
@@ -122,5 +122,4 @@ public class SignRequestBase: Codable {
         try container.encode(field: _templateId.state, forKey: .templateId)
         try container.encode(field: _externalSystemName.state, forKey: .externalSystemName)
     }
-
 }

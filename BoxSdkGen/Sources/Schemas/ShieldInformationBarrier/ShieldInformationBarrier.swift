@@ -59,7 +59,7 @@ public class ShieldInformationBarrier: Codable {
     ///   - updatedAt: ISO date time string when this shield information barrier was updated.
     ///   - updatedBy: The user that updated this shield information barrier.
     ///   - enabledAt: ISO date time string when this shield information barrier was enabled.
-    ///   - enabledBy: 
+    ///   - enabledBy:
     public init(id: String? = nil, type: ShieldInformationBarrierTypeField? = nil, enterprise: EnterpriseBase? = nil, status: ShieldInformationBarrierStatusField? = nil, createdAt: Date? = nil, createdBy: UserBase? = nil, updatedAt: Date? = nil, updatedBy: UserBase? = nil, enabledAt: Date? = nil, enabledBy: UserBase? = nil) {
         self.id = id
         self.type = type
@@ -73,7 +73,7 @@ public class ShieldInformationBarrier: Codable {
         self.enabledBy = enabledBy
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decodeIfPresent(String.self, forKey: .id)
         type = try container.decodeIfPresent(ShieldInformationBarrierTypeField.self, forKey: .type)
@@ -100,5 +100,4 @@ public class ShieldInformationBarrier: Codable {
         try container.encodeDateTimeIfPresent(field: enabledAt, forKey: .enabledAt)
         try container.encodeIfPresent(enabledBy, forKey: .enabledBy)
     }
-
 }

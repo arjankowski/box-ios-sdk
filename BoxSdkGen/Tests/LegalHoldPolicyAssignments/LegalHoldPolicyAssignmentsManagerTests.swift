@@ -1,5 +1,5 @@
-import Foundation
 import BoxSdkGen
+import Foundation
 import XCTest
 
 class LegalHoldPolicyAssignmentsManagerTests: XCTestCase {
@@ -31,9 +31,9 @@ class LegalHoldPolicyAssignmentsManagerTests: XCTestCase {
         try await client.files.deleteFileById(fileId: fileId)
         do {
             try await client.legalHoldPolicies.deleteLegalHoldPolicyById(legalHoldPolicyId: legalHoldPolicyId)
-        } catch {
+        }
+        catch {
             print("\("Could not delete Legal Policy with id: ")\(legalHoldPolicyId)")
         }
-
     }
 }

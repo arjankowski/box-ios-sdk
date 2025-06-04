@@ -16,7 +16,7 @@ public class GroupFullPermissionsField: Codable {
         self.canInviteAsCollaborator = canInviteAsCollaborator
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         canInviteAsCollaborator = try container.decodeIfPresent(Bool.self, forKey: .canInviteAsCollaborator)
     }
@@ -25,5 +25,4 @@ public class GroupFullPermissionsField: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(canInviteAsCollaborator, forKey: .canInviteAsCollaborator)
     }
-
 }

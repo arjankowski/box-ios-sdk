@@ -15,7 +15,7 @@ public class UpdateSlackIntegrationMappingByIdRequestBody: Codable {
         self.options = options
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         boxItem = try container.decodeIfPresent(IntegrationMappingBoxItemSlack.self, forKey: .boxItem)
         options = try container.decodeIfPresent(IntegrationMappingSlackOptions.self, forKey: .options)
@@ -26,5 +26,4 @@ public class UpdateSlackIntegrationMappingByIdRequestBody: Codable {
         try container.encodeIfPresent(boxItem, forKey: .boxItem)
         try container.encodeIfPresent(options, forKey: .options)
     }
-
 }

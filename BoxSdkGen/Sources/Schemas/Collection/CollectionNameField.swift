@@ -17,9 +17,8 @@ public enum CollectionNameField: CodableStringEnum {
         switch self {
         case .favorites:
             return "Favorites"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

@@ -17,9 +17,8 @@ public enum CreateClassificationTemplateRequestBodyFieldsTypeField: CodableStrin
         switch self {
         case .enum_:
             return "enum"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

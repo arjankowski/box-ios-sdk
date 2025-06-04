@@ -18,5 +18,4 @@ public class DownloadFileQueryParams {
         self.version = version
         self.accessToken = accessToken
     }
-
 }

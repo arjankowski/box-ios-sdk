@@ -28,7 +28,7 @@ public class AiTextGenItemsField: Codable {
         self.content = content
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
         type = try container.decode(AiTextGenItemsTypeField.self, forKey: .type)
@@ -41,5 +41,4 @@ public class AiTextGenItemsField: Codable {
         try container.encode(type, forKey: .type)
         try container.encodeIfPresent(content, forKey: .content)
     }
-
 }

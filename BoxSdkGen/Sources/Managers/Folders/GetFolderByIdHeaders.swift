@@ -2,7 +2,7 @@ import Foundation
 
 public class GetFolderByIdHeaders {
     /// Ensures an item is only returned if it has changed.
-    /// 
+    ///
     /// Pass in the item's last observed `etag` value
     /// into this header and the endpoint will fail
     /// with a `304 Not Modified` if the item has not
@@ -10,13 +10,13 @@ public class GetFolderByIdHeaders {
     public let ifNoneMatch: String?
 
     /// The URL, and optional password, for the shared link of this item.
-    /// 
+    ///
     /// This header can be used to access items that have not been
     /// explicitly shared with a user.
-    /// 
+    ///
     /// Use the format `shared_link=[link]` or if a password is required then
     /// use `shared_link=[link]&shared_link_password=[password]`.
-    /// 
+    ///
     /// This header can be used on the file or folder shared, as well as on any files
     /// or folders nested within the item.
     public let boxapi: String?
@@ -28,19 +28,19 @@ public class GetFolderByIdHeaders {
     ///
     /// - Parameters:
     ///   - ifNoneMatch: Ensures an item is only returned if it has changed.
-    ///     
+    ///
     ///     Pass in the item's last observed `etag` value
     ///     into this header and the endpoint will fail
     ///     with a `304 Not Modified` if the item has not
     ///     changed since.
     ///   - boxapi: The URL, and optional password, for the shared link of this item.
-    ///     
+    ///
     ///     This header can be used to access items that have not been
     ///     explicitly shared with a user.
-    ///     
+    ///
     ///     Use the format `shared_link=[link]` or if a password is required then
     ///     use `shared_link=[link]&shared_link_password=[password]`.
-    ///     
+    ///
     ///     This header can be used on the file or folder shared, as well as on any files
     ///     or folders nested within the item.
     ///   - extraHeaders: Extra headers that will be included in the HTTP request.
@@ -49,5 +49,4 @@ public class GetFolderByIdHeaders {
         self.boxapi = boxapi
         self.extraHeaders = extraHeaders
     }
-
 }

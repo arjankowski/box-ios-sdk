@@ -37,9 +37,8 @@ public enum SkillInvocationStatusStateField: CodableStringEnum {
             return "transient_failure"
         case .permanentFailure:
             return "permanent_failure"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

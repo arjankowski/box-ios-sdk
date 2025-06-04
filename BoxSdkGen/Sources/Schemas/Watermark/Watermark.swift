@@ -14,7 +14,7 @@ public class Watermark: Codable {
         self.watermark = watermark
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         watermark = try container.decodeIfPresent(WatermarkWatermarkField.self, forKey: .watermark)
     }
@@ -23,5 +23,4 @@ public class Watermark: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(watermark, forKey: .watermark)
     }
-
 }

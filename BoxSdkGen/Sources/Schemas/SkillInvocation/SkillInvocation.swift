@@ -47,14 +47,14 @@ public class SkillInvocation: Codable {
     /// - Parameters:
     ///   - type: `skill_invocation`
     ///   - id: Unique identifier for the invocation request.
-    ///   - skill: 
+    ///   - skill:
     ///   - token: The read-only and read-write access tokens for this item
     ///   - status: The details status of this event.
     ///   - createdAt: The time this invocation was created.
     ///   - trigger: Action that triggered the invocation
-    ///   - enterprise: 
-    ///   - source: 
-    ///   - event: 
+    ///   - enterprise:
+    ///   - source:
+    ///   - event:
     public init(type: SkillInvocationTypeField? = nil, id: String? = nil, skill: SkillInvocationSkillField? = nil, token: SkillInvocationTokenField? = nil, status: SkillInvocationStatusField? = nil, createdAt: Date? = nil, trigger: String? = nil, enterprise: SkillInvocationEnterpriseField? = nil, source: FileOrFolder? = nil, event: Event? = nil) {
         self.type = type
         self.id = id
@@ -68,7 +68,7 @@ public class SkillInvocation: Codable {
         self.event = event
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         type = try container.decodeIfPresent(SkillInvocationTypeField.self, forKey: .type)
         id = try container.decodeIfPresent(String.self, forKey: .id)
@@ -95,5 +95,4 @@ public class SkillInvocation: Codable {
         try container.encodeIfPresent(source, forKey: .source)
         try container.encodeIfPresent(event, forKey: .event)
     }
-
 }

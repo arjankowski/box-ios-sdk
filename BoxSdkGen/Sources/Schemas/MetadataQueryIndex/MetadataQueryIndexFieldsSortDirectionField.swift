@@ -22,9 +22,8 @@ public enum MetadataQueryIndexFieldsSortDirectionField: CodableStringEnum {
             return "asc"
         case .desc:
             return "desc"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

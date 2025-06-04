@@ -47,9 +47,8 @@ public enum CreateCollaborationRequestBodyRoleField: CodableStringEnum {
             return "viewer uploader"
         case .coOwner:
             return "co-owner"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

@@ -17,9 +17,8 @@ public enum ShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentTypeF
         switch self {
         case .shieldInformationBarrierSegment:
             return "shield_information_barrier_segment"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

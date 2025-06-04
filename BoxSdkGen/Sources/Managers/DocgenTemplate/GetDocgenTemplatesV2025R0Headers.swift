@@ -16,5 +16,4 @@ public class GetDocgenTemplatesV2025R0Headers {
         self.boxVersion = boxVersion
         self.extraHeaders = extraHeaders
     }
-
 }

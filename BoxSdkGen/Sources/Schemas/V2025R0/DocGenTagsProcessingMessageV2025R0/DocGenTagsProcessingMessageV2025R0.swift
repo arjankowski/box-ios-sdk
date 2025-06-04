@@ -17,7 +17,7 @@ public class DocGenTagsProcessingMessageV2025R0: Codable {
         self.message = message
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         message = try container.decode(String.self, forKey: .message)
     }
@@ -26,5 +26,4 @@ public class DocGenTagsProcessingMessageV2025R0: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(message, forKey: .message)
     }
-
 }

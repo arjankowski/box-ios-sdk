@@ -27,9 +27,8 @@ public enum GetUsersQueryParamsUserTypeField: CodableStringEnum {
             return "managed"
         case .external:
             return "external"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

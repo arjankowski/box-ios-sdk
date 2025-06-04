@@ -39,7 +39,7 @@ public class ClassificationTemplate: Codable {
     /// template is always available in web and mobile interfaces.
     public let hidden: Bool?
 
-    /// Determines if 
+    /// Determines if
     /// classifications are
     /// copied along when the file or folder is
     /// copied.
@@ -59,7 +59,7 @@ public class ClassificationTemplate: Codable {
     ///   - displayName: The name of this template as shown in web and mobile interfaces.
     ///   - hidden: Determines if the
     ///     template is always available in web and mobile interfaces.
-    ///   - copyInstanceOnItemCopy: Determines if 
+    ///   - copyInstanceOnItemCopy: Determines if
     ///     classifications are
     ///     copied along when the file or folder is
     ///     copied.
@@ -74,7 +74,7 @@ public class ClassificationTemplate: Codable {
         self.copyInstanceOnItemCopy = copyInstanceOnItemCopy
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
         scope = try container.decode(String.self, forKey: .scope)
@@ -97,5 +97,4 @@ public class ClassificationTemplate: Codable {
         try container.encodeIfPresent(hidden, forKey: .hidden)
         try container.encodeIfPresent(copyInstanceOnItemCopy, forKey: .copyInstanceOnItemCopy)
     }
-
 }

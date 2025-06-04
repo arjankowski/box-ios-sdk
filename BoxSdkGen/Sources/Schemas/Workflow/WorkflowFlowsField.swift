@@ -30,10 +30,10 @@ public class WorkflowFlowsField: Codable {
     /// - Parameters:
     ///   - id: The identifier of the flow
     ///   - type: The flow's resource type
-    ///   - trigger: 
-    ///   - outcomes: 
+    ///   - trigger:
+    ///   - outcomes:
     ///   - createdAt: When this flow was created
-    ///   - createdBy: 
+    ///   - createdBy:
     public init(id: String? = nil, type: WorkflowFlowsTypeField? = nil, trigger: WorkflowFlowsTriggerField? = nil, outcomes: [WorkflowFlowsOutcomesField]? = nil, createdAt: Date? = nil, createdBy: UserBase? = nil) {
         self.id = id
         self.type = type
@@ -43,7 +43,7 @@ public class WorkflowFlowsField: Codable {
         self.createdBy = createdBy
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decodeIfPresent(String.self, forKey: .id)
         type = try container.decodeIfPresent(WorkflowFlowsTypeField.self, forKey: .type)
@@ -62,5 +62,4 @@ public class WorkflowFlowsField: Codable {
         try container.encodeDateTimeIfPresent(field: createdAt, forKey: .createdAt)
         try container.encodeIfPresent(createdBy, forKey: .createdBy)
     }
-
 }

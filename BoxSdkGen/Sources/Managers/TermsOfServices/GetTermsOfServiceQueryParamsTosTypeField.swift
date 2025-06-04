@@ -22,9 +22,8 @@ public enum GetTermsOfServiceQueryParamsTosTypeField: CodableStringEnum {
             return "external"
         case .managed:
             return "managed"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

@@ -34,7 +34,7 @@ public class ShieldInformationBarrierSegmentRestrictionMini: ShieldInformationBa
         super.init(type: type, id: id)
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         shieldInformationBarrierSegment = try container.decode(ShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentField.self, forKey: .shieldInformationBarrierSegment)
         restrictedSegment = try container.decode(ShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentField.self, forKey: .restrictedSegment)
@@ -42,11 +42,10 @@ public class ShieldInformationBarrierSegmentRestrictionMini: ShieldInformationBa
         try super.init(from: decoder)
     }
 
-    public override func encode(to encoder: Encoder) throws {
+    override public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(shieldInformationBarrierSegment, forKey: .shieldInformationBarrierSegment)
         try container.encode(restrictedSegment, forKey: .restrictedSegment)
         try super.encode(to: encoder)
     }
-
 }

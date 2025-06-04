@@ -53,7 +53,7 @@ public class ZipDownloadStatus: Codable {
         self.state = state
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         totalFileCount = try container.decodeIfPresent(Int64.self, forKey: .totalFileCount)
         downloadedFileCount = try container.decodeIfPresent(Int64.self, forKey: .downloadedFileCount)
@@ -70,5 +70,4 @@ public class ZipDownloadStatus: Codable {
         try container.encodeIfPresent(skippedFolderCount, forKey: .skippedFolderCount)
         try container.encodeIfPresent(state, forKey: .state)
     }
-
 }

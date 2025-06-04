@@ -17,9 +17,8 @@ public enum AppItemEventSourceTypeField: CodableStringEnum {
         switch self {
         case .appItem:
             return "app_item"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

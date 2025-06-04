@@ -26,5 +26,4 @@ public class GetTeamsIntegrationMappingQueryParams {
         self.boxItemId = boxItemId
         self.boxItemType = boxItemType
     }
-
 }

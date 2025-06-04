@@ -22,7 +22,7 @@ public class AiAgentLongTextToolEmbeddingsStrategyField: Codable {
         self.numTokensPerChunk = numTokensPerChunk
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decodeIfPresent(String.self, forKey: .id)
         numTokensPerChunk = try container.decodeIfPresent(Int64.self, forKey: .numTokensPerChunk)
@@ -33,5 +33,4 @@ public class AiAgentLongTextToolEmbeddingsStrategyField: Codable {
         try container.encodeIfPresent(id, forKey: .id)
         try container.encodeIfPresent(numTokensPerChunk, forKey: .numTokensPerChunk)
     }
-
 }

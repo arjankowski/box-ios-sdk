@@ -55,30 +55,30 @@ public class FileVersion: FileVersionMini {
     ///   - size: Size of the file version in bytes
     ///   - createdAt: When the file version object was created
     ///   - modifiedAt: When the file version object was last updated
-    ///   - modifiedBy: 
+    ///   - modifiedBy:
     ///   - trashedAt: When the file version object was trashed.
-    ///   - trashedBy: 
+    ///   - trashedBy:
     ///   - restoredAt: When the file version was restored from the trash.
-    ///   - restoredBy: 
+    ///   - restoredBy:
     ///   - purgedAt: When the file version object will be permanently deleted.
-    ///   - uploaderDisplayName: 
+    ///   - uploaderDisplayName:
     public init(id: String, type: FileVersionBaseTypeField = FileVersionBaseTypeField.fileVersion, sha1: String? = nil, name: String? = nil, size: Int64? = nil, createdAt: Date? = nil, modifiedAt: Date? = nil, modifiedBy: UserMini? = nil, trashedAt: TriStateField<Date> = nil, trashedBy: UserMini? = nil, restoredAt: TriStateField<Date> = nil, restoredBy: UserMini? = nil, purgedAt: TriStateField<Date> = nil, uploaderDisplayName: String? = nil) {
         self.name = name
         self.size = size
         self.createdAt = createdAt
         self.modifiedAt = modifiedAt
         self.modifiedBy = modifiedBy
-        self._trashedAt = CodableTriState(state: trashedAt)
+        _trashedAt = CodableTriState(state: trashedAt)
         self.trashedBy = trashedBy
-        self._restoredAt = CodableTriState(state: restoredAt)
+        _restoredAt = CodableTriState(state: restoredAt)
         self.restoredBy = restoredBy
-        self._purgedAt = CodableTriState(state: purgedAt)
+        _purgedAt = CodableTriState(state: purgedAt)
         self.uploaderDisplayName = uploaderDisplayName
 
         super.init(id: id, type: type, sha1: sha1)
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         name = try container.decodeIfPresent(String.self, forKey: .name)
         size = try container.decodeIfPresent(Int64.self, forKey: .size)
@@ -95,7 +95,7 @@ public class FileVersion: FileVersionMini {
         try super.init(from: decoder)
     }
 
-    public override func encode(to encoder: Encoder) throws {
+    override public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(name, forKey: .name)
         try container.encodeIfPresent(size, forKey: .size)
@@ -110,5 +110,4 @@ public class FileVersion: FileVersionMini {
         try container.encodeIfPresent(uploaderDisplayName, forKey: .uploaderDisplayName)
         try super.encode(to: encoder)
     }
-
 }

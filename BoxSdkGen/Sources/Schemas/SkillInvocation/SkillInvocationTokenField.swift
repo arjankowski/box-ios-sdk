@@ -22,7 +22,7 @@ public class SkillInvocationTokenField: Codable {
         self.write = write
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         read = try container.decodeIfPresent(SkillInvocationTokenReadField.self, forKey: .read)
         write = try container.decodeIfPresent(SkillInvocationTokenWriteField.self, forKey: .write)
@@ -33,5 +33,4 @@ public class SkillInvocationTokenField: Codable {
         try container.encodeIfPresent(read, forKey: .read)
         try container.encodeIfPresent(write, forKey: .write)
     }
-
 }

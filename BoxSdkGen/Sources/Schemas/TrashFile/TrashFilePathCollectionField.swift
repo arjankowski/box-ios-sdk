@@ -22,7 +22,7 @@ public class TrashFilePathCollectionField: Codable {
         self.entries = entries
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         totalCount = try container.decode(Int64.self, forKey: .totalCount)
         entries = try container.decode([TrashFilePathCollectionEntriesField].self, forKey: .entries)
@@ -33,5 +33,4 @@ public class TrashFilePathCollectionField: Codable {
         try container.encode(totalCount, forKey: .totalCount)
         try container.encode(entries, forKey: .entries)
     }
-
 }

@@ -28,7 +28,7 @@ public class TrashFileRestored: Codable {
     }
 
     /// The unique identifier that represent a file.
-    /// 
+    ///
     /// The ID for any file can be determined
     /// by visiting a file in the web application
     /// and copying the ID from the URL. For example,
@@ -62,7 +62,7 @@ public class TrashFileRestored: Codable {
     public let ownedBy: UserMini
 
     /// Defines if this item has been deleted or not.
-    /// 
+    ///
     /// * `active` when the item has is not in the trash
     /// * `trashed` when the item has been moved to the trash but not deleted
     /// * `deleted` when the item has been permanently deleted.
@@ -110,25 +110,25 @@ public class TrashFileRestored: Codable {
     ///
     /// - Parameters:
     ///   - id: The unique identifier that represent a file.
-    ///     
+    ///
     ///     The ID for any file can be determined
     ///     by visiting a file in the web application
     ///     and copying the ID from the URL. For example,
     ///     for the URL `https://*.app.box.com/files/123`
     ///     the `file_id` is `123`.
-    ///   - sequenceId: 
+    ///   - sequenceId:
     ///   - sha1: The SHA1 hash of the file. This can be used to compare the contents
     ///     of a file on Box with a local file.
     ///   - description: The optional description of this file
     ///   - size: The file size in bytes. Be careful parsing this integer as it can
     ///     get very large and cause an integer overflow.
-    ///   - pathCollection: 
+    ///   - pathCollection:
     ///   - createdAt: The date and time when the file was created on Box.
     ///   - modifiedAt: The date and time when the file was last updated on Box.
-    ///   - modifiedBy: 
-    ///   - ownedBy: 
+    ///   - modifiedBy:
+    ///   - ownedBy:
     ///   - itemStatus: Defines if this item has been deleted or not.
-    ///     
+    ///
     ///     * `active` when the item has is not in the trash
     ///     * `trashed` when the item has been moved to the trash but not deleted
     ///     * `deleted` when the item has been permanently deleted.
@@ -137,7 +137,7 @@ public class TrashFileRestored: Codable {
     ///     perform changes on the file if (no) changes have happened.
     ///   - type: `file`
     ///   - name: The name of the file
-    ///   - fileVersion: 
+    ///   - fileVersion:
     ///   - trashedAt: The time at which this file was put in the
     ///     trash - becomes `null` after restore.
     ///   - purgedAt: The time at which this file is expected to be purged
@@ -146,11 +146,11 @@ public class TrashFileRestored: Codable {
     ///     created, which might be before it was uploaded to Box.
     ///   - contentModifiedAt: The date and time at which this file was last updated,
     ///     which might be before it was uploaded to Box.
-    ///   - createdBy: 
+    ///   - createdBy:
     ///   - sharedLink: The shared link for this file. This will
     ///     be `null` if a file had been trashed, even though the original shared
     ///     link does become active again.
-    ///   - parent: 
+    ///   - parent:
     public init(id: String, sequenceId: String, sha1: String, description: String, size: Int64, pathCollection: TrashFileRestoredPathCollectionField, createdAt: Date, modifiedAt: Date, modifiedBy: UserMini, ownedBy: UserMini, itemStatus: TrashFileRestoredItemStatusField, etag: TriStateField<String> = nil, type: TrashFileRestoredTypeField = TrashFileRestoredTypeField.file, name: String? = nil, fileVersion: FileVersionMini? = nil, trashedAt: TriStateField<String> = nil, purgedAt: TriStateField<String> = nil, contentCreatedAt: TriStateField<Date> = nil, contentModifiedAt: TriStateField<Date> = nil, createdBy: UserMini? = nil, sharedLink: TriStateField<String> = nil, parent: FolderMini? = nil) {
         self.id = id
         self.sequenceId = sequenceId
@@ -163,20 +163,20 @@ public class TrashFileRestored: Codable {
         self.modifiedBy = modifiedBy
         self.ownedBy = ownedBy
         self.itemStatus = itemStatus
-        self._etag = CodableTriState(state: etag)
+        _etag = CodableTriState(state: etag)
         self.type = type
         self.name = name
         self.fileVersion = fileVersion
-        self._trashedAt = CodableTriState(state: trashedAt)
-        self._purgedAt = CodableTriState(state: purgedAt)
-        self._contentCreatedAt = CodableTriState(state: contentCreatedAt)
-        self._contentModifiedAt = CodableTriState(state: contentModifiedAt)
+        _trashedAt = CodableTriState(state: trashedAt)
+        _purgedAt = CodableTriState(state: purgedAt)
+        _contentCreatedAt = CodableTriState(state: contentCreatedAt)
+        _contentModifiedAt = CodableTriState(state: contentModifiedAt)
         self.createdBy = createdBy
-        self._sharedLink = CodableTriState(state: sharedLink)
+        _sharedLink = CodableTriState(state: sharedLink)
         self.parent = parent
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
         sequenceId = try container.decode(String.self, forKey: .sequenceId)
@@ -227,5 +227,4 @@ public class TrashFileRestored: Codable {
         try container.encode(field: _sharedLink.state, forKey: .sharedLink)
         try container.encodeIfPresent(parent, forKey: .parent)
     }
-
 }

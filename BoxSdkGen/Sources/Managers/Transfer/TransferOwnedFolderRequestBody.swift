@@ -16,7 +16,7 @@ public class TransferOwnedFolderRequestBody: Codable {
         self.ownedBy = ownedBy
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         ownedBy = try container.decode(TransferOwnedFolderRequestBodyOwnedByField.self, forKey: .ownedBy)
     }
@@ -25,5 +25,4 @@ public class TransferOwnedFolderRequestBody: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(ownedBy, forKey: .ownedBy)
     }
-
 }

@@ -1,6 +1,6 @@
 import Foundation
 #if canImport(FoundationNetworking)
-import FoundationNetworking
+    import FoundationNetworking
 #endif
 
 /// Represents a data combined with the request and the corresponding response.
@@ -19,7 +19,6 @@ class FetchConversation {
     let urlResponse: HTTPURLResponse
     /// Represents response type, either data or downloaded file
     let responseType: ResponseType
-
 
     /// Initializer
     ///
@@ -45,7 +44,7 @@ class FetchConversation {
             }
         }
 
-        switch self.responseType {
+        switch responseType {
         case let .data(data):
             return FetchResponse(status: urlResponse.statusCode, headers: headers, url: options.url, data: SerializedData(data: data))
         case let .url(url):

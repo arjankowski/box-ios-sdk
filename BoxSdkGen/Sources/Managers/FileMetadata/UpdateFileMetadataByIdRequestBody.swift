@@ -15,7 +15,7 @@ public class UpdateFileMetadataByIdRequestBody: Codable {
     /// The location in the metadata JSON object
     /// to apply the changes to, in the format of a
     /// [JSON-Pointer](https://tools.ietf.org/html/rfc6901).
-    /// 
+    ///
     /// The path must always be prefixed with a `/` to represent the root
     /// of the template. The characters `~` and `/` are reserved
     /// characters and must be escaped in the key.
@@ -36,11 +36,11 @@ public class UpdateFileMetadataByIdRequestBody: Codable {
     ///   - path: The location in the metadata JSON object
     ///     to apply the changes to, in the format of a
     ///     [JSON-Pointer](https://tools.ietf.org/html/rfc6901).
-    ///     
+    ///
     ///     The path must always be prefixed with a `/` to represent the root
     ///     of the template. The characters `~` and `/` are reserved
     ///     characters and must be escaped in the key.
-    ///   - value: 
+    ///   - value:
     ///   - from: The location in the metadata JSON object to move or copy a value
     ///     from. Required for `move` or `copy` operations and must be in the
     ///     format of a [JSON-Pointer](https://tools.ietf.org/html/rfc6901).
@@ -51,7 +51,7 @@ public class UpdateFileMetadataByIdRequestBody: Codable {
         self.from = from
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         op = try container.decodeIfPresent(UpdateFileMetadataByIdRequestBodyOpField.self, forKey: .op)
         path = try container.decodeIfPresent(String.self, forKey: .path)
@@ -66,5 +66,4 @@ public class UpdateFileMetadataByIdRequestBody: Codable {
         try container.encodeIfPresent(value, forKey: .value)
         try container.encodeIfPresent(from, forKey: .from)
     }
-
 }

@@ -17,9 +17,8 @@ public enum AiStudioAgentAskTypeField: CodableStringEnum {
         switch self {
         case .aiAgentAsk:
             return "ai_agent_ask"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

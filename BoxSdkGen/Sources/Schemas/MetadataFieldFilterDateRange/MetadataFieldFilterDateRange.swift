@@ -36,7 +36,7 @@ public class MetadataFieldFilterDateRange: Codable {
         self.gt = gt
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         lt = try container.decodeDateTimeIfPresent(forKey: .lt)
         gt = try container.decodeDateTimeIfPresent(forKey: .gt)
@@ -47,5 +47,4 @@ public class MetadataFieldFilterDateRange: Codable {
         try container.encodeDateTimeIfPresent(field: lt, forKey: .lt)
         try container.encodeDateTimeIfPresent(field: gt, forKey: .gt)
     }
-
 }

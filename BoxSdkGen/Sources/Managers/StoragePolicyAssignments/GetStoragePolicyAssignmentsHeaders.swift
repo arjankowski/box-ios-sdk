@@ -11,5 +11,4 @@ public class GetStoragePolicyAssignmentsHeaders {
     public init(extraHeaders: [String: String?]? = [:]) {
         self.extraHeaders = extraHeaders
     }
-
 }

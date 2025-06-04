@@ -11,5 +11,4 @@ public class CreateCollaborationWhitelistExemptTargetHeaders {
     public init(extraHeaders: [String: String?]? = [:]) {
         self.extraHeaders = extraHeaders
     }
-
 }

@@ -22,7 +22,7 @@ public class SignTemplateAdditionalInfoField: Codable {
         self.required = required
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         nonEditable = try container.decodeIfPresent([SignTemplateAdditionalInfoNonEditableField].self, forKey: .nonEditable)
         required = try container.decodeIfPresent(SignTemplateAdditionalInfoRequiredField.self, forKey: .required)
@@ -33,5 +33,4 @@ public class SignTemplateAdditionalInfoField: Codable {
         try container.encodeIfPresent(nonEditable, forKey: .nonEditable)
         try container.encodeIfPresent(required, forKey: .required)
     }
-
 }

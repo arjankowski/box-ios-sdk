@@ -19,7 +19,7 @@ public class BaseUrls: Codable {
         self.oauth2Url = oauth2Url
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         baseUrl = try container.decode(String.self, forKey: .baseUrl)
         uploadUrl = try container.decode(String.self, forKey: .uploadUrl)
@@ -32,5 +32,4 @@ public class BaseUrls: Codable {
         try container.encode(uploadUrl, forKey: .uploadUrl)
         try container.encode(oauth2Url, forKey: .oauth2Url)
     }
-
 }

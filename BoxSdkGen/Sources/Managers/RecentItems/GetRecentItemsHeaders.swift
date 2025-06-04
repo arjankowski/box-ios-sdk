@@ -11,5 +11,4 @@ public class GetRecentItemsHeaders {
     public init(extraHeaders: [String: String?]? = [:]) {
         self.extraHeaders = extraHeaders
     }
-
 }

@@ -11,5 +11,4 @@ public class GetTaskAssignmentByIdHeaders {
     public init(extraHeaders: [String: String?]? = [:]) {
         self.extraHeaders = extraHeaders
     }
-
 }

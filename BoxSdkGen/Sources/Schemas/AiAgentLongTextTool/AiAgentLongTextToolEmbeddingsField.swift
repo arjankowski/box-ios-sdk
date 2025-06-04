@@ -15,13 +15,13 @@ public class AiAgentLongTextToolEmbeddingsField: Codable {
     ///
     /// - Parameters:
     ///   - model: The model used for the AI agent for calculating embeddings.
-    ///   - strategy: 
+    ///   - strategy:
     public init(model: String? = nil, strategy: AiAgentLongTextToolEmbeddingsStrategyField? = nil) {
         self.model = model
         self.strategy = strategy
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         model = try container.decodeIfPresent(String.self, forKey: .model)
         strategy = try container.decodeIfPresent(AiAgentLongTextToolEmbeddingsStrategyField.self, forKey: .strategy)
@@ -32,5 +32,4 @@ public class AiAgentLongTextToolEmbeddingsField: Codable {
         try container.encodeIfPresent(model, forKey: .model)
         try container.encodeIfPresent(strategy, forKey: .strategy)
     }
-
 }

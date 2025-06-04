@@ -35,12 +35,12 @@ public class WebhookInvocation: Codable {
     /// - Parameters:
     ///   - id: The unique identifier for this webhook invocation
     ///   - type: `webhook_event`
-    ///   - webhook: 
-    ///   - createdBy: 
+    ///   - webhook:
+    ///   - createdBy:
     ///   - createdAt: A timestamp identifying the time that
     ///     the webhook event was triggered.
-    ///   - trigger: 
-    ///   - source: 
+    ///   - trigger:
+    ///   - source:
     public init(id: String? = nil, type: WebhookInvocationTypeField? = nil, webhook: Webhook? = nil, createdBy: UserMini? = nil, createdAt: Date? = nil, trigger: WebhookInvocationTriggerField? = nil, source: FileOrFolder? = nil) {
         self.id = id
         self.type = type
@@ -51,7 +51,7 @@ public class WebhookInvocation: Codable {
         self.source = source
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decodeIfPresent(String.self, forKey: .id)
         type = try container.decodeIfPresent(WebhookInvocationTypeField.self, forKey: .type)
@@ -72,5 +72,4 @@ public class WebhookInvocation: Codable {
         try container.encodeIfPresent(trigger, forKey: .trigger)
         try container.encodeIfPresent(source, forKey: .source)
     }
-
 }

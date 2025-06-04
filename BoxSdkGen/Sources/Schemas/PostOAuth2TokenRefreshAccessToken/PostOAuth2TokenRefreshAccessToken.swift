@@ -36,7 +36,7 @@ public class PostOAuth2TokenRefreshAccessToken: Codable {
         self.grantType = grantType
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         clientId = try container.decode(String.self, forKey: .clientId)
         clientSecret = try container.decode(String.self, forKey: .clientSecret)
@@ -51,5 +51,4 @@ public class PostOAuth2TokenRefreshAccessToken: Codable {
         try container.encode(refreshToken, forKey: .refreshToken)
         try container.encode(grantType, forKey: .grantType)
     }
-
 }

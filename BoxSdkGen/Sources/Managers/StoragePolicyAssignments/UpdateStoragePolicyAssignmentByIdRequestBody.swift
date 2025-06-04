@@ -18,7 +18,7 @@ public class UpdateStoragePolicyAssignmentByIdRequestBody: Codable {
         self.storagePolicy = storagePolicy
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         storagePolicy = try container.decode(UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyField.self, forKey: .storagePolicy)
     }
@@ -27,5 +27,4 @@ public class UpdateStoragePolicyAssignmentByIdRequestBody: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(storagePolicy, forKey: .storagePolicy)
     }
-
 }

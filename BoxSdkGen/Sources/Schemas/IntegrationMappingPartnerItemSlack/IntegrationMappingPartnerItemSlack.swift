@@ -1,7 +1,7 @@
 import Foundation
 
 /// The schema for an integration mapping mapped item object for type Slack.
-/// 
+///
 /// Depending if Box for Slack is installed at the org or workspace level,
 /// provide **either** `slack_org_id` **or** `slack_workspace_id`.
 /// Do not use both parameters at the same time.
@@ -35,11 +35,11 @@ public class IntegrationMappingPartnerItemSlack: Codable {
     public init(id: String, type: IntegrationMappingPartnerItemSlackTypeField = IntegrationMappingPartnerItemSlackTypeField.channel, slackWorkspaceId: TriStateField<String> = nil, slackOrgId: TriStateField<String> = nil) {
         self.id = id
         self.type = type
-        self._slackWorkspaceId = CodableTriState(state: slackWorkspaceId)
-        self._slackOrgId = CodableTriState(state: slackOrgId)
+        _slackWorkspaceId = CodableTriState(state: slackWorkspaceId)
+        _slackOrgId = CodableTriState(state: slackOrgId)
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
         type = try container.decode(IntegrationMappingPartnerItemSlackTypeField.self, forKey: .type)
@@ -54,5 +54,4 @@ public class IntegrationMappingPartnerItemSlack: Codable {
         try container.encode(field: _slackWorkspaceId.state, forKey: .slackWorkspaceId)
         try container.encode(field: _slackOrgId.state, forKey: .slackOrgId)
     }
-
 }

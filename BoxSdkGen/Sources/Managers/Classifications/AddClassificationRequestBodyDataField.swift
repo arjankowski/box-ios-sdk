@@ -26,7 +26,7 @@ public class AddClassificationRequestBodyDataField: Codable {
         self.staticConfig = staticConfig
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         key = try container.decode(String.self, forKey: .key)
         staticConfig = try container.decodeIfPresent(AddClassificationRequestBodyDataStaticConfigField.self, forKey: .staticConfig)
@@ -37,5 +37,4 @@ public class AddClassificationRequestBodyDataField: Codable {
         try container.encode(key, forKey: .key)
         try container.encodeIfPresent(staticConfig, forKey: .staticConfig)
     }
-
 }

@@ -11,5 +11,4 @@ public class GetShieldInformationBarrierSegmentsHeaders {
     public init(extraHeaders: [String: String?]? = [:]) {
         self.extraHeaders = extraHeaders
     }
-
 }

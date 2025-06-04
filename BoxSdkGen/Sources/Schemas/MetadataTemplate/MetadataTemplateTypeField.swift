@@ -17,9 +17,8 @@ public enum MetadataTemplateTypeField: CodableStringEnum {
         switch self {
         case .metadataTemplate:
             return "metadata_template"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

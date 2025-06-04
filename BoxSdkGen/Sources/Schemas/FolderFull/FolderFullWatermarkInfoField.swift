@@ -16,7 +16,7 @@ public class FolderFullWatermarkInfoField: Codable {
         self.isWatermarked = isWatermarked
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         isWatermarked = try container.decodeIfPresent(Bool.self, forKey: .isWatermarked)
     }
@@ -25,5 +25,4 @@ public class FolderFullWatermarkInfoField: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(isWatermarked, forKey: .isWatermarked)
     }
-
 }

@@ -19,7 +19,7 @@ public class AiStudioAgentLongTextToolResponse: AiStudioAgentLongTextTool {
     ///   - promptTemplate: The prompt template contains contextual information of the request and the user prompt.
     ///     When passing `prompt_template` parameters, you **must include** inputs for `{user_question}` and `{content}`.
     ///     `{current_date}` is optional, depending on the use.
-    ///   - embeddings: 
+    ///   - embeddings:
     ///   - isCustomInstructionsIncluded: True if system message contains custom instructions placeholder, false otherwise
     ///   - warnings: Warnings concerning tool
     public init(model: String? = nil, numTokensForCompletion: Int64? = nil, llmEndpointParams: AiLlmEndpointParamsAwsOrAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi? = nil, systemMessage: String? = nil, promptTemplate: String? = nil, embeddings: AiAgentLongTextToolEmbeddingsField? = nil, isCustomInstructionsIncluded: Bool? = nil, warnings: [String]? = nil) {
@@ -28,17 +28,16 @@ public class AiStudioAgentLongTextToolResponse: AiStudioAgentLongTextTool {
         super.init(model: model, numTokensForCompletion: numTokensForCompletion, llmEndpointParams: llmEndpointParams, systemMessage: systemMessage, promptTemplate: promptTemplate, embeddings: embeddings, isCustomInstructionsIncluded: isCustomInstructionsIncluded)
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         warnings = try container.decodeIfPresent([String].self, forKey: .warnings)
 
         try super.init(from: decoder)
     }
 
-    public override func encode(to encoder: Encoder) throws {
+    override public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(warnings, forKey: .warnings)
         try super.encode(to: encoder)
     }
-
 }

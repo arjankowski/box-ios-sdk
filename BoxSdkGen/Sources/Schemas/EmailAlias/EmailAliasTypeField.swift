@@ -17,9 +17,8 @@ public enum EmailAliasTypeField: CodableStringEnum {
         switch self {
         case .emailAlias:
             return "email_alias"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

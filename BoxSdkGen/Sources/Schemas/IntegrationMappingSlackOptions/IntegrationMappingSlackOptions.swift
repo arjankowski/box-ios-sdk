@@ -25,7 +25,7 @@ public class IntegrationMappingSlackOptions: Codable {
         self.isAccessManagementDisabled = isAccessManagementDisabled
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         isAccessManagementDisabled = try container.decodeIfPresent(Bool.self, forKey: .isAccessManagementDisabled)
     }
@@ -34,5 +34,4 @@ public class IntegrationMappingSlackOptions: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(isAccessManagementDisabled, forKey: .isAccessManagementDisabled)
     }
-
 }

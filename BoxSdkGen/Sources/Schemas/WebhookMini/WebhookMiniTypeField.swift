@@ -17,9 +17,8 @@ public enum WebhookMiniTypeField: CodableStringEnum {
         switch self {
         case .webhook:
             return "webhook"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

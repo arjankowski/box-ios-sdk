@@ -31,7 +31,7 @@ public class Events: Codable {
         self.entries = entries
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         chunkSize = try container.decodeIfPresent(Int64.self, forKey: .chunkSize)
         nextStreamPosition = try container.decodeIfPresent(EventsNextStreamPositionField.self, forKey: .nextStreamPosition)
@@ -44,5 +44,4 @@ public class Events: Codable {
         try container.encodeIfPresent(nextStreamPosition, forKey: .nextStreamPosition)
         try container.encodeIfPresent(entries, forKey: .entries)
     }
-
 }

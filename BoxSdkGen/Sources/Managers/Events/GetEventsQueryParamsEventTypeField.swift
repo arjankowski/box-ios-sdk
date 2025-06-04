@@ -577,9 +577,8 @@ public enum GetEventsQueryParamsEventTypeField: CodableStringEnum {
             return "WATERMARK_LABEL_CREATE"
         case .watermarkLabelDelete:
             return "WATERMARK_LABEL_DELETE"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

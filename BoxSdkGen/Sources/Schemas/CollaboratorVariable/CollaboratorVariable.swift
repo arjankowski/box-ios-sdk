@@ -17,13 +17,13 @@ public class CollaboratorVariable: Codable {
 
     /// Collaborator
     /// object type.
-    /// 
+    ///
     public let type: CollaboratorVariableTypeField
 
-    /// Variable type 
+    /// Variable type
     /// for the Collaborator
     /// object.
-    /// 
+    ///
     public let variableType: CollaboratorVariableVariableTypeField
 
     /// Initializer for a CollaboratorVariable.
@@ -32,18 +32,18 @@ public class CollaboratorVariable: Codable {
     ///   - variableValue: A list of user IDs.
     ///   - type: Collaborator
     ///     object type.
-    ///     
-    ///   - variableType: Variable type 
+    ///
+    ///   - variableType: Variable type
     ///     for the Collaborator
     ///     object.
-    ///     
+    ///
     public init(variableValue: [CollaboratorVariableVariableValueField], type: CollaboratorVariableTypeField = CollaboratorVariableTypeField.variable, variableType: CollaboratorVariableVariableTypeField = CollaboratorVariableVariableTypeField.userList) {
         self.variableValue = variableValue
         self.type = type
         self.variableType = variableType
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         variableValue = try container.decode([CollaboratorVariableVariableValueField].self, forKey: .variableValue)
         type = try container.decode(CollaboratorVariableTypeField.self, forKey: .type)
@@ -56,5 +56,4 @@ public class CollaboratorVariable: Codable {
         try container.encode(type, forKey: .type)
         try container.encode(variableType, forKey: .variableType)
     }
-
 }

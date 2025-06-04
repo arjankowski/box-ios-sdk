@@ -9,19 +9,19 @@ public class FolderSharedLinkPermissionsField: Codable {
 
     /// Defines if the shared link allows for the item to be downloaded. For
     /// shared links on folders, this also applies to any items in the folder.
-    /// 
+    ///
     /// This value can be set to `true` when the effective access level is
     /// set to `open` or `company`, not `collaborators`.
     public let canDownload: Bool
 
     /// Defines if the shared link allows for the item to be previewed.
-    /// 
+    ///
     /// This value is always `true`. For shared links on folders this also
     /// applies to any items in the folder.
     public let canPreview: Bool
 
     /// Defines if the shared link allows for the item to be edited.
-    /// 
+    ///
     /// This value can only be `true` if `can_download` is also `true` and if
     /// the item has a type of `file`.
     public let canEdit: Bool
@@ -31,15 +31,15 @@ public class FolderSharedLinkPermissionsField: Codable {
     /// - Parameters:
     ///   - canDownload: Defines if the shared link allows for the item to be downloaded. For
     ///     shared links on folders, this also applies to any items in the folder.
-    ///     
+    ///
     ///     This value can be set to `true` when the effective access level is
     ///     set to `open` or `company`, not `collaborators`.
     ///   - canPreview: Defines if the shared link allows for the item to be previewed.
-    ///     
+    ///
     ///     This value is always `true`. For shared links on folders this also
     ///     applies to any items in the folder.
     ///   - canEdit: Defines if the shared link allows for the item to be edited.
-    ///     
+    ///
     ///     This value can only be `true` if `can_download` is also `true` and if
     ///     the item has a type of `file`.
     public init(canDownload: Bool, canPreview: Bool, canEdit: Bool) {
@@ -48,7 +48,7 @@ public class FolderSharedLinkPermissionsField: Codable {
         self.canEdit = canEdit
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         canDownload = try container.decode(Bool.self, forKey: .canDownload)
         canPreview = try container.decode(Bool.self, forKey: .canPreview)
@@ -61,5 +61,4 @@ public class FolderSharedLinkPermissionsField: Codable {
         try container.encode(canPreview, forKey: .canPreview)
         try container.encode(canEdit, forKey: .canEdit)
     }
-
 }

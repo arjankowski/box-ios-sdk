@@ -12,7 +12,7 @@ public class DocGenTemplateCreateRequestV2025R0: Codable {
         self.file = file
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         file = try container.decode(FileReferenceV2025R0.self, forKey: .file)
     }
@@ -21,5 +21,4 @@ public class DocGenTemplateCreateRequestV2025R0: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(file, forKey: .file)
     }
-
 }

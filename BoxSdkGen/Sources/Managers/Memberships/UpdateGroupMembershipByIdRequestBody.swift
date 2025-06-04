@@ -12,10 +12,10 @@ public class UpdateGroupMembershipByIdRequestBody: Codable {
     /// Custom configuration for the permissions an admin
     /// if a group will receive. This option has no effect
     /// on members with a role of `member`.
-    /// 
+    ///
     /// Setting these permissions overwrites the default
     /// access levels of an admin.
-    /// 
+    ///
     /// Specifying a value of `null` for this object will disable
     /// all configurable permissions. Specifying permissions will set
     /// them accordingly, omitted permissions will be enabled by default.
@@ -28,19 +28,19 @@ public class UpdateGroupMembershipByIdRequestBody: Codable {
     ///   - configurablePermissions: Custom configuration for the permissions an admin
     ///     if a group will receive. This option has no effect
     ///     on members with a role of `member`.
-    ///     
+    ///
     ///     Setting these permissions overwrites the default
     ///     access levels of an admin.
-    ///     
+    ///
     ///     Specifying a value of `null` for this object will disable
     ///     all configurable permissions. Specifying permissions will set
     ///     them accordingly, omitted permissions will be enabled by default.
     public init(role: UpdateGroupMembershipByIdRequestBodyRoleField? = nil, configurablePermissions: TriStateField<[String: Bool]> = nil) {
         self.role = role
-        self._configurablePermissions = CodableTriState(state: configurablePermissions)
+        _configurablePermissions = CodableTriState(state: configurablePermissions)
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         role = try container.decodeIfPresent(UpdateGroupMembershipByIdRequestBodyRoleField.self, forKey: .role)
         configurablePermissions = try container.decodeIfPresent([String: Bool].self, forKey: .configurablePermissions)
@@ -51,5 +51,4 @@ public class UpdateGroupMembershipByIdRequestBody: Codable {
         try container.encodeIfPresent(role, forKey: .role)
         try container.encode(field: _configurablePermissions.state, forKey: .configurablePermissions)
     }
-
 }

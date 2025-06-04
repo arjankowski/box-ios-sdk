@@ -6,9 +6,9 @@ import Foundation
 /// is a  record for a retained file version. To use this feature,
 /// you must  have the manage retention policies scope enabled for your
 /// API key in your application management console.
-/// 
+///
 /// **Note**:
-/// File retention API is now **deprecated**. 
+/// File retention API is now **deprecated**.
 /// To get information about files and file versions under retention,
 /// see [files under retention](e://get-retention-policy-assignments-id-files-under-retention) or [file versions under retention](e://get-retention-policy-assignments-id-file-versions-under-retention) endpoints.
 public class FileVersionRetention: Codable {
@@ -47,13 +47,13 @@ public class FileVersionRetention: Codable {
     /// - Parameters:
     ///   - id: The unique identifier for this file version retention.
     ///   - type: `file_version_retention`
-    ///   - fileVersion: 
-    ///   - file: 
+    ///   - fileVersion:
+    ///   - file:
     ///   - appliedAt: When this file version retention object was
     ///     created
     ///   - dispositionAt: When the retention expires on this file
     ///     version retention
-    ///   - winningRetentionPolicy: 
+    ///   - winningRetentionPolicy:
     public init(id: String? = nil, type: FileVersionRetentionTypeField? = nil, fileVersion: FileVersionMini? = nil, file: FileMini? = nil, appliedAt: Date? = nil, dispositionAt: Date? = nil, winningRetentionPolicy: RetentionPolicyMini? = nil) {
         self.id = id
         self.type = type
@@ -64,7 +64,7 @@ public class FileVersionRetention: Codable {
         self.winningRetentionPolicy = winningRetentionPolicy
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decodeIfPresent(String.self, forKey: .id)
         type = try container.decodeIfPresent(FileVersionRetentionTypeField.self, forKey: .type)
@@ -85,5 +85,4 @@ public class FileVersionRetention: Codable {
         try container.encodeDateTimeIfPresent(field: dispositionAt, forKey: .dispositionAt)
         try container.encodeIfPresent(winningRetentionPolicy, forKey: .winningRetentionPolicy)
     }
-
 }

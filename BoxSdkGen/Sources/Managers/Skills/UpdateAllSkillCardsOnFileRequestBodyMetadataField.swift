@@ -16,7 +16,7 @@ public class UpdateAllSkillCardsOnFileRequestBodyMetadataField: Codable {
         self.cards = cards
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         cards = try container.decodeIfPresent([KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard].self, forKey: .cards)
     }
@@ -25,5 +25,4 @@ public class UpdateAllSkillCardsOnFileRequestBodyMetadataField: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(cards, forKey: .cards)
     }
-
 }

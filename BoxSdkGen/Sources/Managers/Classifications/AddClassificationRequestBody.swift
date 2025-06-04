@@ -14,7 +14,7 @@ public class AddClassificationRequestBody: Codable {
     /// object.
     public let op: AddClassificationRequestBodyOpField
 
-    /// Defines classifications 
+    /// Defines classifications
     /// available in the enterprise.
     public let fieldKey: AddClassificationRequestBodyFieldKeyField
 
@@ -24,7 +24,7 @@ public class AddClassificationRequestBody: Codable {
     ///   - data: The details of the classification to add.
     ///   - op: The type of change to perform on the classification
     ///     object.
-    ///   - fieldKey: Defines classifications 
+    ///   - fieldKey: Defines classifications
     ///     available in the enterprise.
     public init(data: AddClassificationRequestBodyDataField, op: AddClassificationRequestBodyOpField = AddClassificationRequestBodyOpField.addEnumOption, fieldKey: AddClassificationRequestBodyFieldKeyField = AddClassificationRequestBodyFieldKeyField.boxSecurityClassificationKey) {
         self.data = data
@@ -32,7 +32,7 @@ public class AddClassificationRequestBody: Codable {
         self.fieldKey = fieldKey
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         data = try container.decode(AddClassificationRequestBodyDataField.self, forKey: .data)
         op = try container.decode(AddClassificationRequestBodyOpField.self, forKey: .op)
@@ -45,5 +45,4 @@ public class AddClassificationRequestBody: Codable {
         try container.encode(op, forKey: .op)
         try container.encode(fieldKey, forKey: .fieldKey)
     }
-
 }

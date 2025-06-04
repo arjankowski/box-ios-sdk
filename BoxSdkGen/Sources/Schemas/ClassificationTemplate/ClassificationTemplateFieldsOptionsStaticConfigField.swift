@@ -6,7 +6,7 @@ public class ClassificationTemplateFieldsOptionsStaticConfigField: Codable {
     }
 
     /// Additional information about the classification.
-    /// 
+    ///
     /// This is not an exclusive list of properties, and
     /// more object fields might be returned. These fields
     /// are used for internal Box Shield and Box Governance
@@ -18,7 +18,7 @@ public class ClassificationTemplateFieldsOptionsStaticConfigField: Codable {
     ///
     /// - Parameters:
     ///   - classification: Additional information about the classification.
-    ///     
+    ///
     ///     This is not an exclusive list of properties, and
     ///     more object fields might be returned. These fields
     ///     are used for internal Box Shield and Box Governance
@@ -28,7 +28,7 @@ public class ClassificationTemplateFieldsOptionsStaticConfigField: Codable {
         self.classification = classification
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         classification = try container.decodeIfPresent(ClassificationTemplateFieldsOptionsStaticConfigClassificationField.self, forKey: .classification)
     }
@@ -37,5 +37,4 @@ public class ClassificationTemplateFieldsOptionsStaticConfigField: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(classification, forKey: .classification)
     }
-
 }

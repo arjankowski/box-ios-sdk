@@ -17,9 +17,8 @@ public enum WorkflowFlowsOutcomesIfRejectedTypeField: CodableStringEnum {
         switch self {
         case .outcome:
             return "outcome"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

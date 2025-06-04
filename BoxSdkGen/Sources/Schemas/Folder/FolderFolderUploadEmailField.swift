@@ -9,14 +9,14 @@ public class FolderFolderUploadEmailField: Codable {
     /// When this parameter has been set, users can email files
     /// to the email address that has been automatically
     /// created for this folder.
-    /// 
+    ///
     /// To create an email address, set this property either when
     /// creating or updating the folder.
-    /// 
+    ///
     /// When set to `collaborators`, only emails from registered email
     /// addresses for collaborators will be accepted. This includes
     /// any email aliases a user might have registered.
-    /// 
+    ///
     /// When set to `open` it will accept emails from any email
     /// address.
     public let access: FolderFolderUploadEmailAccessField?
@@ -30,14 +30,14 @@ public class FolderFolderUploadEmailField: Codable {
     ///   - access: When this parameter has been set, users can email files
     ///     to the email address that has been automatically
     ///     created for this folder.
-    ///     
+    ///
     ///     To create an email address, set this property either when
     ///     creating or updating the folder.
-    ///     
+    ///
     ///     When set to `collaborators`, only emails from registered email
     ///     addresses for collaborators will be accepted. This includes
     ///     any email aliases a user might have registered.
-    ///     
+    ///
     ///     When set to `open` it will accept emails from any email
     ///     address.
     ///   - email: The optional upload email address for this folder.
@@ -46,7 +46,7 @@ public class FolderFolderUploadEmailField: Codable {
         self.email = email
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         access = try container.decodeIfPresent(FolderFolderUploadEmailAccessField.self, forKey: .access)
         email = try container.decodeIfPresent(String.self, forKey: .email)
@@ -57,5 +57,4 @@ public class FolderFolderUploadEmailField: Codable {
         try container.encodeIfPresent(access, forKey: .access)
         try container.encodeIfPresent(email, forKey: .email)
     }
-
 }

@@ -11,5 +11,4 @@ public class RestoreFolderFromTrashHeaders {
     public init(extraHeaders: [String: String?]? = [:]) {
         self.extraHeaders = extraHeaders
     }
-
 }

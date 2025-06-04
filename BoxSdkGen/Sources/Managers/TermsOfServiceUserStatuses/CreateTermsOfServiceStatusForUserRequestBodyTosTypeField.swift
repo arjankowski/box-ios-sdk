@@ -17,9 +17,8 @@ public enum CreateTermsOfServiceStatusForUserRequestBodyTosTypeField: CodableStr
         switch self {
         case .termsOfService:
             return "terms_of_service"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

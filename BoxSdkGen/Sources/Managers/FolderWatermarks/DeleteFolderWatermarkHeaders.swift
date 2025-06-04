@@ -11,5 +11,4 @@ public class DeleteFolderWatermarkHeaders {
     public init(extraHeaders: [String: String?]? = [:]) {
         self.extraHeaders = extraHeaders
     }
-
 }

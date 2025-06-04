@@ -18,16 +18,16 @@ public class CreateMetadataCascadePolicyRequestBody: Codable {
 
     /// The key of the targeted metadata template. This template will
     /// need to already have an instance applied to the targeted folder.
-    /// 
+    ///
     /// In many cases the template key is automatically derived
     /// of its display name, for example `Contract Template` would
     /// become `contractTemplate`. In some cases the creator of the
     /// template will have provided its own template key.
-    /// 
+    ///
     /// Please [list the templates for an enterprise][list], or
     /// get all instances on a [file][file] or [folder][folder]
     /// to inspect a template's key.
-    /// 
+    ///
     /// [list]: e://get-metadata-templates-enterprise
     /// [file]: e://get-files-id-metadata
     /// [folder]: e://get-folders-id-metadata
@@ -43,16 +43,16 @@ public class CreateMetadataCascadePolicyRequestBody: Codable {
     ///     need to already have an instance applied to the targeted folder.
     ///   - templateKey: The key of the targeted metadata template. This template will
     ///     need to already have an instance applied to the targeted folder.
-    ///     
+    ///
     ///     In many cases the template key is automatically derived
     ///     of its display name, for example `Contract Template` would
     ///     become `contractTemplate`. In some cases the creator of the
     ///     template will have provided its own template key.
-    ///     
+    ///
     ///     Please [list the templates for an enterprise][list], or
     ///     get all instances on a [file][file] or [folder][folder]
     ///     to inspect a template's key.
-    ///     
+    ///
     ///     [list]: e://get-metadata-templates-enterprise
     ///     [file]: e://get-files-id-metadata
     ///     [folder]: e://get-folders-id-metadata
@@ -62,7 +62,7 @@ public class CreateMetadataCascadePolicyRequestBody: Codable {
         self.templateKey = templateKey
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         folderId = try container.decode(String.self, forKey: .folderId)
         scope = try container.decode(CreateMetadataCascadePolicyRequestBodyScopeField.self, forKey: .scope)
@@ -75,5 +75,4 @@ public class CreateMetadataCascadePolicyRequestBody: Codable {
         try container.encode(scope, forKey: .scope)
         try container.encode(templateKey, forKey: .templateKey)
     }
-
 }

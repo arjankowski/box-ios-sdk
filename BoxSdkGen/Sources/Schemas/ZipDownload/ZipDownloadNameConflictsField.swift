@@ -36,7 +36,7 @@ public class ZipDownloadNameConflictsField: Codable {
         self.downloadName = downloadName
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decodeIfPresent(String.self, forKey: .id)
         type = try container.decodeIfPresent(ZipDownloadNameConflictsTypeField.self, forKey: .type)
@@ -51,5 +51,4 @@ public class ZipDownloadNameConflictsField: Codable {
         try container.encodeIfPresent(originalName, forKey: .originalName)
         try container.encodeIfPresent(downloadName, forKey: .downloadName)
     }
-
 }

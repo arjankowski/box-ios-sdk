@@ -1,5 +1,5 @@
-import Foundation
 import BoxSdkGen
+import Foundation
 import XCTest
 
 class SearchManagerTests: XCTestCase {
@@ -24,12 +24,14 @@ class SearchManagerTests: XCTestCase {
 //        XCTAssertTrue(query.entries!.count >= 0)
 //        try await client.metadataTemplates.deleteMetadataTemplate(scope: DeleteMetadataTemplateScope.enterprise, templateKey: template.templateKey!)
 //        try await client.files.deleteFileById(fileId: file.id)
-//        
-        
-        let query: SearchResultsOrSearchResultsWithSharedLinks = try await client.search.searchForContent(queryParams: .init(mdfilters: [MetadataFilter(scope: .enterprise, templateKey: "sampleTemplate", filters: [
-            "name" : .string("value")]
-                                                                                                                                )
-        ]))
+//
+
+        let query: SearchResultsOrSearchResultsWithSharedLinks = try await client.search.searchForContent(queryParams: .init(mdfilters: [MetadataFilter(
+            scope: .enterprise,
+            templateKey: "sampleTemplate",
+            filters: [
+                "name": .string("value")
+            ]
+        )]))
     }
 }
-

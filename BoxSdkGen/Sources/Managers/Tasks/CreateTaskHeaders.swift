@@ -11,5 +11,4 @@ public class CreateTaskHeaders {
     public init(extraHeaders: [String: String?]? = [:]) {
         self.extraHeaders = extraHeaders
     }
-
 }

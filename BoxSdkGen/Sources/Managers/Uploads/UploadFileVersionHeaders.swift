@@ -3,7 +3,7 @@ import Foundation
 public class UploadFileVersionHeaders {
     /// Ensures this item hasn't recently changed before
     /// making changes.
-    /// 
+    ///
     /// Pass in the item's last observed `etag` value
     /// into this header and the endpoint will fail
     /// with a `412 Precondition Failed` if it
@@ -22,7 +22,7 @@ public class UploadFileVersionHeaders {
     /// - Parameters:
     ///   - ifMatch: Ensures this item hasn't recently changed before
     ///     making changes.
-    ///     
+    ///
     ///     Pass in the item's last observed `etag` value
     ///     into this header and the endpoint will fail
     ///     with a `412 Precondition Failed` if it
@@ -35,5 +35,4 @@ public class UploadFileVersionHeaders {
         self.contentMd5 = contentMd5
         self.extraHeaders = extraHeaders
     }
-
 }

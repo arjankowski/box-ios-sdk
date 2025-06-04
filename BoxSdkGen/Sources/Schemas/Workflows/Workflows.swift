@@ -1,7 +1,7 @@
 import Foundation
 
 /// A list of workflows.
-/// 
+///
 /// You application must be authorized to use the `Manage Box Relay` application
 /// scope within the developer console in order to use this resource.
 public class Workflows: Codable {
@@ -37,12 +37,12 @@ public class Workflows: Codable {
     ///   - entries: A list of workflows
     public init(limit: Int64? = nil, nextMarker: TriStateField<String> = nil, prevMarker: TriStateField<String> = nil, entries: [Workflow]? = nil) {
         self.limit = limit
-        self._nextMarker = CodableTriState(state: nextMarker)
-        self._prevMarker = CodableTriState(state: prevMarker)
+        _nextMarker = CodableTriState(state: nextMarker)
+        _prevMarker = CodableTriState(state: prevMarker)
         self.entries = entries
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         limit = try container.decodeIfPresent(Int64.self, forKey: .limit)
         nextMarker = try container.decodeIfPresent(String.self, forKey: .nextMarker)
@@ -57,5 +57,4 @@ public class Workflows: Codable {
         try container.encode(field: _prevMarker.state, forKey: .prevMarker)
         try container.encodeIfPresent(entries, forKey: .entries)
     }
-
 }

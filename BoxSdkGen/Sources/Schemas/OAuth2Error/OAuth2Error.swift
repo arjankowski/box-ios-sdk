@@ -23,7 +23,7 @@ public class OAuth2Error: Codable {
         self.errorDescription = errorDescription
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         error = try container.decodeIfPresent(String.self, forKey: .error)
         errorDescription = try container.decodeIfPresent(String.self, forKey: .errorDescription)
@@ -34,5 +34,4 @@ public class OAuth2Error: Codable {
         try container.encodeIfPresent(error, forKey: .error)
         try container.encodeIfPresent(errorDescription, forKey: .errorDescription)
     }
-
 }

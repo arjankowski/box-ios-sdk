@@ -30,7 +30,7 @@ public class CreateWebhookRequestBody: Codable {
         self.triggers = triggers
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         target = try container.decode(CreateWebhookRequestBodyTargetField.self, forKey: .target)
         address = try container.decode(String.self, forKey: .address)
@@ -43,5 +43,4 @@ public class CreateWebhookRequestBody: Codable {
         try container.encode(address, forKey: .address)
         try container.encode(triggers, forKey: .triggers)
     }
-
 }

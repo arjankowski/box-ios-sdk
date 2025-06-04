@@ -16,7 +16,7 @@ public class ConflictErrorContextInfoField: Codable {
         self.conflicts = conflicts
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         conflicts = try container.decodeIfPresent([FileConflict].self, forKey: .conflicts)
     }
@@ -25,5 +25,4 @@ public class ConflictErrorContextInfoField: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(conflicts, forKey: .conflicts)
     }
-
 }

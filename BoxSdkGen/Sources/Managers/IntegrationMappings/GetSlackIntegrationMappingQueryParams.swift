@@ -3,7 +3,7 @@ import Foundation
 public class GetSlackIntegrationMappingQueryParams {
     /// Defines the position marker at which to begin returning results. This is
     /// used when paginating using marker-based pagination.
-    /// 
+    ///
     /// This requires `usemarker` to be set to `true`.
     public let marker: String?
 
@@ -30,7 +30,7 @@ public class GetSlackIntegrationMappingQueryParams {
     /// - Parameters:
     ///   - marker: Defines the position marker at which to begin returning results. This is
     ///     used when paginating using marker-based pagination.
-    ///     
+    ///
     ///     This requires `usemarker` to be set to `true`.
     ///   - limit: The maximum number of items to return per page.
     ///   - partnerItemType: Mapped item type, for which the mapping should be returned
@@ -47,5 +47,4 @@ public class GetSlackIntegrationMappingQueryParams {
         self.boxItemType = boxItemType
         self.isManuallyCreated = isManuallyCreated
     }
-
 }

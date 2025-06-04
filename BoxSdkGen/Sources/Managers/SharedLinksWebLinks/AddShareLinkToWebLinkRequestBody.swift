@@ -6,7 +6,7 @@ public class AddShareLinkToWebLinkRequestBody: Codable {
     }
 
     /// The settings for the shared link to create on the web link.
-    /// 
+    ///
     /// Use an empty object (`{}`) to use the default settings for shared
     /// links.
     public let sharedLink: AddShareLinkToWebLinkRequestBodySharedLinkField?
@@ -15,14 +15,14 @@ public class AddShareLinkToWebLinkRequestBody: Codable {
     ///
     /// - Parameters:
     ///   - sharedLink: The settings for the shared link to create on the web link.
-    ///     
+    ///
     ///     Use an empty object (`{}`) to use the default settings for shared
     ///     links.
     public init(sharedLink: AddShareLinkToWebLinkRequestBodySharedLinkField? = nil) {
         self.sharedLink = sharedLink
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         sharedLink = try container.decodeIfPresent(AddShareLinkToWebLinkRequestBodySharedLinkField.self, forKey: .sharedLink)
     }
@@ -31,5 +31,4 @@ public class AddShareLinkToWebLinkRequestBody: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(sharedLink, forKey: .sharedLink)
     }
-
 }

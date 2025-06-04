@@ -17,9 +17,8 @@ public enum TaskTypeField: CodableStringEnum {
         switch self {
         case .task:
             return "task"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

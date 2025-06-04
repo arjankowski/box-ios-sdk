@@ -89,7 +89,6 @@ private extension BasicErrorView {
             stackView.centerXAnchor.constraint(equalTo: centerXAnchor),
             stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 30),
             stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30)
-            ])
+        ])
     }
 }
-

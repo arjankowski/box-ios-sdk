@@ -11,5 +11,4 @@ public class GetFileVersionByIdHeaders {
     public init(extraHeaders: [String: String?]? = [:]) {
         self.extraHeaders = extraHeaders
     }
-
 }

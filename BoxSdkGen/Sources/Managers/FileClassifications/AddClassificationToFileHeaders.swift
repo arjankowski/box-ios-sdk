@@ -11,5 +11,4 @@ public class AddClassificationToFileHeaders {
     public init(extraHeaders: [String: String?]? = [:]) {
         self.extraHeaders = extraHeaders
     }
-
 }

@@ -90,15 +90,14 @@ public class FileFull: File {
     /// true even if the context user does not have access to the app item(s)
     /// associated with the file.
     public let isAssociatedWithAppItem: Bool?
-    
-    
+
     public internal(set) var rawData: [String: Any]? = nil
 
     /// Initializer for a FileFull.
     ///
     /// - Parameters:
     ///   - id: The unique identifier that represent a file.
-    ///     
+    ///
     ///     The ID for any file can be determined
     ///     by visiting a file in the web application
     ///     and copying the ID from the URL. For example,
@@ -108,17 +107,17 @@ public class FileFull: File {
     ///     endpoints in the `If-Match` and `If-None-Match` headers to only
     ///     perform changes on the file if (no) changes have happened.
     ///   - type: `file`
-    ///   - sequenceId: 
+    ///   - sequenceId:
     ///   - name: The name of the file
     ///   - sha1: The SHA1 hash of the file. This can be used to compare the contents
     ///     of a file on Box with a local file.
-    ///   - fileVersion: 
+    ///   - fileVersion:
     ///   - description: The optional description of this file.
     ///     If the description exceeds 255 characters, the first 255 characters
     ///     are set as a file description and the rest of it is ignored.
     ///   - size: The file size in bytes. Be careful parsing this integer as it can
     ///     get very large and cause an integer overflow.
-    ///   - pathCollection: 
+    ///   - pathCollection:
     ///   - createdAt: The date and time when the file was created on Box.
     ///   - modifiedAt: The date and time when the file was last updated on Box.
     ///   - trashedAt: The time at which this file was put in the trash.
@@ -128,27 +127,27 @@ public class FileFull: File {
     ///     created, which might be before it was uploaded to Box.
     ///   - contentModifiedAt: The date and time at which this file was last updated,
     ///     which might be before it was uploaded to Box.
-    ///   - createdBy: 
-    ///   - modifiedBy: 
-    ///   - ownedBy: 
-    ///   - sharedLink: 
-    ///   - parent: 
+    ///   - createdBy:
+    ///   - modifiedBy:
+    ///   - ownedBy:
+    ///   - sharedLink:
+    ///   - parent:
     ///   - itemStatus: Defines if this item has been deleted or not.
-    ///     
+    ///
     ///     * `active` when the item has is not in the trash
     ///     * `trashed` when the item has been moved to the trash but not deleted
     ///     * `deleted` when the item has been permanently deleted.
     ///   - versionNumber: The version number of this file
     ///   - commentCount: The number of comments on this file
-    ///   - permissions: 
-    ///   - tags: 
-    ///   - lock: 
+    ///   - permissions:
+    ///   - tags:
+    ///   - lock:
     ///   - extension_: Indicates the (optional) file extension for this file. By default,
     ///     this is set to an empty string.
     ///   - isPackage: Indicates if the file is a package. Packages are commonly used
     ///     by Mac Applications and can include iWork files.
-    ///   - expiringEmbedLink: 
-    ///   - watermarkInfo: 
+    ///   - expiringEmbedLink:
+    ///   - watermarkInfo:
     ///   - isAccessibleViaSharedLink: Specifies if the file can be accessed
     ///     via the direct shared link or a shared link
     ///     to a parent folder.
@@ -157,11 +156,11 @@ public class FileFull: File {
     ///   - isExternallyOwned: Specifies if this file is owned by a user outside of the
     ///     authenticated enterprise.
     ///   - hasCollaborations: Specifies if this file has any other collaborators.
-    ///   - metadata: 
+    ///   - metadata:
     ///   - expiresAt: When the file will automatically be deleted
-    ///   - representations: 
-    ///   - classification: 
-    ///   - uploaderDisplayName: 
+    ///   - representations:
+    ///   - classification:
+    ///   - uploaderDisplayName:
     ///   - dispositionAt: The retention expiration timestamp for the given file
     ///   - sharedLinkPermissionOptions: A list of the types of roles that user can be invited at
     ///     when sharing this file.
@@ -174,7 +173,7 @@ public class FileFull: File {
         self.commentCount = commentCount
         self.permissions = permissions
         self.tags = tags
-        self._lock = CodableTriState(state: lock)
+        _lock = CodableTriState(state: lock)
         self.extension_ = extension_
         self.isPackage = isPackage
         self.expiringEmbedLink = expiringEmbedLink
@@ -184,18 +183,18 @@ public class FileFull: File {
         self.isExternallyOwned = isExternallyOwned
         self.hasCollaborations = hasCollaborations
         self.metadata = metadata
-        self._expiresAt = CodableTriState(state: expiresAt)
+        _expiresAt = CodableTriState(state: expiresAt)
         self.representations = representations
         self.classification = classification
         self.uploaderDisplayName = uploaderDisplayName
-        self._dispositionAt = CodableTriState(state: dispositionAt)
-        self._sharedLinkPermissionOptions = CodableTriState(state: sharedLinkPermissionOptions)
+        _dispositionAt = CodableTriState(state: dispositionAt)
+        _sharedLinkPermissionOptions = CodableTriState(state: sharedLinkPermissionOptions)
         self.isAssociatedWithAppItem = isAssociatedWithAppItem
 
         super.init(id: id, etag: etag, type: type, sequenceId: sequenceId, name: name, sha1: sha1, fileVersion: fileVersion, description: description, size: size, pathCollection: pathCollection, createdAt: createdAt, modifiedAt: modifiedAt, trashedAt: trashedAt, purgedAt: purgedAt, contentCreatedAt: contentCreatedAt, contentModifiedAt: contentModifiedAt, createdBy: createdBy, modifiedBy: modifiedBy, ownedBy: ownedBy, sharedLink: sharedLink, parent: parent, itemStatus: itemStatus)
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         versionNumber = try container.decodeIfPresent(String.self, forKey: .versionNumber)
         commentCount = try container.decodeIfPresent(Int64.self, forKey: .commentCount)
@@ -222,7 +221,7 @@ public class FileFull: File {
         try super.init(from: decoder)
     }
 
-    public override func encode(to encoder: Encoder) throws {
+    override public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(versionNumber, forKey: .versionNumber)
         try container.encodeIfPresent(commentCount, forKey: .commentCount)
@@ -247,7 +246,7 @@ public class FileFull: File {
         try container.encodeIfPresent(isAssociatedWithAppItem, forKey: .isAssociatedWithAppItem)
         try super.encode(to: encoder)
     }
-    
+
     func setRawData(_ rawData: [String: Any]?) {
         self.rawData = rawData
     }

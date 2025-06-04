@@ -9,12 +9,12 @@ public class CreateFolderRequestBody: Codable {
     }
 
     /// The name for the new folder.
-    /// 
+    ///
     /// There are some restrictions to the file name. Names containing
     /// non-printable ASCII characters, forward and backward slashes
     /// (`/`, `\`), as well as names with trailing spaces are
     /// prohibited.
-    /// 
+    ///
     /// Additionally, the names `.` and `..` are
     /// not allowed either.
     public let name: String
@@ -33,16 +33,16 @@ public class CreateFolderRequestBody: Codable {
     ///
     /// - Parameters:
     ///   - name: The name for the new folder.
-    ///     
+    ///
     ///     There are some restrictions to the file name. Names containing
     ///     non-printable ASCII characters, forward and backward slashes
     ///     (`/`, `\`), as well as names with trailing spaces are
     ///     prohibited.
-    ///     
+    ///
     ///     Additionally, the names `.` and `..` are
     ///     not allowed either.
     ///   - parent: The parent folder to create the new folder within.
-    ///   - folderUploadEmail: 
+    ///   - folderUploadEmail:
     ///   - syncState: Specifies whether a folder should be synced to a
     ///     user's device or not. This is used by Box Sync
     ///     (discontinued) and is not used by Box Drive.
@@ -53,7 +53,7 @@ public class CreateFolderRequestBody: Codable {
         self.syncState = syncState
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         name = try container.decode(String.self, forKey: .name)
         parent = try container.decode(CreateFolderRequestBodyParentField.self, forKey: .parent)
@@ -68,5 +68,4 @@ public class CreateFolderRequestBody: Codable {
         try container.encodeIfPresent(folderUploadEmail, forKey: .folderUploadEmail)
         try container.encodeIfPresent(syncState, forKey: .syncState)
     }
-
 }

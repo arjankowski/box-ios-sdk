@@ -17,13 +17,13 @@ public class CollaborationAcceptanceRequirementsStatusTermsOfServiceRequirementF
     /// - Parameters:
     ///   - isAccepted: Whether or not the terms of service have been accepted.  The
     ///     field is `null` when there is no terms of service required.
-    ///   - termsOfService: 
+    ///   - termsOfService:
     public init(isAccepted: TriStateField<Bool> = nil, termsOfService: TermsOfServiceBase? = nil) {
-        self._isAccepted = CodableTriState(state: isAccepted)
+        _isAccepted = CodableTriState(state: isAccepted)
         self.termsOfService = termsOfService
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         isAccepted = try container.decodeIfPresent(Bool.self, forKey: .isAccepted)
         termsOfService = try container.decodeIfPresent(TermsOfServiceBase.self, forKey: .termsOfService)
@@ -34,5 +34,4 @@ public class CollaborationAcceptanceRequirementsStatusTermsOfServiceRequirementF
         try container.encode(field: _isAccepted.state, forKey: .isAccepted)
         try container.encodeIfPresent(termsOfService, forKey: .termsOfService)
     }
-
 }

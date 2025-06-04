@@ -35,7 +35,7 @@ public class AiCitation: Codable {
         self.name = name
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         content = try container.decodeIfPresent(String.self, forKey: .content)
         id = try container.decodeIfPresent(String.self, forKey: .id)
@@ -50,5 +50,4 @@ public class AiCitation: Codable {
         try container.encodeIfPresent(type, forKey: .type)
         try container.encodeIfPresent(name, forKey: .name)
     }
-
 }

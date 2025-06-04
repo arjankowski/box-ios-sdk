@@ -15,7 +15,7 @@ public class ZipDownload: Codable {
     /// is only valid for a few seconds, until the `expires_at` time, unless a
     /// download is started after which it is valid for the duration of the
     /// download.
-    /// 
+    ///
     /// It is important to note that the domain and path of this URL might change
     /// between API calls, and therefore it's important to use this URL as-is.
     public let downloadUrl: String?
@@ -26,14 +26,14 @@ public class ZipDownload: Codable {
     /// skipped. By default, this URL is only valid for a few seconds, until the
     /// `expires_at` time, unless a download is started after which the URL is
     /// valid for 12 hours from the start of the download.
-    /// 
+    ///
     /// It is important to note that the domain and path of this URL might change
     /// between API calls, and therefore it's important to use this URL as-is.
     public let statusUrl: String?
 
     /// The time and date when this archive will expire. After this time the
     /// `status_url` and `download_url` will return an error.
-    /// 
+    ///
     /// By default, these URLs are only valid for a few seconds, unless a download
     /// is started after which the `download_url` is valid for the duration of the
     /// download, and the `status_url` is valid for 12 hours from the start of the
@@ -43,11 +43,11 @@ public class ZipDownload: Codable {
     /// A list of conflicts that occurred when trying to create the archive. This
     /// would occur when multiple items have been requested with the
     /// same name.
-    /// 
+    ///
     /// To solve these conflicts, the API will automatically rename an item
     /// and return a mapping between the original item's name and its new
     /// name.
-    /// 
+    ///
     /// For every conflict, both files will be renamed and therefore this list
     /// will always be a multiple of 2.
     public let nameConflicts: [[ZipDownloadNameConflictsField]]?
@@ -60,7 +60,7 @@ public class ZipDownload: Codable {
     ///     is only valid for a few seconds, until the `expires_at` time, unless a
     ///     download is started after which it is valid for the duration of the
     ///     download.
-    ///     
+    ///
     ///     It is important to note that the domain and path of this URL might change
     ///     between API calls, and therefore it's important to use this URL as-is.
     ///   - statusUrl: The URL that can be used to get the status of the `zip` archive being
@@ -69,12 +69,12 @@ public class ZipDownload: Codable {
     ///     skipped. By default, this URL is only valid for a few seconds, until the
     ///     `expires_at` time, unless a download is started after which the URL is
     ///     valid for 12 hours from the start of the download.
-    ///     
+    ///
     ///     It is important to note that the domain and path of this URL might change
     ///     between API calls, and therefore it's important to use this URL as-is.
     ///   - expiresAt: The time and date when this archive will expire. After this time the
     ///     `status_url` and `download_url` will return an error.
-    ///     
+    ///
     ///     By default, these URLs are only valid for a few seconds, unless a download
     ///     is started after which the `download_url` is valid for the duration of the
     ///     download, and the `status_url` is valid for 12 hours from the start of the
@@ -82,11 +82,11 @@ public class ZipDownload: Codable {
     ///   - nameConflicts: A list of conflicts that occurred when trying to create the archive. This
     ///     would occur when multiple items have been requested with the
     ///     same name.
-    ///     
+    ///
     ///     To solve these conflicts, the API will automatically rename an item
     ///     and return a mapping between the original item's name and its new
     ///     name.
-    ///     
+    ///
     ///     For every conflict, both files will be renamed and therefore this list
     ///     will always be a multiple of 2.
     public init(downloadUrl: String? = nil, statusUrl: String? = nil, expiresAt: Date? = nil, nameConflicts: [[ZipDownloadNameConflictsField]]? = nil) {
@@ -96,7 +96,7 @@ public class ZipDownload: Codable {
         self.nameConflicts = nameConflicts
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         downloadUrl = try container.decodeIfPresent(String.self, forKey: .downloadUrl)
         statusUrl = try container.decodeIfPresent(String.self, forKey: .statusUrl)
@@ -111,5 +111,4 @@ public class ZipDownload: Codable {
         try container.encodeDateTimeIfPresent(field: expiresAt, forKey: .expiresAt)
         try container.encodeIfPresent(nameConflicts, forKey: .nameConflicts)
     }
-
 }

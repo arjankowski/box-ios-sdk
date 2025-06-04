@@ -22,7 +22,7 @@ public class UpdateAllSkillCardsOnFileRequestBodyFileVersionField: Codable {
         self.id = id
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         type = try container.decodeIfPresent(UpdateAllSkillCardsOnFileRequestBodyFileVersionTypeField.self, forKey: .type)
         id = try container.decodeIfPresent(String.self, forKey: .id)
@@ -33,5 +33,4 @@ public class UpdateAllSkillCardsOnFileRequestBodyFileVersionField: Codable {
         try container.encodeIfPresent(type, forKey: .type)
         try container.encodeIfPresent(id, forKey: .id)
     }
-
 }

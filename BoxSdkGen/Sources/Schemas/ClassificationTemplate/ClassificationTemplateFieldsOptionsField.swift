@@ -28,7 +28,7 @@ public class ClassificationTemplateFieldsOptionsField: Codable {
         self.staticConfig = staticConfig
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
         key = try container.decode(String.self, forKey: .key)
@@ -41,5 +41,4 @@ public class ClassificationTemplateFieldsOptionsField: Codable {
         try container.encode(key, forKey: .key)
         try container.encodeIfPresent(staticConfig, forKey: .staticConfig)
     }
-
 }

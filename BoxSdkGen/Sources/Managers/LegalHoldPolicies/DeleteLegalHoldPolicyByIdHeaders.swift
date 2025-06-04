@@ -11,5 +11,4 @@ public class DeleteLegalHoldPolicyByIdHeaders {
     public init(extraHeaders: [String: String?]? = [:]) {
         self.extraHeaders = extraHeaders
     }
-
 }

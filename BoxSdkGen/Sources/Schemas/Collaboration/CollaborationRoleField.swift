@@ -52,9 +52,8 @@ public enum CollaborationRoleField: CodableStringEnum {
             return "co-owner"
         case .owner:
             return "owner"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

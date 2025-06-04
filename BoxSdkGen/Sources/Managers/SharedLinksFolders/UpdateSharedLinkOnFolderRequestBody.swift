@@ -16,7 +16,7 @@ public class UpdateSharedLinkOnFolderRequestBody: Codable {
         self.sharedLink = sharedLink
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         sharedLink = try container.decodeIfPresent(UpdateSharedLinkOnFolderRequestBodySharedLinkField.self, forKey: .sharedLink)
     }
@@ -25,5 +25,4 @@ public class UpdateSharedLinkOnFolderRequestBody: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(sharedLink, forKey: .sharedLink)
     }
-
 }

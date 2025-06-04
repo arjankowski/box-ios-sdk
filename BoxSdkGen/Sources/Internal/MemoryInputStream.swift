@@ -12,7 +12,7 @@ class MemoryInputStream: InputStream {
     /// - Parameter data: The `Data` object containing the data to be read.
     override init(data: Data) {
         self.data = data
-        self._streamStatus = .notOpen
+        _streamStatus = .notOpen
         super.init(data: Data())
     }
 
@@ -36,7 +36,7 @@ class MemoryInputStream: InputStream {
         let bytesToRead = min(len, data.count - position)
 
         // Copy data to the buffer
-        let range = position..<position + bytesToRead
+        let range = position ..< position + bytesToRead
         data.copyBytes(to: buffer, from: range)
 
         // Update the position
@@ -107,21 +107,21 @@ class MemoryInputStream: InputStream {
     ///   - mode: The run loop mode from which to remove the stream.
     override func remove(from _: RunLoop, forMode _: RunLoop.Mode) {}
 
-#if os(iOS) || os(macOS)
-    /// Returns the value of a specified property key. This method always returns `nil` in this implementation.
-    /// - Parameter key: The property key.
-    /// - Returns: `nil`.
-    override func property(forKey _: Stream.PropertyKey) -> Any? {
-        return nil
-    }
+    #if os(iOS) || os(macOS)
+        /// Returns the value of a specified property key. This method always returns `nil` in this implementation.
+        /// - Parameter key: The property key.
+        /// - Returns: `nil`.
+        override func property(forKey _: Stream.PropertyKey) -> Any? {
+            return nil
+        }
 
-    /// Sets the value of a specified property key. This method always returns `false` in this implementation.
-    /// - Parameters:
-    ///   - property: The property value to set.
-    ///   - key: The property key.
-    /// - Returns: `false`.
-    override func setProperty(_: Any?, forKey _: Stream.PropertyKey) -> Bool {
-        return false
-    }
-#endif
+        /// Sets the value of a specified property key. This method always returns `false` in this implementation.
+        /// - Parameters:
+        ///   - property: The property value to set.
+        ///   - key: The property key.
+        /// - Returns: `false`.
+        override func setProperty(_: Any?, forKey _: Stream.PropertyKey) -> Bool {
+            return false
+        }
+    #endif
 }

@@ -21,14 +21,14 @@ public class AiExtract: Codable {
     /// - Parameters:
     ///   - prompt: The prompt provided to a Large Language Model (LLM) in the request. The prompt can be up to 10000 characters long and it can be an XML or a JSON schema.
     ///   - items: The items that LLM will process. Currently, you can use files only.
-    ///   - aiAgent: 
+    ///   - aiAgent:
     public init(prompt: String, items: [AiItemBase], aiAgent: AiAgentExtractOrAiAgentReference? = nil) {
         self.prompt = prompt
         self.items = items
         self.aiAgent = aiAgent
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         prompt = try container.decode(String.self, forKey: .prompt)
         items = try container.decode([AiItemBase].self, forKey: .items)
@@ -41,5 +41,4 @@ public class AiExtract: Codable {
         try container.encode(items, forKey: .items)
         try container.encodeIfPresent(aiAgent, forKey: .aiAgent)
     }
-
 }

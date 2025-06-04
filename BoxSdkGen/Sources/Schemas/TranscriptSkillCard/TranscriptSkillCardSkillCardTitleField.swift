@@ -22,7 +22,7 @@ public class TranscriptSkillCardSkillCardTitleField: Codable {
         self.code = code
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         message = try container.decode(String.self, forKey: .message)
         code = try container.decodeIfPresent(String.self, forKey: .code)
@@ -33,5 +33,4 @@ public class TranscriptSkillCardSkillCardTitleField: Codable {
         try container.encode(message, forKey: .message)
         try container.encodeIfPresent(code, forKey: .code)
     }
-
 }

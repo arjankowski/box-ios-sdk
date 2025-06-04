@@ -39,7 +39,7 @@ public class FileFullLockField: Codable {
     /// - Parameters:
     ///   - id: The unique identifier for this lock
     ///   - type: `lock`
-    ///   - createdBy: 
+    ///   - createdBy:
     ///   - createdAt: The time this lock was created at.
     ///   - expiredAt: The time this lock is to expire at, which might be in the past.
     ///   - isDownloadPrevented: Whether or not the file can be downloaded while locked.
@@ -54,10 +54,10 @@ public class FileFullLockField: Codable {
         self.createdAt = createdAt
         self.expiredAt = expiredAt
         self.isDownloadPrevented = isDownloadPrevented
-        self._appType = CodableTriState(state: appType)
+        _appType = CodableTriState(state: appType)
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decodeIfPresent(String.self, forKey: .id)
         type = try container.decodeIfPresent(FileFullLockTypeField.self, forKey: .type)
@@ -78,5 +78,4 @@ public class FileFullLockField: Codable {
         try container.encodeIfPresent(isDownloadPrevented, forKey: .isDownloadPrevented)
         try container.encode(field: _appType.state, forKey: .appType)
     }
-
 }

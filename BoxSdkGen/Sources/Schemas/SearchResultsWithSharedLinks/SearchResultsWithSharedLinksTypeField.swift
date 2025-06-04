@@ -17,9 +17,8 @@ public enum SearchResultsWithSharedLinksTypeField: CodableStringEnum {
         switch self {
         case .searchResultsWithSharedLinks:
             return "search_results_with_shared_links"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

@@ -40,27 +40,23 @@ public enum KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkil
 
                 default:
                     throw DecodingError.typeMismatch(KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "The Decoded object contains an unexpected value for key skillCardType"))
-
                 }
             }
-
         }
 
         throw DecodingError.typeMismatch(KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "The type of the decoded object cannot be determined."))
-
     }
 
     public func encode(to encoder: Encoder) throws {
         switch self {
-        case .keywordSkillCard(let keywordSkillCard):
+        case let .keywordSkillCard(keywordSkillCard):
             try keywordSkillCard.encode(to: encoder)
-        case .statusSkillCard(let statusSkillCard):
+        case let .statusSkillCard(statusSkillCard):
             try statusSkillCard.encode(to: encoder)
-        case .timelineSkillCard(let timelineSkillCard):
+        case let .timelineSkillCard(timelineSkillCard):
             try timelineSkillCard.encode(to: encoder)
-        case .transcriptSkillCard(let transcriptSkillCard):
+        case let .transcriptSkillCard(transcriptSkillCard):
             try transcriptSkillCard.encode(to: encoder)
         }
     }
-
 }

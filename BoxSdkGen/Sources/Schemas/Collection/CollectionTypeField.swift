@@ -17,9 +17,8 @@ public enum CollectionTypeField: CodableStringEnum {
         switch self {
         case .collection:
             return "collection"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

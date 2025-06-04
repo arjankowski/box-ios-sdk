@@ -25,8 +25,8 @@ public class AppItemAssociation: Codable {
     ///
     /// - Parameters:
     ///   - id: The unique identifier for this app item association.
-    ///   - appItem: 
-    ///   - item: 
+    ///   - appItem:
+    ///   - item:
     ///   - type: `app_item_association`
     public init(id: String, appItem: AppItem, item: FileBaseOrFolderBaseOrWebLinkBase, type: AppItemAssociationTypeField = AppItemAssociationTypeField.appItemAssociation) {
         self.id = id
@@ -35,7 +35,7 @@ public class AppItemAssociation: Codable {
         self.type = type
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
         appItem = try container.decode(AppItem.self, forKey: .appItem)
@@ -50,5 +50,4 @@ public class AppItemAssociation: Codable {
         try container.encode(item, forKey: .item)
         try container.encode(type, forKey: .type)
     }
-
 }

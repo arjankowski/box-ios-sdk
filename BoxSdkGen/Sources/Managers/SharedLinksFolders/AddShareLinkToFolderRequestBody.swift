@@ -6,7 +6,7 @@ public class AddShareLinkToFolderRequestBody: Codable {
     }
 
     /// The settings for the shared link to create on the folder.
-    /// 
+    ///
     /// Use an empty object (`{}`) to use the default settings for shared
     /// links.
     public let sharedLink: AddShareLinkToFolderRequestBodySharedLinkField?
@@ -15,14 +15,14 @@ public class AddShareLinkToFolderRequestBody: Codable {
     ///
     /// - Parameters:
     ///   - sharedLink: The settings for the shared link to create on the folder.
-    ///     
+    ///
     ///     Use an empty object (`{}`) to use the default settings for shared
     ///     links.
     public init(sharedLink: AddShareLinkToFolderRequestBodySharedLinkField? = nil) {
         self.sharedLink = sharedLink
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         sharedLink = try container.decodeIfPresent(AddShareLinkToFolderRequestBodySharedLinkField.self, forKey: .sharedLink)
     }
@@ -31,5 +31,4 @@ public class AddShareLinkToFolderRequestBody: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(sharedLink, forKey: .sharedLink)
     }
-
 }

@@ -11,5 +11,4 @@ public class UpdateClassificationHeaders {
     public init(extraHeaders: [String: String?]? = [:]) {
         self.extraHeaders = extraHeaders
     }
-
 }

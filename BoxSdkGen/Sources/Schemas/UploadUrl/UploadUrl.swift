@@ -25,7 +25,7 @@ public class UploadUrl: Codable {
         self.uploadToken = uploadToken
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         uploadUrl = try container.decodeIfPresent(String.self, forKey: .uploadUrl)
         uploadToken = try container.decodeIfPresent(String.self, forKey: .uploadToken)
@@ -36,5 +36,4 @@ public class UploadUrl: Codable {
         try container.encodeIfPresent(uploadUrl, forKey: .uploadUrl)
         try container.encodeIfPresent(uploadToken, forKey: .uploadToken)
     }
-
 }

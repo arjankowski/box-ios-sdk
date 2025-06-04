@@ -29,7 +29,7 @@ public class AiItemBase: Codable {
         self.content = content
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
         type = try container.decode(AiItemBaseTypeField.self, forKey: .type)
@@ -42,5 +42,4 @@ public class AiItemBase: Codable {
         try container.encode(type, forKey: .type)
         try container.encodeIfPresent(content, forKey: .content)
     }
-
 }

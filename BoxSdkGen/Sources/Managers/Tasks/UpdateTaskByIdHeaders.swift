@@ -11,5 +11,4 @@ public class UpdateTaskByIdHeaders {
     public init(extraHeaders: [String: String?]? = [:]) {
         self.extraHeaders = extraHeaders
     }
-
 }

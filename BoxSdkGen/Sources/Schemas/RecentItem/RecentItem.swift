@@ -30,7 +30,7 @@ public class RecentItem: Codable {
     ///
     /// - Parameters:
     ///   - type: `recent_item`
-    ///   - item: 
+    ///   - item:
     ///   - interactionType: The most recent type of access the user performed on
     ///     the item.
     ///   - interactedAt: The time of the most recent interaction.
@@ -44,7 +44,7 @@ public class RecentItem: Codable {
         self.interactionSharedLink = interactionSharedLink
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         type = try container.decodeIfPresent(String.self, forKey: .type)
         item = try container.decodeIfPresent(FileFullOrFolderFullOrWebLink.self, forKey: .item)
@@ -61,5 +61,4 @@ public class RecentItem: Codable {
         try container.encodeDateTimeIfPresent(field: interactedAt, forKey: .interactedAt)
         try container.encodeIfPresent(interactionSharedLink, forKey: .interactionSharedLink)
     }
-
 }

@@ -21,10 +21,10 @@ public class UpdateShieldInformationBarrierSegmentByIdRequestBody: Codable {
     ///     the shield information barrier segment.
     public init(name: String? = nil, description: TriStateField<String> = nil) {
         self.name = name
-        self._description = CodableTriState(state: description)
+        _description = CodableTriState(state: description)
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         name = try container.decodeIfPresent(String.self, forKey: .name)
         description = try container.decodeIfPresent(String.self, forKey: .description)
@@ -35,5 +35,4 @@ public class UpdateShieldInformationBarrierSegmentByIdRequestBody: Codable {
         try container.encodeIfPresent(name, forKey: .name)
         try container.encode(field: _description.state, forKey: .description)
     }
-
 }

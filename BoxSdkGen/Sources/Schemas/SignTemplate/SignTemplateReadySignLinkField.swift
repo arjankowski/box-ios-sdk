@@ -49,14 +49,14 @@ public class SignTemplateReadySignLinkField: Codable {
     ///   - isActive: Whether the ready sign link is enabled or not.
     public init(url: String? = nil, name: TriStateField<String> = nil, instructions: TriStateField<String> = nil, folderId: TriStateField<String> = nil, isNotificationDisabled: Bool? = nil, isActive: Bool? = nil) {
         self.url = url
-        self._name = CodableTriState(state: name)
-        self._instructions = CodableTriState(state: instructions)
-        self._folderId = CodableTriState(state: folderId)
+        _name = CodableTriState(state: name)
+        _instructions = CodableTriState(state: instructions)
+        _folderId = CodableTriState(state: folderId)
         self.isNotificationDisabled = isNotificationDisabled
         self.isActive = isActive
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         url = try container.decodeIfPresent(String.self, forKey: .url)
         name = try container.decodeIfPresent(String.self, forKey: .name)
@@ -75,5 +75,4 @@ public class SignTemplateReadySignLinkField: Codable {
         try container.encodeIfPresent(isNotificationDisabled, forKey: .isNotificationDisabled)
         try container.encodeIfPresent(isActive, forKey: .isActive)
     }
-
 }

@@ -17,9 +17,8 @@ public enum TimelineSkillCardSkillCardTypeField: CodableStringEnum {
         switch self {
         case .timeline:
             return "timeline"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

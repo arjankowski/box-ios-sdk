@@ -29,7 +29,7 @@ public class AiAgentBasicTextToolBase: Codable {
         self.llmEndpointParams = llmEndpointParams
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         model = try container.decodeIfPresent(String.self, forKey: .model)
         numTokensForCompletion = try container.decodeIfPresent(Int64.self, forKey: .numTokensForCompletion)
@@ -42,5 +42,4 @@ public class AiAgentBasicTextToolBase: Codable {
         try container.encodeIfPresent(numTokensForCompletion, forKey: .numTokensForCompletion)
         try container.encodeIfPresent(llmEndpointParams, forKey: .llmEndpointParams)
     }
-
 }

@@ -21,7 +21,7 @@ public class CollaborationAllowlistEntriesManager {
     public func getCollaborationWhitelistEntries(queryParams: GetCollaborationWhitelistEntriesQueryParams = GetCollaborationWhitelistEntriesQueryParams(), headers: GetCollaborationWhitelistEntriesHeaders = GetCollaborationWhitelistEntriesHeaders()) async throws -> CollaborationAllowlistEntries {
         let queryParamsMap: [String: String] = Utils.Dictionary.prepareParams(map: ["marker": Utils.Strings.toString(value: queryParams.marker), "limit": Utils.Strings.toString(value: queryParams.limit)])
         let headersMap: [String: String] = Utils.Dictionary.prepareParams(map: Utils.Dictionary.merge([:], headers.extraHeaders))
-        let response: FetchResponse = try await self.networkSession.networkClient.fetch(options: FetchOptions(url: "\(self.networkSession.baseUrls.baseUrl)\("/2.0/collaboration_whitelist_entries")", method: "GET", params: queryParamsMap, headers: headersMap, responseFormat: ResponseFormat.json, auth: self.auth, networkSession: self.networkSession))
+        let response: FetchResponse = try await networkSession.networkClient.fetch(options: FetchOptions(url: "\(networkSession.baseUrls.baseUrl)\("/2.0/collaboration_whitelist_entries")", method: "GET", params: queryParamsMap, headers: headersMap, responseFormat: ResponseFormat.json, auth: auth, networkSession: networkSession))
         return try CollaborationAllowlistEntries.deserialize(from: response.data!)
     }
 
@@ -35,7 +35,7 @@ public class CollaborationAllowlistEntriesManager {
     /// - Throws: The `GeneralError`.
     public func createCollaborationWhitelistEntry(requestBody: CreateCollaborationWhitelistEntryRequestBody, headers: CreateCollaborationWhitelistEntryHeaders = CreateCollaborationWhitelistEntryHeaders()) async throws -> CollaborationAllowlistEntry {
         let headersMap: [String: String] = Utils.Dictionary.prepareParams(map: Utils.Dictionary.merge([:], headers.extraHeaders))
-        let response: FetchResponse = try await self.networkSession.networkClient.fetch(options: FetchOptions(url: "\(self.networkSession.baseUrls.baseUrl)\("/2.0/collaboration_whitelist_entries")", method: "POST", headers: headersMap, data: try requestBody.serialize(), contentType: "application/json", responseFormat: ResponseFormat.json, auth: self.auth, networkSession: self.networkSession))
+        let response: FetchResponse = try await networkSession.networkClient.fetch(options: FetchOptions(url: "\(networkSession.baseUrls.baseUrl)\("/2.0/collaboration_whitelist_entries")", method: "POST", headers: headersMap, data: requestBody.serialize(), contentType: "application/json", responseFormat: ResponseFormat.json, auth: auth, networkSession: networkSession))
         return try CollaborationAllowlistEntry.deserialize(from: response.data!)
     }
 
@@ -50,7 +50,7 @@ public class CollaborationAllowlistEntriesManager {
     /// - Throws: The `GeneralError`.
     public func getCollaborationWhitelistEntryById(collaborationWhitelistEntryId: String, headers: GetCollaborationWhitelistEntryByIdHeaders = GetCollaborationWhitelistEntryByIdHeaders()) async throws -> CollaborationAllowlistEntry {
         let headersMap: [String: String] = Utils.Dictionary.prepareParams(map: Utils.Dictionary.merge([:], headers.extraHeaders))
-        let response: FetchResponse = try await self.networkSession.networkClient.fetch(options: FetchOptions(url: "\(self.networkSession.baseUrls.baseUrl)\("/2.0/collaboration_whitelist_entries/")\(collaborationWhitelistEntryId)", method: "GET", headers: headersMap, responseFormat: ResponseFormat.json, auth: self.auth, networkSession: self.networkSession))
+        let response: FetchResponse = try await networkSession.networkClient.fetch(options: FetchOptions(url: "\(networkSession.baseUrls.baseUrl)\("/2.0/collaboration_whitelist_entries/")\(collaborationWhitelistEntryId)", method: "GET", headers: headersMap, responseFormat: ResponseFormat.json, auth: auth, networkSession: networkSession))
         return try CollaborationAllowlistEntry.deserialize(from: response.data!)
     }
 
@@ -64,7 +64,6 @@ public class CollaborationAllowlistEntriesManager {
     /// - Throws: The `GeneralError`.
     public func deleteCollaborationWhitelistEntryById(collaborationWhitelistEntryId: String, headers: DeleteCollaborationWhitelistEntryByIdHeaders = DeleteCollaborationWhitelistEntryByIdHeaders()) async throws {
         let headersMap: [String: String] = Utils.Dictionary.prepareParams(map: Utils.Dictionary.merge([:], headers.extraHeaders))
-        let response: FetchResponse = try await self.networkSession.networkClient.fetch(options: FetchOptions(url: "\(self.networkSession.baseUrls.baseUrl)\("/2.0/collaboration_whitelist_entries/")\(collaborationWhitelistEntryId)", method: "DELETE", headers: headersMap, responseFormat: ResponseFormat.noContent, auth: self.auth, networkSession: self.networkSession))
+        let response: FetchResponse = try await networkSession.networkClient.fetch(options: FetchOptions(url: "\(networkSession.baseUrls.baseUrl)\("/2.0/collaboration_whitelist_entries/")\(collaborationWhitelistEntryId)", method: "DELETE", headers: headersMap, responseFormat: ResponseFormat.noContent, auth: auth, networkSession: networkSession))
     }
-
 }

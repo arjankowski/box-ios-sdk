@@ -12,25 +12,24 @@ public class DocGenTemplateV2025R0: DocGenTemplateBaseV2025R0 {
     /// Initializer for a DocGenTemplateV2025R0.
     ///
     /// - Parameters:
-    ///   - file: 
+    ///   - file:
     ///   - fileName: The name of the template
     public init(file: FileReferenceV2025R0? = nil, fileName: TriStateField<String> = nil) {
-        self._fileName = CodableTriState(state: fileName)
+        _fileName = CodableTriState(state: fileName)
 
         super.init(file: file)
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         fileName = try container.decodeIfPresent(String.self, forKey: .fileName)
 
         try super.init(from: decoder)
     }
 
-    public override func encode(to encoder: Encoder) throws {
+    override public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(field: _fileName.state, forKey: .fileName)
         try super.encode(to: encoder)
     }
-
 }

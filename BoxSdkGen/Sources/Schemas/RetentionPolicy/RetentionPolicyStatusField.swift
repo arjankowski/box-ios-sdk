@@ -22,9 +22,8 @@ public enum RetentionPolicyStatusField: CodableStringEnum {
             return "active"
         case .retired:
             return "retired"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

@@ -22,7 +22,7 @@ public class CreateTaskAssignmentRequestBody: Codable {
         self.assignTo = assignTo
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         task = try container.decode(CreateTaskAssignmentRequestBodyTaskField.self, forKey: .task)
         assignTo = try container.decode(CreateTaskAssignmentRequestBodyAssignToField.self, forKey: .assignTo)
@@ -33,5 +33,4 @@ public class CreateTaskAssignmentRequestBody: Codable {
         try container.encode(task, forKey: .task)
         try container.encode(assignTo, forKey: .assignTo)
     }
-
 }

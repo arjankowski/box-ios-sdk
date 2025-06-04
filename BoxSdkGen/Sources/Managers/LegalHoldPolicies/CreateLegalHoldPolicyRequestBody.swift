@@ -16,38 +16,38 @@ public class CreateLegalHoldPolicyRequestBody: Codable {
     public let description: String?
 
     /// The filter start date.
-    /// 
+    ///
     /// When this policy is applied using a `custodian` legal
     /// hold assignments, it will only apply to file versions
     /// created or uploaded inside of the
     /// date range. Other assignment types, such as folders and
     /// files, will ignore the date filter.
-    /// 
+    ///
     /// Required if `is_ongoing` is set to `false`.
     public let filterStartedAt: Date?
 
     /// The filter end date.
-    /// 
+    ///
     /// When this policy is applied using a `custodian` legal
     /// hold assignments, it will only apply to file versions
     /// created or uploaded inside of the
     /// date range. Other assignment types, such as folders and
     /// files, will ignore the date filter.
-    /// 
+    ///
     /// Required if `is_ongoing` is set to `false`.
     public let filterEndedAt: Date?
 
     /// Whether new assignments under this policy should
     /// continue applying to files even after initialization.
-    /// 
+    ///
     /// When this policy is applied using a legal hold assignment,
     /// it will continue applying the policy to any new file versions
     /// even after it has been applied.
-    /// 
+    ///
     /// For example, if a legal hold assignment is placed on a user
     /// today, and that user uploads a file tomorrow, that file will
     /// get held. This will continue until the policy is retired.
-    /// 
+    ///
     /// Required if no filter dates are set.
     public let isOngoing: Bool?
 
@@ -57,34 +57,34 @@ public class CreateLegalHoldPolicyRequestBody: Codable {
     ///   - policyName: The name of the policy.
     ///   - description: A description for the policy.
     ///   - filterStartedAt: The filter start date.
-    ///     
+    ///
     ///     When this policy is applied using a `custodian` legal
     ///     hold assignments, it will only apply to file versions
     ///     created or uploaded inside of the
     ///     date range. Other assignment types, such as folders and
     ///     files, will ignore the date filter.
-    ///     
+    ///
     ///     Required if `is_ongoing` is set to `false`.
     ///   - filterEndedAt: The filter end date.
-    ///     
+    ///
     ///     When this policy is applied using a `custodian` legal
     ///     hold assignments, it will only apply to file versions
     ///     created or uploaded inside of the
     ///     date range. Other assignment types, such as folders and
     ///     files, will ignore the date filter.
-    ///     
+    ///
     ///     Required if `is_ongoing` is set to `false`.
     ///   - isOngoing: Whether new assignments under this policy should
     ///     continue applying to files even after initialization.
-    ///     
+    ///
     ///     When this policy is applied using a legal hold assignment,
     ///     it will continue applying the policy to any new file versions
     ///     even after it has been applied.
-    ///     
+    ///
     ///     For example, if a legal hold assignment is placed on a user
     ///     today, and that user uploads a file tomorrow, that file will
     ///     get held. This will continue until the policy is retired.
-    ///     
+    ///
     ///     Required if no filter dates are set.
     public init(policyName: String, description: String? = nil, filterStartedAt: Date? = nil, filterEndedAt: Date? = nil, isOngoing: Bool? = nil) {
         self.policyName = policyName
@@ -94,7 +94,7 @@ public class CreateLegalHoldPolicyRequestBody: Codable {
         self.isOngoing = isOngoing
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         policyName = try container.decode(String.self, forKey: .policyName)
         description = try container.decodeIfPresent(String.self, forKey: .description)
@@ -111,5 +111,4 @@ public class CreateLegalHoldPolicyRequestBody: Codable {
         try container.encodeDateTimeIfPresent(field: filterEndedAt, forKey: .filterEndedAt)
         try container.encodeIfPresent(isOngoing, forKey: .isOngoing)
     }
-
 }

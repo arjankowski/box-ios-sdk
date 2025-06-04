@@ -11,7 +11,7 @@ public class UpdateTeamsIntegrationMappingByIdRequestBody: Codable {
         self.boxItem = boxItem
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         boxItem = try container.decodeIfPresent(FolderReference.self, forKey: .boxItem)
     }
@@ -20,5 +20,4 @@ public class UpdateTeamsIntegrationMappingByIdRequestBody: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(boxItem, forKey: .boxItem)
     }
-
 }

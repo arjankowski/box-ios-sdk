@@ -41,8 +41,8 @@ public class Invite: Codable {
     ///   - id: The unique identifier for this invite
     ///   - type: `invite`
     ///   - invitedTo: A representation of a Box enterprise
-    ///   - actionableBy: 
-    ///   - invitedBy: 
+    ///   - actionableBy:
+    ///   - invitedBy:
     ///   - status: The status of the invite
     ///   - createdAt: When the invite was created
     ///   - modifiedAt: When the invite was modified.
@@ -57,7 +57,7 @@ public class Invite: Codable {
         self.modifiedAt = modifiedAt
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
         type = try container.decode(InviteTypeField.self, forKey: .type)
@@ -80,5 +80,4 @@ public class Invite: Codable {
         try container.encodeDateTimeIfPresent(field: createdAt, forKey: .createdAt)
         try container.encodeDateTimeIfPresent(field: modifiedAt, forKey: .modifiedAt)
     }
-
 }

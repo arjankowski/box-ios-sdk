@@ -3,7 +3,7 @@ import Foundation
 public class DeleteFileVersionByIdHeaders {
     /// Ensures this item hasn't recently changed before
     /// making changes.
-    /// 
+    ///
     /// Pass in the item's last observed `etag` value
     /// into this header and the endpoint will fail
     /// with a `412 Precondition Failed` if it
@@ -18,7 +18,7 @@ public class DeleteFileVersionByIdHeaders {
     /// - Parameters:
     ///   - ifMatch: Ensures this item hasn't recently changed before
     ///     making changes.
-    ///     
+    ///
     ///     Pass in the item's last observed `etag` value
     ///     into this header and the endpoint will fail
     ///     with a `412 Precondition Failed` if it
@@ -28,5 +28,4 @@ public class DeleteFileVersionByIdHeaders {
         self.ifMatch = ifMatch
         self.extraHeaders = extraHeaders
     }
-
 }

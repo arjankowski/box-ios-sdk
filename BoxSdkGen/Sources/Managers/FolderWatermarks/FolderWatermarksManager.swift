@@ -14,13 +14,13 @@ public class FolderWatermarksManager {
     ///
     /// - Parameters:
     ///   - folderId: The unique identifier that represent a folder.
-    ///     
+    ///
     ///     The ID for any folder can be determined
     ///     by visiting this folder in the web application
     ///     and copying the ID from the URL. For example,
     ///     for the URL `https://*.app.box.com/folder/123`
     ///     the `folder_id` is `123`.
-    ///     
+    ///
     ///     The root folder of a Box account is
     ///     always represented by the ID `0`.
     ///     Example: "12345"
@@ -29,7 +29,7 @@ public class FolderWatermarksManager {
     /// - Throws: The `GeneralError`.
     public func getFolderWatermark(folderId: String, headers: GetFolderWatermarkHeaders = GetFolderWatermarkHeaders()) async throws -> Watermark {
         let headersMap: [String: String] = Utils.Dictionary.prepareParams(map: Utils.Dictionary.merge([:], headers.extraHeaders))
-        let response: FetchResponse = try await self.networkSession.networkClient.fetch(options: FetchOptions(url: "\(self.networkSession.baseUrls.baseUrl)\("/2.0/folders/")\(folderId)\("/watermark")", method: "GET", headers: headersMap, responseFormat: ResponseFormat.json, auth: self.auth, networkSession: self.networkSession))
+        let response: FetchResponse = try await networkSession.networkClient.fetch(options: FetchOptions(url: "\(networkSession.baseUrls.baseUrl)\("/2.0/folders/")\(folderId)\("/watermark")", method: "GET", headers: headersMap, responseFormat: ResponseFormat.json, auth: auth, networkSession: networkSession))
         return try Watermark.deserialize(from: response.data!)
     }
 
@@ -37,13 +37,13 @@ public class FolderWatermarksManager {
     ///
     /// - Parameters:
     ///   - folderId: The unique identifier that represent a folder.
-    ///     
+    ///
     ///     The ID for any folder can be determined
     ///     by visiting this folder in the web application
     ///     and copying the ID from the URL. For example,
     ///     for the URL `https://*.app.box.com/folder/123`
     ///     the `folder_id` is `123`.
-    ///     
+    ///
     ///     The root folder of a Box account is
     ///     always represented by the ID `0`.
     ///     Example: "12345"
@@ -53,7 +53,7 @@ public class FolderWatermarksManager {
     /// - Throws: The `GeneralError`.
     public func updateFolderWatermark(folderId: String, requestBody: UpdateFolderWatermarkRequestBody, headers: UpdateFolderWatermarkHeaders = UpdateFolderWatermarkHeaders()) async throws -> Watermark {
         let headersMap: [String: String] = Utils.Dictionary.prepareParams(map: Utils.Dictionary.merge([:], headers.extraHeaders))
-        let response: FetchResponse = try await self.networkSession.networkClient.fetch(options: FetchOptions(url: "\(self.networkSession.baseUrls.baseUrl)\("/2.0/folders/")\(folderId)\("/watermark")", method: "PUT", headers: headersMap, data: try requestBody.serialize(), contentType: "application/json", responseFormat: ResponseFormat.json, auth: self.auth, networkSession: self.networkSession))
+        let response: FetchResponse = try await networkSession.networkClient.fetch(options: FetchOptions(url: "\(networkSession.baseUrls.baseUrl)\("/2.0/folders/")\(folderId)\("/watermark")", method: "PUT", headers: headersMap, data: requestBody.serialize(), contentType: "application/json", responseFormat: ResponseFormat.json, auth: auth, networkSession: networkSession))
         return try Watermark.deserialize(from: response.data!)
     }
 
@@ -61,13 +61,13 @@ public class FolderWatermarksManager {
     ///
     /// - Parameters:
     ///   - folderId: The unique identifier that represent a folder.
-    ///     
+    ///
     ///     The ID for any folder can be determined
     ///     by visiting this folder in the web application
     ///     and copying the ID from the URL. For example,
     ///     for the URL `https://*.app.box.com/folder/123`
     ///     the `folder_id` is `123`.
-    ///     
+    ///
     ///     The root folder of a Box account is
     ///     always represented by the ID `0`.
     ///     Example: "12345"
@@ -75,7 +75,6 @@ public class FolderWatermarksManager {
     /// - Throws: The `GeneralError`.
     public func deleteFolderWatermark(folderId: String, headers: DeleteFolderWatermarkHeaders = DeleteFolderWatermarkHeaders()) async throws {
         let headersMap: [String: String] = Utils.Dictionary.prepareParams(map: Utils.Dictionary.merge([:], headers.extraHeaders))
-        let response: FetchResponse = try await self.networkSession.networkClient.fetch(options: FetchOptions(url: "\(self.networkSession.baseUrls.baseUrl)\("/2.0/folders/")\(folderId)\("/watermark")", method: "DELETE", headers: headersMap, responseFormat: ResponseFormat.noContent, auth: self.auth, networkSession: self.networkSession))
+        let response: FetchResponse = try await networkSession.networkClient.fetch(options: FetchOptions(url: "\(networkSession.baseUrls.baseUrl)\("/2.0/folders/")\(folderId)\("/watermark")", method: "DELETE", headers: headersMap, responseFormat: ResponseFormat.noContent, auth: auth, networkSession: networkSession))
     }
-
 }

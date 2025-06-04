@@ -32,9 +32,8 @@ public enum FileSharedLinkEffectivePermissionField: CodableStringEnum {
             return "can_preview"
         case .noAccess:
             return "no_access"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

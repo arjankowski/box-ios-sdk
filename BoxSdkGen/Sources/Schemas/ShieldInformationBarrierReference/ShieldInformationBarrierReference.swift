@@ -12,7 +12,7 @@ public class ShieldInformationBarrierReference: Codable {
         self.shieldInformationBarrier = shieldInformationBarrier
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         shieldInformationBarrier = try container.decodeIfPresent(ShieldInformationBarrierBase.self, forKey: .shieldInformationBarrier)
     }
@@ -21,5 +21,4 @@ public class ShieldInformationBarrierReference: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(shieldInformationBarrier, forKey: .shieldInformationBarrier)
     }
-
 }

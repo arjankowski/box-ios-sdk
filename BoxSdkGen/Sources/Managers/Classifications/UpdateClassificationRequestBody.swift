@@ -18,7 +18,7 @@ public class UpdateClassificationRequestBody: Codable {
     /// object.
     public let op: UpdateClassificationRequestBodyOpField
 
-    /// Defines classifications 
+    /// Defines classifications
     /// available in the enterprise.
     public let fieldKey: UpdateClassificationRequestBodyFieldKeyField
 
@@ -29,7 +29,7 @@ public class UpdateClassificationRequestBody: Codable {
     ///   - data: The details of the updated classification.
     ///   - op: The type of change to perform on the classification
     ///     object.
-    ///   - fieldKey: Defines classifications 
+    ///   - fieldKey: Defines classifications
     ///     available in the enterprise.
     public init(enumOptionKey: String, data: UpdateClassificationRequestBodyDataField, op: UpdateClassificationRequestBodyOpField = UpdateClassificationRequestBodyOpField.editEnumOption, fieldKey: UpdateClassificationRequestBodyFieldKeyField = UpdateClassificationRequestBodyFieldKeyField.boxSecurityClassificationKey) {
         self.enumOptionKey = enumOptionKey
@@ -38,7 +38,7 @@ public class UpdateClassificationRequestBody: Codable {
         self.fieldKey = fieldKey
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         enumOptionKey = try container.decode(String.self, forKey: .enumOptionKey)
         data = try container.decode(UpdateClassificationRequestBodyDataField.self, forKey: .data)
@@ -53,5 +53,4 @@ public class UpdateClassificationRequestBody: Codable {
         try container.encode(op, forKey: .op)
         try container.encode(fieldKey, forKey: .fieldKey)
     }
-
 }

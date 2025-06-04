@@ -22,11 +22,11 @@ public class RetentionPolicyAssignmentAssignedToField: Codable {
     ///     Set to null or omit when type is set to enterprise.
     ///   - type: The type of resource the policy is assigned to.
     public init(id: TriStateField<String> = nil, type: RetentionPolicyAssignmentAssignedToTypeField? = nil) {
-        self._id = CodableTriState(state: id)
+        _id = CodableTriState(state: id)
         self.type = type
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decodeIfPresent(String.self, forKey: .id)
         type = try container.decodeIfPresent(RetentionPolicyAssignmentAssignedToTypeField.self, forKey: .type)
@@ -37,5 +37,4 @@ public class RetentionPolicyAssignmentAssignedToField: Codable {
         try container.encode(field: _id.state, forKey: .id)
         try container.encodeIfPresent(type, forKey: .type)
     }
-
 }

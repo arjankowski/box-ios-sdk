@@ -27,9 +27,8 @@ public enum SearchForContentQueryParamsTrashContentField: CodableStringEnum {
             return "trashed_only"
         case .allItems:
             return "all_items"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

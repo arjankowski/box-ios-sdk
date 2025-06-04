@@ -16,7 +16,7 @@ public class RestoreFolderFromTrashRequestBodyParentField: Codable {
         self.id = id
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decodeIfPresent(String.self, forKey: .id)
     }
@@ -25,5 +25,4 @@ public class RestoreFolderFromTrashRequestBodyParentField: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(id, forKey: .id)
     }
-
 }

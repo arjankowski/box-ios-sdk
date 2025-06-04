@@ -17,9 +17,8 @@ public enum GetSlackIntegrationMappingQueryParamsPartnerItemTypeField: CodableSt
         switch self {
         case .channel:
             return "channel"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

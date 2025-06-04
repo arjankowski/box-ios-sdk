@@ -3,7 +3,7 @@ import Foundation
 /// A list of files, folders and web links that matched the search query,
 /// including the additional information about any shared links through
 /// which the item has been shared with the user.
-/// 
+///
 /// This response format is only returned when the `include_recent_shared_links`
 /// query parameter has been set to `true`.
 public class SearchResultsWithSharedLinks: Codable {
@@ -60,7 +60,7 @@ public class SearchResultsWithSharedLinks: Codable {
         self.entries = entries
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         totalCount = try container.decodeIfPresent(Int64.self, forKey: .totalCount)
         limit = try container.decodeIfPresent(Int64.self, forKey: .limit)
@@ -77,5 +77,4 @@ public class SearchResultsWithSharedLinks: Codable {
         try container.encode(type, forKey: .type)
         try container.encodeIfPresent(entries, forKey: .entries)
     }
-
 }

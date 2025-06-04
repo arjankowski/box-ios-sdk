@@ -27,7 +27,7 @@ public class RealtimeServer: Codable {
 
     /// The maximum number of seconds without a response
     /// after which you should retry the long poll connection.
-    /// 
+    ///
     /// This helps to overcome network issues where the long
     /// poll looks to be working but no packages are coming
     /// through.
@@ -44,7 +44,7 @@ public class RealtimeServer: Codable {
     ///     getting a [new list of server](#options-events).
     ///   - retryTimeout: The maximum number of seconds without a response
     ///     after which you should retry the long poll connection.
-    ///     
+    ///
     ///     This helps to overcome network issues where the long
     ///     poll looks to be working but no packages are coming
     ///     through.
@@ -56,7 +56,7 @@ public class RealtimeServer: Codable {
         self.retryTimeout = retryTimeout
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         type = try container.decodeIfPresent(String.self, forKey: .type)
         url = try container.decodeIfPresent(String.self, forKey: .url)
@@ -73,5 +73,4 @@ public class RealtimeServer: Codable {
         try container.encodeIfPresent(maxRetries, forKey: .maxRetries)
         try container.encodeIfPresent(retryTimeout, forKey: .retryTimeout)
     }
-
 }

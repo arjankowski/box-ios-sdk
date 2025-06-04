@@ -42,7 +42,7 @@ public class FolderFull: Folder {
 
     /// A list of access levels that are available
     /// for this folder.
-    /// 
+    ///
     /// For some folders, like the root folder, this will always
     /// be an empty list as sharing is not allowed at that level.
     public let allowedSharedLinkAccessLevels: [FolderFullAllowedSharedLinkAccessLevelsField]?
@@ -61,7 +61,7 @@ public class FolderFull: Folder {
     /// Specifies if collaborators who are not owners
     /// of this folder are restricted from viewing other
     /// collaborations on this folder.
-    /// 
+    ///
     /// It also restricts non-owners from inviting new
     /// collaborators.
     public let canNonOwnersViewCollaborators: Bool?
@@ -78,7 +78,7 @@ public class FolderFull: Folder {
     ///
     /// - Parameters:
     ///   - id: The unique identifier that represent a folder.
-    ///     
+    ///
     ///     The ID for any folder can be determined
     ///     by visiting a folder in the web application
     ///     and copying the ID from the URL. For example,
@@ -88,7 +88,7 @@ public class FolderFull: Folder {
     ///     endpoints in the `If-Match` and `If-None-Match` headers to only
     ///     perform changes on the folder if (no) changes have happened.
     ///   - type: `folder`
-    ///   - sequenceId: 
+    ///   - sequenceId:
     ///   - name: The name of the folder.
     ///   - createdAt: The date and time when the folder was created. This value may
     ///     be `null` for some folders such as the root folder or the trash
@@ -96,63 +96,63 @@ public class FolderFull: Folder {
     ///   - modifiedAt: The date and time when the folder was last updated. This value may
     ///     be `null` for some folders such as the root folder or the trash
     ///     folder.
-    ///   - description: 
+    ///   - description:
     ///   - size: The folder size in bytes.
-    ///     
+    ///
     ///     Be careful parsing this integer as its
     ///     value can get very large.
-    ///   - pathCollection: 
-    ///   - createdBy: 
-    ///   - modifiedBy: 
+    ///   - pathCollection:
+    ///   - createdBy:
+    ///   - modifiedBy:
     ///   - trashedAt: The time at which this folder was put in the trash.
     ///   - purgedAt: The time at which this folder is expected to be purged
     ///     from the trash.
     ///   - contentCreatedAt: The date and time at which this folder was originally
     ///     created.
     ///   - contentModifiedAt: The date and time at which this folder was last updated.
-    ///   - ownedBy: 
-    ///   - sharedLink: 
+    ///   - ownedBy:
+    ///   - sharedLink:
     ///   - folderUploadEmail: The `folder_upload_email` parameter is not `null` if one of the following options is **true**:
-    ///     
+    ///
     ///       * The **Allow uploads to this folder via email** and the **Only allow email uploads from collaborators in this folder** are [enabled for a folder in the Admin Console](https://support.box.com/hc/en-us/articles/360043697534-Upload-to-Box-Through-Email), and the user has at least **Upload** permissions granted.
-    ///     
+    ///
     ///       * The **Allow uploads to this folder via email** setting is enabled for a folder in the Admin Console, and the **Only allow email uploads from collaborators in this folder** setting is deactivated (unchecked).
-    ///     
+    ///
     ///     If the conditions are not met, the parameter will have the following value: `folder_upload_email: null`
-    ///   - parent: 
+    ///   - parent:
     ///   - itemStatus: Defines if this item has been deleted or not.
-    ///     
+    ///
     ///     * `active` when the item has is not in the trash
     ///     * `trashed` when the item has been moved to the trash but not deleted
     ///     * `deleted` when the item has been permanently deleted.
-    ///   - itemCollection: 
-    ///   - syncState: 
+    ///   - itemCollection:
+    ///   - syncState:
     ///   - hasCollaborations: Specifies if this folder has any other collaborators.
-    ///   - permissions: 
-    ///   - tags: 
-    ///   - canNonOwnersInvite: 
+    ///   - permissions:
+    ///   - tags:
+    ///   - canNonOwnersInvite:
     ///   - isExternallyOwned: Specifies if this folder is owned by a user outside of the
     ///     authenticated enterprise.
-    ///   - metadata: 
-    ///   - isCollaborationRestrictedToEnterprise: 
+    ///   - metadata:
+    ///   - isCollaborationRestrictedToEnterprise:
     ///   - allowedSharedLinkAccessLevels: A list of access levels that are available
     ///     for this folder.
-    ///     
+    ///
     ///     For some folders, like the root folder, this will always
     ///     be an empty list as sharing is not allowed at that level.
     ///   - allowedInviteeRoles: A list of the types of roles that user can be invited at
     ///     when sharing this folder.
-    ///   - watermarkInfo: 
+    ///   - watermarkInfo:
     ///   - isAccessibleViaSharedLink: Specifies if the folder can be accessed
     ///     with the direct shared link or a shared link
     ///     to a parent folder.
     ///   - canNonOwnersViewCollaborators: Specifies if collaborators who are not owners
     ///     of this folder are restricted from viewing other
     ///     collaborations on this folder.
-    ///     
+    ///
     ///     It also restricts non-owners from inviting new
     ///     collaborators.
-    ///   - classification: 
+    ///   - classification:
     ///   - isAssociatedWithAppItem: This field will return true if the folder or any ancestor of the
     ///     folder is associated with at least one app item. Note that this will
     ///     return true even if the context user does not have access to the
@@ -177,7 +177,7 @@ public class FolderFull: Folder {
         super.init(id: id, etag: etag, type: type, sequenceId: sequenceId, name: name, createdAt: createdAt, modifiedAt: modifiedAt, description: description, size: size, pathCollection: pathCollection, createdBy: createdBy, modifiedBy: modifiedBy, trashedAt: trashedAt, purgedAt: purgedAt, contentCreatedAt: contentCreatedAt, contentModifiedAt: contentModifiedAt, ownedBy: ownedBy, sharedLink: sharedLink, folderUploadEmail: folderUploadEmail, parent: parent, itemStatus: itemStatus, itemCollection: itemCollection)
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         syncState = try container.decodeIfPresent(FolderFullSyncStateField.self, forKey: .syncState)
         hasCollaborations = try container.decodeIfPresent(Bool.self, forKey: .hasCollaborations)
@@ -198,7 +198,7 @@ public class FolderFull: Folder {
         try super.init(from: decoder)
     }
 
-    public override func encode(to encoder: Encoder) throws {
+    override public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(syncState, forKey: .syncState)
         try container.encodeIfPresent(hasCollaborations, forKey: .hasCollaborations)
@@ -217,5 +217,4 @@ public class FolderFull: Folder {
         try container.encodeIfPresent(isAssociatedWithAppItem, forKey: .isAssociatedWithAppItem)
         try super.encode(to: encoder)
     }
-
 }

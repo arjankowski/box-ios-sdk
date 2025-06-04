@@ -11,5 +11,4 @@ public class GetFileUploadSessionPartsHeaders {
     public init(extraHeaders: [String: String?]? = [:]) {
         self.extraHeaders = extraHeaders
     }
-
 }

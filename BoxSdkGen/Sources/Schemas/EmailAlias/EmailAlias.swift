@@ -35,7 +35,7 @@ public class EmailAlias: Codable {
         self.isConfirmed = isConfirmed
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decodeIfPresent(String.self, forKey: .id)
         type = try container.decodeIfPresent(EmailAliasTypeField.self, forKey: .type)
@@ -50,5 +50,4 @@ public class EmailAlias: Codable {
         try container.encodeIfPresent(email, forKey: .email)
         try container.encodeIfPresent(isConfirmed, forKey: .isConfirmed)
     }
-
 }

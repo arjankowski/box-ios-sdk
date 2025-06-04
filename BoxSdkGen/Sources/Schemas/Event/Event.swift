@@ -37,7 +37,7 @@ public class Event: Codable {
     public let source: AppItemEventSourceOrEventSourceOrFileOrFolderOrGenericSourceOrUser?
 
     /// This object provides additional information about the event if available.
-    /// 
+    ///
     /// This can include how a user performed an event as well as additional
     /// information to correlate an event to external KeySafe logs. Not all events
     /// have an `additional_details` object.  This object is only available in the
@@ -51,13 +51,13 @@ public class Event: Codable {
     ///   - createdAt: When the event object was created
     ///   - recordedAt: When the event object was recorded in database
     ///   - eventId: The ID of the event object. You can use this to detect duplicate events
-    ///   - createdBy: 
-    ///   - eventType: 
+    ///   - createdBy:
+    ///   - eventType:
     ///   - sessionId: The session of the user that performed the action. Not all events will
     ///     populate this attribute.
-    ///   - source: 
+    ///   - source:
     ///   - additionalDetails: This object provides additional information about the event if available.
-    ///     
+    ///
     ///     This can include how a user performed an event as well as additional
     ///     information to correlate an event to external KeySafe logs. Not all events
     ///     have an `additional_details` object.  This object is only available in the
@@ -74,7 +74,7 @@ public class Event: Codable {
         self.additionalDetails = additionalDetails
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         type = try container.decodeIfPresent(String.self, forKey: .type)
         createdAt = try container.decodeDateTimeIfPresent(forKey: .createdAt)
@@ -99,5 +99,4 @@ public class Event: Codable {
         try container.encodeIfPresent(source, forKey: .source)
         try container.encodeIfPresent(additionalDetails, forKey: .additionalDetails)
     }
-
 }

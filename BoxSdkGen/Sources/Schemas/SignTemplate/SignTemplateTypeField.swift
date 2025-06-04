@@ -17,9 +17,8 @@ public enum SignTemplateTypeField: CodableStringEnum {
         switch self {
         case .signTemplate:
             return "sign-template"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

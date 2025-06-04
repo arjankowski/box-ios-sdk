@@ -24,7 +24,7 @@ public class UpdateAllSkillCardsOnFileRequestBody: Codable {
     public let fileVersion: UpdateAllSkillCardsOnFileRequestBodyFileVersionField?
 
     /// A descriptor that defines what items are affected by this call.
-    /// 
+    ///
     /// Set this to the default values when setting a card to a `success`
     /// state, and leave it out in most other situations.
     public let usage: UpdateAllSkillCardsOnFileRequestBodyUsageField?
@@ -39,7 +39,7 @@ public class UpdateAllSkillCardsOnFileRequestBody: Codable {
     ///   - file: The file to assign the cards to.
     ///   - fileVersion: The optional file version to assign the cards to.
     ///   - usage: A descriptor that defines what items are affected by this call.
-    ///     
+    ///
     ///     Set this to the default values when setting a card to a `success`
     ///     state, and leave it out in most other situations.
     public init(status: UpdateAllSkillCardsOnFileRequestBodyStatusField, metadata: UpdateAllSkillCardsOnFileRequestBodyMetadataField, file: UpdateAllSkillCardsOnFileRequestBodyFileField, fileVersion: UpdateAllSkillCardsOnFileRequestBodyFileVersionField? = nil, usage: UpdateAllSkillCardsOnFileRequestBodyUsageField? = nil) {
@@ -50,7 +50,7 @@ public class UpdateAllSkillCardsOnFileRequestBody: Codable {
         self.usage = usage
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         status = try container.decode(UpdateAllSkillCardsOnFileRequestBodyStatusField.self, forKey: .status)
         metadata = try container.decode(UpdateAllSkillCardsOnFileRequestBodyMetadataField.self, forKey: .metadata)
@@ -67,5 +67,4 @@ public class UpdateAllSkillCardsOnFileRequestBody: Codable {
         try container.encodeIfPresent(fileVersion, forKey: .fileVersion)
         try container.encodeIfPresent(usage, forKey: .usage)
     }
-
 }

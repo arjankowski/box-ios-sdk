@@ -22,7 +22,7 @@ public class UpdateFileByIdRequestBodyParentField: Codable {
         self.userId = userId
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decodeIfPresent(String.self, forKey: .id)
         userId = try container.decodeIfPresent(String.self, forKey: .userId)
@@ -33,5 +33,4 @@ public class UpdateFileByIdRequestBodyParentField: Codable {
         try container.encodeIfPresent(id, forKey: .id)
         try container.encodeIfPresent(userId, forKey: .userId)
     }
-
 }

@@ -56,8 +56,8 @@ public struct StreamIterator: IteratorProtocol {
     init(inputStream: InputStream, chunkSize: Int) {
         self.inputStream = inputStream
         self.chunkSize = chunkSize
-        self.buffer = [UInt8](repeating: 0, count: chunkSize)
-        self.hasMoreData = true
+        buffer = [UInt8](repeating: 0, count: chunkSize)
+        hasMoreData = true
 
         // Open the input stream for reading.
         inputStream.open()
@@ -75,7 +75,8 @@ public struct StreamIterator: IteratorProtocol {
         if bytesRead > 0 {
             // Create and return an `InputStream` containing the read data.
             return MemoryInputStream(data: Data(bytes: buffer, count: bytesRead))
-        } else {
+        }
+        else {
             // No more data to read.
             hasMoreData = false
             inputStream.close()

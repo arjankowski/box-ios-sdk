@@ -38,7 +38,7 @@ public class AiExtractStructuredMetadataTemplateField: Codable {
         self.scope = scope
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         templateKey = try container.decodeIfPresent(String.self, forKey: .templateKey)
         type = try container.decodeIfPresent(AiExtractStructuredMetadataTemplateTypeField.self, forKey: .type)
@@ -51,5 +51,4 @@ public class AiExtractStructuredMetadataTemplateField: Codable {
         try container.encodeIfPresent(type, forKey: .type)
         try container.encodeIfPresent(scope, forKey: .scope)
     }
-
 }

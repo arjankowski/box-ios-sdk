@@ -17,9 +17,8 @@ public enum DevicePinnersOrderByField: CodableStringEnum {
         switch self {
         case .id:
             return "id"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

@@ -6,7 +6,7 @@ public class CreateUserEmailAliasRequestBody: Codable {
     }
 
     /// The email address to add to the account as an alias.
-    /// 
+    ///
     /// Note: The domain of the email alias needs to be registered
     ///  to your enterprise.
     /// See the [domain verification guide](
@@ -18,7 +18,7 @@ public class CreateUserEmailAliasRequestBody: Codable {
     ///
     /// - Parameters:
     ///   - email: The email address to add to the account as an alias.
-    ///     
+    ///
     ///     Note: The domain of the email alias needs to be registered
     ///      to your enterprise.
     ///     See the [domain verification guide](
@@ -28,7 +28,7 @@ public class CreateUserEmailAliasRequestBody: Codable {
         self.email = email
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         email = try container.decode(String.self, forKey: .email)
     }
@@ -37,5 +37,4 @@ public class CreateUserEmailAliasRequestBody: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(email, forKey: .email)
     }
-
 }

@@ -15,10 +15,10 @@ public class ZipDownloadsManager {
     /// the checks to ensure that the user has access to all the items, and then
     /// returns a `download_url` and a `status_url` that can be used to download the
     /// archive.
-    /// 
+    ///
     /// The limit for an archive is either the Account's upload limit or
     /// 10,000 files, whichever is met first.
-    /// 
+    ///
     /// **Note**: Downloading a large file can be
     /// affected by various
     /// factors such as distance, network latency,
@@ -34,19 +34,19 @@ public class ZipDownloadsManager {
     /// - Throws: The `GeneralError`.
     public func createZipDownload(requestBody: ZipDownloadRequest, headers: CreateZipDownloadHeaders = CreateZipDownloadHeaders()) async throws -> ZipDownload {
         let headersMap: [String: String] = Utils.Dictionary.prepareParams(map: Utils.Dictionary.merge([:], headers.extraHeaders))
-        let response: FetchResponse = try await self.networkSession.networkClient.fetch(options: FetchOptions(url: "\(self.networkSession.baseUrls.baseUrl)\("/2.0/zip_downloads")", method: "POST", headers: headersMap, data: try requestBody.serialize(), contentType: "application/json", responseFormat: ResponseFormat.json, auth: self.auth, networkSession: self.networkSession))
+        let response: FetchResponse = try await networkSession.networkClient.fetch(options: FetchOptions(url: "\(networkSession.baseUrls.baseUrl)\("/2.0/zip_downloads")", method: "POST", headers: headersMap, data: requestBody.serialize(), contentType: "application/json", responseFormat: ResponseFormat.json, auth: auth, networkSession: networkSession))
         return try ZipDownload.deserialize(from: response.data!)
     }
 
     /// Returns the contents of a `zip` archive in binary format. This URL does not
     /// require any form of authentication and could be used in a user's browser to
     /// download the archive to a user's device.
-    /// 
+    ///
     /// By default, this URL is only valid for a few seconds from the creation of
     /// the request for this archive. Once a download has started it can not be
     /// stopped and resumed, instead a new request for a zip archive would need to
     /// be created.
-    /// 
+    ///
     /// The URL of this endpoint should not be considered as fixed. Instead, use
     /// the [Create zip download](e://post_zip_downloads) API to request to create a
     /// `zip` archive, and then follow the `download_url` field in the response to
@@ -61,18 +61,18 @@ public class ZipDownloadsManager {
     /// - Throws: The `GeneralError`.
     public func getZipDownloadContent(downloadUrl: String, downloadDestinationUrl: URL, headers: GetZipDownloadContentHeaders = GetZipDownloadContentHeaders()) async throws -> URL? {
         let headersMap: [String: String] = Utils.Dictionary.prepareParams(map: Utils.Dictionary.merge([:], headers.extraHeaders))
-        let response: FetchResponse = try await self.networkSession.networkClient.fetch(options: FetchOptions(url: downloadUrl, method: "GET", headers: headersMap, responseFormat: ResponseFormat.binary, downloadDestinationUrl: downloadDestinationUrl, auth: self.auth, networkSession: self.networkSession))
+        let response: FetchResponse = try await networkSession.networkClient.fetch(options: FetchOptions(url: downloadUrl, method: "GET", headers: headersMap, responseFormat: ResponseFormat.binary, downloadDestinationUrl: downloadDestinationUrl, auth: auth, networkSession: networkSession))
         return response.downloadDestinationUrl!
     }
 
     /// Returns the download status of a `zip` archive, allowing an application to
     /// inspect the progress of the download as well as the number of items that
     /// might have been skipped.
-    /// 
+    ///
     /// This endpoint can only be accessed once the download has started.
     /// Subsequently this endpoint is valid for 12 hours from the start of the
     /// download.
-    /// 
+    ///
     /// The URL of this endpoint should not be considered as fixed. Instead, use
     /// the [Create zip download](e://post_zip_downloads) API to request to create a
     /// `zip` archive, and then follow the `status_url` field in the response to
@@ -86,8 +86,7 @@ public class ZipDownloadsManager {
     /// - Throws: The `GeneralError`.
     public func getZipDownloadStatus(statusUrl: String, headers: GetZipDownloadStatusHeaders = GetZipDownloadStatusHeaders()) async throws -> ZipDownloadStatus {
         let headersMap: [String: String] = Utils.Dictionary.prepareParams(map: Utils.Dictionary.merge([:], headers.extraHeaders))
-        let response: FetchResponse = try await self.networkSession.networkClient.fetch(options: FetchOptions(url: statusUrl, method: "GET", headers: headersMap, responseFormat: ResponseFormat.json, auth: self.auth, networkSession: self.networkSession))
+        let response: FetchResponse = try await networkSession.networkClient.fetch(options: FetchOptions(url: statusUrl, method: "GET", headers: headersMap, responseFormat: ResponseFormat.json, auth: auth, networkSession: networkSession))
         return try ZipDownloadStatus.deserialize(from: response.data!)
     }
-
 }

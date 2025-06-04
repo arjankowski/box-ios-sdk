@@ -23,10 +23,10 @@ public class CreateRetentionPolicyAssignmentRequestBodyAssignToField: Codable {
     ///     `enterprise`.
     public init(type: CreateRetentionPolicyAssignmentRequestBodyAssignToTypeField, id: TriStateField<String> = nil) {
         self.type = type
-        self._id = CodableTriState(state: id)
+        _id = CodableTriState(state: id)
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         type = try container.decode(CreateRetentionPolicyAssignmentRequestBodyAssignToTypeField.self, forKey: .type)
         id = try container.decodeIfPresent(String.self, forKey: .id)
@@ -37,5 +37,4 @@ public class CreateRetentionPolicyAssignmentRequestBodyAssignToField: Codable {
         try container.encode(type, forKey: .type)
         try container.encode(field: _id.state, forKey: .id)
     }
-
 }

@@ -22,9 +22,8 @@ public enum CreateCommentRequestBodyItemTypeField: CodableStringEnum {
             return "file"
         case .comment:
             return "comment"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

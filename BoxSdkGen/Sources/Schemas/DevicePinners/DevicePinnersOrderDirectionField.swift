@@ -22,9 +22,8 @@ public enum DevicePinnersOrderDirectionField: CodableStringEnum {
             return "asc"
         case .desc:
             return "desc"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

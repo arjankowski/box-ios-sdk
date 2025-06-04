@@ -22,7 +22,7 @@ public class TerminateUsersSessionsRequestBody: Codable {
         self.userLogins = userLogins
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         userIds = try container.decode([String].self, forKey: .userIds)
         userLogins = try container.decode([String].self, forKey: .userLogins)
@@ -33,5 +33,4 @@ public class TerminateUsersSessionsRequestBody: Codable {
         try container.encode(userIds, forKey: .userIds)
         try container.encode(userLogins, forKey: .userLogins)
     }
-
 }

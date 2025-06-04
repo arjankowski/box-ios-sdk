@@ -17,9 +17,8 @@ public enum AiStudioAgentTextGenResponseTypeField: CodableStringEnum {
         switch self {
         case .aiAgentTextGen:
             return "ai_agent_text_gen"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

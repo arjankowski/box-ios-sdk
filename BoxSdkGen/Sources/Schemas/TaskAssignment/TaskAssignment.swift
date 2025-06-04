@@ -52,8 +52,8 @@ public class TaskAssignment: Codable {
     /// - Parameters:
     ///   - id: The unique identifier for this task assignment
     ///   - type: `task_assignment`
-    ///   - item: 
-    ///   - assignedTo: 
+    ///   - item:
+    ///   - assignedTo:
     ///   - message: A message that will is included with the task
     ///     assignment. This is visible to the assigned user in the web and mobile
     ///     UI.
@@ -64,7 +64,7 @@ public class TaskAssignment: Codable {
     ///     assignment.
     ///   - resolutionState: The current state of the assignment. The available states depend on
     ///     the `action` value of the task object.
-    ///   - assignedBy: 
+    ///   - assignedBy:
     public init(id: String? = nil, type: TaskAssignmentTypeField? = nil, item: FileMini? = nil, assignedTo: UserMini? = nil, message: String? = nil, completedAt: Date? = nil, assignedAt: Date? = nil, remindedAt: Date? = nil, resolutionState: TaskAssignmentResolutionStateField? = nil, assignedBy: UserMini? = nil) {
         self.id = id
         self.type = type
@@ -78,7 +78,7 @@ public class TaskAssignment: Codable {
         self.assignedBy = assignedBy
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decodeIfPresent(String.self, forKey: .id)
         type = try container.decodeIfPresent(TaskAssignmentTypeField.self, forKey: .type)
@@ -105,5 +105,4 @@ public class TaskAssignment: Codable {
         try container.encodeIfPresent(resolutionState, forKey: .resolutionState)
         try container.encodeIfPresent(assignedBy, forKey: .assignedBy)
     }
-
 }

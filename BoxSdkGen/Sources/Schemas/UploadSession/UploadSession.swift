@@ -23,7 +23,7 @@ public class UploadSession: Codable {
 
     /// The  size in bytes that must be used for all parts of of the
     /// upload.
-    /// 
+    ///
     /// Only the last part is allowed to be of a smaller size.
     public let partSize: Int64?
 
@@ -33,7 +33,7 @@ public class UploadSession: Codable {
 
     /// The number of parts that have been uploaded and processed
     /// by the server. This starts at `0`.
-    /// 
+    ///
     /// When committing a file files, inspecting this property can
     /// provide insight if all parts have been uploaded correctly.
     public let numPartsProcessed: Int?
@@ -48,16 +48,16 @@ public class UploadSession: Codable {
     ///   - sessionExpiresAt: The date and time when this session expires.
     ///   - partSize: The  size in bytes that must be used for all parts of of the
     ///     upload.
-    ///     
+    ///
     ///     Only the last part is allowed to be of a smaller size.
     ///   - totalParts: The total number of parts expected in this upload session,
     ///     as determined by the file size and part size.
     ///   - numPartsProcessed: The number of parts that have been uploaded and processed
     ///     by the server. This starts at `0`.
-    ///     
+    ///
     ///     When committing a file files, inspecting this property can
     ///     provide insight if all parts have been uploaded correctly.
-    ///   - sessionEndpoints: 
+    ///   - sessionEndpoints:
     public init(id: String? = nil, type: UploadSessionTypeField? = nil, sessionExpiresAt: Date? = nil, partSize: Int64? = nil, totalParts: Int? = nil, numPartsProcessed: Int? = nil, sessionEndpoints: UploadSessionSessionEndpointsField? = nil) {
         self.id = id
         self.type = type
@@ -68,7 +68,7 @@ public class UploadSession: Codable {
         self.sessionEndpoints = sessionEndpoints
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decodeIfPresent(String.self, forKey: .id)
         type = try container.decodeIfPresent(UploadSessionTypeField.self, forKey: .type)
@@ -89,5 +89,4 @@ public class UploadSession: Codable {
         try container.encodeIfPresent(numPartsProcessed, forKey: .numPartsProcessed)
         try container.encodeIfPresent(sessionEndpoints, forKey: .sessionEndpoints)
     }
-
 }

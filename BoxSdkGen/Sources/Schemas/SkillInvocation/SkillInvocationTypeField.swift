@@ -17,9 +17,8 @@ public enum SkillInvocationTypeField: CodableStringEnum {
         switch self {
         case .skillInvocation:
             return "skill_invocation"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

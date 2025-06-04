@@ -11,5 +11,4 @@ public class UpdateSharedLinkOnFolderHeaders {
     public init(extraHeaders: [String: String?]? = [:]) {
         self.extraHeaders = extraHeaders
     }
-
 }

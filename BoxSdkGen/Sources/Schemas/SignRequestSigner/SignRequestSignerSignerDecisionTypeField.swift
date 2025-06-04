@@ -22,9 +22,8 @@ public enum SignRequestSignerSignerDecisionTypeField: CodableStringEnum {
             return "signed"
         case .declined:
             return "declined"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

@@ -22,9 +22,8 @@ public enum GetFileVersionRetentionsQueryParamsDispositionActionField: CodableSt
             return "permanently_delete"
         case .removeRetention:
             return "remove_retention"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

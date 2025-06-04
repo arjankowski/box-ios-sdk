@@ -27,9 +27,8 @@ public enum MetadataQueryIndexStatusField: CodableStringEnum {
             return "active"
         case .disabled:
             return "disabled"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

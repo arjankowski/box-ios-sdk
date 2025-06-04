@@ -24,7 +24,7 @@ public class FileRequestCopyRequestFolderField: Codable {
         self.type = type
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
         type = try container.decodeIfPresent(FileRequestCopyRequestFolderTypeField.self, forKey: .type)
@@ -35,5 +35,4 @@ public class FileRequestCopyRequestFolderField: Codable {
         try container.encode(id, forKey: .id)
         try container.encodeIfPresent(type, forKey: .type)
     }
-
 }

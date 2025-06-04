@@ -62,7 +62,7 @@ public class TimelineSkillCard: Codable {
         self.duration = duration
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         skill = try container.decode(TimelineSkillCardSkillField.self, forKey: .skill)
         invocation = try container.decode(TimelineSkillCardInvocationField.self, forKey: .invocation)
@@ -85,5 +85,4 @@ public class TimelineSkillCard: Codable {
         try container.encodeIfPresent(skillCardTitle, forKey: .skillCardTitle)
         try container.encodeIfPresent(duration, forKey: .duration)
     }
-
 }

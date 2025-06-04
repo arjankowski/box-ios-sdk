@@ -11,5 +11,4 @@ public class CreateClassificationTemplateHeaders {
     public init(extraHeaders: [String: String?]? = [:]) {
         self.extraHeaders = extraHeaders
     }
-
 }

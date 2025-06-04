@@ -34,7 +34,7 @@ public class SkillInvocationSkillField: Codable {
         self.apiKey = apiKey
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decodeIfPresent(String.self, forKey: .id)
         type = try container.decodeIfPresent(SkillInvocationSkillTypeField.self, forKey: .type)
@@ -49,5 +49,4 @@ public class SkillInvocationSkillField: Codable {
         try container.encodeIfPresent(name, forKey: .name)
         try container.encodeIfPresent(apiKey, forKey: .apiKey)
     }
-
 }

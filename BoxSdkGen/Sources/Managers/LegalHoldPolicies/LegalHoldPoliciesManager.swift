@@ -21,7 +21,7 @@ public class LegalHoldPoliciesManager {
     public func getLegalHoldPolicies(queryParams: GetLegalHoldPoliciesQueryParams = GetLegalHoldPoliciesQueryParams(), headers: GetLegalHoldPoliciesHeaders = GetLegalHoldPoliciesHeaders()) async throws -> LegalHoldPolicies {
         let queryParamsMap: [String: String] = Utils.Dictionary.prepareParams(map: ["policy_name": Utils.Strings.toString(value: queryParams.policyName), "fields": Utils.Strings.toString(value: queryParams.fields), "marker": Utils.Strings.toString(value: queryParams.marker), "limit": Utils.Strings.toString(value: queryParams.limit)])
         let headersMap: [String: String] = Utils.Dictionary.prepareParams(map: Utils.Dictionary.merge([:], headers.extraHeaders))
-        let response: FetchResponse = try await self.networkSession.networkClient.fetch(options: FetchOptions(url: "\(self.networkSession.baseUrls.baseUrl)\("/2.0/legal_hold_policies")", method: "GET", params: queryParamsMap, headers: headersMap, responseFormat: ResponseFormat.json, auth: self.auth, networkSession: self.networkSession))
+        let response: FetchResponse = try await networkSession.networkClient.fetch(options: FetchOptions(url: "\(networkSession.baseUrls.baseUrl)\("/2.0/legal_hold_policies")", method: "GET", params: queryParamsMap, headers: headersMap, responseFormat: ResponseFormat.json, auth: auth, networkSession: networkSession))
         return try LegalHoldPolicies.deserialize(from: response.data!)
     }
 
@@ -34,7 +34,7 @@ public class LegalHoldPoliciesManager {
     /// - Throws: The `GeneralError`.
     public func createLegalHoldPolicy(requestBody: CreateLegalHoldPolicyRequestBody, headers: CreateLegalHoldPolicyHeaders = CreateLegalHoldPolicyHeaders()) async throws -> LegalHoldPolicy {
         let headersMap: [String: String] = Utils.Dictionary.prepareParams(map: Utils.Dictionary.merge([:], headers.extraHeaders))
-        let response: FetchResponse = try await self.networkSession.networkClient.fetch(options: FetchOptions(url: "\(self.networkSession.baseUrls.baseUrl)\("/2.0/legal_hold_policies")", method: "POST", headers: headersMap, data: try requestBody.serialize(), contentType: "application/json", responseFormat: ResponseFormat.json, auth: self.auth, networkSession: self.networkSession))
+        let response: FetchResponse = try await networkSession.networkClient.fetch(options: FetchOptions(url: "\(networkSession.baseUrls.baseUrl)\("/2.0/legal_hold_policies")", method: "POST", headers: headersMap, data: requestBody.serialize(), contentType: "application/json", responseFormat: ResponseFormat.json, auth: auth, networkSession: networkSession))
         return try LegalHoldPolicy.deserialize(from: response.data!)
     }
 
@@ -48,7 +48,7 @@ public class LegalHoldPoliciesManager {
     /// - Throws: The `GeneralError`.
     public func getLegalHoldPolicyById(legalHoldPolicyId: String, headers: GetLegalHoldPolicyByIdHeaders = GetLegalHoldPolicyByIdHeaders()) async throws -> LegalHoldPolicy {
         let headersMap: [String: String] = Utils.Dictionary.prepareParams(map: Utils.Dictionary.merge([:], headers.extraHeaders))
-        let response: FetchResponse = try await self.networkSession.networkClient.fetch(options: FetchOptions(url: "\(self.networkSession.baseUrls.baseUrl)\("/2.0/legal_hold_policies/")\(legalHoldPolicyId)", method: "GET", headers: headersMap, responseFormat: ResponseFormat.json, auth: self.auth, networkSession: self.networkSession))
+        let response: FetchResponse = try await networkSession.networkClient.fetch(options: FetchOptions(url: "\(networkSession.baseUrls.baseUrl)\("/2.0/legal_hold_policies/")\(legalHoldPolicyId)", method: "GET", headers: headersMap, responseFormat: ResponseFormat.json, auth: auth, networkSession: networkSession))
         return try LegalHoldPolicy.deserialize(from: response.data!)
     }
 
@@ -63,12 +63,12 @@ public class LegalHoldPoliciesManager {
     /// - Throws: The `GeneralError`.
     public func updateLegalHoldPolicyById(legalHoldPolicyId: String, requestBody: UpdateLegalHoldPolicyByIdRequestBody = UpdateLegalHoldPolicyByIdRequestBody(), headers: UpdateLegalHoldPolicyByIdHeaders = UpdateLegalHoldPolicyByIdHeaders()) async throws -> LegalHoldPolicy {
         let headersMap: [String: String] = Utils.Dictionary.prepareParams(map: Utils.Dictionary.merge([:], headers.extraHeaders))
-        let response: FetchResponse = try await self.networkSession.networkClient.fetch(options: FetchOptions(url: "\(self.networkSession.baseUrls.baseUrl)\("/2.0/legal_hold_policies/")\(legalHoldPolicyId)", method: "PUT", headers: headersMap, data: try requestBody.serialize(), contentType: "application/json", responseFormat: ResponseFormat.json, auth: self.auth, networkSession: self.networkSession))
+        let response: FetchResponse = try await networkSession.networkClient.fetch(options: FetchOptions(url: "\(networkSession.baseUrls.baseUrl)\("/2.0/legal_hold_policies/")\(legalHoldPolicyId)", method: "PUT", headers: headersMap, data: requestBody.serialize(), contentType: "application/json", responseFormat: ResponseFormat.json, auth: auth, networkSession: networkSession))
         return try LegalHoldPolicy.deserialize(from: response.data!)
     }
 
     /// Delete an existing legal hold policy.
-    /// 
+    ///
     /// This is an asynchronous process. The policy will not be
     /// fully deleted yet when the response returns.
     ///
@@ -79,7 +79,6 @@ public class LegalHoldPoliciesManager {
     /// - Throws: The `GeneralError`.
     public func deleteLegalHoldPolicyById(legalHoldPolicyId: String, headers: DeleteLegalHoldPolicyByIdHeaders = DeleteLegalHoldPolicyByIdHeaders()) async throws {
         let headersMap: [String: String] = Utils.Dictionary.prepareParams(map: Utils.Dictionary.merge([:], headers.extraHeaders))
-        let response: FetchResponse = try await self.networkSession.networkClient.fetch(options: FetchOptions(url: "\(self.networkSession.baseUrls.baseUrl)\("/2.0/legal_hold_policies/")\(legalHoldPolicyId)", method: "DELETE", headers: headersMap, responseFormat: ResponseFormat.noContent, auth: self.auth, networkSession: self.networkSession))
+        let response: FetchResponse = try await networkSession.networkClient.fetch(options: FetchOptions(url: "\(networkSession.baseUrls.baseUrl)\("/2.0/legal_hold_policies/")\(legalHoldPolicyId)", method: "DELETE", headers: headersMap, responseFormat: ResponseFormat.noContent, auth: auth, networkSession: networkSession))
     }
-
 }

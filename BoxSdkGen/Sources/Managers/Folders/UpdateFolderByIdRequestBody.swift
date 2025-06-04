@@ -38,10 +38,10 @@ public class UpdateFolderByIdRequestBody: Codable {
 
     /// The tags for this item. These tags are shown in
     /// the Box web app and mobile apps next to an item.
-    /// 
+    ///
     /// To add or remove a tag, retrieve the item's current tags,
     /// modify them, and then update this field.
-    /// 
+    ///
     /// There is a limit of 100 tags per item, and 10,000
     /// unique tags per enterprise.
     public let tags: [String]?
@@ -54,23 +54,23 @@ public class UpdateFolderByIdRequestBody: Codable {
     /// An array of collections to make this folder
     /// a member of. Currently
     /// we only support the `favorites` collection.
-    /// 
+    ///
     /// To get the ID for a collection, use the
     /// [List all collections][1] endpoint.
-    /// 
+    ///
     /// Passing an empty array `[]` or `null` will remove
     /// the folder from all collections.
-    /// 
+    ///
     /// [1]: e://get-collections
     @CodableTriState public private(set) var collections: [UpdateFolderByIdRequestBodyCollectionsField]?
 
     /// Restricts collaborators who are not the owner of
     /// this folder from viewing other collaborations on
     /// this folder.
-    /// 
+    ///
     /// It also restricts non-owners from inviting new
     /// collaborators.
-    /// 
+    ///
     /// When setting this field to `false`, it is required
     /// to also set `can_non_owners_invite_collaborators` to
     /// `false` if it has not already been set.
@@ -86,15 +86,15 @@ public class UpdateFolderByIdRequestBody: Codable {
     ///     (discontinued) and is not used by Box Drive.
     ///   - canNonOwnersInvite: Specifies if users who are not the owner
     ///     of the folder can invite new collaborators to the folder.
-    ///   - parent: 
-    ///   - sharedLink: 
-    ///   - folderUploadEmail: 
+    ///   - parent:
+    ///   - sharedLink:
+    ///   - folderUploadEmail:
     ///   - tags: The tags for this item. These tags are shown in
     ///     the Box web app and mobile apps next to an item.
-    ///     
+    ///
     ///     To add or remove a tag, retrieve the item's current tags,
     ///     modify them, and then update this field.
-    ///     
+    ///
     ///     There is a limit of 100 tags per item, and 10,000
     ///     unique tags per enterprise.
     ///   - isCollaborationRestrictedToEnterprise: Specifies if new invites to this folder are restricted to users
@@ -103,21 +103,21 @@ public class UpdateFolderByIdRequestBody: Codable {
     ///   - collections: An array of collections to make this folder
     ///     a member of. Currently
     ///     we only support the `favorites` collection.
-    ///     
+    ///
     ///     To get the ID for a collection, use the
     ///     [List all collections][1] endpoint.
-    ///     
+    ///
     ///     Passing an empty array `[]` or `null` will remove
     ///     the folder from all collections.
-    ///     
+    ///
     ///     [1]: e://get-collections
     ///   - canNonOwnersViewCollaborators: Restricts collaborators who are not the owner of
     ///     this folder from viewing other collaborations on
     ///     this folder.
-    ///     
+    ///
     ///     It also restricts non-owners from inviting new
     ///     collaborators.
-    ///     
+    ///
     ///     When setting this field to `false`, it is required
     ///     to also set `can_non_owners_invite_collaborators` to
     ///     `false` if it has not already been set.
@@ -128,14 +128,14 @@ public class UpdateFolderByIdRequestBody: Codable {
         self.canNonOwnersInvite = canNonOwnersInvite
         self.parent = parent
         self.sharedLink = sharedLink
-        self._folderUploadEmail = CodableTriState(state: folderUploadEmail)
+        _folderUploadEmail = CodableTriState(state: folderUploadEmail)
         self.tags = tags
         self.isCollaborationRestrictedToEnterprise = isCollaborationRestrictedToEnterprise
-        self._collections = CodableTriState(state: collections)
+        _collections = CodableTriState(state: collections)
         self.canNonOwnersViewCollaborators = canNonOwnersViewCollaborators
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         name = try container.decodeIfPresent(String.self, forKey: .name)
         description = try container.decodeIfPresent(String.self, forKey: .description)
@@ -164,5 +164,4 @@ public class UpdateFolderByIdRequestBody: Codable {
         try container.encode(field: _collections.state, forKey: .collections)
         try container.encodeIfPresent(canNonOwnersViewCollaborators, forKey: .canNonOwnersViewCollaborators)
     }
-
 }

@@ -19,15 +19,15 @@ public class Hash {
     /// - Parameter algorithm: The hashing algorithm to use.
     public init(algorithm: HashName) {
         self.algorithm = algorithm
-        self.sha1 = SHA1()
-        self.digest = nil
+        sha1 = SHA1()
+        digest = nil
     }
 
     /// Updates the hash with additional data.
     ///
     /// - Parameter data: The data to append to the hash.
     public func updateHash(data: Data) {
-        self.sha1.update(data: data)
+        sha1.update(data: data)
     }
 
     /// Calculates the digest of the accumulated data using the specified encoding.
@@ -45,7 +45,8 @@ public class Hash {
 
         if encoding == Self.Base64Encoding {
             return digest.base64EncodedString()
-        } else {
+        }
+        else {
             return digest.hexString()
         }
     }

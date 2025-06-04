@@ -16,13 +16,13 @@ public class DocGenDocumentGenerationDataV2025R0: Codable {
     ///
     /// - Parameters:
     ///   - generatedFileName: File name of the output file.
-    ///   - userInput: 
+    ///   - userInput:
     public init(generatedFileName: String, userInput: [String: AnyCodable]) {
         self.generatedFileName = generatedFileName
         self.userInput = userInput
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         generatedFileName = try container.decode(String.self, forKey: .generatedFileName)
         userInput = try container.decode([String: AnyCodable].self, forKey: .userInput)
@@ -33,5 +33,4 @@ public class DocGenDocumentGenerationDataV2025R0: Codable {
         try container.encode(generatedFileName, forKey: .generatedFileName)
         try container.encode(userInput, forKey: .userInput)
     }
-
 }

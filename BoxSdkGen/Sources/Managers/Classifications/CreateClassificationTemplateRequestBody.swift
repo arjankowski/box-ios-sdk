@@ -64,7 +64,7 @@ public class CreateClassificationTemplateRequestBody: Codable {
         self.copyInstanceOnItemCopy = copyInstanceOnItemCopy
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         fields = try container.decode([CreateClassificationTemplateRequestBodyFieldsField].self, forKey: .fields)
         scope = try container.decode(CreateClassificationTemplateRequestBodyScopeField.self, forKey: .scope)
@@ -83,5 +83,4 @@ public class CreateClassificationTemplateRequestBody: Codable {
         try container.encodeIfPresent(hidden, forKey: .hidden)
         try container.encodeIfPresent(copyInstanceOnItemCopy, forKey: .copyInstanceOnItemCopy)
     }
-
 }

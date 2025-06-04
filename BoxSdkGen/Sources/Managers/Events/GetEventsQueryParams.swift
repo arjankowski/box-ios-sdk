@@ -2,7 +2,7 @@ import Foundation
 
 public class GetEventsQueryParams {
     /// Defines the type of events that are returned
-    /// 
+    ///
     /// * `all` returns everything for a user and is the default
     /// * `changes` returns events that may cause file tree changes
     ///   such as file updates or collaborations.
@@ -23,14 +23,14 @@ public class GetEventsQueryParams {
     public let streamType: GetEventsQueryParamsStreamTypeField?
 
     /// The location in the event stream to start receiving events from.
-    /// 
+    ///
     /// * `now` will return an empty list events and
     /// the latest stream position for initialization.
     /// * `0` or `null` will return all events.
     public let streamPosition: String?
 
     /// Limits the number of events returned
-    /// 
+    ///
     /// Note: Sometimes, the events less than the limit requested can be returned
     /// even when there may be more events remaining. This is primarily done in
     /// the case where a number of events have already been retrieved and these
@@ -58,7 +58,7 @@ public class GetEventsQueryParams {
     ///
     /// - Parameters:
     ///   - streamType: Defines the type of events that are returned
-    ///     
+    ///
     ///     * `all` returns everything for a user and is the default
     ///     * `changes` returns events that may cause file tree changes
     ///       such as file updates or collaborations.
@@ -77,12 +77,12 @@ public class GetEventsQueryParams {
     ///       events will not be returned in chronological order and may
     ///       contain duplicates.
     ///   - streamPosition: The location in the event stream to start receiving events from.
-    ///     
+    ///
     ///     * `now` will return an empty list events and
     ///     the latest stream position for initialization.
     ///     * `0` or `null` will return all events.
     ///   - limit: Limits the number of events returned
-    ///     
+    ///
     ///     Note: Sometimes, the events less than the limit requested can be returned
     ///     even when there may be more events remaining. This is primarily done in
     ///     the case where a number of events have already been retrieved and these
@@ -106,5 +106,4 @@ public class GetEventsQueryParams {
         self.createdAfter = createdAfter
         self.createdBefore = createdBefore
     }
-
 }

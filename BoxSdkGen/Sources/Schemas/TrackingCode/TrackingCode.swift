@@ -33,7 +33,7 @@ public class TrackingCode: Codable {
         self.value = value
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         type = try container.decodeIfPresent(TrackingCodeTypeField.self, forKey: .type)
         name = try container.decodeIfPresent(String.self, forKey: .name)
@@ -46,5 +46,4 @@ public class TrackingCode: Codable {
         try container.encodeIfPresent(name, forKey: .name)
         try container.encodeIfPresent(value, forKey: .value)
     }
-
 }

@@ -31,16 +31,16 @@ public class AiStudioAgentTextGen: Codable {
     ///   - description: The description of the AI Agent.
     ///   - type: The type of AI agent used for generating text.
     ///   - customInstructions: Custom instructions for the agent.
-    ///   - basicGen: 
+    ///   - basicGen:
     public init(accessState: String, description: String, type: AiStudioAgentTextGenTypeField = AiStudioAgentTextGenTypeField.aiAgentTextGen, customInstructions: TriStateField<String> = nil, basicGen: AiStudioAgentBasicGenTool? = nil) {
         self.accessState = accessState
         self.description = description
         self.type = type
-        self._customInstructions = CodableTriState(state: customInstructions)
+        _customInstructions = CodableTriState(state: customInstructions)
         self.basicGen = basicGen
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         accessState = try container.decode(String.self, forKey: .accessState)
         description = try container.decode(String.self, forKey: .description)
@@ -57,5 +57,4 @@ public class AiStudioAgentTextGen: Codable {
         try container.encode(field: _customInstructions.state, forKey: .customInstructions)
         try container.encodeIfPresent(basicGen, forKey: .basicGen)
     }
-
 }

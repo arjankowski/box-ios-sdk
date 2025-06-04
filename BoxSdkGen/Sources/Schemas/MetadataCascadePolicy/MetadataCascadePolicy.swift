@@ -33,16 +33,16 @@ public class MetadataCascadePolicy: Codable {
 
     /// The key of the template that is cascaded down to the folder's
     /// children.
-    /// 
+    ///
     /// In many cases the template key is automatically derived
     /// of its display name, for example `Contract Template` would
     /// become `contractTemplate`. In some cases the creator of the
     /// template will have provided its own template key.
-    /// 
+    ///
     /// Please [list the templates for an enterprise][list], or
     /// get all instances on a [file][file] or [folder][folder]
     /// to inspect a template's key.
-    /// 
+    ///
     /// [list]: e://get-metadata-templates-enterprise
     /// [file]: e://get-files-id-metadata
     /// [folder]: e://get-folders-id-metadata
@@ -62,16 +62,16 @@ public class MetadataCascadePolicy: Codable {
     ///     will be the ID of that enterprise.
     ///   - templateKey: The key of the template that is cascaded down to the folder's
     ///     children.
-    ///     
+    ///
     ///     In many cases the template key is automatically derived
     ///     of its display name, for example `Contract Template` would
     ///     become `contractTemplate`. In some cases the creator of the
     ///     template will have provided its own template key.
-    ///     
+    ///
     ///     Please [list the templates for an enterprise][list], or
     ///     get all instances on a [file][file] or [folder][folder]
     ///     to inspect a template's key.
-    ///     
+    ///
     ///     [list]: e://get-metadata-templates-enterprise
     ///     [file]: e://get-files-id-metadata
     ///     [folder]: e://get-folders-id-metadata
@@ -84,7 +84,7 @@ public class MetadataCascadePolicy: Codable {
         self.templateKey = templateKey
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
         type = try container.decode(MetadataCascadePolicyTypeField.self, forKey: .type)
@@ -103,5 +103,4 @@ public class MetadataCascadePolicy: Codable {
         try container.encodeIfPresent(scope, forKey: .scope)
         try container.encodeIfPresent(templateKey, forKey: .templateKey)
     }
-
 }

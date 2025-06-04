@@ -17,9 +17,8 @@ public enum RetentionPolicyBaseTypeField: CodableStringEnum {
         switch self {
         case .retentionPolicy:
             return "retention_policy"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

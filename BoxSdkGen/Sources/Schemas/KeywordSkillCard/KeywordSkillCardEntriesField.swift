@@ -16,7 +16,7 @@ public class KeywordSkillCardEntriesField: Codable {
         self.text = text
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         text = try container.decodeIfPresent(String.self, forKey: .text)
     }
@@ -25,5 +25,4 @@ public class KeywordSkillCardEntriesField: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(text, forKey: .text)
     }
-
 }

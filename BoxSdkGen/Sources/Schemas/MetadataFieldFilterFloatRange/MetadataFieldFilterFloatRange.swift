@@ -36,7 +36,7 @@ public class MetadataFieldFilterFloatRange: Codable {
         self.gt = gt
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         lt = try container.decodeIfPresent(Double.self, forKey: .lt)
         gt = try container.decodeIfPresent(Double.self, forKey: .gt)
@@ -47,5 +47,4 @@ public class MetadataFieldFilterFloatRange: Codable {
         try container.encodeIfPresent(lt, forKey: .lt)
         try container.encodeIfPresent(gt, forKey: .gt)
     }
-
 }

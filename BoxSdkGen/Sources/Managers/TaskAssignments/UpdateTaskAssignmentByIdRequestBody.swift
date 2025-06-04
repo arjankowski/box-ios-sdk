@@ -10,7 +10,7 @@ public class UpdateTaskAssignmentByIdRequestBody: Codable {
     public let message: String?
 
     /// The state of the task assigned to the user.
-    /// 
+    ///
     /// * For a task with an `action` value of `complete` this can be
     /// `incomplete` or `completed`.
     /// * For a task with an `action` of `review` this can be
@@ -22,7 +22,7 @@ public class UpdateTaskAssignmentByIdRequestBody: Codable {
     /// - Parameters:
     ///   - message: An optional message by the assignee that can be added to the task.
     ///   - resolutionState: The state of the task assigned to the user.
-    ///     
+    ///
     ///     * For a task with an `action` value of `complete` this can be
     ///     `incomplete` or `completed`.
     ///     * For a task with an `action` of `review` this can be
@@ -32,7 +32,7 @@ public class UpdateTaskAssignmentByIdRequestBody: Codable {
         self.resolutionState = resolutionState
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         message = try container.decodeIfPresent(String.self, forKey: .message)
         resolutionState = try container.decodeIfPresent(UpdateTaskAssignmentByIdRequestBodyResolutionStateField.self, forKey: .resolutionState)
@@ -43,5 +43,4 @@ public class UpdateTaskAssignmentByIdRequestBody: Codable {
         try container.encodeIfPresent(message, forKey: .message)
         try container.encodeIfPresent(resolutionState, forKey: .resolutionState)
     }
-
 }

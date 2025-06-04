@@ -17,9 +17,8 @@ public enum FileBaseTypeField: CodableStringEnum {
         switch self {
         case .file:
             return "file"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

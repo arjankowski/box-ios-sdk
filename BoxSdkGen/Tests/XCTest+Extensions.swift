@@ -1,4 +1,5 @@
 import XCTest
+
 extension XCTest {
     func XCTAssertThrowsErrorAsync(
         _ expression: @autoclosure () async throws -> Any,
@@ -10,16 +11,18 @@ extension XCTest {
         do {
             _ = try await expression()
             XCTFail(message(), file: file, line: line)
-        } catch {
+        }
+        catch {
             errorHandler(error)
         }
     }
-    
+
     func XCTAssertTrueAsync(_ expression: @autoclosure () async throws -> Bool, _ message: @autoclosure () -> String = "", file: StaticString = #filePath, line: UInt = #line) async {
         do {
             let result = try await expression()
             XCTAssertTrue(result)
-        } catch {
+        }
+        catch {
             XCTFail(message(), file: file, line: line)
         }
     }

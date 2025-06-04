@@ -36,7 +36,7 @@ public class CreateWebLinkRequestBody: Codable {
         self.description = description
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         url = try container.decode(String.self, forKey: .url)
         parent = try container.decode(CreateWebLinkRequestBodyParentField.self, forKey: .parent)
@@ -51,5 +51,4 @@ public class CreateWebLinkRequestBody: Codable {
         try container.encodeIfPresent(name, forKey: .name)
         try container.encodeIfPresent(description, forKey: .description)
     }
-
 }

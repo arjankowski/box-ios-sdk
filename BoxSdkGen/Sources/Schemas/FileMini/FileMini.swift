@@ -25,7 +25,7 @@ public class FileMini: FileBase {
     ///
     /// - Parameters:
     ///   - id: The unique identifier that represent a file.
-    ///     
+    ///
     ///     The ID for any file can be determined
     ///     by visiting a file in the web application
     ///     and copying the ID from the URL. For example,
@@ -35,11 +35,11 @@ public class FileMini: FileBase {
     ///     endpoints in the `If-Match` and `If-None-Match` headers to only
     ///     perform changes on the file if (no) changes have happened.
     ///   - type: `file`
-    ///   - sequenceId: 
+    ///   - sequenceId:
     ///   - name: The name of the file
     ///   - sha1: The SHA1 hash of the file. This can be used to compare the contents
     ///     of a file on Box with a local file.
-    ///   - fileVersion: 
+    ///   - fileVersion:
     public init(id: String, etag: TriStateField<String> = nil, type: FileBaseTypeField = FileBaseTypeField.file, sequenceId: String? = nil, name: String? = nil, sha1: String? = nil, fileVersion: FileVersionMini? = nil) {
         self.sequenceId = sequenceId
         self.name = name
@@ -49,7 +49,7 @@ public class FileMini: FileBase {
         super.init(id: id, etag: etag, type: type)
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         sequenceId = try container.decodeIfPresent(String.self, forKey: .sequenceId)
         name = try container.decodeIfPresent(String.self, forKey: .name)
@@ -59,7 +59,7 @@ public class FileMini: FileBase {
         try super.init(from: decoder)
     }
 
-    public override func encode(to encoder: Encoder) throws {
+    override public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(sequenceId, forKey: .sequenceId)
         try container.encodeIfPresent(name, forKey: .name)
@@ -67,5 +67,4 @@ public class FileMini: FileBase {
         try container.encodeIfPresent(fileVersion, forKey: .fileVersion)
         try super.encode(to: encoder)
     }
-
 }

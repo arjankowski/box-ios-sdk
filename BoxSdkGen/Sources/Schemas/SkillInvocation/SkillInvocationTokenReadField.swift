@@ -38,7 +38,7 @@ public class SkillInvocationTokenReadField: Codable {
         self.restrictedTo = restrictedTo
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         accessToken = try container.decodeIfPresent(String.self, forKey: .accessToken)
         expiresIn = try container.decodeIfPresent(Int64.self, forKey: .expiresIn)
@@ -53,5 +53,4 @@ public class SkillInvocationTokenReadField: Codable {
         try container.encodeIfPresent(tokenType, forKey: .tokenType)
         try container.encodeIfPresent(restrictedTo, forKey: .restrictedTo)
     }
-
 }

@@ -28,7 +28,7 @@ public class UpdateFileByIdRequestBodyLockField: Codable {
         self.isDownloadPrevented = isDownloadPrevented
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         access = try container.decodeIfPresent(UpdateFileByIdRequestBodyLockAccessField.self, forKey: .access)
         expiresAt = try container.decodeDateTimeIfPresent(forKey: .expiresAt)
@@ -41,5 +41,4 @@ public class UpdateFileByIdRequestBodyLockField: Codable {
         try container.encodeDateTimeIfPresent(field: expiresAt, forKey: .expiresAt)
         try container.encodeIfPresent(isDownloadPrevented, forKey: .isDownloadPrevented)
     }
-
 }

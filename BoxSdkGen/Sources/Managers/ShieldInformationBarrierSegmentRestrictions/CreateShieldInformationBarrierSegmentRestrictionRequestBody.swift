@@ -31,7 +31,7 @@ public class CreateShieldInformationBarrierSegmentRestrictionRequestBody: Codabl
     ///     shield information barrier segment.
     ///   - type: The type of the shield barrier segment
     ///     restriction for this member.
-    ///   - shieldInformationBarrier: 
+    ///   - shieldInformationBarrier:
     public init(shieldInformationBarrierSegment: CreateShieldInformationBarrierSegmentRestrictionRequestBodyShieldInformationBarrierSegmentField, restrictedSegment: CreateShieldInformationBarrierSegmentRestrictionRequestBodyRestrictedSegmentField, type: CreateShieldInformationBarrierSegmentRestrictionRequestBodyTypeField = CreateShieldInformationBarrierSegmentRestrictionRequestBodyTypeField.shieldInformationBarrierSegmentRestriction, shieldInformationBarrier: ShieldInformationBarrierBase? = nil) {
         self.shieldInformationBarrierSegment = shieldInformationBarrierSegment
         self.restrictedSegment = restrictedSegment
@@ -39,7 +39,7 @@ public class CreateShieldInformationBarrierSegmentRestrictionRequestBody: Codabl
         self.shieldInformationBarrier = shieldInformationBarrier
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         shieldInformationBarrierSegment = try container.decode(CreateShieldInformationBarrierSegmentRestrictionRequestBodyShieldInformationBarrierSegmentField.self, forKey: .shieldInformationBarrierSegment)
         restrictedSegment = try container.decode(CreateShieldInformationBarrierSegmentRestrictionRequestBodyRestrictedSegmentField.self, forKey: .restrictedSegment)
@@ -54,5 +54,4 @@ public class CreateShieldInformationBarrierSegmentRestrictionRequestBody: Codabl
         try container.encode(type, forKey: .type)
         try container.encodeIfPresent(shieldInformationBarrier, forKey: .shieldInformationBarrier)
     }
-
 }

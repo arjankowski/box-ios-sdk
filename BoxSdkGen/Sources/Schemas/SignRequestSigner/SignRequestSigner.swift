@@ -73,7 +73,7 @@ public class SignRequestSigner: SignRequestCreateSigner {
     ///   - suppressNotifications: If true, no emails about the sign request will be sent
     ///   - hasViewedDocument: Set to `true` if the signer views the document
     ///   - signerDecision: Final decision made by the signer.
-    ///   - inputs: 
+    ///   - inputs:
     ///   - embedUrl: URL to direct a signer to for signing
     ///   - iframeableEmbedUrl: This URL is specifically designed for
     ///     signing documents within an HTML `iframe` tag.
@@ -83,15 +83,15 @@ public class SignRequestSigner: SignRequestCreateSigner {
     ///     `create Box Sign request` call.
     public init(email: TriStateField<String> = nil, role: SignRequestCreateSignerRoleField? = nil, isInPerson: Bool? = nil, order: Int64? = nil, embedUrlExternalUserId: TriStateField<String> = nil, redirectUrl: TriStateField<String> = nil, declinedRedirectUrl: TriStateField<String> = nil, loginRequired: TriStateField<Bool> = nil, verificationPhoneNumber: TriStateField<String> = nil, password: TriStateField<String> = nil, signerGroupId: TriStateField<String> = nil, suppressNotifications: TriStateField<Bool> = nil, hasViewedDocument: Bool? = nil, signerDecision: TriStateField<SignRequestSignerSignerDecisionField> = nil, inputs: [SignRequestSignerInput]? = nil, embedUrl: TriStateField<String> = nil, iframeableEmbedUrl: TriStateField<String> = nil) {
         self.hasViewedDocument = hasViewedDocument
-        self._signerDecision = CodableTriState(state: signerDecision)
+        _signerDecision = CodableTriState(state: signerDecision)
         self.inputs = inputs
-        self._embedUrl = CodableTriState(state: embedUrl)
-        self._iframeableEmbedUrl = CodableTriState(state: iframeableEmbedUrl)
+        _embedUrl = CodableTriState(state: embedUrl)
+        _iframeableEmbedUrl = CodableTriState(state: iframeableEmbedUrl)
 
         super.init(email: email, role: role, isInPerson: isInPerson, order: order, embedUrlExternalUserId: embedUrlExternalUserId, redirectUrl: redirectUrl, declinedRedirectUrl: declinedRedirectUrl, loginRequired: loginRequired, verificationPhoneNumber: verificationPhoneNumber, password: password, signerGroupId: signerGroupId, suppressNotifications: suppressNotifications)
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         hasViewedDocument = try container.decodeIfPresent(Bool.self, forKey: .hasViewedDocument)
         signerDecision = try container.decodeIfPresent(SignRequestSignerSignerDecisionField.self, forKey: .signerDecision)
@@ -102,7 +102,7 @@ public class SignRequestSigner: SignRequestCreateSigner {
         try super.init(from: decoder)
     }
 
-    public override func encode(to encoder: Encoder) throws {
+    override public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(hasViewedDocument, forKey: .hasViewedDocument)
         try container.encode(field: _signerDecision.state, forKey: .signerDecision)
@@ -111,5 +111,4 @@ public class SignRequestSigner: SignRequestCreateSigner {
         try container.encode(field: _iframeableEmbedUrl.state, forKey: .iframeableEmbedUrl)
         try super.encode(to: encoder)
     }
-
 }

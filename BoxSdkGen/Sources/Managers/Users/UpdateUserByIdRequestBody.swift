@@ -37,7 +37,7 @@ public class UpdateUserByIdRequestBody: Codable {
     public let name: String?
 
     /// The email address the user uses to log in
-    /// 
+    ///
     /// Note: If the target user's email is not confirmed, then the
     /// primary login address cannot be changed.
     public let login: String?
@@ -98,14 +98,14 @@ public class UpdateUserByIdRequestBody: Codable {
     /// notifications are sent. When it's confirmed, this will be
     /// the email address to which notifications are sent instead of
     /// to the primary email address.
-    /// 
+    ///
     /// Set this value to `null` to remove the notification email.
     @CodableTriState public private(set) var notificationEmail: UpdateUserByIdRequestBodyNotificationEmailField?
 
     /// An external identifier for an app user, which can be used to look
     /// up the user. This can be used to tie user IDs from external
     /// identity providers to Box users.
-    /// 
+    ///
     /// Note: In order to update this field, you need to request a token
     /// using the application that created the app user.
     public let externalAppUserId: String?
@@ -119,7 +119,7 @@ public class UpdateUserByIdRequestBody: Codable {
     ///     are rolled out of an enterprise
     ///   - name: The name of the user
     ///   - login: The email address the user uses to log in
-    ///     
+    ///
     ///     Note: If the target user's email is not confirmed, then the
     ///     primary login address cannot be changed.
     ///   - role: The user’s enterprise role
@@ -148,16 +148,16 @@ public class UpdateUserByIdRequestBody: Codable {
     ///     notifications are sent. When it's confirmed, this will be
     ///     the email address to which notifications are sent instead of
     ///     to the primary email address.
-    ///     
+    ///
     ///     Set this value to `null` to remove the notification email.
     ///   - externalAppUserId: An external identifier for an app user, which can be used to look
     ///     up the user. This can be used to tie user IDs from external
     ///     identity providers to Box users.
-    ///     
+    ///
     ///     Note: In order to update this field, you need to request a token
     ///     using the application that created the app user.
     public init(enterprise: TriStateField<String> = nil, notify: Bool? = nil, name: String? = nil, login: String? = nil, role: UpdateUserByIdRequestBodyRoleField? = nil, language: String? = nil, isSyncEnabled: Bool? = nil, jobTitle: String? = nil, phone: String? = nil, address: String? = nil, trackingCodes: [TrackingCode]? = nil, canSeeManagedUsers: Bool? = nil, timezone: String? = nil, isExternalCollabRestricted: Bool? = nil, isExemptFromDeviceLimits: Bool? = nil, isExemptFromLoginVerification: Bool? = nil, isPasswordResetRequired: Bool? = nil, status: UpdateUserByIdRequestBodyStatusField? = nil, spaceAmount: Int64? = nil, notificationEmail: TriStateField<UpdateUserByIdRequestBodyNotificationEmailField> = nil, externalAppUserId: String? = nil) {
-        self._enterprise = CodableTriState(state: enterprise)
+        _enterprise = CodableTriState(state: enterprise)
         self.notify = notify
         self.name = name
         self.login = login
@@ -176,11 +176,11 @@ public class UpdateUserByIdRequestBody: Codable {
         self.isPasswordResetRequired = isPasswordResetRequired
         self.status = status
         self.spaceAmount = spaceAmount
-        self._notificationEmail = CodableTriState(state: notificationEmail)
+        _notificationEmail = CodableTriState(state: notificationEmail)
         self.externalAppUserId = externalAppUserId
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         enterprise = try container.decodeIfPresent(String.self, forKey: .enterprise)
         notify = try container.decodeIfPresent(Bool.self, forKey: .notify)
@@ -229,5 +229,4 @@ public class UpdateUserByIdRequestBody: Codable {
         try container.encode(field: _notificationEmail.state, forKey: .notificationEmail)
         try container.encodeIfPresent(externalAppUserId, forKey: .externalAppUserId)
     }
-
 }

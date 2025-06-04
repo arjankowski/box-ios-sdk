@@ -20,7 +20,7 @@ public class SignTemplatesManager {
     public func getSignTemplates(queryParams: GetSignTemplatesQueryParams = GetSignTemplatesQueryParams(), headers: GetSignTemplatesHeaders = GetSignTemplatesHeaders()) async throws -> SignTemplates {
         let queryParamsMap: [String: String] = Utils.Dictionary.prepareParams(map: ["marker": Utils.Strings.toString(value: queryParams.marker), "limit": Utils.Strings.toString(value: queryParams.limit)])
         let headersMap: [String: String] = Utils.Dictionary.prepareParams(map: Utils.Dictionary.merge([:], headers.extraHeaders))
-        let response: FetchResponse = try await self.networkSession.networkClient.fetch(options: FetchOptions(url: "\(self.networkSession.baseUrls.baseUrl)\("/2.0/sign_templates")", method: "GET", params: queryParamsMap, headers: headersMap, responseFormat: ResponseFormat.json, auth: self.auth, networkSession: self.networkSession))
+        let response: FetchResponse = try await networkSession.networkClient.fetch(options: FetchOptions(url: "\(networkSession.baseUrls.baseUrl)\("/2.0/sign_templates")", method: "GET", params: queryParamsMap, headers: headersMap, responseFormat: ResponseFormat.json, auth: auth, networkSession: networkSession))
         return try SignTemplates.deserialize(from: response.data!)
     }
 
@@ -34,8 +34,7 @@ public class SignTemplatesManager {
     /// - Throws: The `GeneralError`.
     public func getSignTemplateById(templateId: String, headers: GetSignTemplateByIdHeaders = GetSignTemplateByIdHeaders()) async throws -> SignTemplate {
         let headersMap: [String: String] = Utils.Dictionary.prepareParams(map: Utils.Dictionary.merge([:], headers.extraHeaders))
-        let response: FetchResponse = try await self.networkSession.networkClient.fetch(options: FetchOptions(url: "\(self.networkSession.baseUrls.baseUrl)\("/2.0/sign_templates/")\(templateId)", method: "GET", headers: headersMap, responseFormat: ResponseFormat.json, auth: self.auth, networkSession: self.networkSession))
+        let response: FetchResponse = try await networkSession.networkClient.fetch(options: FetchOptions(url: "\(networkSession.baseUrls.baseUrl)\("/2.0/sign_templates/")\(templateId)", method: "GET", headers: headersMap, responseFormat: ResponseFormat.json, auth: auth, networkSession: networkSession))
         return try SignTemplate.deserialize(from: response.data!)
     }
-
 }

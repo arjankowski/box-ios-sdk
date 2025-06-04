@@ -11,5 +11,4 @@ public class GetLegalHoldPolicyAssignmentFileOnHoldHeaders {
     public init(extraHeaders: [String: String?]? = [:]) {
         self.extraHeaders = extraHeaders
     }
-
 }

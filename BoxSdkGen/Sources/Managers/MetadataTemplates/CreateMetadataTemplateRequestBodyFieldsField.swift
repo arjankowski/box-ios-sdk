@@ -13,7 +13,7 @@ public class CreateMetadataTemplateRequestBodyFieldsField: Codable {
     /// The type of field. The basic fields are a `string` field for text, a
     /// `float` field for numbers, and a `date` fields to present the user with a
     /// date-time picker.
-    /// 
+    ///
     /// Additionally, metadata templates support an `enum` field for a basic list
     /// of items, and ` multiSelect` field for a similar list of items where the
     /// user can select more than one value.
@@ -44,7 +44,7 @@ public class CreateMetadataTemplateRequestBodyFieldsField: Codable {
     ///   - type: The type of field. The basic fields are a `string` field for text, a
     ///     `float` field for numbers, and a `date` fields to present the user with a
     ///     date-time picker.
-    ///     
+    ///
     ///     Additionally, metadata templates support an `enum` field for a basic list
     ///     of items, and ` multiSelect` field for a similar list of items where the
     ///     user can select more than one value.
@@ -66,7 +66,7 @@ public class CreateMetadataTemplateRequestBodyFieldsField: Codable {
         self.options = options
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         type = try container.decode(CreateMetadataTemplateRequestBodyFieldsTypeField.self, forKey: .type)
         key = try container.decode(String.self, forKey: .key)
@@ -85,5 +85,4 @@ public class CreateMetadataTemplateRequestBodyFieldsField: Codable {
         try container.encodeIfPresent(hidden, forKey: .hidden)
         try container.encodeIfPresent(options, forKey: .options)
     }
-
 }

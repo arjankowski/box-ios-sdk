@@ -2,7 +2,7 @@ import Foundation
 
 /// Web links are objects that point to URLs. These objects
 /// are also known as bookmarks within the Box web application.
-/// 
+///
 /// Web link objects are treated similarly to file objects,
 /// they will also support most actions that apply to regular files.
 public class WebLinkMini: WebLinkBase {
@@ -28,7 +28,7 @@ public class WebLinkMini: WebLinkBase {
     ///   - etag: The entity tag of this web link. Used with `If-Match`
     ///     headers.
     ///   - url: The URL this web link points to
-    ///   - sequenceId: 
+    ///   - sequenceId:
     ///   - name: The name of the web link
     public init(id: String, type: WebLinkBaseTypeField = WebLinkBaseTypeField.webLink, etag: String? = nil, url: String? = nil, sequenceId: String? = nil, name: String? = nil) {
         self.url = url
@@ -38,7 +38,7 @@ public class WebLinkMini: WebLinkBase {
         super.init(id: id, type: type, etag: etag)
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         url = try container.decodeIfPresent(String.self, forKey: .url)
         sequenceId = try container.decodeIfPresent(String.self, forKey: .sequenceId)
@@ -47,12 +47,11 @@ public class WebLinkMini: WebLinkBase {
         try super.init(from: decoder)
     }
 
-    public override func encode(to encoder: Encoder) throws {
+    override public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(url, forKey: .url)
         try container.encodeIfPresent(sequenceId, forKey: .sequenceId)
         try container.encodeIfPresent(name, forKey: .name)
         try super.encode(to: encoder)
     }
-
 }

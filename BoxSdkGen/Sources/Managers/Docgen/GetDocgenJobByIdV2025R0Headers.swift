@@ -16,5 +16,4 @@ public class GetDocgenJobByIdV2025R0Headers {
         self.boxVersion = boxVersion
         self.extraHeaders = extraHeaders
     }
-
 }

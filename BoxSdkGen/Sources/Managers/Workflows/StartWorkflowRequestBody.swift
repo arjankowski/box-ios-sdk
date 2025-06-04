@@ -42,7 +42,7 @@ public class StartWorkflowRequestBody: Codable {
         self.outcomes = outcomes
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         flow = try container.decode(StartWorkflowRequestBodyFlowField.self, forKey: .flow)
         files = try container.decode([StartWorkflowRequestBodyFilesField].self, forKey: .files)
@@ -59,5 +59,4 @@ public class StartWorkflowRequestBody: Codable {
         try container.encodeIfPresent(type, forKey: .type)
         try container.encodeIfPresent(outcomes, forKey: .outcomes)
     }
-
 }

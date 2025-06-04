@@ -18,10 +18,10 @@ public class AiStudioAgentBasicGenToolResponse: AiStudioAgentBasicGenTool {
     ///   - systemMessage: System messages aim at helping the LLM understand its role and what it is supposed to do.
     ///     The input for `{current_date}` is optional, depending on the use.
     ///   - promptTemplate: The prompt template contains contextual information of the request and the user prompt.
-    ///     
+    ///
     ///     When using the `prompt_template` parameter, you **must include** input for `{user_question}`.
     ///     Inputs for `{current_date}` and `{content}` are optional, depending on the use.
-    ///   - embeddings: 
+    ///   - embeddings:
     ///   - contentTemplate: How the content should be included in a request to the LLM.
     ///     Input for `{content}` is optional, depending on the use.
     ///   - isCustomInstructionsIncluded: True if system message contains custom instructions placeholder, false otherwise
@@ -32,17 +32,16 @@ public class AiStudioAgentBasicGenToolResponse: AiStudioAgentBasicGenTool {
         super.init(model: model, numTokensForCompletion: numTokensForCompletion, llmEndpointParams: llmEndpointParams, systemMessage: systemMessage, promptTemplate: promptTemplate, embeddings: embeddings, contentTemplate: contentTemplate, isCustomInstructionsIncluded: isCustomInstructionsIncluded)
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         warnings = try container.decodeIfPresent([String].self, forKey: .warnings)
 
         try super.init(from: decoder)
     }
 
-    public override func encode(to encoder: Encoder) throws {
+    override public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(warnings, forKey: .warnings)
         try super.encode(to: encoder)
     }
-
 }

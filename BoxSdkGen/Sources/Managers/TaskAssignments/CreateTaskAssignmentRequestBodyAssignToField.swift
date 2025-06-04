@@ -8,7 +8,7 @@ public class CreateTaskAssignmentRequestBodyAssignToField: Codable {
 
     /// The ID of the user to assign to the
     /// task.
-    /// 
+    ///
     /// To specify a user by their email
     /// address use the `login` parameter.
     public let id: String?
@@ -22,7 +22,7 @@ public class CreateTaskAssignmentRequestBodyAssignToField: Codable {
     /// - Parameters:
     ///   - id: The ID of the user to assign to the
     ///     task.
-    ///     
+    ///
     ///     To specify a user by their email
     ///     address use the `login` parameter.
     ///   - login: The email address of the user to assign to the task.
@@ -32,7 +32,7 @@ public class CreateTaskAssignmentRequestBodyAssignToField: Codable {
         self.login = login
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decodeIfPresent(String.self, forKey: .id)
         login = try container.decodeIfPresent(String.self, forKey: .login)
@@ -43,5 +43,4 @@ public class CreateTaskAssignmentRequestBodyAssignToField: Codable {
         try container.encodeIfPresent(id, forKey: .id)
         try container.encodeIfPresent(login, forKey: .login)
     }
-
 }

@@ -15,10 +15,10 @@ public class RemoveSharedLinkFromWebLinkRequestBody: Codable {
     ///   - sharedLink: By setting this value to `null`, the shared link
     ///     is removed from the web link.
     public init(sharedLink: TriStateField<RemoveSharedLinkFromWebLinkRequestBodySharedLinkField> = nil) {
-        self._sharedLink = CodableTriState(state: sharedLink)
+        _sharedLink = CodableTriState(state: sharedLink)
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         sharedLink = try container.decodeIfPresent(RemoveSharedLinkFromWebLinkRequestBodySharedLinkField.self, forKey: .sharedLink)
     }
@@ -27,5 +27,4 @@ public class RemoveSharedLinkFromWebLinkRequestBody: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(field: _sharedLink.state, forKey: .sharedLink)
     }
-
 }

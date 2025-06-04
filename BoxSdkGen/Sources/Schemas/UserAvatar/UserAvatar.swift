@@ -18,7 +18,7 @@ public class UserAvatar: Codable {
         self.picUrls = picUrls
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         picUrls = try container.decodeIfPresent(UserAvatarPicUrlsField.self, forKey: .picUrls)
     }
@@ -27,5 +27,4 @@ public class UserAvatar: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(picUrls, forKey: .picUrls)
     }
-
 }

@@ -11,5 +11,4 @@ public class GetFileThumbnailByIdHeaders {
     public init(extraHeaders: [String: String?]? = [:]) {
         self.extraHeaders = extraHeaders
     }
-
 }

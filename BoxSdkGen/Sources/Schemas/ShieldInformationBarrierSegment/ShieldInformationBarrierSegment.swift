@@ -45,15 +45,15 @@ public class ShieldInformationBarrierSegment: Codable {
     /// - Parameters:
     ///   - id: The unique identifier for the shield information barrier segment
     ///   - type: The type of the shield information barrier segment
-    ///   - shieldInformationBarrier: 
+    ///   - shieldInformationBarrier:
     ///   - name: Name of the shield information barrier segment
     ///   - description: Description of the shield information barrier segment
     ///   - createdAt: ISO date time string when this shield information
     ///     barrier object was created.
-    ///   - createdBy: 
+    ///   - createdBy:
     ///   - updatedAt: ISO date time string when this
     ///     shield information barrier segment was updated.
-    ///   - updatedBy: 
+    ///   - updatedBy:
     public init(id: String? = nil, type: ShieldInformationBarrierSegmentTypeField? = nil, shieldInformationBarrier: ShieldInformationBarrierBase? = nil, name: String? = nil, description: String? = nil, createdAt: Date? = nil, createdBy: UserBase? = nil, updatedAt: Date? = nil, updatedBy: UserBase? = nil) {
         self.id = id
         self.type = type
@@ -66,7 +66,7 @@ public class ShieldInformationBarrierSegment: Codable {
         self.updatedBy = updatedBy
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decodeIfPresent(String.self, forKey: .id)
         type = try container.decodeIfPresent(ShieldInformationBarrierSegmentTypeField.self, forKey: .type)
@@ -91,5 +91,4 @@ public class ShieldInformationBarrierSegment: Codable {
         try container.encodeDateTimeIfPresent(field: updatedAt, forKey: .updatedAt)
         try container.encodeIfPresent(updatedBy, forKey: .updatedBy)
     }
-
 }

@@ -18,7 +18,7 @@ public class CreateShieldInformationBarrierSegmentRequestBody: Codable {
     /// Initializer for a CreateShieldInformationBarrierSegmentRequestBody.
     ///
     /// - Parameters:
-    ///   - shieldInformationBarrier: 
+    ///   - shieldInformationBarrier:
     ///   - name: Name of the shield information barrier segment
     ///   - description: Description of the shield information barrier segment
     public init(shieldInformationBarrier: ShieldInformationBarrierBase, name: String, description: String? = nil) {
@@ -27,7 +27,7 @@ public class CreateShieldInformationBarrierSegmentRequestBody: Codable {
         self.description = description
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         shieldInformationBarrier = try container.decode(ShieldInformationBarrierBase.self, forKey: .shieldInformationBarrier)
         name = try container.decode(String.self, forKey: .name)
@@ -40,5 +40,4 @@ public class CreateShieldInformationBarrierSegmentRequestBody: Codable {
         try container.encode(name, forKey: .name)
         try container.encodeIfPresent(description, forKey: .description)
     }
-
 }

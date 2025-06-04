@@ -36,12 +36,12 @@ public class AiLlmEndpointParamsGoogle: Codable {
     ///     while a `top-K` of 3 means that the next token is selected from among the three most probable tokens by using temperature.
     public init(type: AiLlmEndpointParamsGoogleTypeField = AiLlmEndpointParamsGoogleTypeField.googleParams, temperature: TriStateField<Double> = nil, topP: TriStateField<Double> = nil, topK: TriStateField<Double> = nil) {
         self.type = type
-        self._temperature = CodableTriState(state: temperature)
-        self._topP = CodableTriState(state: topP)
-        self._topK = CodableTriState(state: topK)
+        _temperature = CodableTriState(state: temperature)
+        _topP = CodableTriState(state: topP)
+        _topK = CodableTriState(state: topK)
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         type = try container.decode(AiLlmEndpointParamsGoogleTypeField.self, forKey: .type)
         temperature = try container.decodeIfPresent(Double.self, forKey: .temperature)
@@ -56,5 +56,4 @@ public class AiLlmEndpointParamsGoogle: Codable {
         try container.encode(field: _topP.state, forKey: .topP)
         try container.encode(field: _topK.state, forKey: .topK)
     }
-
 }

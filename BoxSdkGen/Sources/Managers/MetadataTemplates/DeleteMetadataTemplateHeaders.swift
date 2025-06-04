@@ -11,5 +11,4 @@ public class DeleteMetadataTemplateHeaders {
     public init(extraHeaders: [String: String?]? = [:]) {
         self.extraHeaders = extraHeaders
     }
-
 }

@@ -6,7 +6,7 @@ public class AddClassificationToFileRequestBody: Codable {
     }
 
     /// The name of the classification to apply to this file.
-    /// 
+    ///
     /// To list the available classifications in an enterprise,
     /// use the classification API to retrieve the
     /// [classification template](e://get_metadata_templates_enterprise_securityClassification-6VMVochwUWo_schema)
@@ -17,7 +17,7 @@ public class AddClassificationToFileRequestBody: Codable {
     ///
     /// - Parameters:
     ///   - boxSecurityClassificationKey: The name of the classification to apply to this file.
-    ///     
+    ///
     ///     To list the available classifications in an enterprise,
     ///     use the classification API to retrieve the
     ///     [classification template](e://get_metadata_templates_enterprise_securityClassification-6VMVochwUWo_schema)
@@ -26,7 +26,7 @@ public class AddClassificationToFileRequestBody: Codable {
         self.boxSecurityClassificationKey = boxSecurityClassificationKey
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         boxSecurityClassificationKey = try container.decodeIfPresent(String.self, forKey: .boxSecurityClassificationKey)
     }
@@ -35,5 +35,4 @@ public class AddClassificationToFileRequestBody: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(boxSecurityClassificationKey, forKey: .boxSecurityClassificationKey)
     }
-
 }

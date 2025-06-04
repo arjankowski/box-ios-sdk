@@ -11,5 +11,4 @@ public class UpdateLegalHoldPolicyByIdHeaders {
     public init(extraHeaders: [String: String?]? = [:]) {
         self.extraHeaders = extraHeaders
     }
-
 }

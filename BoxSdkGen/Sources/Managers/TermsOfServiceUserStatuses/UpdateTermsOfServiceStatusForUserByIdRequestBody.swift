@@ -16,7 +16,7 @@ public class UpdateTermsOfServiceStatusForUserByIdRequestBody: Codable {
         self.isAccepted = isAccepted
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         isAccepted = try container.decode(Bool.self, forKey: .isAccepted)
     }
@@ -25,5 +25,4 @@ public class UpdateTermsOfServiceStatusForUserByIdRequestBody: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(isAccepted, forKey: .isAccepted)
     }
-
 }

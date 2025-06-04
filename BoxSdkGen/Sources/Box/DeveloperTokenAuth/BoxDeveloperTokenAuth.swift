@@ -12,12 +12,12 @@ public class BoxDeveloperTokenAuth: Authentication {
     /// Initializer for a BoxDeveloperTokenAuth.
     ///
     /// - Parameters:
-    ///   - token: 
+    ///   - token:
     ///   - config: Configuration object of DeveloperTokenAuth.
     public init(token: String, config: DeveloperTokenConfig = DeveloperTokenConfig()) {
         self.token = token
         self.config = config
-        self.tokenStorage = InMemoryTokenStorage(token: AccessToken(accessToken: self.token))
+        tokenStorage = InMemoryTokenStorage(token: AccessToken(accessToken: self.token))
     }
 
     /// Retrieves stored developer token
@@ -26,8 +26,8 @@ public class BoxDeveloperTokenAuth: Authentication {
     ///   - networkSession: An object to keep network session state
     /// - Returns: The `AccessToken`.
     /// - Throws: The `GeneralError`.
-    public func retrieveToken(networkSession: NetworkSession? = nil) async throws -> AccessToken {
-        let token: AccessToken? = try await self.tokenStorage.get()
+    public func retrieveToken(networkSession _: NetworkSession? = nil) async throws -> AccessToken {
+        let token: AccessToken? = try await tokenStorage.get()
         if token == nil {
             throw BoxSDKError(message: "No access token is available.")
         }
@@ -41,12 +41,12 @@ public class BoxDeveloperTokenAuth: Authentication {
     ///   - networkSession: An object to keep network session state
     /// - Returns: The `AccessToken`.
     /// - Throws: The `GeneralError`.
-    public func refreshToken(networkSession: NetworkSession? = nil) async throws -> AccessToken {
+    public func refreshToken(networkSession _: NetworkSession? = nil) async throws -> AccessToken {
         throw BoxSDKError(message: "Developer token has expired. Please provide a new one.")
     }
 
     public func retrieveAuthorizationHeader(networkSession: NetworkSession? = nil) async throws -> String {
-        let token: AccessToken = try await self.retrieveToken(networkSession: networkSession)
+        let token: AccessToken = try await retrieveToken(networkSession: networkSession)
         return "\("Bearer ")\(token.accessToken!)"
     }
 
@@ -56,14 +56,14 @@ public class BoxDeveloperTokenAuth: Authentication {
     ///   - networkSession: An object to keep network session state
     /// - Throws: The `GeneralError`.
     public func revokeToken(networkSession: NetworkSession? = nil) async throws {
-        let token: AccessToken? = try await self.tokenStorage.get()
+        let token: AccessToken? = try await tokenStorage.get()
         if token == nil {
             return
         }
 
         let authManager: AuthorizationManager = AuthorizationManager(networkSession: networkSession != nil ? networkSession! : NetworkSession())
-        try await authManager.revokeAccessToken(requestBody: PostOAuth2Revoke(clientId: self.config.clientId, clientSecret: self.config.clientSecret, token: token!.accessToken))
-        try await self.tokenStorage.clear()
+        try await authManager.revokeAccessToken(requestBody: PostOAuth2Revoke(clientId: config.clientId, clientSecret: config.clientSecret, token: token!.accessToken))
+        try await tokenStorage.clear()
     }
 
     /// Downscope access token to the provided scopes. Returning a new access token with the provided scopes, with the original access token unchanged.
@@ -76,7 +76,7 @@ public class BoxDeveloperTokenAuth: Authentication {
     /// - Returns: The `AccessToken`.
     /// - Throws: The `GeneralError`.
     public func downscopeToken(scopes: [String], resource: String? = nil, sharedLink: String? = nil, networkSession: NetworkSession? = nil) async throws -> AccessToken {
-        let token: AccessToken? = try await self.tokenStorage.get()
+        let token: AccessToken? = try await tokenStorage.get()
         if token == nil || token!.accessToken == nil {
             throw BoxSDKError(message: "No access token is available.")
         }
@@ -85,5 +85,4 @@ public class BoxDeveloperTokenAuth: Authentication {
         let downscopedToken: AccessToken = try await authManager.requestAccessToken(requestBody: PostOAuth2Token(grantType: PostOAuth2TokenGrantTypeField.urnIetfParamsOauthGrantTypeTokenExchange, subjectToken: token!.accessToken, subjectTokenType: PostOAuth2TokenSubjectTokenTypeField.urnIetfParamsOauthTokenTypeAccessToken, scope: scopes.joined(separator: " "), resource: resource, boxSharedLink: sharedLink))
         return downscopedToken
     }
-
 }

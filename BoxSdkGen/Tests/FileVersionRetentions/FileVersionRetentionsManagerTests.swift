@@ -1,5 +1,5 @@
-import Foundation
 import BoxSdkGen
+import Foundation
 import XCTest
 
 class FileVersionRetentionsManagerTests: XCTestCase {

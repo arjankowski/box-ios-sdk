@@ -17,7 +17,7 @@ public class FolderMini: FolderBase {
     ///
     /// - Parameters:
     ///   - id: The unique identifier that represent a folder.
-    ///     
+    ///
     ///     The ID for any folder can be determined
     ///     by visiting a folder in the web application
     ///     and copying the ID from the URL. For example,
@@ -27,7 +27,7 @@ public class FolderMini: FolderBase {
     ///     endpoints in the `If-Match` and `If-None-Match` headers to only
     ///     perform changes on the folder if (no) changes have happened.
     ///   - type: `folder`
-    ///   - sequenceId: 
+    ///   - sequenceId:
     ///   - name: The name of the folder.
     public init(id: String, etag: TriStateField<String> = nil, type: FolderBaseTypeField = FolderBaseTypeField.folder, sequenceId: String? = nil, name: String? = nil) {
         self.sequenceId = sequenceId
@@ -36,7 +36,7 @@ public class FolderMini: FolderBase {
         super.init(id: id, etag: etag, type: type)
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         sequenceId = try container.decodeIfPresent(String.self, forKey: .sequenceId)
         name = try container.decodeIfPresent(String.self, forKey: .name)
@@ -44,11 +44,10 @@ public class FolderMini: FolderBase {
         try super.init(from: decoder)
     }
 
-    public override func encode(to encoder: Encoder) throws {
+    override public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(sequenceId, forKey: .sequenceId)
         try container.encodeIfPresent(name, forKey: .name)
         try super.encode(to: encoder)
     }
-
 }

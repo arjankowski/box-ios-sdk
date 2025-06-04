@@ -1,5 +1,5 @@
-import Foundation
 import BoxSdkGen
+import Foundation
 import XCTest
 
 public class TestPartAccumulator {
@@ -23,5 +23,4 @@ public class TestPartAccumulator {
         self.uploadPartUrl = uploadPartUrl
         self.uploadSessionId = uploadSessionId
     }
-
 }

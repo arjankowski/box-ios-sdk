@@ -42,9 +42,8 @@ public enum SignTemplateAdditionalInfoNonEditableField: CodableStringEnum {
             return "signers"
         case .sourceFiles:
             return "source_files"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

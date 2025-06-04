@@ -22,7 +22,7 @@ public class UserCollaborationsManager {
     public func getCollaborationById(collaborationId: String, queryParams: GetCollaborationByIdQueryParams = GetCollaborationByIdQueryParams(), headers: GetCollaborationByIdHeaders = GetCollaborationByIdHeaders()) async throws -> Collaboration {
         let queryParamsMap: [String: String] = Utils.Dictionary.prepareParams(map: ["fields": Utils.Strings.toString(value: queryParams.fields)])
         let headersMap: [String: String] = Utils.Dictionary.prepareParams(map: Utils.Dictionary.merge([:], headers.extraHeaders))
-        let response: FetchResponse = try await self.networkSession.networkClient.fetch(options: FetchOptions(url: "\(self.networkSession.baseUrls.baseUrl)\("/2.0/collaborations/")\(collaborationId)", method: "GET", params: queryParamsMap, headers: headersMap, responseFormat: ResponseFormat.json, auth: self.auth, networkSession: self.networkSession))
+        let response: FetchResponse = try await networkSession.networkClient.fetch(options: FetchOptions(url: "\(networkSession.baseUrls.baseUrl)\("/2.0/collaborations/")\(collaborationId)", method: "GET", params: queryParamsMap, headers: headersMap, responseFormat: ResponseFormat.json, auth: auth, networkSession: networkSession))
         return try Collaboration.deserialize(from: response.data!)
     }
 
@@ -39,7 +39,7 @@ public class UserCollaborationsManager {
     /// - Throws: The `GeneralError`.
     public func updateCollaborationById(collaborationId: String, requestBody: UpdateCollaborationByIdRequestBody, headers: UpdateCollaborationByIdHeaders = UpdateCollaborationByIdHeaders()) async throws -> Collaboration? {
         let headersMap: [String: String] = Utils.Dictionary.prepareParams(map: Utils.Dictionary.merge([:], headers.extraHeaders))
-        let response: FetchResponse = try await self.networkSession.networkClient.fetch(options: FetchOptions(url: "\(self.networkSession.baseUrls.baseUrl)\("/2.0/collaborations/")\(collaborationId)", method: "PUT", headers: headersMap, data: try requestBody.serialize(), contentType: "application/json", responseFormat: ResponseFormat.json, auth: self.auth, networkSession: self.networkSession))
+        let response: FetchResponse = try await networkSession.networkClient.fetch(options: FetchOptions(url: "\(networkSession.baseUrls.baseUrl)\("/2.0/collaborations/")\(collaborationId)", method: "PUT", headers: headersMap, data: requestBody.serialize(), contentType: "application/json", responseFormat: ResponseFormat.json, auth: auth, networkSession: networkSession))
         if Utils.Strings.toString(value: response.status) == "204" {
             return nil
         }
@@ -56,18 +56,18 @@ public class UserCollaborationsManager {
     /// - Throws: The `GeneralError`.
     public func deleteCollaborationById(collaborationId: String, headers: DeleteCollaborationByIdHeaders = DeleteCollaborationByIdHeaders()) async throws {
         let headersMap: [String: String] = Utils.Dictionary.prepareParams(map: Utils.Dictionary.merge([:], headers.extraHeaders))
-        let response: FetchResponse = try await self.networkSession.networkClient.fetch(options: FetchOptions(url: "\(self.networkSession.baseUrls.baseUrl)\("/2.0/collaborations/")\(collaborationId)", method: "DELETE", headers: headersMap, responseFormat: ResponseFormat.noContent, auth: self.auth, networkSession: self.networkSession))
+        let response: FetchResponse = try await networkSession.networkClient.fetch(options: FetchOptions(url: "\(networkSession.baseUrls.baseUrl)\("/2.0/collaborations/")\(collaborationId)", method: "DELETE", headers: headersMap, responseFormat: ResponseFormat.noContent, auth: auth, networkSession: networkSession))
     }
 
     /// Adds a collaboration for a single user or a single group to a file
     /// or folder.
-    /// 
+    ///
     /// Collaborations can be created using email address, user IDs, or a
     /// group IDs.
-    /// 
+    ///
     /// If a collaboration is being created with a group, access to
     /// this endpoint is dependent on the group's ability to be invited.
-    /// 
+    ///
     /// If collaboration is in `pending` status, the following fields
     /// are redacted:
     /// - `login` and `name` are hidden if a collaboration was created
@@ -83,8 +83,7 @@ public class UserCollaborationsManager {
     public func createCollaboration(requestBody: CreateCollaborationRequestBody, queryParams: CreateCollaborationQueryParams = CreateCollaborationQueryParams(), headers: CreateCollaborationHeaders = CreateCollaborationHeaders()) async throws -> Collaboration {
         let queryParamsMap: [String: String] = Utils.Dictionary.prepareParams(map: ["fields": Utils.Strings.toString(value: queryParams.fields), "notify": Utils.Strings.toString(value: queryParams.notify)])
         let headersMap: [String: String] = Utils.Dictionary.prepareParams(map: Utils.Dictionary.merge([:], headers.extraHeaders))
-        let response: FetchResponse = try await self.networkSession.networkClient.fetch(options: FetchOptions(url: "\(self.networkSession.baseUrls.baseUrl)\("/2.0/collaborations")", method: "POST", params: queryParamsMap, headers: headersMap, data: try requestBody.serialize(), contentType: "application/json", responseFormat: ResponseFormat.json, auth: self.auth, networkSession: self.networkSession))
+        let response: FetchResponse = try await networkSession.networkClient.fetch(options: FetchOptions(url: "\(networkSession.baseUrls.baseUrl)\("/2.0/collaborations")", method: "POST", params: queryParamsMap, headers: headersMap, data: requestBody.serialize(), contentType: "application/json", responseFormat: ResponseFormat.json, auth: auth, networkSession: networkSession))
         return try Collaboration.deserialize(from: response.data!)
     }
-
 }

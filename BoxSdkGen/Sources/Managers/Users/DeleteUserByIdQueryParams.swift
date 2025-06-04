@@ -20,5 +20,4 @@ public class DeleteUserByIdQueryParams {
         self.notify = notify
         self.force = force
     }
-
 }

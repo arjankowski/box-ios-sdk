@@ -36,8 +36,8 @@ public class TermsOfServiceUserStatus: Codable {
     /// - Parameters:
     ///   - id: The unique identifier for this terms of service user status
     ///   - type: `terms_of_service_user_status`
-    ///   - tos: 
-    ///   - user: 
+    ///   - tos:
+    ///   - user:
     ///   - isAccepted: If the user has accepted the terms of services
     ///   - createdAt: When the legal item was created
     ///   - modifiedAt: When the legal item was modified.
@@ -51,7 +51,7 @@ public class TermsOfServiceUserStatus: Codable {
         self.modifiedAt = modifiedAt
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
         type = try container.decode(TermsOfServiceUserStatusTypeField.self, forKey: .type)
@@ -72,5 +72,4 @@ public class TermsOfServiceUserStatus: Codable {
         try container.encodeDateTimeIfPresent(field: createdAt, forKey: .createdAt)
         try container.encodeDateTimeIfPresent(field: modifiedAt, forKey: .modifiedAt)
     }
-
 }

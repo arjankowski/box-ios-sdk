@@ -16,16 +16,14 @@ public enum EventsNextStreamPositionField: Codable {
         }
 
         throw DecodingError.typeMismatch(EventsNextStreamPositionField.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "The type of the decoded object cannot be determined."))
-
     }
 
     public func encode(to encoder: Encoder) throws {
         switch self {
-        case .double(let double):
+        case let .double(double):
             try double.encode(to: encoder)
-        case .string(let string):
+        case let .string(string):
             try string.encode(to: encoder)
         }
     }
-
 }

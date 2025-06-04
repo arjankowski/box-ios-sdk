@@ -23,7 +23,7 @@ public class RetentionPolicyAssignmentBase: Codable {
         self.type = type
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
         type = try container.decode(RetentionPolicyAssignmentBaseTypeField.self, forKey: .type)
@@ -34,5 +34,4 @@ public class RetentionPolicyAssignmentBase: Codable {
         try container.encode(id, forKey: .id)
         try container.encode(type, forKey: .type)
     }
-
 }

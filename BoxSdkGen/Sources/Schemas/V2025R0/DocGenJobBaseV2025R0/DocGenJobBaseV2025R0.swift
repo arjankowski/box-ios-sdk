@@ -23,7 +23,7 @@ public class DocGenJobBaseV2025R0: Codable {
         self.type = type
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
         type = try container.decode(DocGenJobBaseV2025R0TypeField.self, forKey: .type)
@@ -34,5 +34,4 @@ public class DocGenJobBaseV2025R0: Codable {
         try container.encode(id, forKey: .id)
         try container.encode(type, forKey: .type)
     }
-
 }

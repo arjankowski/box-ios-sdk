@@ -79,7 +79,7 @@ public class MetadataTemplate: Codable {
         self.copyInstanceOnItemCopy = copyInstanceOnItemCopy
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
         type = try container.decode(MetadataTemplateTypeField.self, forKey: .type)
@@ -102,5 +102,4 @@ public class MetadataTemplate: Codable {
         try container.encodeIfPresent(fields, forKey: .fields)
         try container.encodeIfPresent(copyInstanceOnItemCopy, forKey: .copyInstanceOnItemCopy)
     }
-
 }

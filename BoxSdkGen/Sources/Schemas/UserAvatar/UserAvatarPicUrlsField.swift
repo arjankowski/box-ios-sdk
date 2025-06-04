@@ -28,7 +28,7 @@ public class UserAvatarPicUrlsField: Codable {
         self.preview = preview
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         small = try container.decodeIfPresent(String.self, forKey: .small)
         large = try container.decodeIfPresent(String.self, forKey: .large)
@@ -41,5 +41,4 @@ public class UserAvatarPicUrlsField: Codable {
         try container.encodeIfPresent(large, forKey: .large)
         try container.encodeIfPresent(preview, forKey: .preview)
     }
-
 }

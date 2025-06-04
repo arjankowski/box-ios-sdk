@@ -17,9 +17,8 @@ public enum PostOAuth2TokenSubjectTokenTypeField: CodableStringEnum {
         switch self {
         case .urnIetfParamsOauthTokenTypeAccessToken:
             return "urn:ietf:params:oauth:token-type:access_token"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

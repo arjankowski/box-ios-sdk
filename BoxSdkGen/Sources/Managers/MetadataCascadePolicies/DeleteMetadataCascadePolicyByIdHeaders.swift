@@ -11,5 +11,4 @@ public class DeleteMetadataCascadePolicyByIdHeaders {
     public init(extraHeaders: [String: String?]? = [:]) {
         self.extraHeaders = extraHeaders
     }
-
 }

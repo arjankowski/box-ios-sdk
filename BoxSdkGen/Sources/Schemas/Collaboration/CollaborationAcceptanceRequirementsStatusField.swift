@@ -19,7 +19,7 @@ public class CollaborationAcceptanceRequirementsStatusField: Codable {
         self.twoFactorAuthenticationRequirement = twoFactorAuthenticationRequirement
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         termsOfServiceRequirement = try container.decodeIfPresent(CollaborationAcceptanceRequirementsStatusTermsOfServiceRequirementField.self, forKey: .termsOfServiceRequirement)
         strongPasswordRequirement = try container.decodeIfPresent(CollaborationAcceptanceRequirementsStatusStrongPasswordRequirementField.self, forKey: .strongPasswordRequirement)
@@ -32,5 +32,4 @@ public class CollaborationAcceptanceRequirementsStatusField: Codable {
         try container.encodeIfPresent(strongPasswordRequirement, forKey: .strongPasswordRequirement)
         try container.encodeIfPresent(twoFactorAuthenticationRequirement, forKey: .twoFactorAuthenticationRequirement)
     }
-
 }

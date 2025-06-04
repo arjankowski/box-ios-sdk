@@ -16,13 +16,13 @@ public class FileOrFolderScope: Codable {
     ///
     /// - Parameters:
     ///   - scope: The scopes for the resource access
-    ///   - object: 
+    ///   - object:
     public init(scope: FileOrFolderScopeScopeField? = nil, object: FileMiniOrFolderMini? = nil) {
         self.scope = scope
         self.object = object
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         scope = try container.decodeIfPresent(FileOrFolderScopeScopeField.self, forKey: .scope)
         object = try container.decodeIfPresent(FileMiniOrFolderMini.self, forKey: .object)
@@ -33,5 +33,4 @@ public class FileOrFolderScope: Codable {
         try container.encodeIfPresent(scope, forKey: .scope)
         try container.encodeIfPresent(object, forKey: .object)
     }
-
 }

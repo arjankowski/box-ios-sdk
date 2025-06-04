@@ -11,5 +11,4 @@ public class UpdateStoragePolicyAssignmentByIdHeaders {
     public init(extraHeaders: [String: String?]? = [:]) {
         self.extraHeaders = extraHeaders
     }
-
 }

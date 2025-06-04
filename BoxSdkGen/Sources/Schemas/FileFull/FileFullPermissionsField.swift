@@ -92,7 +92,7 @@ public class FileFullPermissionsField: Codable {
         self.canViewAnnotationsSelf = canViewAnnotationsSelf
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         canDelete = try container.decode(Bool.self, forKey: .canDelete)
         canDownload = try container.decode(Bool.self, forKey: .canDownload)
@@ -123,5 +123,4 @@ public class FileFullPermissionsField: Codable {
         try container.encode(canViewAnnotationsAll, forKey: .canViewAnnotationsAll)
         try container.encode(canViewAnnotationsSelf, forKey: .canViewAnnotationsSelf)
     }
-
 }

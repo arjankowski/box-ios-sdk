@@ -22,11 +22,11 @@ public class InMemoryTokenStorage: TokenStorage {
     ///
     /// - Returns: The stored access token
     public func get() async throws -> AccessToken? {
-        return self.token
+        return token
     }
 
     /// Clear access token in memory
     public func clear() async throws {
-        self.token = nil
+        token = nil
     }
 }

@@ -46,7 +46,7 @@ public class FileFullExpiringEmbedLinkField: Codable {
         self.url = url
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         accessToken = try container.decodeIfPresent(String.self, forKey: .accessToken)
         expiresIn = try container.decodeIfPresent(Int64.self, forKey: .expiresIn)
@@ -63,5 +63,4 @@ public class FileFullExpiringEmbedLinkField: Codable {
         try container.encodeIfPresent(restrictedTo, forKey: .restrictedTo)
         try container.encodeIfPresent(url, forKey: .url)
     }
-
 }

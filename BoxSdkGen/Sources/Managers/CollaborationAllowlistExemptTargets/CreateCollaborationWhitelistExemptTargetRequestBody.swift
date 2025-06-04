@@ -16,7 +16,7 @@ public class CreateCollaborationWhitelistExemptTargetRequestBody: Codable {
         self.user = user
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         user = try container.decode(CreateCollaborationWhitelistExemptTargetRequestBodyUserField.self, forKey: .user)
     }
@@ -25,5 +25,4 @@ public class CreateCollaborationWhitelistExemptTargetRequestBody: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(user, forKey: .user)
     }
-
 }

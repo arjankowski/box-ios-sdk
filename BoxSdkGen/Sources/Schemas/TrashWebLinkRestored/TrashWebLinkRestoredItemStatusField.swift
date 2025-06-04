@@ -27,9 +27,8 @@ public enum TrashWebLinkRestoredItemStatusField: CodableStringEnum {
             return "trashed"
         case .deleted:
             return "deleted"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

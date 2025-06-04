@@ -46,7 +46,7 @@ public class UploadSessionSessionEndpointsField: Codable {
         self.logEvent = logEvent
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         uploadPart = try container.decodeIfPresent(String.self, forKey: .uploadPart)
         commit = try container.decodeIfPresent(String.self, forKey: .commit)
@@ -65,5 +65,4 @@ public class UploadSessionSessionEndpointsField: Codable {
         try container.encodeIfPresent(status, forKey: .status)
         try container.encodeIfPresent(logEvent, forKey: .logEvent)
     }
-
 }

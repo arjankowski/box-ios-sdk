@@ -11,13 +11,13 @@ public class FileVersionsManager {
     }
 
     /// Retrieve a list of the past versions for a file.
-    /// 
+    ///
     /// Versions are only tracked by Box users with premium accounts. To fetch the ID
     /// of the current version of a file, use the `GET /file/:id` API.
     ///
     /// - Parameters:
     ///   - fileId: The unique identifier that represents a file.
-    ///     
+    ///
     ///     The ID for any file can be determined
     ///     by visiting a file in the web application
     ///     and copying the ID from the URL. For example,
@@ -31,17 +31,17 @@ public class FileVersionsManager {
     public func getFileVersions(fileId: String, queryParams: GetFileVersionsQueryParams = GetFileVersionsQueryParams(), headers: GetFileVersionsHeaders = GetFileVersionsHeaders()) async throws -> FileVersions {
         let queryParamsMap: [String: String] = Utils.Dictionary.prepareParams(map: ["fields": Utils.Strings.toString(value: queryParams.fields), "limit": Utils.Strings.toString(value: queryParams.limit), "offset": Utils.Strings.toString(value: queryParams.offset)])
         let headersMap: [String: String] = Utils.Dictionary.prepareParams(map: Utils.Dictionary.merge([:], headers.extraHeaders))
-        let response: FetchResponse = try await self.networkSession.networkClient.fetch(options: FetchOptions(url: "\(self.networkSession.baseUrls.baseUrl)\("/2.0/files/")\(fileId)\("/versions")", method: "GET", params: queryParamsMap, headers: headersMap, responseFormat: ResponseFormat.json, auth: self.auth, networkSession: self.networkSession))
+        let response: FetchResponse = try await networkSession.networkClient.fetch(options: FetchOptions(url: "\(networkSession.baseUrls.baseUrl)\("/2.0/files/")\(fileId)\("/versions")", method: "GET", params: queryParamsMap, headers: headersMap, responseFormat: ResponseFormat.json, auth: auth, networkSession: networkSession))
         return try FileVersions.deserialize(from: response.data!)
     }
 
     /// Retrieve a specific version of a file.
-    /// 
+    ///
     /// Versions are only tracked for Box users with premium accounts.
     ///
     /// - Parameters:
     ///   - fileId: The unique identifier that represents a file.
-    ///     
+    ///
     ///     The ID for any file can be determined
     ///     by visiting a file in the web application
     ///     and copying the ID from the URL. For example,
@@ -57,17 +57,17 @@ public class FileVersionsManager {
     public func getFileVersionById(fileId: String, fileVersionId: String, queryParams: GetFileVersionByIdQueryParams = GetFileVersionByIdQueryParams(), headers: GetFileVersionByIdHeaders = GetFileVersionByIdHeaders()) async throws -> FileVersionFull {
         let queryParamsMap: [String: String] = Utils.Dictionary.prepareParams(map: ["fields": Utils.Strings.toString(value: queryParams.fields)])
         let headersMap: [String: String] = Utils.Dictionary.prepareParams(map: Utils.Dictionary.merge([:], headers.extraHeaders))
-        let response: FetchResponse = try await self.networkSession.networkClient.fetch(options: FetchOptions(url: "\(self.networkSession.baseUrls.baseUrl)\("/2.0/files/")\(fileId)\("/versions/")\(fileVersionId)", method: "GET", params: queryParamsMap, headers: headersMap, responseFormat: ResponseFormat.json, auth: self.auth, networkSession: self.networkSession))
+        let response: FetchResponse = try await networkSession.networkClient.fetch(options: FetchOptions(url: "\(networkSession.baseUrls.baseUrl)\("/2.0/files/")\(fileId)\("/versions/")\(fileVersionId)", method: "GET", params: queryParamsMap, headers: headersMap, responseFormat: ResponseFormat.json, auth: auth, networkSession: networkSession))
         return try FileVersionFull.deserialize(from: response.data!)
     }
 
     /// Move a file version to the trash.
-    /// 
+    ///
     /// Versions are only tracked for Box users with premium accounts.
     ///
     /// - Parameters:
     ///   - fileId: The unique identifier that represents a file.
-    ///     
+    ///
     ///     The ID for any file can be determined
     ///     by visiting a file in the web application
     ///     and copying the ID from the URL. For example,
@@ -80,7 +80,7 @@ public class FileVersionsManager {
     /// - Throws: The `GeneralError`.
     public func deleteFileVersionById(fileId: String, fileVersionId: String, headers: DeleteFileVersionByIdHeaders = DeleteFileVersionByIdHeaders()) async throws {
         let headersMap: [String: String] = Utils.Dictionary.prepareParams(map: Utils.Dictionary.merge(["if-match": Utils.Strings.toString(value: headers.ifMatch)], headers.extraHeaders))
-        let response: FetchResponse = try await self.networkSession.networkClient.fetch(options: FetchOptions(url: "\(self.networkSession.baseUrls.baseUrl)\("/2.0/files/")\(fileId)\("/versions/")\(fileVersionId)", method: "DELETE", headers: headersMap, responseFormat: ResponseFormat.noContent, auth: self.auth, networkSession: self.networkSession))
+        let response: FetchResponse = try await networkSession.networkClient.fetch(options: FetchOptions(url: "\(networkSession.baseUrls.baseUrl)\("/2.0/files/")\(fileId)\("/versions/")\(fileVersionId)", method: "DELETE", headers: headersMap, responseFormat: ResponseFormat.noContent, auth: auth, networkSession: networkSession))
     }
 
     /// Restores a specific version of a file after it was deleted.
@@ -90,7 +90,7 @@ public class FileVersionsManager {
     ///
     /// - Parameters:
     ///   - fileId: The unique identifier that represents a file.
-    ///     
+    ///
     ///     The ID for any file can be determined
     ///     by visiting a file in the web application
     ///     and copying the ID from the URL. For example,
@@ -105,30 +105,30 @@ public class FileVersionsManager {
     /// - Throws: The `GeneralError`.
     public func updateFileVersionById(fileId: String, fileVersionId: String, requestBody: UpdateFileVersionByIdRequestBody = UpdateFileVersionByIdRequestBody(), headers: UpdateFileVersionByIdHeaders = UpdateFileVersionByIdHeaders()) async throws -> FileVersionFull {
         let headersMap: [String: String] = Utils.Dictionary.prepareParams(map: Utils.Dictionary.merge([:], headers.extraHeaders))
-        let response: FetchResponse = try await self.networkSession.networkClient.fetch(options: FetchOptions(url: "\(self.networkSession.baseUrls.baseUrl)\("/2.0/files/")\(fileId)\("/versions/")\(fileVersionId)", method: "PUT", headers: headersMap, data: try requestBody.serialize(), contentType: "application/json", responseFormat: ResponseFormat.json, auth: self.auth, networkSession: self.networkSession))
+        let response: FetchResponse = try await networkSession.networkClient.fetch(options: FetchOptions(url: "\(networkSession.baseUrls.baseUrl)\("/2.0/files/")\(fileId)\("/versions/")\(fileVersionId)", method: "PUT", headers: headersMap, data: requestBody.serialize(), contentType: "application/json", responseFormat: ResponseFormat.json, auth: auth, networkSession: networkSession))
         return try FileVersionFull.deserialize(from: response.data!)
     }
 
     /// Promote a specific version of a file.
-    /// 
+    ///
     /// If previous versions exist, this method can be used to
     /// promote one of the older versions to the top of the version history.
-    /// 
+    ///
     /// This creates a new copy of the old version and puts it at the
     /// top of the versions history. The file will have the exact same contents
     /// as the older version, with the the same hash digest, `etag`, and
     /// name as the original.
-    /// 
+    ///
     /// Other properties such as comments do not get updated to their
     /// former values.
-    /// 
+    ///
     /// Don't use this endpoint to restore Box Notes,
     /// as it works with file formats such as PDF, DOC,
     /// PPTX or similar.
     ///
     /// - Parameters:
     ///   - fileId: The unique identifier that represents a file.
-    ///     
+    ///
     ///     The ID for any file can be determined
     ///     by visiting a file in the web application
     ///     and copying the ID from the URL. For example,
@@ -143,8 +143,7 @@ public class FileVersionsManager {
     public func promoteFileVersion(fileId: String, requestBody: PromoteFileVersionRequestBody = PromoteFileVersionRequestBody(), queryParams: PromoteFileVersionQueryParams = PromoteFileVersionQueryParams(), headers: PromoteFileVersionHeaders = PromoteFileVersionHeaders()) async throws -> FileVersionFull {
         let queryParamsMap: [String: String] = Utils.Dictionary.prepareParams(map: ["fields": Utils.Strings.toString(value: queryParams.fields)])
         let headersMap: [String: String] = Utils.Dictionary.prepareParams(map: Utils.Dictionary.merge([:], headers.extraHeaders))
-        let response: FetchResponse = try await self.networkSession.networkClient.fetch(options: FetchOptions(url: "\(self.networkSession.baseUrls.baseUrl)\("/2.0/files/")\(fileId)\("/versions/current")", method: "POST", params: queryParamsMap, headers: headersMap, data: try requestBody.serialize(), contentType: "application/json", responseFormat: ResponseFormat.json, auth: self.auth, networkSession: self.networkSession))
+        let response: FetchResponse = try await networkSession.networkClient.fetch(options: FetchOptions(url: "\(networkSession.baseUrls.baseUrl)\("/2.0/files/")\(fileId)\("/versions/current")", method: "POST", params: queryParamsMap, headers: headersMap, data: requestBody.serialize(), contentType: "application/json", responseFormat: ResponseFormat.json, auth: auth, networkSession: networkSession))
         return try FileVersionFull.deserialize(from: response.data!)
     }
-
 }

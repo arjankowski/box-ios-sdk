@@ -16,7 +16,7 @@ public class EventSourceClassificationField: Codable {
         self.name = name
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         name = try container.decodeIfPresent(String.self, forKey: .name)
     }
@@ -25,5 +25,4 @@ public class EventSourceClassificationField: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(name, forKey: .name)
     }
-
 }

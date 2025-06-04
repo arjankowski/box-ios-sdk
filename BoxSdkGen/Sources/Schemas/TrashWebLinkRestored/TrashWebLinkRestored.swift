@@ -83,15 +83,15 @@ public class TrashWebLinkRestored: Codable {
     /// Initializer for a TrashWebLinkRestored.
     ///
     /// - Parameters:
-    ///   - sequenceId: 
-    ///   - pathCollection: 
+    ///   - sequenceId:
+    ///   - pathCollection:
     ///   - type: `web_link`
     ///   - id: The unique identifier for this web link
     ///   - etag: The entity tag of this web link. Used with `If-Match`
     ///     headers.
     ///   - name: The name of the web link
     ///   - url: The URL this web link points to
-    ///   - parent: 
+    ///   - parent:
     ///   - description: The description accompanying the web link. This is
     ///     visible within the Box web application.
     ///   - createdAt: When this file was created on Box’s servers.
@@ -101,9 +101,9 @@ public class TrashWebLinkRestored: Codable {
     ///     trash - becomes `null` after restore.
     ///   - purgedAt: The time at which this bookmark will be permanently
     ///     deleted - becomes `null` after restore.
-    ///   - createdBy: 
-    ///   - modifiedBy: 
-    ///   - ownedBy: 
+    ///   - createdBy:
+    ///   - modifiedBy:
+    ///   - ownedBy:
     ///   - sharedLink: The shared link for this bookmark. This will
     ///     be `null` if a bookmark had been trashed, even though the original shared
     ///     link does become active again.
@@ -122,16 +122,16 @@ public class TrashWebLinkRestored: Codable {
         self.description = description
         self.createdAt = createdAt
         self.modifiedAt = modifiedAt
-        self._trashedAt = CodableTriState(state: trashedAt)
-        self._purgedAt = CodableTriState(state: purgedAt)
+        _trashedAt = CodableTriState(state: trashedAt)
+        _purgedAt = CodableTriState(state: purgedAt)
         self.createdBy = createdBy
         self.modifiedBy = modifiedBy
         self.ownedBy = ownedBy
-        self._sharedLink = CodableTriState(state: sharedLink)
+        _sharedLink = CodableTriState(state: sharedLink)
         self.itemStatus = itemStatus
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         sequenceId = try container.decode(String.self, forKey: .sequenceId)
         pathCollection = try container.decode(TrashWebLinkRestoredPathCollectionField.self, forKey: .pathCollection)
@@ -174,5 +174,4 @@ public class TrashWebLinkRestored: Codable {
         try container.encode(field: _sharedLink.state, forKey: .sharedLink)
         try container.encodeIfPresent(itemStatus, forKey: .itemStatus)
     }
-
 }

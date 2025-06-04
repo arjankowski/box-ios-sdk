@@ -11,5 +11,4 @@ public class DeleteFolderLockByIdHeaders {
     public init(extraHeaders: [String: String?]? = [:]) {
         self.extraHeaders = extraHeaders
     }
-
 }

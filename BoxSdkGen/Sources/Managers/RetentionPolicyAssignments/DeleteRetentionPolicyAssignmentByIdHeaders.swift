@@ -11,5 +11,4 @@ public class DeleteRetentionPolicyAssignmentByIdHeaders {
     public init(extraHeaders: [String: String?]? = [:]) {
         self.extraHeaders = extraHeaders
     }
-
 }

@@ -66,5 +66,4 @@ public class FetchOptions {
         self.auth = auth
         self.networkSession = networkSession
     }
-
 }

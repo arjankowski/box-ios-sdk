@@ -11,7 +11,7 @@ public class FolderBase: Codable {
     }
 
     /// The unique identifier that represent a folder.
-    /// 
+    ///
     /// The ID for any folder can be determined
     /// by visiting a folder in the web application
     /// and copying the ID from the URL. For example,
@@ -31,7 +31,7 @@ public class FolderBase: Codable {
     ///
     /// - Parameters:
     ///   - id: The unique identifier that represent a folder.
-    ///     
+    ///
     ///     The ID for any folder can be determined
     ///     by visiting a folder in the web application
     ///     and copying the ID from the URL. For example,
@@ -43,11 +43,11 @@ public class FolderBase: Codable {
     ///   - type: `folder`
     public init(id: String, etag: TriStateField<String> = nil, type: FolderBaseTypeField = FolderBaseTypeField.folder) {
         self.id = id
-        self._etag = CodableTriState(state: etag)
+        _etag = CodableTriState(state: etag)
         self.type = type
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
         etag = try container.decodeIfPresent(String.self, forKey: .etag)
@@ -60,5 +60,4 @@ public class FolderBase: Codable {
         try container.encode(field: _etag.state, forKey: .etag)
         try container.encode(type, forKey: .type)
     }
-
 }

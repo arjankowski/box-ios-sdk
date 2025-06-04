@@ -22,7 +22,7 @@ public class UpdateShieldInformationBarrierStatusRequestBody: Codable {
         self.status = status
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
         status = try container.decode(UpdateShieldInformationBarrierStatusRequestBodyStatusField.self, forKey: .status)
@@ -33,5 +33,4 @@ public class UpdateShieldInformationBarrierStatusRequestBody: Codable {
         try container.encode(id, forKey: .id)
         try container.encode(status, forKey: .status)
     }
-
 }

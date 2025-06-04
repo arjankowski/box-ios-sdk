@@ -37,7 +37,7 @@ public class TranscriptSkillCard: Codable {
     public let skillCardTitle: TranscriptSkillCardSkillCardTitleField?
 
     /// An optional total duration in seconds.
-    /// 
+    ///
     /// Used with a `skill_card_type` of `transcript` or
     /// `timeline`.
     public let duration: Int64?
@@ -55,7 +55,7 @@ public class TranscriptSkillCard: Codable {
     ///   - skillCardType: `transcript`
     ///   - skillCardTitle: The title of the card.
     ///   - duration: An optional total duration in seconds.
-    ///     
+    ///
     ///     Used with a `skill_card_type` of `transcript` or
     ///     `timeline`.
     public init(skill: TranscriptSkillCardSkillField, invocation: TranscriptSkillCardInvocationField, entries: [TranscriptSkillCardEntriesField], createdAt: Date? = nil, type: TranscriptSkillCardTypeField = TranscriptSkillCardTypeField.skillCard, skillCardType: TranscriptSkillCardSkillCardTypeField = TranscriptSkillCardSkillCardTypeField.transcript, skillCardTitle: TranscriptSkillCardSkillCardTitleField? = nil, duration: Int64? = nil) {
@@ -69,7 +69,7 @@ public class TranscriptSkillCard: Codable {
         self.duration = duration
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         skill = try container.decode(TranscriptSkillCardSkillField.self, forKey: .skill)
         invocation = try container.decode(TranscriptSkillCardInvocationField.self, forKey: .invocation)
@@ -92,5 +92,4 @@ public class TranscriptSkillCard: Codable {
         try container.encodeIfPresent(skillCardTitle, forKey: .skillCardTitle)
         try container.encodeIfPresent(duration, forKey: .duration)
     }
-
 }

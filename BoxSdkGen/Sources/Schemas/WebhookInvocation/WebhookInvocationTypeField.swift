@@ -17,9 +17,8 @@ public enum WebhookInvocationTypeField: CodableStringEnum {
         switch self {
         case .webhookEvent:
             return "webhook_event"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

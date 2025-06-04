@@ -23,7 +23,7 @@ public class AiAgentInfo: Codable {
         self.processor = processor
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         models = try container.decodeIfPresent([AiAgentInfoModelsField].self, forKey: .models)
         processor = try container.decodeIfPresent(String.self, forKey: .processor)
@@ -34,5 +34,4 @@ public class AiAgentInfo: Codable {
         try container.encodeIfPresent(models, forKey: .models)
         try container.encodeIfPresent(processor, forKey: .processor)
     }
-
 }

@@ -16,7 +16,7 @@ public class IntegrationMappingTeamsCreateRequest: Codable {
         self.boxItem = boxItem
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         partnerItem = try container.decode(IntegrationMappingPartnerItemTeamsCreateRequest.self, forKey: .partnerItem)
         boxItem = try container.decode(FolderReference.self, forKey: .boxItem)
@@ -27,5 +27,4 @@ public class IntegrationMappingTeamsCreateRequest: Codable {
         try container.encode(partnerItem, forKey: .partnerItem)
         try container.encode(boxItem, forKey: .boxItem)
     }
-
 }

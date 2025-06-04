@@ -22,9 +22,8 @@ public enum ItemsOrderDirectionField: CodableStringEnum {
             return "ASC"
         case .desc:
             return "DESC"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

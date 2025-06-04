@@ -22,9 +22,8 @@ public enum CreateCollaborationRequestBodyAccessibleByTypeField: CodableStringEn
             return "user"
         case .group:
             return "group"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

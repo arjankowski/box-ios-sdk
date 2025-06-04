@@ -6,7 +6,7 @@ public class UpdateFileWatermarkRequestBodyWatermarkField: Codable {
     }
 
     /// The type of watermark to apply.
-    /// 
+    ///
     /// Currently only supports one option.
     public let imprint: UpdateFileWatermarkRequestBodyWatermarkImprintField
 
@@ -14,13 +14,13 @@ public class UpdateFileWatermarkRequestBodyWatermarkField: Codable {
     ///
     /// - Parameters:
     ///   - imprint: The type of watermark to apply.
-    ///     
+    ///
     ///     Currently only supports one option.
     public init(imprint: UpdateFileWatermarkRequestBodyWatermarkImprintField = UpdateFileWatermarkRequestBodyWatermarkImprintField.default_) {
         self.imprint = imprint
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         imprint = try container.decode(UpdateFileWatermarkRequestBodyWatermarkImprintField.self, forKey: .imprint)
     }
@@ -29,5 +29,4 @@ public class UpdateFileWatermarkRequestBodyWatermarkField: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(imprint, forKey: .imprint)
     }
-
 }

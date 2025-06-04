@@ -60,7 +60,7 @@ public class FolderFullPermissionsField: Codable {
         self.canUpload = canUpload
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         canDelete = try container.decode(Bool.self, forKey: .canDelete)
         canDownload = try container.decode(Bool.self, forKey: .canDownload)
@@ -81,5 +81,4 @@ public class FolderFullPermissionsField: Codable {
         try container.encode(canShare, forKey: .canShare)
         try container.encode(canUpload, forKey: .canUpload)
     }
-
 }

@@ -42,9 +42,8 @@ public enum UpdateFolderMetadataByIdRequestBodyOpField: CodableStringEnum {
             return "move"
         case .copy:
             return "copy"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

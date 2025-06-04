@@ -11,5 +11,4 @@ public class GetUserAvatarHeaders {
     public init(extraHeaders: [String: String?]? = [:]) {
         self.extraHeaders = extraHeaders
     }
-
 }

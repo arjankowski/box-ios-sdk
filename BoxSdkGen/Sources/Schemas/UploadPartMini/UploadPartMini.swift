@@ -34,7 +34,7 @@ public class UploadPartMini: Codable {
         self.size = size
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         partId = try container.decodeIfPresent(String.self, forKey: .partId)
         offset = try container.decodeIfPresent(Int64.self, forKey: .offset)
@@ -47,5 +47,4 @@ public class UploadPartMini: Codable {
         try container.encodeIfPresent(offset, forKey: .offset)
         try container.encodeIfPresent(size, forKey: .size)
     }
-
 }

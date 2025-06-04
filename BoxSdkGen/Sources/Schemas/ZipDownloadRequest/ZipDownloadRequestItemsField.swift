@@ -24,7 +24,7 @@ public class ZipDownloadRequestItemsField: Codable {
         self.id = id
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         type = try container.decode(ZipDownloadRequestItemsTypeField.self, forKey: .type)
         id = try container.decode(String.self, forKey: .id)
@@ -35,5 +35,4 @@ public class ZipDownloadRequestItemsField: Codable {
         try container.encode(type, forKey: .type)
         try container.encode(id, forKey: .id)
     }
-
 }

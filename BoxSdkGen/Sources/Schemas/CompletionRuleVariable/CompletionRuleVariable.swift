@@ -14,18 +14,18 @@ public class CompletionRuleVariable: Codable {
     /// Variable
     /// values for a completion
     /// rule.
-    /// 
+    ///
     public let variableValue: CompletionRuleVariableVariableValueField
 
     /// Completion
     /// Rule object type.
-    /// 
+    ///
     public let type: CompletionRuleVariableTypeField
 
     /// Variable type
     /// for the Completion
     /// Rule object.
-    /// 
+    ///
     public let variableType: CompletionRuleVariableVariableTypeField
 
     /// Initializer for a CompletionRuleVariable.
@@ -34,21 +34,21 @@ public class CompletionRuleVariable: Codable {
     ///   - variableValue: Variable
     ///     values for a completion
     ///     rule.
-    ///     
+    ///
     ///   - type: Completion
     ///     Rule object type.
-    ///     
+    ///
     ///   - variableType: Variable type
     ///     for the Completion
     ///     Rule object.
-    ///     
+    ///
     public init(variableValue: CompletionRuleVariableVariableValueField, type: CompletionRuleVariableTypeField = CompletionRuleVariableTypeField.variable, variableType: CompletionRuleVariableVariableTypeField = CompletionRuleVariableVariableTypeField.taskCompletionRule) {
         self.variableValue = variableValue
         self.type = type
         self.variableType = variableType
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         variableValue = try container.decode(CompletionRuleVariableVariableValueField.self, forKey: .variableValue)
         type = try container.decode(CompletionRuleVariableTypeField.self, forKey: .type)
@@ -61,5 +61,4 @@ public class CompletionRuleVariable: Codable {
         try container.encode(type, forKey: .type)
         try container.encode(variableType, forKey: .variableType)
     }
-
 }

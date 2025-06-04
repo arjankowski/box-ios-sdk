@@ -24,7 +24,7 @@ public class RealtimeServers: Codable {
         self.entries = entries
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         chunkSize = try container.decodeIfPresent(Int64.self, forKey: .chunkSize)
         entries = try container.decodeIfPresent([RealtimeServer].self, forKey: .entries)
@@ -35,5 +35,4 @@ public class RealtimeServers: Codable {
         try container.encodeIfPresent(chunkSize, forKey: .chunkSize)
         try container.encodeIfPresent(entries, forKey: .entries)
     }
-
 }

@@ -13,5 +13,4 @@ public class UpdateSharedLinkOnFileQueryParams {
     public init(fields: String) {
         self.fields = fields
     }
-
 }

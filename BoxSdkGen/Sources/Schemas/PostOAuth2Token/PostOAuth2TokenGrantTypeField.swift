@@ -37,9 +37,8 @@ public enum PostOAuth2TokenGrantTypeField: CodableStringEnum {
             return "urn:ietf:params:oauth:grant-type:jwt-bearer"
         case .urnIetfParamsOauthGrantTypeTokenExchange:
             return "urn:ietf:params:oauth:grant-type:token-exchange"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

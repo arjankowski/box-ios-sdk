@@ -14,7 +14,7 @@ class ViewController: UITableViewController {
     private var sdk: BoxSDK!
     private var client: BoxClient!
     private var folderItems: [FolderItem] = []
-    
+
     private lazy var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "MMM dd,yyyy at HH:mm a"
@@ -34,7 +34,7 @@ class ViewController: UITableViewController {
         setUpBoxSDK()
         setUpUI()
     }
-    
+
     // MARK: - Actions
 
     @objc private func loginButtonPressed() {
@@ -46,7 +46,7 @@ class ViewController: UITableViewController {
         getSinglePageOfFolderItems()
         removeErrorView()
     }
-    
+
     // MARK: - Set up
 
     private func setUpBoxSDK() {
@@ -133,7 +133,6 @@ private extension ViewController {
             self?.ccgAuthorizeHandler(result: result)
         }
 
-
         // Section 2 - CCG connection for user account
 
         #error("To obtain user account CCG connection please provide userId in Constants.swift file, comment out section 1 above and uncomment section 2.")
@@ -146,10 +145,10 @@ private extension ViewController {
         switch result {
         case let .success(client):
             self.client = client
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Load items", style: .plain, target: self, action: #selector(self.loadItemsButtonPressed))
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Load items", style: .plain, target: self, action: #selector(loadItemsButtonPressed))
         case let .failure(error):
             print("error in getCCGClient: \(error)")
-            self.addErrorView(with: error)
+            addErrorView(with: error)
         }
     }
 }
@@ -171,9 +170,9 @@ extension ViewController {
             switch result {
             case let .success(page):
                 self.folderItems = []
-                
+
                 for (i, item) in page.entries.enumerated() {
-                    print ("Item #\(String(format: "%03d", i + 1)) | \(item.debugDescription))")
+                    print("Item #\(String(format: "%03d", i + 1)) | \(item.debugDescription))")
                     DispatchQueue.main.async {
                         self.folderItems.append(item)
                         self.tableView.reloadData()
@@ -201,7 +200,7 @@ private extension ViewController {
                 self.errorView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
                 self.errorView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
                 self.errorView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
-                ])
+            ])
             self.errorView.displayError(error)
         }
     }

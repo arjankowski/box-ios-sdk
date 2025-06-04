@@ -67,5 +67,4 @@ public class AuthorizeUserQueryParams {
         self.state = state
         self.scope = scope
     }
-
 }

@@ -20,7 +20,7 @@ public class StoragePolicyAssignmentsManager {
     public func getStoragePolicyAssignments(queryParams: GetStoragePolicyAssignmentsQueryParams, headers: GetStoragePolicyAssignmentsHeaders = GetStoragePolicyAssignmentsHeaders()) async throws -> StoragePolicyAssignments {
         let queryParamsMap: [String: String] = Utils.Dictionary.prepareParams(map: ["marker": Utils.Strings.toString(value: queryParams.marker), "resolved_for_type": Utils.Strings.toString(value: queryParams.resolvedForType), "resolved_for_id": Utils.Strings.toString(value: queryParams.resolvedForId)])
         let headersMap: [String: String] = Utils.Dictionary.prepareParams(map: Utils.Dictionary.merge([:], headers.extraHeaders))
-        let response: FetchResponse = try await self.networkSession.networkClient.fetch(options: FetchOptions(url: "\(self.networkSession.baseUrls.baseUrl)\("/2.0/storage_policy_assignments")", method: "GET", params: queryParamsMap, headers: headersMap, responseFormat: ResponseFormat.json, auth: self.auth, networkSession: self.networkSession))
+        let response: FetchResponse = try await networkSession.networkClient.fetch(options: FetchOptions(url: "\(networkSession.baseUrls.baseUrl)\("/2.0/storage_policy_assignments")", method: "GET", params: queryParamsMap, headers: headersMap, responseFormat: ResponseFormat.json, auth: auth, networkSession: networkSession))
         return try StoragePolicyAssignments.deserialize(from: response.data!)
     }
 
@@ -33,7 +33,7 @@ public class StoragePolicyAssignmentsManager {
     /// - Throws: The `GeneralError`.
     public func createStoragePolicyAssignment(requestBody: CreateStoragePolicyAssignmentRequestBody, headers: CreateStoragePolicyAssignmentHeaders = CreateStoragePolicyAssignmentHeaders()) async throws -> StoragePolicyAssignment {
         let headersMap: [String: String] = Utils.Dictionary.prepareParams(map: Utils.Dictionary.merge([:], headers.extraHeaders))
-        let response: FetchResponse = try await self.networkSession.networkClient.fetch(options: FetchOptions(url: "\(self.networkSession.baseUrls.baseUrl)\("/2.0/storage_policy_assignments")", method: "POST", headers: headersMap, data: try requestBody.serialize(), contentType: "application/json", responseFormat: ResponseFormat.json, auth: self.auth, networkSession: self.networkSession))
+        let response: FetchResponse = try await networkSession.networkClient.fetch(options: FetchOptions(url: "\(networkSession.baseUrls.baseUrl)\("/2.0/storage_policy_assignments")", method: "POST", headers: headersMap, data: requestBody.serialize(), contentType: "application/json", responseFormat: ResponseFormat.json, auth: auth, networkSession: networkSession))
         return try StoragePolicyAssignment.deserialize(from: response.data!)
     }
 
@@ -47,7 +47,7 @@ public class StoragePolicyAssignmentsManager {
     /// - Throws: The `GeneralError`.
     public func getStoragePolicyAssignmentById(storagePolicyAssignmentId: String, headers: GetStoragePolicyAssignmentByIdHeaders = GetStoragePolicyAssignmentByIdHeaders()) async throws -> StoragePolicyAssignment {
         let headersMap: [String: String] = Utils.Dictionary.prepareParams(map: Utils.Dictionary.merge([:], headers.extraHeaders))
-        let response: FetchResponse = try await self.networkSession.networkClient.fetch(options: FetchOptions(url: "\(self.networkSession.baseUrls.baseUrl)\("/2.0/storage_policy_assignments/")\(storagePolicyAssignmentId)", method: "GET", headers: headersMap, responseFormat: ResponseFormat.json, auth: self.auth, networkSession: self.networkSession))
+        let response: FetchResponse = try await networkSession.networkClient.fetch(options: FetchOptions(url: "\(networkSession.baseUrls.baseUrl)\("/2.0/storage_policy_assignments/")\(storagePolicyAssignmentId)", method: "GET", headers: headersMap, responseFormat: ResponseFormat.json, auth: auth, networkSession: networkSession))
         return try StoragePolicyAssignment.deserialize(from: response.data!)
     }
 
@@ -62,16 +62,16 @@ public class StoragePolicyAssignmentsManager {
     /// - Throws: The `GeneralError`.
     public func updateStoragePolicyAssignmentById(storagePolicyAssignmentId: String, requestBody: UpdateStoragePolicyAssignmentByIdRequestBody, headers: UpdateStoragePolicyAssignmentByIdHeaders = UpdateStoragePolicyAssignmentByIdHeaders()) async throws -> StoragePolicyAssignment {
         let headersMap: [String: String] = Utils.Dictionary.prepareParams(map: Utils.Dictionary.merge([:], headers.extraHeaders))
-        let response: FetchResponse = try await self.networkSession.networkClient.fetch(options: FetchOptions(url: "\(self.networkSession.baseUrls.baseUrl)\("/2.0/storage_policy_assignments/")\(storagePolicyAssignmentId)", method: "PUT", headers: headersMap, data: try requestBody.serialize(), contentType: "application/json", responseFormat: ResponseFormat.json, auth: self.auth, networkSession: self.networkSession))
+        let response: FetchResponse = try await networkSession.networkClient.fetch(options: FetchOptions(url: "\(networkSession.baseUrls.baseUrl)\("/2.0/storage_policy_assignments/")\(storagePolicyAssignmentId)", method: "PUT", headers: headersMap, data: requestBody.serialize(), contentType: "application/json", responseFormat: ResponseFormat.json, auth: auth, networkSession: networkSession))
         return try StoragePolicyAssignment.deserialize(from: response.data!)
     }
 
     /// Delete a storage policy assignment.
-    /// 
+    ///
     /// Deleting a storage policy assignment on a user
     /// will have the user inherit the enterprise's default
     /// storage policy.
-    /// 
+    ///
     /// There is a rate limit for calling this endpoint of only
     /// twice per user in a 24 hour time frame.
     ///
@@ -82,7 +82,6 @@ public class StoragePolicyAssignmentsManager {
     /// - Throws: The `GeneralError`.
     public func deleteStoragePolicyAssignmentById(storagePolicyAssignmentId: String, headers: DeleteStoragePolicyAssignmentByIdHeaders = DeleteStoragePolicyAssignmentByIdHeaders()) async throws {
         let headersMap: [String: String] = Utils.Dictionary.prepareParams(map: Utils.Dictionary.merge([:], headers.extraHeaders))
-        let response: FetchResponse = try await self.networkSession.networkClient.fetch(options: FetchOptions(url: "\(self.networkSession.baseUrls.baseUrl)\("/2.0/storage_policy_assignments/")\(storagePolicyAssignmentId)", method: "DELETE", headers: headersMap, responseFormat: ResponseFormat.noContent, auth: self.auth, networkSession: self.networkSession))
+        let response: FetchResponse = try await networkSession.networkClient.fetch(options: FetchOptions(url: "\(networkSession.baseUrls.baseUrl)\("/2.0/storage_policy_assignments/")\(storagePolicyAssignmentId)", method: "DELETE", headers: headersMap, responseFormat: ResponseFormat.noContent, auth: auth, networkSession: networkSession))
     }
-
 }

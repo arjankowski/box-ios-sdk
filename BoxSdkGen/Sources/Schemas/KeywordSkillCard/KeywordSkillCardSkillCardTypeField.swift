@@ -17,9 +17,8 @@ public enum KeywordSkillCardSkillCardTypeField: CodableStringEnum {
         switch self {
         case .keyword:
             return "keyword"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

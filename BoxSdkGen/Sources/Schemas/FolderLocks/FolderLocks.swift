@@ -30,10 +30,10 @@ public class FolderLocks: Codable {
     public init(entries: [FolderLock]? = nil, limit: String? = nil, nextMarker: TriStateField<String> = nil) {
         self.entries = entries
         self.limit = limit
-        self._nextMarker = CodableTriState(state: nextMarker)
+        _nextMarker = CodableTriState(state: nextMarker)
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         entries = try container.decodeIfPresent([FolderLock].self, forKey: .entries)
         limit = try container.decodeIfPresent(String.self, forKey: .limit)
@@ -46,5 +46,4 @@ public class FolderLocks: Codable {
         try container.encodeIfPresent(limit, forKey: .limit)
         try container.encode(field: _nextMarker.state, forKey: .nextMarker)
     }
-
 }

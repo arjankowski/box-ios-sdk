@@ -55,7 +55,7 @@ public class AccessToken: Codable {
         self.issuedTokenType = issuedTokenType
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         accessToken = try container.decodeIfPresent(String.self, forKey: .accessToken)
         expiresIn = try container.decodeIfPresent(Int64.self, forKey: .expiresIn)
@@ -74,5 +74,4 @@ public class AccessToken: Codable {
         try container.encodeIfPresent(refreshToken, forKey: .refreshToken)
         try container.encodeIfPresent(issuedTokenType, forKey: .issuedTokenType)
     }
-
 }

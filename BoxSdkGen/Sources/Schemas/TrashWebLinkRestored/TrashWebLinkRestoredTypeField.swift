@@ -17,9 +17,8 @@ public enum TrashWebLinkRestoredTypeField: CodableStringEnum {
         switch self {
         case .webLink:
             return "web_link"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

@@ -16,7 +16,7 @@ public class UpdateUserByIdRequestBodyNotificationEmailField: Codable {
         self.email = email
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         email = try container.decodeIfPresent(String.self, forKey: .email)
     }
@@ -25,5 +25,4 @@ public class UpdateUserByIdRequestBodyNotificationEmailField: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(email, forKey: .email)
     }
-
 }

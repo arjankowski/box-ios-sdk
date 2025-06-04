@@ -13,14 +13,13 @@ public class MetadataFull: Metadata {
 
         var stringValue: String
 
-        init?(intValue: Int) {
+        init?(intValue _: Int) {
             return nil
         }
 
         init(stringValue: String) {
             self.stringValue = stringValue
         }
-
     }
 
     /// Whether the user can edit this metadata instance.
@@ -62,7 +61,7 @@ public class MetadataFull: Metadata {
     ///   - typeVersion: The last-known version of the template of the object. This is an
     ///     internal system property and should not be used by a client
     ///     application.
-    ///   - extraData: 
+    ///   - extraData:
     public init(parent: String? = nil, template: String? = nil, scope: String? = nil, version: Int64? = nil, canEdit: Bool? = nil, id: String? = nil, type: String? = nil, typeVersion: Int64? = nil, extraData: [String: AnyCodable]? = nil) {
         self.canEdit = canEdit
         self.id = id
@@ -73,7 +72,7 @@ public class MetadataFull: Metadata {
         super.init(parent: parent, template: template, scope: scope, version: version)
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         canEdit = try container.decodeIfPresent(Bool.self, forKey: .canEdit)
         id = try container.decodeIfPresent(String.self, forKey: .id)
@@ -82,7 +81,7 @@ public class MetadataFull: Metadata {
 
         let allKeys: [CodingKeys] = container.allKeys
         let definedKeys: [CodingKeys] = [.canEdit, .id, .type, .typeVersion]
-        let additionalKeys: [CodingKeys] = allKeys.filter({ (parent: CodingKeys) in !definedKeys.contains(where: { (child: CodingKeys) in child.stringValue == parent.stringValue }) })
+        let additionalKeys: [CodingKeys] = allKeys.filter { (parent: CodingKeys) in !definedKeys.contains(where: { (child: CodingKeys) in child.stringValue == parent.stringValue }) }
 
         if !additionalKeys.isEmpty {
             var additionalProperties: [String: AnyCodable] = [:]
@@ -90,19 +89,18 @@ public class MetadataFull: Metadata {
                 if let value = try? container.decode(AnyCodable.self, forKey: key) {
                     additionalProperties[key.stringValue] = value
                 }
-
             }
 
             extraData = additionalProperties
-        } else {
+        }
+        else {
             extraData = nil
         }
-
 
         try super.init(from: decoder)
     }
 
-    public override func encode(to encoder: Encoder) throws {
+    override public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(canEdit, forKey: .canEdit)
         try container.encodeIfPresent(id, forKey: .id)
@@ -110,13 +108,11 @@ public class MetadataFull: Metadata {
         try container.encodeIfPresent(typeVersion, forKey: .typeVersion)
 
         if let extraData = extraData {
-            for (key,value) in extraData {
+            for (key, value) in extraData {
                 try container.encodeIfPresent(value, forKey: CodingKeys(stringValue: key))
             }
-
         }
 
         try super.encode(to: encoder)
     }
-
 }

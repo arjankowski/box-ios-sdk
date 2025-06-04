@@ -11,5 +11,4 @@ public class CreateSignRequestHeaders {
     public init(extraHeaders: [String: String?]? = [:]) {
         self.extraHeaders = extraHeaders
     }
-
 }

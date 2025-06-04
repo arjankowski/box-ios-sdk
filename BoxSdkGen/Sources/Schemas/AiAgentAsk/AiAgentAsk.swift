@@ -25,10 +25,10 @@ public class AiAgentAsk: Codable {
     ///
     /// - Parameters:
     ///   - type: The type of AI agent used to handle queries.
-    ///   - longText: 
-    ///   - basicText: 
-    ///   - longTextMulti: 
-    ///   - basicTextMulti: 
+    ///   - longText:
+    ///   - basicText:
+    ///   - longTextMulti:
+    ///   - basicTextMulti:
     public init(type: AiAgentAskTypeField = AiAgentAskTypeField.aiAgentAsk, longText: AiAgentLongTextTool? = nil, basicText: AiAgentBasicTextTool? = nil, longTextMulti: AiAgentLongTextTool? = nil, basicTextMulti: AiAgentBasicTextTool? = nil) {
         self.type = type
         self.longText = longText
@@ -37,7 +37,7 @@ public class AiAgentAsk: Codable {
         self.basicTextMulti = basicTextMulti
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         type = try container.decode(AiAgentAskTypeField.self, forKey: .type)
         longText = try container.decodeIfPresent(AiAgentLongTextTool.self, forKey: .longText)
@@ -54,5 +54,4 @@ public class AiAgentAsk: Codable {
         try container.encodeIfPresent(longTextMulti, forKey: .longTextMulti)
         try container.encodeIfPresent(basicTextMulti, forKey: .basicTextMulti)
     }
-
 }

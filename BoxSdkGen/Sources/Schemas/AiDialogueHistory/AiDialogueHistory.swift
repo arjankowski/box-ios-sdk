@@ -29,7 +29,7 @@ public class AiDialogueHistory: Codable {
         self.createdAt = createdAt
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         prompt = try container.decodeIfPresent(String.self, forKey: .prompt)
         answer = try container.decodeIfPresent(String.self, forKey: .answer)
@@ -42,5 +42,4 @@ public class AiDialogueHistory: Codable {
         try container.encodeIfPresent(answer, forKey: .answer)
         try container.encodeDateTimeIfPresent(field: createdAt, forKey: .createdAt)
     }
-
 }

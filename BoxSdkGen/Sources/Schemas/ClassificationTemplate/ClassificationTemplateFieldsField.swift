@@ -19,7 +19,7 @@ public class ClassificationTemplateFieldsField: Codable {
     /// The array item type.
     public let type: ClassificationTemplateFieldsTypeField
 
-    /// Defines classifications 
+    /// Defines classifications
     /// available in the enterprise.
     public let key: ClassificationTemplateFieldsKeyField
 
@@ -35,7 +35,7 @@ public class ClassificationTemplateFieldsField: Codable {
     ///   - id: The unique ID of the field.
     ///   - options: A list of classifications available in this enterprise.
     ///   - type: The array item type.
-    ///   - key: Defines classifications 
+    ///   - key: Defines classifications
     ///     available in the enterprise.
     ///   - displayName: `Classification`
     ///   - hidden: Classifications are always visible to web and mobile users.
@@ -48,7 +48,7 @@ public class ClassificationTemplateFieldsField: Codable {
         self.hidden = hidden
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
         options = try container.decode([ClassificationTemplateFieldsOptionsField].self, forKey: .options)
@@ -67,5 +67,4 @@ public class ClassificationTemplateFieldsField: Codable {
         try container.encode(displayName, forKey: .displayName)
         try container.encodeIfPresent(hidden, forKey: .hidden)
     }
-
 }

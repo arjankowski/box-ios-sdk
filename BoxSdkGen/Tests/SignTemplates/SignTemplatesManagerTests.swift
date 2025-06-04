@@ -1,5 +1,5 @@
-import Foundation
 import BoxSdkGen
+import Foundation
 import XCTest
 
 class SignTemplatesManagerTests: XCTestCase {
@@ -21,6 +21,5 @@ class SignTemplatesManagerTests: XCTestCase {
             assert(signTemplate.name != "")
             assert(signTemplate.parentFolder!.id != "")
         }
-
     }
 }

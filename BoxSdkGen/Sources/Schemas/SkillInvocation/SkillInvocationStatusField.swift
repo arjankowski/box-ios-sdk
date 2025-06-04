@@ -9,7 +9,7 @@ public class SkillInvocationStatusField: Codable {
     }
 
     /// The state of this event.
-    /// 
+    ///
     /// * `invoked` - Triggered the skill with event details to start
     ///   applying skill on the file.
     /// * `processing` - Currently processing.
@@ -33,7 +33,7 @@ public class SkillInvocationStatusField: Codable {
     ///
     /// - Parameters:
     ///   - state: The state of this event.
-    ///     
+    ///
     ///     * `invoked` - Triggered the skill with event details to start
     ///       applying skill on the file.
     ///     * `processing` - Currently processing.
@@ -52,7 +52,7 @@ public class SkillInvocationStatusField: Codable {
         self.additionalInfo = additionalInfo
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         state = try container.decodeIfPresent(SkillInvocationStatusStateField.self, forKey: .state)
         message = try container.decodeIfPresent(String.self, forKey: .message)
@@ -67,5 +67,4 @@ public class SkillInvocationStatusField: Codable {
         try container.encodeIfPresent(errorCode, forKey: .errorCode)
         try container.encodeIfPresent(additionalInfo, forKey: .additionalInfo)
     }
-
 }

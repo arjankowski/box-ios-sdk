@@ -44,7 +44,7 @@ public class AddShareLinkToFileRequestBodySharedLinkPermissionsField: Codable {
         self.canEdit = canEdit
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         canDownload = try container.decodeIfPresent(Bool.self, forKey: .canDownload)
         canPreview = try container.decodeIfPresent(Bool.self, forKey: .canPreview)
@@ -57,5 +57,4 @@ public class AddShareLinkToFileRequestBodySharedLinkPermissionsField: Codable {
         try container.encodeIfPresent(canPreview, forKey: .canPreview)
         try container.encodeIfPresent(canEdit, forKey: .canEdit)
     }
-
 }

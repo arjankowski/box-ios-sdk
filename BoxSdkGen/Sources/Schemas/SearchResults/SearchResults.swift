@@ -51,7 +51,7 @@ public class SearchResults: Codable {
         self.entries = entries
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         totalCount = try container.decodeIfPresent(Int64.self, forKey: .totalCount)
         limit = try container.decodeIfPresent(Int64.self, forKey: .limit)
@@ -68,5 +68,4 @@ public class SearchResults: Codable {
         try container.encode(type, forKey: .type)
         try container.encodeIfPresent(entries, forKey: .entries)
     }
-
 }

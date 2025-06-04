@@ -22,7 +22,7 @@ public class WebhookMiniTargetField: Codable {
         self.type = type
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decodeIfPresent(String.self, forKey: .id)
         type = try container.decodeIfPresent(WebhookMiniTargetTypeField.self, forKey: .type)
@@ -33,5 +33,4 @@ public class WebhookMiniTargetField: Codable {
         try container.encodeIfPresent(id, forKey: .id)
         try container.encodeIfPresent(type, forKey: .type)
     }
-
 }

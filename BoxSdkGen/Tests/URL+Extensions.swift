@@ -1,6 +1,7 @@
 import Foundation
-extension URL {
-    public init(path: String) {
+
+public extension URL {
+    init(path: String) {
         self.init(string: path)!
     }
 }

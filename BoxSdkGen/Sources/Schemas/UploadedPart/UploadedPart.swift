@@ -13,7 +13,7 @@ public class UploadedPart: Codable {
         self.part = part
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         part = try container.decodeIfPresent(UploadPart.self, forKey: .part)
     }
@@ -22,5 +22,4 @@ public class UploadedPart: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(part, forKey: .part)
     }
-
 }

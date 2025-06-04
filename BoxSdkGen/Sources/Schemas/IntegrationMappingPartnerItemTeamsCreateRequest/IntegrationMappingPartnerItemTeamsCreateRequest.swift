@@ -35,7 +35,7 @@ public class IntegrationMappingPartnerItemTeamsCreateRequest: Codable {
         self.teamId = teamId
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         type = try container.decode(IntegrationMappingPartnerItemTeamsCreateRequestTypeField.self, forKey: .type)
         id = try container.decode(String.self, forKey: .id)
@@ -50,5 +50,4 @@ public class IntegrationMappingPartnerItemTeamsCreateRequest: Codable {
         try container.encode(tenantId, forKey: .tenantId)
         try container.encode(teamId, forKey: .teamId)
     }
-
 }

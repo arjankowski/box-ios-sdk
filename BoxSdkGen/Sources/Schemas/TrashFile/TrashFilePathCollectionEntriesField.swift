@@ -35,12 +35,12 @@ public class TrashFilePathCollectionEntriesField: Codable {
     public init(type: TrashFilePathCollectionEntriesTypeField? = nil, id: String? = nil, sequenceId: TriStateField<String> = nil, etag: TriStateField<String> = nil, name: String? = nil) {
         self.type = type
         self.id = id
-        self._sequenceId = CodableTriState(state: sequenceId)
-        self._etag = CodableTriState(state: etag)
+        _sequenceId = CodableTriState(state: sequenceId)
+        _etag = CodableTriState(state: etag)
         self.name = name
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         type = try container.decodeIfPresent(TrashFilePathCollectionEntriesTypeField.self, forKey: .type)
         id = try container.decodeIfPresent(String.self, forKey: .id)
@@ -57,5 +57,4 @@ public class TrashFilePathCollectionEntriesField: Codable {
         try container.encode(field: _etag.state, forKey: .etag)
         try container.encodeIfPresent(name, forKey: .name)
     }
-
 }

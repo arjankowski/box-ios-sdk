@@ -11,5 +11,4 @@ public class GetClassificationOnFolderHeaders {
     public init(extraHeaders: [String: String?]? = [:]) {
         self.extraHeaders = extraHeaders
     }
-
 }

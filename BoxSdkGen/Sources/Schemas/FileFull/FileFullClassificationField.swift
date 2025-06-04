@@ -32,7 +32,7 @@ public class FileFullClassificationField: Codable {
         self.color = color
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         name = try container.decodeIfPresent(String.self, forKey: .name)
         definition = try container.decodeIfPresent(String.self, forKey: .definition)
@@ -45,5 +45,4 @@ public class FileFullClassificationField: Codable {
         try container.encodeIfPresent(definition, forKey: .definition)
         try container.encodeIfPresent(color, forKey: .color)
     }
-
 }

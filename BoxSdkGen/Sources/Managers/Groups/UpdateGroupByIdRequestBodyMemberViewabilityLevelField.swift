@@ -27,9 +27,8 @@ public enum UpdateGroupByIdRequestBodyMemberViewabilityLevelField: CodableString
             return "admins_and_members"
         case .allManagedUsers:
             return "all_managed_users"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

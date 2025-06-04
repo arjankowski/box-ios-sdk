@@ -22,9 +22,8 @@ public enum PostOAuth2TokenBoxSubjectTypeField: CodableStringEnum {
             return "enterprise"
         case .user:
             return "user"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

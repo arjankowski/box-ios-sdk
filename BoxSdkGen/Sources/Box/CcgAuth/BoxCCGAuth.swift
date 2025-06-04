@@ -19,9 +19,9 @@ public class BoxCCGAuth: Authentication {
     ///   - config: Configuration object of Client Credentials Grant auth.
     public init(config: CCGConfig) {
         self.config = config
-        self.tokenStorage = self.config.tokenStorage
-        self.subjectId = self.config.userId != nil ? self.config.userId : self.config.enterpriseId
-        self.subjectType = self.config.userId != nil ? PostOAuth2TokenBoxSubjectTypeField.user : PostOAuth2TokenBoxSubjectTypeField.enterprise
+        tokenStorage = self.config.tokenStorage
+        subjectId = self.config.userId != nil ? self.config.userId : self.config.enterpriseId
+        subjectType = self.config.userId != nil ? PostOAuth2TokenBoxSubjectTypeField.user : PostOAuth2TokenBoxSubjectTypeField.enterprise
     }
 
     /// Get a new access token using CCG auth
@@ -32,8 +32,8 @@ public class BoxCCGAuth: Authentication {
     /// - Throws: The `GeneralError`.
     public func refreshToken(networkSession: NetworkSession? = nil) async throws -> AccessToken {
         let authManager: AuthorizationManager = AuthorizationManager(networkSession: networkSession != nil ? networkSession! : NetworkSession())
-        let token: AccessToken = try await authManager.requestAccessToken(requestBody: PostOAuth2Token(grantType: PostOAuth2TokenGrantTypeField.clientCredentials, clientId: self.config.clientId, clientSecret: self.config.clientSecret, boxSubjectType: self.subjectType, boxSubjectId: self.subjectId))
-        try await self.tokenStorage.store(token: token)
+        let token: AccessToken = try await authManager.requestAccessToken(requestBody: PostOAuth2Token(grantType: PostOAuth2TokenGrantTypeField.clientCredentials, clientId: config.clientId, clientSecret: config.clientSecret, boxSubjectType: subjectType, boxSubjectId: subjectId))
+        try await tokenStorage.store(token: token)
         return token
     }
 
@@ -44,9 +44,9 @@ public class BoxCCGAuth: Authentication {
     /// - Returns: The `AccessToken`.
     /// - Throws: The `GeneralError`.
     public func retrieveToken(networkSession: NetworkSession? = nil) async throws -> AccessToken {
-        let oldToken: AccessToken? = try await self.tokenStorage.get()
+        let oldToken: AccessToken? = try await tokenStorage.get()
         if oldToken == nil {
-            let newToken: AccessToken = try await self.refreshToken(networkSession: networkSession)
+            let newToken: AccessToken = try await refreshToken(networkSession: networkSession)
             return newToken
         }
 
@@ -54,7 +54,7 @@ public class BoxCCGAuth: Authentication {
     }
 
     public func retrieveAuthorizationHeader(networkSession: NetworkSession? = nil) async throws -> String {
-        let token: AccessToken = try await self.retrieveToken(networkSession: networkSession)
+        let token: AccessToken = try await retrieveToken(networkSession: networkSession)
         return "\("Bearer ")\(token.accessToken!)"
     }
 
@@ -68,7 +68,7 @@ public class BoxCCGAuth: Authentication {
     ///   - tokenStorage: Object responsible for storing token in newly created BoxCCGAuth. If no custom implementation provided, the token will be stored in memory.
     /// - Returns: The `BoxCCGAuth`.
     public func withUserSubject(userId: String, tokenStorage: TokenStorage = InMemoryTokenStorage()) -> BoxCCGAuth {
-        let newConfig: CCGConfig = CCGConfig(clientId: self.config.clientId, clientSecret: self.config.clientSecret, enterpriseId: self.config.enterpriseId, userId: userId, tokenStorage: tokenStorage)
+        let newConfig: CCGConfig = CCGConfig(clientId: config.clientId, clientSecret: config.clientSecret, enterpriseId: config.enterpriseId, userId: userId, tokenStorage: tokenStorage)
         return BoxCCGAuth(config: newConfig)
     }
 
@@ -79,7 +79,7 @@ public class BoxCCGAuth: Authentication {
     ///   - tokenStorage: Object responsible for storing token in newly created BoxCCGAuth. If no custom implementation provided, the token will be stored in memory.
     /// - Returns: The `BoxCCGAuth`.
     public func withEnterpriseSubject(enterpriseId: String, tokenStorage: TokenStorage = InMemoryTokenStorage()) -> BoxCCGAuth {
-        let newConfig: CCGConfig = CCGConfig(clientId: self.config.clientId, clientSecret: self.config.clientSecret, enterpriseId: enterpriseId, userId: nil, tokenStorage: tokenStorage)
+        let newConfig: CCGConfig = CCGConfig(clientId: config.clientId, clientSecret: config.clientSecret, enterpriseId: enterpriseId, userId: nil, tokenStorage: tokenStorage)
         return BoxCCGAuth(config: newConfig)
     }
 
@@ -93,7 +93,7 @@ public class BoxCCGAuth: Authentication {
     /// - Returns: The `AccessToken`.
     /// - Throws: The `GeneralError`.
     public func downscopeToken(scopes: [String], resource: String? = nil, sharedLink: String? = nil, networkSession: NetworkSession? = nil) async throws -> AccessToken {
-        let token: AccessToken? = try await self.tokenStorage.get()
+        let token: AccessToken? = try await tokenStorage.get()
         if token == nil {
             throw BoxSDKError(message: "No access token is available. Make an API call to retrieve a token before calling this method.")
         }
@@ -109,14 +109,13 @@ public class BoxCCGAuth: Authentication {
     ///   - networkSession: An object to keep network session state
     /// - Throws: The `GeneralError`.
     public func revokeToken(networkSession: NetworkSession? = nil) async throws {
-        let oldToken: AccessToken? = try await self.tokenStorage.get()
+        let oldToken: AccessToken? = try await tokenStorage.get()
         if oldToken == nil {
             return
         }
 
         let authManager: AuthorizationManager = AuthorizationManager(networkSession: networkSession != nil ? networkSession! : NetworkSession())
-        try await authManager.revokeAccessToken(requestBody: PostOAuth2Revoke(clientId: self.config.clientId, clientSecret: self.config.clientSecret, token: oldToken!.accessToken))
-        try await self.tokenStorage.clear()
+        try await authManager.revokeAccessToken(requestBody: PostOAuth2Revoke(clientId: config.clientId, clientSecret: config.clientSecret, token: oldToken!.accessToken))
+        try await tokenStorage.clear()
     }
-
 }

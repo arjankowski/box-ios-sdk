@@ -17,9 +17,8 @@ public enum DocGenBatchBaseV2025R0TypeField: CodableStringEnum {
         switch self {
         case .docgenBatch:
             return "docgen_batch"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

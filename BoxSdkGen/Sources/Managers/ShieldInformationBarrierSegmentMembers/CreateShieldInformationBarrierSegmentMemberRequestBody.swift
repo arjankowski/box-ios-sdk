@@ -27,7 +27,7 @@ public class CreateShieldInformationBarrierSegmentMemberRequestBody: Codable {
     ///     requested shield information barrier segment.
     ///   - user: User to which restriction will be applied.
     ///   - type: -| A type of the shield barrier segment member.
-    ///   - shieldInformationBarrier: 
+    ///   - shieldInformationBarrier:
     public init(shieldInformationBarrierSegment: CreateShieldInformationBarrierSegmentMemberRequestBodyShieldInformationBarrierSegmentField, user: UserBase, type: CreateShieldInformationBarrierSegmentMemberRequestBodyTypeField? = nil, shieldInformationBarrier: ShieldInformationBarrierBase? = nil) {
         self.shieldInformationBarrierSegment = shieldInformationBarrierSegment
         self.user = user
@@ -35,7 +35,7 @@ public class CreateShieldInformationBarrierSegmentMemberRequestBody: Codable {
         self.shieldInformationBarrier = shieldInformationBarrier
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         shieldInformationBarrierSegment = try container.decode(CreateShieldInformationBarrierSegmentMemberRequestBodyShieldInformationBarrierSegmentField.self, forKey: .shieldInformationBarrierSegment)
         user = try container.decode(UserBase.self, forKey: .user)
@@ -50,5 +50,4 @@ public class CreateShieldInformationBarrierSegmentMemberRequestBody: Codable {
         try container.encodeIfPresent(type, forKey: .type)
         try container.encodeIfPresent(shieldInformationBarrier, forKey: .shieldInformationBarrier)
     }
-
 }

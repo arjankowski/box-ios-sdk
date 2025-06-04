@@ -17,9 +17,8 @@ public enum DocGenBatchCreateRequestV2025R0DestinationFolderTypeField: CodableSt
         switch self {
         case .folder:
             return "folder"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

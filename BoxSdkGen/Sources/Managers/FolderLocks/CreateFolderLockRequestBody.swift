@@ -26,7 +26,7 @@ public class CreateFolderLockRequestBody: Codable {
         self.lockedOperations = lockedOperations
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         folder = try container.decode(CreateFolderLockRequestBodyFolderField.self, forKey: .folder)
         lockedOperations = try container.decodeIfPresent(CreateFolderLockRequestBodyLockedOperationsField.self, forKey: .lockedOperations)
@@ -37,5 +37,4 @@ public class CreateFolderLockRequestBody: Codable {
         try container.encode(folder, forKey: .folder)
         try container.encodeIfPresent(lockedOperations, forKey: .lockedOperations)
     }
-
 }

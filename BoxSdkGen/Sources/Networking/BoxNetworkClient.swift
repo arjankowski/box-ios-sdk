@@ -1,6 +1,6 @@
 import Foundation
 #if canImport(FoundationNetworking)
-import FoundationNetworking
+    import FoundationNetworking
 #endif
 
 /// Networking layer interface
@@ -8,7 +8,7 @@ public class BoxNetworkClient: NetworkClient {
 
     private let utilityQueue = DispatchQueue.global(qos: .utility)
 
-    public init(){}
+    public init() {}
 
     /// Executes requests
     ///
@@ -56,8 +56,9 @@ public class BoxNetworkClient: NetworkClient {
             let (downloadUrl, urlResponse) = try await sendDownloadRequest(urlRequest, downloadDestinationURL: downloadDestinationUrl, networkSession: networkSession)
             let conversation = FetchConversation(options: options, urlRequest: urlRequest, urlResponse: urlResponse as! HTTPURLResponse, responseType: .url(downloadUrl))
             return try await processResponse(using: conversation, networkSession: networkSession, attempt: attempt)
-        } else {
-            let (data, urlResponse) =  try await sendDataRequest(urlRequest, networkSession: networkSession)
+        }
+        else {
+            let (data, urlResponse) = try await sendDataRequest(urlRequest, networkSession: networkSession)
             let conversation = FetchConversation(options: options, urlRequest: urlRequest, urlResponse: urlResponse as! HTTPURLResponse, responseType: .data(data))
             return try await processResponse(using: conversation, networkSession: networkSession, attempt: attempt)
         }
@@ -158,14 +159,16 @@ public class BoxNetworkClient: NetworkClient {
 
         if let fileStream = options.fileStream {
             urlRequest.httpBodyStream = fileStream
-        } else if let multipartData = options.multipartData {
+        }
+        else if let multipartData = options.multipartData {
             try updateRequestWithMultipartData(&urlRequest, multipartData: multipartData)
         }
 
         if let serializedData = options.data {
             if HTTPHeaderContentTypeValue.urlEncoded == options.contentType {
-                urlRequest.httpBody = (try serializedData.toUrlParams()).data(using: .utf8)
-            } else {
+                urlRequest.httpBody = try (serializedData.toUrlParams()).data(using: .utf8)
+            }
+            else {
                 urlRequest.httpBody = try serializedData.toJson()
             }
         }
@@ -224,8 +227,9 @@ public class BoxNetworkClient: NetworkClient {
         let boundary = "Boundary-\(UUID().uuidString)"
         for part in multipartData {
             if let body = part.data {
-                parameters[part.partName] = Utils.Strings.from(data: try body.toJson())
-            } else if let fileStream = part.fileStream {
+                parameters[part.partName] = try Utils.Strings.from(data: body.toJson())
+            }
+            else if let fileStream = part.fileStream {
                 let unwrapFileName = part.fileName ?? ""
                 let unwrapMimeType = part.contentType ?? ""
 
@@ -323,7 +327,7 @@ public class BoxNetworkClient: NetworkClient {
         }
 
         // Unauthorized
-        if statusCode == 401, let auth = conversation.options.auth  {
+        if statusCode == 401, let auth = conversation.options.auth {
             _ = try await auth.refreshToken(networkSession: networkSession)
             return try await fetch(options: conversation.options, networkSession: networkSession, attempt: attempt + 1)
         }
@@ -331,7 +335,7 @@ public class BoxNetworkClient: NetworkClient {
         // Retryable
         if statusCode == 429 || statusCode >= 500 || isStatusCodeAcceptedWithRetryAfterHeader {
             let retryTimeout = Double(conversation.urlResponse.value(forHTTPHeaderField: HTTPHeaderKey.retryAfter) ?? "")
-            ?? networkSession.networkSettings.retryStrategy.getRetryTimeout(attempt: attempt)
+                ?? networkSession.networkSettings.retryStrategy.getRetryTimeout(attempt: attempt)
             try await wait(seconds: retryTimeout)
 
             return try await fetch(options: conversation.options, networkSession: networkSession, attempt: attempt + 1)

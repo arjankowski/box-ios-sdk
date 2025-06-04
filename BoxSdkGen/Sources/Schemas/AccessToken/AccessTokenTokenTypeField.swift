@@ -17,9 +17,8 @@ public enum AccessTokenTokenTypeField: CodableStringEnum {
         switch self {
         case .bearer:
             return "bearer"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

@@ -11,5 +11,4 @@ public class CreateMetadataTemplateHeaders {
     public init(extraHeaders: [String: String?]? = [:]) {
         self.extraHeaders = extraHeaders
     }
-
 }

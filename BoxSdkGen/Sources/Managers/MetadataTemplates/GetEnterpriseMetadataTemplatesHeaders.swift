@@ -11,5 +11,4 @@ public class GetEnterpriseMetadataTemplatesHeaders {
     public init(extraHeaders: [String: String?]? = [:]) {
         self.extraHeaders = extraHeaders
     }
-
 }

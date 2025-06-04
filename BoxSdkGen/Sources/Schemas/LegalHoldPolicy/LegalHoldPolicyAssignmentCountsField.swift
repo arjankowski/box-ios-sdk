@@ -34,7 +34,7 @@ public class LegalHoldPolicyAssignmentCountsField: Codable {
         self.fileVersion = fileVersion
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         user = try container.decodeIfPresent(Int64.self, forKey: .user)
         folder = try container.decodeIfPresent(Int64.self, forKey: .folder)
@@ -49,5 +49,4 @@ public class LegalHoldPolicyAssignmentCountsField: Codable {
         try container.encodeIfPresent(file, forKey: .file)
         try container.encodeIfPresent(fileVersion, forKey: .fileVersion)
     }
-
 }

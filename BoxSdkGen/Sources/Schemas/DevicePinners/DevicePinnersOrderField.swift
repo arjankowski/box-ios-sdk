@@ -22,7 +22,7 @@ public class DevicePinnersOrderField: Codable {
         self.direction = direction
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         by = try container.decodeIfPresent(DevicePinnersOrderByField.self, forKey: .by)
         direction = try container.decodeIfPresent(DevicePinnersOrderDirectionField.self, forKey: .direction)
@@ -33,5 +33,4 @@ public class DevicePinnersOrderField: Codable {
         try container.encodeIfPresent(by, forKey: .by)
         try container.encodeIfPresent(direction, forKey: .direction)
     }
-
 }

@@ -2,7 +2,7 @@ import Foundation
 
 /// Web links are objects that point to URLs. These objects
 /// are also known as bookmarks within the Box web application.
-/// 
+///
 /// Web link objects are treated similarly to file objects,
 /// they will also support most actions that apply to regular files.
 public class WebLinkBase: Codable {
@@ -35,7 +35,7 @@ public class WebLinkBase: Codable {
         self.etag = etag
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
         type = try container.decode(WebLinkBaseTypeField.self, forKey: .type)
@@ -48,5 +48,4 @@ public class WebLinkBase: Codable {
         try container.encode(type, forKey: .type)
         try container.encodeIfPresent(etag, forKey: .etag)
     }
-
 }

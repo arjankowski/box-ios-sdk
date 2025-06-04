@@ -26,7 +26,7 @@ public class AiResponse: Codable {
     ///   - answer: The answer provided by the LLM.
     ///   - createdAt: The ISO date formatted timestamp of when the answer to the prompt was created.
     ///   - completionReason: The reason the response finishes.
-    ///   - aiAgentInfo: 
+    ///   - aiAgentInfo:
     public init(answer: String, createdAt: Date, completionReason: String? = nil, aiAgentInfo: AiAgentInfo? = nil) {
         self.answer = answer
         self.createdAt = createdAt
@@ -34,7 +34,7 @@ public class AiResponse: Codable {
         self.aiAgentInfo = aiAgentInfo
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         answer = try container.decode(String.self, forKey: .answer)
         createdAt = try container.decodeDateTime(forKey: .createdAt)
@@ -49,5 +49,4 @@ public class AiResponse: Codable {
         try container.encodeIfPresent(completionReason, forKey: .completionReason)
         try container.encodeIfPresent(aiAgentInfo, forKey: .aiAgentInfo)
     }
-
 }

@@ -36,16 +36,16 @@ public class ShieldInformationBarrierSegmentMember: ShieldInformationBarrierSegm
     ///   - id: The unique identifier for the
     ///     shield information barrier segment member
     ///   - type: The type of the shield information barrier segment member
-    ///   - user: 
-    ///   - shieldInformationBarrier: 
+    ///   - user:
+    ///   - shieldInformationBarrier:
     ///   - shieldInformationBarrierSegment: The `type` and `id` of the requested
     ///     shield information barrier segment.
     ///   - createdAt: ISO date time string when this shield
     ///     information barrier object was created.
-    ///   - createdBy: 
+    ///   - createdBy:
     ///   - updatedAt: ISO date time string when this
     ///     shield information barrier segment Member was updated.
-    ///   - updatedBy: 
+    ///   - updatedBy:
     public init(id: String? = nil, type: ShieldInformationBarrierSegmentMemberBaseTypeField? = nil, user: UserBase? = nil, shieldInformationBarrier: ShieldInformationBarrierBase? = nil, shieldInformationBarrierSegment: ShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentField? = nil, createdAt: Date? = nil, createdBy: UserBase? = nil, updatedAt: Date? = nil, updatedBy: UserBase? = nil) {
         self.shieldInformationBarrier = shieldInformationBarrier
         self.shieldInformationBarrierSegment = shieldInformationBarrierSegment
@@ -57,7 +57,7 @@ public class ShieldInformationBarrierSegmentMember: ShieldInformationBarrierSegm
         super.init(id: id, type: type, user: user)
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         shieldInformationBarrier = try container.decodeIfPresent(ShieldInformationBarrierBase.self, forKey: .shieldInformationBarrier)
         shieldInformationBarrierSegment = try container.decodeIfPresent(ShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentField.self, forKey: .shieldInformationBarrierSegment)
@@ -69,7 +69,7 @@ public class ShieldInformationBarrierSegmentMember: ShieldInformationBarrierSegm
         try super.init(from: decoder)
     }
 
-    public override func encode(to encoder: Encoder) throws {
+    override public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(shieldInformationBarrier, forKey: .shieldInformationBarrier)
         try container.encodeIfPresent(shieldInformationBarrierSegment, forKey: .shieldInformationBarrierSegment)
@@ -79,5 +79,4 @@ public class ShieldInformationBarrierSegmentMember: ShieldInformationBarrierSegm
         try container.encodeIfPresent(updatedBy, forKey: .updatedBy)
         try super.encode(to: encoder)
     }
-
 }

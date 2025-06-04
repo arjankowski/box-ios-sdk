@@ -122,21 +122,21 @@ public class SignRequestCreateSigner: Codable {
     ///     instead for signers in the same signer group.
     ///   - suppressNotifications: If true, no emails about the sign request will be sent
     public init(email: TriStateField<String> = nil, role: SignRequestCreateSignerRoleField? = nil, isInPerson: Bool? = nil, order: Int64? = nil, embedUrlExternalUserId: TriStateField<String> = nil, redirectUrl: TriStateField<String> = nil, declinedRedirectUrl: TriStateField<String> = nil, loginRequired: TriStateField<Bool> = nil, verificationPhoneNumber: TriStateField<String> = nil, password: TriStateField<String> = nil, signerGroupId: TriStateField<String> = nil, suppressNotifications: TriStateField<Bool> = nil) {
-        self._email = CodableTriState(state: email)
+        _email = CodableTriState(state: email)
         self.role = role
         self.isInPerson = isInPerson
         self.order = order
-        self._embedUrlExternalUserId = CodableTriState(state: embedUrlExternalUserId)
-        self._redirectUrl = CodableTriState(state: redirectUrl)
-        self._declinedRedirectUrl = CodableTriState(state: declinedRedirectUrl)
-        self._loginRequired = CodableTriState(state: loginRequired)
-        self._verificationPhoneNumber = CodableTriState(state: verificationPhoneNumber)
-        self._password = CodableTriState(state: password)
-        self._signerGroupId = CodableTriState(state: signerGroupId)
-        self._suppressNotifications = CodableTriState(state: suppressNotifications)
+        _embedUrlExternalUserId = CodableTriState(state: embedUrlExternalUserId)
+        _redirectUrl = CodableTriState(state: redirectUrl)
+        _declinedRedirectUrl = CodableTriState(state: declinedRedirectUrl)
+        _loginRequired = CodableTriState(state: loginRequired)
+        _verificationPhoneNumber = CodableTriState(state: verificationPhoneNumber)
+        _password = CodableTriState(state: password)
+        _signerGroupId = CodableTriState(state: signerGroupId)
+        _suppressNotifications = CodableTriState(state: suppressNotifications)
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         email = try container.decodeIfPresent(String.self, forKey: .email)
         role = try container.decodeIfPresent(SignRequestCreateSignerRoleField.self, forKey: .role)
@@ -167,5 +167,4 @@ public class SignRequestCreateSigner: Codable {
         try container.encode(field: _signerGroupId.state, forKey: .signerGroupId)
         try container.encode(field: _suppressNotifications.state, forKey: .suppressNotifications)
     }
-
 }

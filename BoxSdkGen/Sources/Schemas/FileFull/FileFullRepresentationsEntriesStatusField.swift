@@ -6,7 +6,7 @@ public class FileFullRepresentationsEntriesStatusField: Codable {
     }
 
     /// The status of the representation.
-    /// 
+    ///
     /// * `success` defines the representation as ready to be viewed.
     /// * `viewable` defines a video to be ready for viewing.
     /// * `pending` defines the representation as to be generated. Retry
@@ -20,7 +20,7 @@ public class FileFullRepresentationsEntriesStatusField: Codable {
     ///
     /// - Parameters:
     ///   - state: The status of the representation.
-    ///     
+    ///
     ///     * `success` defines the representation as ready to be viewed.
     ///     * `viewable` defines a video to be ready for viewing.
     ///     * `pending` defines the representation as to be generated. Retry
@@ -32,7 +32,7 @@ public class FileFullRepresentationsEntriesStatusField: Codable {
         self.state = state
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         state = try container.decodeIfPresent(FileFullRepresentationsEntriesStatusStateField.self, forKey: .state)
     }
@@ -41,5 +41,4 @@ public class FileFullRepresentationsEntriesStatusField: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(state, forKey: .state)
     }
-
 }

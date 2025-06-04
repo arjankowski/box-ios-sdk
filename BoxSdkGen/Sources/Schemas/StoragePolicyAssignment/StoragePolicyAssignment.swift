@@ -24,8 +24,8 @@ public class StoragePolicyAssignment: Codable {
     /// - Parameters:
     ///   - id: The unique identifier for a storage policy assignment.
     ///   - type: `storage_policy_assignment`
-    ///   - storagePolicy: 
-    ///   - assignedTo: 
+    ///   - storagePolicy:
+    ///   - assignedTo:
     public init(id: String, type: StoragePolicyAssignmentTypeField = StoragePolicyAssignmentTypeField.storagePolicyAssignment, storagePolicy: StoragePolicyMini? = nil, assignedTo: StoragePolicyAssignmentAssignedToField? = nil) {
         self.id = id
         self.type = type
@@ -33,7 +33,7 @@ public class StoragePolicyAssignment: Codable {
         self.assignedTo = assignedTo
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
         type = try container.decode(StoragePolicyAssignmentTypeField.self, forKey: .type)
@@ -48,5 +48,4 @@ public class StoragePolicyAssignment: Codable {
         try container.encodeIfPresent(storagePolicy, forKey: .storagePolicy)
         try container.encodeIfPresent(assignedTo, forKey: .assignedTo)
     }
-
 }

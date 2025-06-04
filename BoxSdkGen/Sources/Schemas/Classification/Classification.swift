@@ -2,7 +2,7 @@ import Foundation
 
 /// An instance of the classification metadata template, containing
 /// the classification applied to the file or folder.
-/// 
+///
 /// To get more details about the classification applied to an item,
 /// request the classification metadata template.
 public class Classification: Codable {
@@ -30,7 +30,7 @@ public class Classification: Codable {
 
     /// The scope of the enterprise that this classification has been
     /// applied for.
-    /// 
+    ///
     /// This will be in the format `enterprise_{enterprise_id}`.
     public let scope: String?
 
@@ -60,7 +60,7 @@ public class Classification: Codable {
     ///   - template: `securityClassification-6VMVochwUWo`
     ///   - scope: The scope of the enterprise that this classification has been
     ///     applied for.
-    ///     
+    ///
     ///     This will be in the format `enterprise_{enterprise_id}`.
     ///   - version: The version of the metadata instance. This version starts at 0 and
     ///     increases every time a classification is updated.
@@ -81,7 +81,7 @@ public class Classification: Codable {
         self.canEdit = canEdit
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         boxSecurityClassificationKey = try container.decodeIfPresent(String.self, forKey: .boxSecurityClassificationKey)
         parent = try container.decodeIfPresent(String.self, forKey: .parent)
@@ -104,5 +104,4 @@ public class Classification: Codable {
         try container.encodeIfPresent(typeVersion, forKey: .typeVersion)
         try container.encodeIfPresent(canEdit, forKey: .canEdit)
     }
-
 }

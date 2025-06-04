@@ -16,7 +16,7 @@ public class UpdateFolderWatermarkRequestBody: Codable {
         self.watermark = watermark
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         watermark = try container.decode(UpdateFolderWatermarkRequestBodyWatermarkField.self, forKey: .watermark)
     }
@@ -25,5 +25,4 @@ public class UpdateFolderWatermarkRequestBody: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(watermark, forKey: .watermark)
     }
-
 }

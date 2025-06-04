@@ -30,7 +30,7 @@ public class UpdateRetentionPolicyByIdRequestBody: Codable {
     public let dispositionAction: String?
 
     /// Specifies the retention type:
-    /// 
+    ///
     /// * `modifiable`: You can modify the retention policy. For example,
     /// you can add or remove folders, shorten or lengthen
     /// the policy duration, or delete the assignment.
@@ -43,7 +43,7 @@ public class UpdateRetentionPolicyByIdRequestBody: Codable {
     /// such as deleting the assignment or shortening the
     /// policy duration. Use this type to ensure
     /// compliance with regulatory retention policies.
-    /// 
+    ///
     /// When updating a retention policy, you can use
     /// `non-modifiable` type only. You can convert a
     /// `modifiable` policy to `non-modifiable`, but
@@ -59,7 +59,7 @@ public class UpdateRetentionPolicyByIdRequestBody: Codable {
     public let retentionLength: String?
 
     /// Used to retire a retention policy.
-    /// 
+    ///
     /// If not retiring a policy, do not include this parameter
     /// or set it to `null`.
     @CodableTriState public private(set) var status: String?
@@ -91,7 +91,7 @@ public class UpdateRetentionPolicyByIdRequestBody: Codable {
     ///     once the retention policy has expired.
     ///     You can use `null` if you don't want to change `disposition_action`.
     ///   - retentionType: Specifies the retention type:
-    ///     
+    ///
     ///     * `modifiable`: You can modify the retention policy. For example,
     ///     you can add or remove folders, shorten or lengthen
     ///     the policy duration, or delete the assignment.
@@ -104,7 +104,7 @@ public class UpdateRetentionPolicyByIdRequestBody: Codable {
     ///     such as deleting the assignment or shortening the
     ///     policy duration. Use this type to ensure
     ///     compliance with regulatory retention policies.
-    ///     
+    ///
     ///     When updating a retention policy, you can use
     ///     `non-modifiable` type only. You can convert a
     ///     `modifiable` policy to `non-modifiable`, but
@@ -116,7 +116,7 @@ public class UpdateRetentionPolicyByIdRequestBody: Codable {
     ///     `indefinite`, the `retention_length` will also be
     ///     `indefinite`.
     ///   - status: Used to retire a retention policy.
-    ///     
+    ///
     ///     If not retiring a policy, do not include this parameter
     ///     or set it to `null`.
     ///   - canOwnerExtendRetention: Determines if the owner of items under the policy
@@ -127,18 +127,18 @@ public class UpdateRetentionPolicyByIdRequestBody: Codable {
     ///     the retention duration is about to end.
     ///   - customNotificationRecipients: A list of users notified when the retention duration is about to end.
     public init(policyName: TriStateField<String> = nil, description: TriStateField<String> = nil, dispositionAction: String? = nil, retentionType: TriStateField<String> = nil, retentionLength: String? = nil, status: TriStateField<String> = nil, canOwnerExtendRetention: TriStateField<Bool> = nil, areOwnersNotified: TriStateField<Bool> = nil, customNotificationRecipients: TriStateField<[UserBase]> = nil) {
-        self._policyName = CodableTriState(state: policyName)
-        self._description = CodableTriState(state: description)
+        _policyName = CodableTriState(state: policyName)
+        _description = CodableTriState(state: description)
         self.dispositionAction = dispositionAction
-        self._retentionType = CodableTriState(state: retentionType)
+        _retentionType = CodableTriState(state: retentionType)
         self.retentionLength = retentionLength
-        self._status = CodableTriState(state: status)
-        self._canOwnerExtendRetention = CodableTriState(state: canOwnerExtendRetention)
-        self._areOwnersNotified = CodableTriState(state: areOwnersNotified)
-        self._customNotificationRecipients = CodableTriState(state: customNotificationRecipients)
+        _status = CodableTriState(state: status)
+        _canOwnerExtendRetention = CodableTriState(state: canOwnerExtendRetention)
+        _areOwnersNotified = CodableTriState(state: areOwnersNotified)
+        _customNotificationRecipients = CodableTriState(state: customNotificationRecipients)
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         policyName = try container.decodeIfPresent(String.self, forKey: .policyName)
         description = try container.decodeIfPresent(String.self, forKey: .description)
@@ -163,5 +163,4 @@ public class UpdateRetentionPolicyByIdRequestBody: Codable {
         try container.encode(field: _areOwnersNotified.state, forKey: .areOwnersNotified)
         try container.encode(field: _customNotificationRecipients.state, forKey: .customNotificationRecipients)
     }
-
 }

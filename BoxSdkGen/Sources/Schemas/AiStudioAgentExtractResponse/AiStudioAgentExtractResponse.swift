@@ -34,18 +34,18 @@ public class AiStudioAgentExtractResponse: Codable {
     ///   - description: The description of the AI Agent.
     ///   - type: The type of AI agent to be used for extraction.
     ///   - customInstructions: Custom instructions for the agent.
-    ///   - longText: 
-    ///   - basicText: 
+    ///   - longText:
+    ///   - basicText:
     public init(accessState: String, description: String, type: AiStudioAgentExtractResponseTypeField = AiStudioAgentExtractResponseTypeField.aiAgentExtract, customInstructions: TriStateField<String> = nil, longText: AiStudioAgentLongTextToolResponse? = nil, basicText: AiStudioAgentBasicTextToolResponse? = nil) {
         self.accessState = accessState
         self.description = description
         self.type = type
-        self._customInstructions = CodableTriState(state: customInstructions)
+        _customInstructions = CodableTriState(state: customInstructions)
         self.longText = longText
         self.basicText = basicText
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         accessState = try container.decode(String.self, forKey: .accessState)
         description = try container.decode(String.self, forKey: .description)
@@ -64,5 +64,4 @@ public class AiStudioAgentExtractResponse: Codable {
         try container.encodeIfPresent(longText, forKey: .longText)
         try container.encodeIfPresent(basicText, forKey: .basicText)
     }
-
 }

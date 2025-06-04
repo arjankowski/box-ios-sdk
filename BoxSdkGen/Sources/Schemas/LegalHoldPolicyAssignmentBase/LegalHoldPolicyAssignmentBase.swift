@@ -2,7 +2,7 @@ import Foundation
 
 /// Legal Hold Assignments are used to assign Legal Hold
 /// Policies to Users, Folders, Files, or File Versions.
-/// 
+///
 /// Creating a Legal Hold Assignment puts a hold
 /// on the File-Versions that belong to the Assignment's
 /// 'apply-to' entity.
@@ -28,7 +28,7 @@ public class LegalHoldPolicyAssignmentBase: Codable {
         self.type = type
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decodeIfPresent(String.self, forKey: .id)
         type = try container.decodeIfPresent(LegalHoldPolicyAssignmentBaseTypeField.self, forKey: .type)
@@ -39,5 +39,4 @@ public class LegalHoldPolicyAssignmentBase: Codable {
         try container.encodeIfPresent(id, forKey: .id)
         try container.encodeIfPresent(type, forKey: .type)
     }
-
 }

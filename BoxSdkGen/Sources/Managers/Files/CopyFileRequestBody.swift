@@ -11,7 +11,7 @@ public class CopyFileRequestBody: Codable {
     public let parent: CopyFileRequestBodyParentField
 
     /// An optional new name for the copied file.
-    /// 
+    ///
     /// There are some restrictions to the file name. Names containing
     /// non-printable ASCII characters, forward and backward slashes
     /// (`/`, `\`), and protected names like `.` and `..` are
@@ -27,7 +27,7 @@ public class CopyFileRequestBody: Codable {
     /// - Parameters:
     ///   - parent: The destination folder to copy the file to.
     ///   - name: An optional new name for the copied file.
-    ///     
+    ///
     ///     There are some restrictions to the file name. Names containing
     ///     non-printable ASCII characters, forward and backward slashes
     ///     (`/`, `\`), and protected names like `.` and `..` are
@@ -40,7 +40,7 @@ public class CopyFileRequestBody: Codable {
         self.version = version
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         parent = try container.decode(CopyFileRequestBodyParentField.self, forKey: .parent)
         name = try container.decodeIfPresent(String.self, forKey: .name)
@@ -53,5 +53,4 @@ public class CopyFileRequestBody: Codable {
         try container.encodeIfPresent(name, forKey: .name)
         try container.encodeIfPresent(version, forKey: .version)
     }
-
 }

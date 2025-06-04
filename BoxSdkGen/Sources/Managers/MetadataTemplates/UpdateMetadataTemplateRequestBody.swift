@@ -74,7 +74,7 @@ public class UpdateMetadataTemplateRequestBody: Codable {
         self.multiSelectOptionKeys = multiSelectOptionKeys
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         op = try container.decode(UpdateMetadataTemplateRequestBodyOpField.self, forKey: .op)
         data = try container.decodeIfPresent([String: AnyCodable].self, forKey: .data)
@@ -97,5 +97,4 @@ public class UpdateMetadataTemplateRequestBody: Codable {
         try container.encodeIfPresent(multiSelectOptionKey, forKey: .multiSelectOptionKey)
         try container.encodeIfPresent(multiSelectOptionKeys, forKey: .multiSelectOptionKeys)
     }
-
 }

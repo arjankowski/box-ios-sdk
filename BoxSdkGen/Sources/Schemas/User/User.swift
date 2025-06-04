@@ -3,16 +3,14 @@ import Foundation
 /// A standard representation of a user, as returned from any
 /// user API endpoints by default
 public class User: UserMini, RawJSONStorage {
-    func setRawData(_ rawData: [String : Any]?) {
-        
-    }
-    
-    var abc:[String: Any]? = nil
+    func setRawData(_: [String: Any]?) {}
+
+    var abc: [String: Any]? = nil
     private var _rawData: [String: Any]?
     public var rawData: [String: Any]? {
         return _rawData
     }
-    
+
     private enum CodingKeys: String, CodingKey {
         case createdAt = "created_at"
         case modifiedAt = "modified_at"
@@ -109,12 +107,12 @@ public class User: UserMini, RawJSONStorage {
         self.phone = phone
         self.address = address
         self.avatarUrl = avatarUrl
-        self._notificationEmail = CodableTriState(state: notificationEmail)
+        _notificationEmail = CodableTriState(state: notificationEmail)
 
         super.init(id: id, type: type, name: name, login: login)
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         createdAt = try container.decodeDateTimeIfPresent(forKey: .createdAt)
         modifiedAt = try container.decodeDateTimeIfPresent(forKey: .modifiedAt)
@@ -133,7 +131,7 @@ public class User: UserMini, RawJSONStorage {
         try super.init(from: decoder)
     }
 
-    public override func encode(to encoder: Encoder) throws {
+    override public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeDateTimeIfPresent(field: createdAt, forKey: .createdAt)
         try container.encodeDateTimeIfPresent(field: modifiedAt, forKey: .modifiedAt)
@@ -150,5 +148,4 @@ public class User: UserMini, RawJSONStorage {
         try container.encode(field: _notificationEmail.state, forKey: .notificationEmail)
         try super.encode(to: encoder)
     }
-
 }

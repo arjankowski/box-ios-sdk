@@ -17,9 +17,8 @@ public enum LegalHoldPolicyAssignmentBaseTypeField: CodableStringEnum {
         switch self {
         case .legalHoldPolicyAssignment:
             return "legal_hold_policy_assignment"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

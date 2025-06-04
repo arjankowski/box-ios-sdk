@@ -16,12 +16,11 @@ public class CreateUserAvatarRequestBody {
     ///   - pic: The image file to be uploaded to Box.
     ///     Accepted file extensions are `.jpg` or `.png`.
     ///     The maximum file size is 1MB.
-    ///   - picFileName: 
-    ///   - picContentType: 
+    ///   - picFileName:
+    ///   - picContentType:
     public init(pic: InputStream, picFileName: String? = nil, picContentType: String? = nil) {
         self.pic = pic
         self.picFileName = picFileName
         self.picContentType = picContentType
     }
-
 }

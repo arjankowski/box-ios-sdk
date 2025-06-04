@@ -15,13 +15,13 @@ public class RestoreFileFromTrashRequestBody: Codable {
     ///
     /// - Parameters:
     ///   - name: An optional new name for the file.
-    ///   - parent: 
+    ///   - parent:
     public init(name: String? = nil, parent: RestoreFileFromTrashRequestBodyParentField? = nil) {
         self.name = name
         self.parent = parent
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         name = try container.decodeIfPresent(String.self, forKey: .name)
         parent = try container.decodeIfPresent(RestoreFileFromTrashRequestBodyParentField.self, forKey: .parent)
@@ -32,5 +32,4 @@ public class RestoreFileFromTrashRequestBody: Codable {
         try container.encodeIfPresent(name, forKey: .name)
         try container.encodeIfPresent(parent, forKey: .parent)
     }
-
 }

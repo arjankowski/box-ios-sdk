@@ -28,13 +28,13 @@ public class SignTemplateCustomBrandingField: Codable {
     ///   - brandingColor: Custom branding color in hex.
     ///   - emailFooterText: Content of the email footer.
     public init(companyName: TriStateField<String> = nil, logoUri: TriStateField<String> = nil, brandingColor: TriStateField<String> = nil, emailFooterText: TriStateField<String> = nil) {
-        self._companyName = CodableTriState(state: companyName)
-        self._logoUri = CodableTriState(state: logoUri)
-        self._brandingColor = CodableTriState(state: brandingColor)
-        self._emailFooterText = CodableTriState(state: emailFooterText)
+        _companyName = CodableTriState(state: companyName)
+        _logoUri = CodableTriState(state: logoUri)
+        _brandingColor = CodableTriState(state: brandingColor)
+        _emailFooterText = CodableTriState(state: emailFooterText)
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         companyName = try container.decodeIfPresent(String.self, forKey: .companyName)
         logoUri = try container.decodeIfPresent(String.self, forKey: .logoUri)
@@ -49,5 +49,4 @@ public class SignTemplateCustomBrandingField: Codable {
         try container.encode(field: _brandingColor.state, forKey: .brandingColor)
         try container.encode(field: _emailFooterText.state, forKey: .emailFooterText)
     }
-
 }

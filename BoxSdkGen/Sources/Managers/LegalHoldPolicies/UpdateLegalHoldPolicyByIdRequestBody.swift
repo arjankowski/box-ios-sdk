@@ -28,7 +28,7 @@ public class UpdateLegalHoldPolicyByIdRequestBody: Codable {
         self.releaseNotes = releaseNotes
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         policyName = try container.decodeIfPresent(String.self, forKey: .policyName)
         description = try container.decodeIfPresent(String.self, forKey: .description)
@@ -41,5 +41,4 @@ public class UpdateLegalHoldPolicyByIdRequestBody: Codable {
         try container.encodeIfPresent(description, forKey: .description)
         try container.encodeIfPresent(releaseNotes, forKey: .releaseNotes)
     }
-
 }

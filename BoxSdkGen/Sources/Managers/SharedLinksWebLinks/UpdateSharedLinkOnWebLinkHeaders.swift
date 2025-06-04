@@ -11,5 +11,4 @@ public class UpdateSharedLinkOnWebLinkHeaders {
     public init(extraHeaders: [String: String?]? = [:]) {
         self.extraHeaders = extraHeaders
     }
-
 }

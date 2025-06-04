@@ -33,25 +33,21 @@ public enum AiLlmEndpointParamsAwsOrAiLlmEndpointParamsGoogleOrAiLlmEndpointPara
 
                 default:
                     throw DecodingError.typeMismatch(AiLlmEndpointParamsAwsOrAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "The Decoded object contains an unexpected value for key type"))
-
                 }
             }
-
         }
 
         throw DecodingError.typeMismatch(AiLlmEndpointParamsAwsOrAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "The type of the decoded object cannot be determined."))
-
     }
 
     public func encode(to encoder: Encoder) throws {
         switch self {
-        case .aiLlmEndpointParamsAws(let aiLlmEndpointParamsAws):
+        case let .aiLlmEndpointParamsAws(aiLlmEndpointParamsAws):
             try aiLlmEndpointParamsAws.encode(to: encoder)
-        case .aiLlmEndpointParamsGoogle(let aiLlmEndpointParamsGoogle):
+        case let .aiLlmEndpointParamsGoogle(aiLlmEndpointParamsGoogle):
             try aiLlmEndpointParamsGoogle.encode(to: encoder)
-        case .aiLlmEndpointParamsOpenAi(let aiLlmEndpointParamsOpenAi):
+        case let .aiLlmEndpointParamsOpenAi(aiLlmEndpointParamsOpenAi):
             try aiLlmEndpointParamsOpenAi.encode(to: encoder)
         }
     }
-
 }

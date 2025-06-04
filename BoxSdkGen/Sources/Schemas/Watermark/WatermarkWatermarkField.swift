@@ -22,7 +22,7 @@ public class WatermarkWatermarkField: Codable {
         self.modifiedAt = modifiedAt
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         createdAt = try container.decodeDateTimeIfPresent(forKey: .createdAt)
         modifiedAt = try container.decodeDateTimeIfPresent(forKey: .modifiedAt)
@@ -33,5 +33,4 @@ public class WatermarkWatermarkField: Codable {
         try container.encodeDateTimeIfPresent(field: createdAt, forKey: .createdAt)
         try container.encodeDateTimeIfPresent(field: modifiedAt, forKey: .modifiedAt)
     }
-
 }

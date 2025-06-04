@@ -17,9 +17,8 @@ public enum StoragePolicyAssignmentTypeField: CodableStringEnum {
         switch self {
         case .storagePolicyAssignment:
             return "storage_policy_assignment"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

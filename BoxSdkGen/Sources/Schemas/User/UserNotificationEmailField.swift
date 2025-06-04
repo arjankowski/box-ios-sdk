@@ -22,7 +22,7 @@ public class UserNotificationEmailField: Codable {
         self.isConfirmed = isConfirmed
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         email = try container.decodeIfPresent(String.self, forKey: .email)
         isConfirmed = try container.decodeIfPresent(Bool.self, forKey: .isConfirmed)
@@ -33,5 +33,4 @@ public class UserNotificationEmailField: Codable {
         try container.encodeIfPresent(email, forKey: .email)
         try container.encodeIfPresent(isConfirmed, forKey: .isConfirmed)
     }
-
 }

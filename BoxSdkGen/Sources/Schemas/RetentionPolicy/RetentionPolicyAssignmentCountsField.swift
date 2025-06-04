@@ -28,7 +28,7 @@ public class RetentionPolicyAssignmentCountsField: Codable {
         self.metadataTemplate = metadataTemplate
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         enterprise = try container.decodeIfPresent(Int64.self, forKey: .enterprise)
         folder = try container.decodeIfPresent(Int64.self, forKey: .folder)
@@ -41,5 +41,4 @@ public class RetentionPolicyAssignmentCountsField: Codable {
         try container.encodeIfPresent(folder, forKey: .folder)
         try container.encodeIfPresent(metadataTemplate, forKey: .metadataTemplate)
     }
-
 }

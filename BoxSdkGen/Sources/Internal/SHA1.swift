@@ -1,19 +1,19 @@
 import Foundation
 #if os(macOS) || os(iOS) || os(watchOS) || os(tvOS) || os(visionOS)
-import CommonCrypto
+    import CommonCrypto
 #endif
 
 /// `SHA1` class provides an interface for calculating SHA-1 hash using different implementations based on platform availability.
-internal class SHA1: SHA1Calculator {
+class SHA1: SHA1Calculator {
     private let sha1Calculator: SHA1Calculator
 
     /// Initializes `SHA1` instance and selects appropriate SHA-1 calculator based on platform
     init() {
-#if os(macOS) || os(iOS) || os(watchOS) || os(tvOS) || os(visionOS)
-        sha1Calculator = SHA1CommonCrypto()
-#else
-        sha1Calculator = SHA1Raw()
-#endif
+        #if os(macOS) || os(iOS) || os(watchOS) || os(tvOS) || os(visionOS)
+            sha1Calculator = SHA1CommonCrypto()
+        #else
+            sha1Calculator = SHA1Raw()
+        #endif
     }
 
     /// Updates the SHA-1 calculation with the given data chunk.
@@ -45,48 +45,48 @@ private protocol SHA1Calculator {
 }
 
 #if os(macOS) || os(iOS) || os(watchOS) || os(tvOS) || os(visionOS)
-/// `SHA1CommonCrypto` class provides SHA-1 calculation using CommonCrypto library.
-private class SHA1CommonCrypto: SHA1Calculator {
-    private var context = CC_SHA1_CTX()
+    /// `SHA1CommonCrypto` class provides SHA-1 calculation using CommonCrypto library.
+    private class SHA1CommonCrypto: SHA1Calculator {
+        private var context = CC_SHA1_CTX()
 
-    init() {
-        CC_SHA1_Init(&context)
-    }
+        init() {
+            CC_SHA1_Init(&context)
+        }
 
-    /// Updates the SHA-1 calculation with the given data chunk using CommonCrypto.
-    ///
-    /// - Parameter data: The data chunk to update the hash calculation.
-    func update(data: Data) {
-        data.withUnsafeBytes { (bufferPointer: UnsafeRawBufferPointer) in
-            guard let unsafeBufferPointerBaseAddress = bufferPointer.baseAddress else { return }
-            let unsafePointer = unsafeBufferPointerBaseAddress.assumingMemoryBound(to: UInt8.self)
-            CC_SHA1_Update(&context, unsafePointer, CC_LONG(data.count))
+        /// Updates the SHA-1 calculation with the given data chunk using CommonCrypto.
+        ///
+        /// - Parameter data: The data chunk to update the hash calculation.
+        func update(data: Data) {
+            data.withUnsafeBytes { (bufferPointer: UnsafeRawBufferPointer) in
+                guard let unsafeBufferPointerBaseAddress = bufferPointer.baseAddress else { return }
+                let unsafePointer = unsafeBufferPointerBaseAddress.assumingMemoryBound(to: UInt8.self)
+                CC_SHA1_Update(&context, unsafePointer, CC_LONG(data.count))
+            }
+        }
+
+        /// Finalizes the SHA-1 calculation using CommonCrypto and returns the computed hash.
+        ///
+        /// - Returns: The computed SHA-1 hash as `Data`.
+        func finalize() -> Data {
+            var digest = [UInt8](repeating: 0, count: Int(CC_SHA1_DIGEST_LENGTH))
+            CC_SHA1_Final(&digest, &context)
+            return Data(digest)
         }
     }
-
-    /// Finalizes the SHA-1 calculation using CommonCrypto and returns the computed hash.
-    ///
-    /// - Returns: The computed SHA-1 hash as `Data`.
-    func finalize() -> Data {
-        var digest = [UInt8](repeating: 0, count: Int(CC_SHA1_DIGEST_LENGTH))
-        CC_SHA1_Final(&digest, &context)
-        return Data(digest)
-    }
-}
 #endif
 
 /// `SHA1Raw` class provides SHA-1 calculation using raw implementation.
 private class SHA1Raw: SHA1Calculator {
-    private static let h0: UInt32 = 0x67452301
-    private static let h1: UInt32 = 0xEFCDAB89
-    private static let h2: UInt32 = 0x98BADCFE
-    private static let h3: UInt32 = 0x10325476
-    private static let h4: UInt32 = 0xC3D2E1F0
+    private static let h0: UInt32 = 0x6745_2301
+    private static let h1: UInt32 = 0xEFCD_AB89
+    private static let h2: UInt32 = 0x98BA_DCFE
+    private static let h3: UInt32 = 0x1032_5476
+    private static let h4: UInt32 = 0xC3D2_E1F0
 
-    private static let k1: UInt32 = 0x5A827999
-    private static let k2: UInt32 = 0x6ED9EBA1
-    private static let k3: UInt32 = 0x8F1BBCDC
-    private static let k4: UInt32 = 0xCA62C1D6
+    private static let k1: UInt32 = 0x5A82_7999
+    private static let k2: UInt32 = 0x6ED9_EBA1
+    private static let k3: UInt32 = 0x8F1B_BCDC
+    private static let k4: UInt32 = 0xCA62_C1D6
 
     private var currentHash: [UInt32] = [SHA1Raw.h0, SHA1Raw.h1, SHA1Raw.h2, SHA1Raw.h3, SHA1Raw.h4]
     private var messageLength: UInt64 = 0
@@ -114,7 +114,8 @@ private class SHA1Raw: SHA1Calculator {
                     }
                     buffer.removeAll(keepingCapacity: true)
                     dataPointer = dataPointer.advanced(by: remainingSpace)
-                } else {
+                }
+                else {
                     buffer.append(contentsOf: UnsafeBufferPointer(start: dataPointer, count: byteCount))
                     return
                 }
@@ -174,13 +175,13 @@ private class SHA1Raw: SHA1Calculator {
     ///
     /// - Parameter chunk: The chunk of data to process.
     private func processBlock(_ chunk: UnsafePointer<UInt8>) {
-        for i in 0..<16 {
+        for i in 0 ..< 16 {
             w[i] = (UInt32(chunk[4 * i]) << 24) | (UInt32(chunk[4 * i + 1]) << 16) |
-            (UInt32(chunk[4 * i + 2]) << 8) | (UInt32(chunk[4 * i + 3]))
+                (UInt32(chunk[4 * i + 2]) << 8) | UInt32(chunk[4 * i + 3])
         }
 
-        for i in 16..<80 {
-            w[i] = SHA1Raw.rotateLeft(w[i-3] ^ w[i-8] ^ w[i-14] ^ w[i-16], bits: 1)
+        for i in 16 ..< 80 {
+            w[i] = SHA1Raw.rotateLeft(w[i - 3] ^ w[i - 8] ^ w[i - 14] ^ w[i - 16], bits: 1)
         }
 
         var a = currentHash[0]
@@ -189,21 +190,21 @@ private class SHA1Raw: SHA1Calculator {
         var d = currentHash[3]
         var e = currentHash[4]
 
-        for i in 0..<80 {
+        for i in 0 ..< 80 {
             let f: UInt32
             let k: UInt32
 
             switch i {
-            case 0..<20:
+            case 0 ..< 20:
                 f = (b & c) | (SHA1Raw.bitwiseNot(b) & d)
                 k = SHA1Raw.k1
-            case 20..<40:
+            case 20 ..< 40:
                 f = b ^ c ^ d
                 k = SHA1Raw.k2
-            case 40..<60:
+            case 40 ..< 60:
                 f = (b & c) | (b & d) | (c & d)
                 k = SHA1Raw.k3
-            case 60..<80:
+            case 60 ..< 80:
                 f = b ^ c ^ d
                 k = SHA1Raw.k4
             default:

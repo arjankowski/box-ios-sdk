@@ -28,7 +28,7 @@ public class WorkflowFlowsTriggerField: Codable {
         self.scope = scope
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         type = try container.decodeIfPresent(WorkflowFlowsTriggerTypeField.self, forKey: .type)
         triggerType = try container.decodeIfPresent(WorkflowFlowsTriggerTriggerTypeField.self, forKey: .triggerType)
@@ -41,5 +41,4 @@ public class WorkflowFlowsTriggerField: Codable {
         try container.encodeIfPresent(triggerType, forKey: .triggerType)
         try container.encodeIfPresent(scope, forKey: .scope)
     }
-
 }

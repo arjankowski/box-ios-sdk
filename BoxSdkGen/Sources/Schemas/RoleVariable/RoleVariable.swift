@@ -14,30 +14,30 @@ public class RoleVariable: Codable {
     public let variableValue: RoleVariableVariableValueField
 
     /// Role object type.
-    /// 
+    ///
     public let type: RoleVariableTypeField
 
     /// The variable type used
     /// by the object.
-    /// 
+    ///
     public let variableType: RoleVariableVariableTypeField
 
     /// Initializer for a RoleVariable.
     ///
     /// - Parameters:
-    ///   - variableValue: 
+    ///   - variableValue:
     ///   - type: Role object type.
-    ///     
+    ///
     ///   - variableType: The variable type used
     ///     by the object.
-    ///     
+    ///
     public init(variableValue: RoleVariableVariableValueField, type: RoleVariableTypeField = RoleVariableTypeField.variable, variableType: RoleVariableVariableTypeField = RoleVariableVariableTypeField.collaboratorRole) {
         self.variableValue = variableValue
         self.type = type
         self.variableType = variableType
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         variableValue = try container.decode(RoleVariableVariableValueField.self, forKey: .variableValue)
         type = try container.decode(RoleVariableTypeField.self, forKey: .type)
@@ -50,5 +50,4 @@ public class RoleVariable: Codable {
         try container.encode(type, forKey: .type)
         try container.encode(variableType, forKey: .variableType)
     }
-
 }

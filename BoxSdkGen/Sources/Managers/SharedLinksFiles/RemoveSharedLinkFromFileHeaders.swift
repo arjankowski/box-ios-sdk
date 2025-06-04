@@ -11,5 +11,4 @@ public class RemoveSharedLinkFromFileHeaders {
     public init(extraHeaders: [String: String?]? = [:]) {
         self.extraHeaders = extraHeaders
     }
-
 }

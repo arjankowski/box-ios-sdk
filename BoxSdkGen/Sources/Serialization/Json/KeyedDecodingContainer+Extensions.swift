@@ -14,11 +14,13 @@ extension KeyedDecodingContainer {
         if contains(key) {
             if try decodeNil(forKey: key) {
                 return .null
-            } else {
+            }
+            else {
                 let value = try decode(T.self, forKey: key)
                 return .value(value)
             }
-        } else {
+        }
+        else {
             return .unset
         }
     }
@@ -28,9 +30,10 @@ extension KeyedDecodingContainer {
     /// - Parameter key: The key to decode.
     /// - Returns: A `Date` if decoding succeeds, otherwise `nil`.
     func decodeDateIfPresent(forKey key: KeyedDecodingContainer<K>.Key) throws -> Date? {
-        if let valueString = try self.decodeIfPresent(String.self, forKey: key) {
+        if let valueString = try decodeIfPresent(String.self, forKey: key) {
             return try Utils.Dates.dateFromString(date: valueString)
-        } else {
+        }
+        else {
             return nil
         }
     }
@@ -41,7 +44,7 @@ extension KeyedDecodingContainer {
     /// - Returns: A `Date` if decoding succeeds.
     /// - Throws: An error if the decoding or parsing fails.
     func decodeDate(forKey key: KeyedDecodingContainer<K>.Key) throws -> Date {
-        return try Utils.Dates.dateFromString(date: try self.decode(String.self, forKey: key))
+        return try Utils.Dates.dateFromString(date: decode(String.self, forKey: key))
     }
 
     /// Decodes an optional `Date` in full ISO datetime format if present.
@@ -51,9 +54,10 @@ extension KeyedDecodingContainer {
     /// - Parameter key: The key to decode.
     /// - Returns: A `Date` if decoding succeeds, otherwise `nil`.
     func decodeDateTimeIfPresent(forKey key: KeyedDecodingContainer<K>.Key) throws -> Date? {
-        if let valueString = try self.decodeIfPresent(String.self, forKey: key) {
+        if let valueString = try decodeIfPresent(String.self, forKey: key) {
             return try Utils.Dates.dateTimeFromString(dateTime: valueString)
-        } else {
+        }
+        else {
             return nil
         }
     }
@@ -66,6 +70,6 @@ extension KeyedDecodingContainer {
     /// - Returns: A `Date` if decoding succeeds.
     /// - Throws: An error if decoding or date parsing fails.
     func decodeDateTime(forKey key: KeyedDecodingContainer<K>.Key) throws -> Date {
-        return try Utils.Dates.dateTimeFromString(dateTime: try self.decode(String.self, forKey: key))
+        return try Utils.Dates.dateTimeFromString(dateTime: decode(String.self, forKey: key))
     }
 }

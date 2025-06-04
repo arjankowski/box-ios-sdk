@@ -17,9 +17,8 @@ public enum UploadSessionTypeField: CodableStringEnum {
         switch self {
         case .uploadSession:
             return "upload_session"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

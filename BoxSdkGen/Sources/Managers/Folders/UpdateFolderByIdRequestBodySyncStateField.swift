@@ -27,9 +27,8 @@ public enum UpdateFolderByIdRequestBodySyncStateField: CodableStringEnum {
             return "not_synced"
         case .partiallySynced:
             return "partially_synced"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

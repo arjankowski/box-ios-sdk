@@ -1,5 +1,5 @@
 //
-//  OAuthViewController.swift
+//  ViewController.swift
 //  iOSSwiftExample
 //
 //  Created by Abel Osorio on 3/13/19.
@@ -17,7 +17,7 @@ class ViewController: UITableViewController, ASWebAuthenticationPresentationCont
     private var sdk: BoxSDK!
     private var client: BoxClient!
     private var folderItems: [FolderItem] = []
-    
+
     private lazy var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "MMM dd,yyyy at HH:mm a"
@@ -117,7 +117,7 @@ class ViewController: UITableViewController, ASWebAuthenticationPresentationCont
 extension ViewController {
     func getOAuthClient() {
         if #available(iOS 13, *) {
-            sdk.getOAuth2Client(tokenStore: KeychainTokenStore(), context:self) { [weak self] result in
+            sdk.getOAuth2Client(tokenStore: KeychainTokenStore(), context: self) { [weak self] result in
                 switch result {
                 case let .success(client):
                     self?.client = client
@@ -127,7 +127,8 @@ extension ViewController {
                     self?.addErrorView(with: error)
                 }
             }
-        } else {
+        }
+        else {
             sdk.getOAuth2Client(tokenStore: KeychainTokenStore()) { [weak self] result in
                 switch result {
                 case let .success(client):
@@ -154,9 +155,9 @@ extension ViewController {
             switch result {
             case let .success(page):
                 self.folderItems = []
-                
+
                 for (i, item) in page.entries.enumerated() {
-                    print ("Item #\(String(format: "%03d", i + 1)) | \(item.debugDescription))")
+                    print("Item #\(String(format: "%03d", i + 1)) | \(item.debugDescription))")
                     DispatchQueue.main.async {
                         self.folderItems.append(item)
                         self.tableView.reloadData()
@@ -182,7 +183,7 @@ private extension ViewController {
                 self.errorView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
                 self.errorView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
                 self.errorView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
-                ])
+            ])
             self.errorView.displayError(error)
         }
     }
@@ -202,7 +203,7 @@ private extension ViewController {
 /// Extension for ASWebAuthenticationPresentationContextProviding conformance
 extension ViewController {
     @available(iOS 13.0, *)
-    func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {
-        return self.view.window ?? ASPresentationAnchor()
+    func presentationAnchor(for _: ASWebAuthenticationSession) -> ASPresentationAnchor {
+        return view.window ?? ASPresentationAnchor()
     }
 }

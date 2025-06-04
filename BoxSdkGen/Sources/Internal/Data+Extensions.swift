@@ -34,7 +34,7 @@ public extension Data {
         var index = hex.startIndex
         while index < hex.endIndex {
             let nextIndex = hex.index(index, offsetBy: 2)
-            let byteString = hex[index..<nextIndex]
+            let byteString = hex[index ..< nextIndex]
             guard let byte = UInt8(byteString, radix: 16) else {
                 return nil
             }
@@ -49,14 +49,14 @@ public extension Data {
     ///
     /// - Returns: A base64-encoded string representation of the `Data`.
     func base64EncodedString() -> String {
-        return self.base64EncodedString(options: [])
+        return base64EncodedString(options: [])
     }
 
     /// Returns the `Data` object as a hexadecimal string.
     ///
     /// - Returns: A hexadecimal string representation of the `Data`.
     func hexString() -> String {
-        let hexBytes = self.map { String(format: "%02hhx", $0) }
+        let hexBytes = map { String(format: "%02hhx", $0) }
         return hexBytes.joined()
     }
 }

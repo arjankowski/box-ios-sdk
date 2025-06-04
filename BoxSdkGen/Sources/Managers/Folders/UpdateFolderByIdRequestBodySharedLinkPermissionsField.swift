@@ -20,7 +20,7 @@ public class UpdateFolderByIdRequestBodySharedLinkPermissionsField: Codable {
         self.canDownload = canDownload
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         canDownload = try container.decodeIfPresent(Bool.self, forKey: .canDownload)
     }
@@ -29,5 +29,4 @@ public class UpdateFolderByIdRequestBodySharedLinkPermissionsField: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(canDownload, forKey: .canDownload)
     }
-
 }

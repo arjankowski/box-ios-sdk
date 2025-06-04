@@ -34,12 +34,12 @@ public class ShieldInformationBarrierReport: ShieldInformationBarrierReportBase 
     /// - Parameters:
     ///   - id: The unique identifier for the shield information barrier report
     ///   - type: The type of the shield information barrier report
-    ///   - shieldInformationBarrier: 
+    ///   - shieldInformationBarrier:
     ///   - status: Status of the shield information report
-    ///   - details: 
+    ///   - details:
     ///   - createdAt: ISO date time string when this
     ///     shield information barrier report object was created.
-    ///   - createdBy: 
+    ///   - createdBy:
     ///   - updatedAt: ISO date time string when this
     ///     shield information barrier report was updated.
     public init(id: String? = nil, type: ShieldInformationBarrierReportBaseTypeField? = nil, shieldInformationBarrier: ShieldInformationBarrierReference? = nil, status: ShieldInformationBarrierReportStatusField? = nil, details: ShieldInformationBarrierReportDetails? = nil, createdAt: Date? = nil, createdBy: UserBase? = nil, updatedAt: Date? = nil) {
@@ -53,7 +53,7 @@ public class ShieldInformationBarrierReport: ShieldInformationBarrierReportBase 
         super.init(id: id, type: type)
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         shieldInformationBarrier = try container.decodeIfPresent(ShieldInformationBarrierReference.self, forKey: .shieldInformationBarrier)
         status = try container.decodeIfPresent(ShieldInformationBarrierReportStatusField.self, forKey: .status)
@@ -65,7 +65,7 @@ public class ShieldInformationBarrierReport: ShieldInformationBarrierReportBase 
         try super.init(from: decoder)
     }
 
-    public override func encode(to encoder: Encoder) throws {
+    override public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(shieldInformationBarrier, forKey: .shieldInformationBarrier)
         try container.encodeIfPresent(status, forKey: .status)
@@ -75,5 +75,4 @@ public class ShieldInformationBarrierReport: ShieldInformationBarrierReportBase 
         try container.encodeDateTimeIfPresent(field: updatedAt, forKey: .updatedAt)
         try super.encode(to: encoder)
     }
-
 }

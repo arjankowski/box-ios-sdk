@@ -27,7 +27,7 @@ public class ZipDownloadRequest: Codable {
         self.downloadFileName = downloadFileName
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         items = try container.decode([ZipDownloadRequestItemsField].self, forKey: .items)
         downloadFileName = try container.decodeIfPresent(String.self, forKey: .downloadFileName)
@@ -38,5 +38,4 @@ public class ZipDownloadRequest: Codable {
         try container.encode(items, forKey: .items)
         try container.encodeIfPresent(downloadFileName, forKey: .downloadFileName)
     }
-
 }

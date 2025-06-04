@@ -13,7 +13,7 @@ public class CreateMetadataTemplateRequestBody: Codable {
     /// The scope of the metadata template to create. Applications can
     /// only create templates for use within the authenticated user's
     /// enterprise.
-    /// 
+    ///
     /// This value needs to be set to `enterprise`, as `global` scopes can
     /// not be created by applications.
     public let scope: String
@@ -24,7 +24,7 @@ public class CreateMetadataTemplateRequestBody: Codable {
     /// A unique identifier for the template. This identifier needs to be
     /// unique across the enterprise for which the metadata template is
     /// being created.
-    /// 
+    ///
     /// When not provided, the API will create a unique `templateKey`
     /// based on the value of the `displayName`.
     public let templateKey: String?
@@ -49,14 +49,14 @@ public class CreateMetadataTemplateRequestBody: Codable {
     ///   - scope: The scope of the metadata template to create. Applications can
     ///     only create templates for use within the authenticated user's
     ///     enterprise.
-    ///     
+    ///
     ///     This value needs to be set to `enterprise`, as `global` scopes can
     ///     not be created by applications.
     ///   - displayName: The display name of the template.
     ///   - templateKey: A unique identifier for the template. This identifier needs to be
     ///     unique across the enterprise for which the metadata template is
     ///     being created.
-    ///     
+    ///
     ///     When not provided, the API will create a unique `templateKey`
     ///     based on the value of the `displayName`.
     ///   - hidden: Defines if this template is visible in the Box web app UI, or if
@@ -76,7 +76,7 @@ public class CreateMetadataTemplateRequestBody: Codable {
         self.copyInstanceOnItemCopy = copyInstanceOnItemCopy
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         scope = try container.decode(String.self, forKey: .scope)
         displayName = try container.decode(String.self, forKey: .displayName)
@@ -95,5 +95,4 @@ public class CreateMetadataTemplateRequestBody: Codable {
         try container.encodeIfPresent(fields, forKey: .fields)
         try container.encodeIfPresent(copyInstanceOnItemCopy, forKey: .copyInstanceOnItemCopy)
     }
-
 }

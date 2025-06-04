@@ -11,7 +11,7 @@ public class CreateTermsOfServiceRequestBody: Codable {
     public let status: CreateTermsOfServiceRequestBodyStatusField
 
     /// The terms of service text to display to users.
-    /// 
+    ///
     /// The text can be set to empty if the `status` is set to `disabled`.
     public let text: String
 
@@ -24,7 +24,7 @@ public class CreateTermsOfServiceRequestBody: Codable {
     /// - Parameters:
     ///   - status: Whether this terms of service is active.
     ///   - text: The terms of service text to display to users.
-    ///     
+    ///
     ///     The text can be set to empty if the `status` is set to `disabled`.
     ///   - tosType: The type of user to set the terms of
     ///     service for.
@@ -34,7 +34,7 @@ public class CreateTermsOfServiceRequestBody: Codable {
         self.tosType = tosType
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         status = try container.decode(CreateTermsOfServiceRequestBodyStatusField.self, forKey: .status)
         text = try container.decode(String.self, forKey: .text)
@@ -47,5 +47,4 @@ public class CreateTermsOfServiceRequestBody: Codable {
         try container.encode(text, forKey: .text)
         try container.encodeIfPresent(tosType, forKey: .tosType)
     }
-
 }

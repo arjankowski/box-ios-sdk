@@ -93,13 +93,13 @@ public class SignRequest: SignRequestBase {
     ///     using the UI. The signature request is not
     ///     sent until the preparation
     ///     phase is complete.
-    ///   - signingLog: 
+    ///   - signingLog:
     ///   - status: Describes the status of the signature request.
     ///   - signFiles: List of files that will be signed, which are copies of the original
     ///     source files. A new version of these files are created as signers sign
     ///     and can be downloaded at any point in the signing process.
     ///   - autoExpireAt: Uses `days_valid` to calculate the date and time, in GMT, the sign request will expire if unsigned.
-    ///   - parentFolder: 
+    ///   - parentFolder:
     ///   - collaboratorLevel: The collaborator level of the user to the sign request. Values can include "owner", "editor", and "viewer"
     ///   - senderEmail: The email address of the sender of the sign request.
     ///   - senderId: The user ID of the sender of the sign request.
@@ -107,22 +107,22 @@ public class SignRequest: SignRequestBase {
         self.type = type
         self.sourceFiles = sourceFiles
         self.signers = signers
-        self._signatureColor = CodableTriState(state: signatureColor)
+        _signatureColor = CodableTriState(state: signatureColor)
         self.id = id
-        self._prepareUrl = CodableTriState(state: prepareUrl)
+        _prepareUrl = CodableTriState(state: prepareUrl)
         self.signingLog = signingLog
         self.status = status
         self.signFiles = signFiles
-        self._autoExpireAt = CodableTriState(state: autoExpireAt)
+        _autoExpireAt = CodableTriState(state: autoExpireAt)
         self.parentFolder = parentFolder
-        self._collaboratorLevel = CodableTriState(state: collaboratorLevel)
-        self._senderEmail = CodableTriState(state: senderEmail)
-        self._senderId = CodableTriState(state: senderId)
+        _collaboratorLevel = CodableTriState(state: collaboratorLevel)
+        _senderEmail = CodableTriState(state: senderEmail)
+        _senderId = CodableTriState(state: senderId)
 
         super.init(isDocumentPreparationNeeded: isDocumentPreparationNeeded, redirectUrl: redirectUrl, declinedRedirectUrl: declinedRedirectUrl, areTextSignaturesEnabled: areTextSignaturesEnabled, emailSubject: emailSubject, emailMessage: emailMessage, areRemindersEnabled: areRemindersEnabled, name: name, prefillTags: prefillTags, daysValid: daysValid, externalId: externalId, templateId: templateId, externalSystemName: externalSystemName)
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         type = try container.decodeIfPresent(SignRequestTypeField.self, forKey: .type)
         sourceFiles = try container.decodeIfPresent([FileBase].self, forKey: .sourceFiles)
@@ -142,7 +142,7 @@ public class SignRequest: SignRequestBase {
         try super.init(from: decoder)
     }
 
-    public override func encode(to encoder: Encoder) throws {
+    override public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(type, forKey: .type)
         try container.encodeIfPresent(sourceFiles, forKey: .sourceFiles)
@@ -160,5 +160,4 @@ public class SignRequest: SignRequestBase {
         try container.encode(field: _senderId.state, forKey: .senderId)
         try super.encode(to: encoder)
     }
-
 }

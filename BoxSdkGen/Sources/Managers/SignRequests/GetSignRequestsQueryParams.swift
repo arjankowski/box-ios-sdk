@@ -3,7 +3,7 @@ import Foundation
 public class GetSignRequestsQueryParams {
     /// Defines the position marker at which to begin returning results. This is
     /// used when paginating using marker-based pagination.
-    /// 
+    ///
     /// This requires `usemarker` to be set to `true`.
     public let marker: String?
 
@@ -25,7 +25,7 @@ public class GetSignRequestsQueryParams {
     /// - Parameters:
     ///   - marker: Defines the position marker at which to begin returning results. This is
     ///     used when paginating using marker-based pagination.
-    ///     
+    ///
     ///     This requires `usemarker` to be set to `true`.
     ///   - limit: The maximum number of items to return per page.
     ///   - senders: A list of sender emails to filter the signature requests by sender.
@@ -40,5 +40,4 @@ public class GetSignRequestsQueryParams {
         self.senders = senders
         self.sharedRequests = sharedRequests
     }
-
 }

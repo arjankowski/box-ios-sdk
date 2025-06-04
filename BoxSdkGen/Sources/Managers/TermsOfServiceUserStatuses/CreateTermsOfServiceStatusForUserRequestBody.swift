@@ -28,7 +28,7 @@ public class CreateTermsOfServiceStatusForUserRequestBody: Codable {
         self.isAccepted = isAccepted
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         tos = try container.decode(CreateTermsOfServiceStatusForUserRequestBodyTosField.self, forKey: .tos)
         user = try container.decode(CreateTermsOfServiceStatusForUserRequestBodyUserField.self, forKey: .user)
@@ -41,5 +41,4 @@ public class CreateTermsOfServiceStatusForUserRequestBody: Codable {
         try container.encode(user, forKey: .user)
         try container.encode(isAccepted, forKey: .isAccepted)
     }
-
 }

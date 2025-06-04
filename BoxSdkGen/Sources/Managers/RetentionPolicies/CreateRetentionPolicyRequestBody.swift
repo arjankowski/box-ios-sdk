@@ -43,13 +43,13 @@ public class CreateRetentionPolicyRequestBody: Codable {
     public let retentionLength: String?
 
     /// Specifies the retention type:
-    /// 
+    ///
     /// * `modifiable`: You can modify the retention policy. For example,
     /// you can add or remove folders, shorten or lengthen
     /// the policy duration, or delete the assignment.
     /// Use this type if your retention policy
     /// is not related to any regulatory purposes.
-    /// 
+    ///
     /// * `non_modifiable`: You can modify the retention policy
     /// only in a limited way: add a folder, lengthen the duration,
     /// retire the policy, change the disposition action
@@ -94,13 +94,13 @@ public class CreateRetentionPolicyRequestBody: Codable {
     ///     `indefinite`, the `retention_length` will also be
     ///     `indefinite`.
     ///   - retentionType: Specifies the retention type:
-    ///     
+    ///
     ///     * `modifiable`: You can modify the retention policy. For example,
     ///     you can add or remove folders, shorten or lengthen
     ///     the policy duration, or delete the assignment.
     ///     Use this type if your retention policy
     ///     is not related to any regulatory purposes.
-    ///     
+    ///
     ///     * `non_modifiable`: You can modify the retention policy
     ///     only in a limited way: add a folder, lengthen the duration,
     ///     retire the policy, change the disposition action
@@ -126,7 +126,7 @@ public class CreateRetentionPolicyRequestBody: Codable {
         self.customNotificationRecipients = customNotificationRecipients
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         policyName = try container.decode(String.self, forKey: .policyName)
         policyType = try container.decode(CreateRetentionPolicyRequestBodyPolicyTypeField.self, forKey: .policyType)
@@ -151,5 +151,4 @@ public class CreateRetentionPolicyRequestBody: Codable {
         try container.encodeIfPresent(areOwnersNotified, forKey: .areOwnersNotified)
         try container.encodeIfPresent(customNotificationRecipients, forKey: .customNotificationRecipients)
     }
-
 }

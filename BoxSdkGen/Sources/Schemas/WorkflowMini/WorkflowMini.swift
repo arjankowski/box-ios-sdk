@@ -1,7 +1,7 @@
 import Foundation
 
 /// Box Relay Workflows are objects that represent a named collection of flows.
-/// 
+///
 /// You application must be authorized to use the `Manage Box Relay` application
 /// scope within the developer console in order to use this resource.
 public class WorkflowMini: Codable {
@@ -44,7 +44,7 @@ public class WorkflowMini: Codable {
         self.isEnabled = isEnabled
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decodeIfPresent(String.self, forKey: .id)
         type = try container.decodeIfPresent(WorkflowMiniTypeField.self, forKey: .type)
@@ -61,5 +61,4 @@ public class WorkflowMini: Codable {
         try container.encodeIfPresent(description, forKey: .description)
         try container.encodeIfPresent(isEnabled, forKey: .isEnabled)
     }
-
 }

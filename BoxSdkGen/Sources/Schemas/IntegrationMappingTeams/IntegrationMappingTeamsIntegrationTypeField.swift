@@ -17,9 +17,8 @@ public enum IntegrationMappingTeamsIntegrationTypeField: CodableStringEnum {
         switch self {
         case .teams:
             return "teams"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

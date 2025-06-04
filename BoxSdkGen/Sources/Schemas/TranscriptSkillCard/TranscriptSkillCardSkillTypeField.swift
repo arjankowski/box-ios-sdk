@@ -17,9 +17,8 @@ public enum TranscriptSkillCardSkillTypeField: CodableStringEnum {
         switch self {
         case .service:
             return "service"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

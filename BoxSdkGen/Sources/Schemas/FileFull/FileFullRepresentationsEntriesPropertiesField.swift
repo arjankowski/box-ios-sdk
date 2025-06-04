@@ -32,7 +32,7 @@ public class FileFullRepresentationsEntriesPropertiesField: Codable {
         self.thumb = thumb
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         dimensions = try container.decodeIfPresent(String.self, forKey: .dimensions)
         paged = try container.decodeIfPresent(String.self, forKey: .paged)
@@ -45,5 +45,4 @@ public class FileFullRepresentationsEntriesPropertiesField: Codable {
         try container.encodeIfPresent(paged, forKey: .paged)
         try container.encodeIfPresent(thumb, forKey: .thumb)
     }
-
 }

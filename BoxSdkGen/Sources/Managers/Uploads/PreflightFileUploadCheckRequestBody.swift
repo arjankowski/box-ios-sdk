@@ -20,14 +20,14 @@ public class PreflightFileUploadCheckRequestBody: Codable {
     /// - Parameters:
     ///   - name: The name for the file
     ///   - size: The size of the file in bytes
-    ///   - parent: 
+    ///   - parent:
     public init(name: String? = nil, size: Int? = nil, parent: PreflightFileUploadCheckRequestBodyParentField? = nil) {
         self.name = name
         self.size = size
         self.parent = parent
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         name = try container.decodeIfPresent(String.self, forKey: .name)
         size = try container.decodeIfPresent(Int.self, forKey: .size)
@@ -40,5 +40,4 @@ public class PreflightFileUploadCheckRequestBody: Codable {
         try container.encodeIfPresent(size, forKey: .size)
         try container.encodeIfPresent(parent, forKey: .parent)
     }
-
 }

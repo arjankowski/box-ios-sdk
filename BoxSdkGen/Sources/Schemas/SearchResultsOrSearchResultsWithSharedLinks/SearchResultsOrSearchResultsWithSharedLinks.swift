@@ -26,23 +26,19 @@ public enum SearchResultsOrSearchResultsWithSharedLinks: Codable {
 
                 default:
                     throw DecodingError.typeMismatch(SearchResultsOrSearchResultsWithSharedLinks.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "The Decoded object contains an unexpected value for key type"))
-
                 }
             }
-
         }
 
         throw DecodingError.typeMismatch(SearchResultsOrSearchResultsWithSharedLinks.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "The type of the decoded object cannot be determined."))
-
     }
 
     public func encode(to encoder: Encoder) throws {
         switch self {
-        case .searchResults(let searchResults):
+        case let .searchResults(searchResults):
             try searchResults.encode(to: encoder)
-        case .searchResultsWithSharedLinks(let searchResultsWithSharedLinks):
+        case let .searchResultsWithSharedLinks(searchResultsWithSharedLinks):
             try searchResultsWithSharedLinks.encode(to: encoder)
         }
     }
-
 }

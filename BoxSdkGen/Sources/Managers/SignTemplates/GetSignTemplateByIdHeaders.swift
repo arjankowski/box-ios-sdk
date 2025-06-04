@@ -11,5 +11,4 @@ public class GetSignTemplateByIdHeaders {
     public init(extraHeaders: [String: String?]? = [:]) {
         self.extraHeaders = extraHeaders
     }
-
 }

@@ -26,7 +26,7 @@ public class CreateShieldInformationBarrierSegmentRestrictionRequestBodyRestrict
         self.type = type
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decodeIfPresent(String.self, forKey: .id)
         type = try container.decodeIfPresent(CreateShieldInformationBarrierSegmentRestrictionRequestBodyRestrictedSegmentTypeField.self, forKey: .type)
@@ -37,5 +37,4 @@ public class CreateShieldInformationBarrierSegmentRestrictionRequestBodyRestrict
         try container.encodeIfPresent(id, forKey: .id)
         try container.encodeIfPresent(type, forKey: .type)
     }
-
 }

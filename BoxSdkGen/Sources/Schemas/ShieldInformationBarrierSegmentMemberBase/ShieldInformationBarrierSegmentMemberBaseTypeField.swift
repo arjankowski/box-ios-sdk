@@ -17,9 +17,8 @@ public enum ShieldInformationBarrierSegmentMemberBaseTypeField: CodableStringEnu
         switch self {
         case .shieldInformationBarrierSegmentMember:
             return "shield_information_barrier_segment_member"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

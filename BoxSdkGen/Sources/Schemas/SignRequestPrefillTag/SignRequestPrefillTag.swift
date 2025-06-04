@@ -30,13 +30,13 @@ public class SignRequestPrefillTag: Codable {
     ///   - checkboxValue: Checkbox prefill value
     ///   - dateValue: Date prefill value
     public init(documentTagId: TriStateField<String> = nil, textValue: TriStateField<String> = nil, checkboxValue: TriStateField<Bool> = nil, dateValue: TriStateField<Date> = nil) {
-        self._documentTagId = CodableTriState(state: documentTagId)
-        self._textValue = CodableTriState(state: textValue)
-        self._checkboxValue = CodableTriState(state: checkboxValue)
-        self._dateValue = CodableTriState(state: dateValue)
+        _documentTagId = CodableTriState(state: documentTagId)
+        _textValue = CodableTriState(state: textValue)
+        _checkboxValue = CodableTriState(state: checkboxValue)
+        _dateValue = CodableTriState(state: dateValue)
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         documentTagId = try container.decodeIfPresent(String.self, forKey: .documentTagId)
         textValue = try container.decodeIfPresent(String.self, forKey: .textValue)
@@ -51,5 +51,4 @@ public class SignRequestPrefillTag: Codable {
         try container.encode(field: _checkboxValue.state, forKey: .checkboxValue)
         try container.encodeDate(field: _dateValue.state, forKey: .dateValue)
     }
-
 }

@@ -38,15 +38,15 @@ public class ShieldInformationBarrierSegmentRestriction: ShieldInformationBarrie
     ///   - type: Shield information barrier segment restriction
     ///   - id: The unique identifier for the
     ///     shield information barrier segment restriction.
-    ///   - shieldInformationBarrier: 
+    ///   - shieldInformationBarrier:
     ///   - createdAt: ISO date time string when this
     ///     shield information barrier
     ///     Segment Restriction object was created.
-    ///   - createdBy: 
+    ///   - createdBy:
     ///   - updatedAt: ISO date time string when this
     ///     shield information barrier segment
     ///     Restriction was updated.
-    ///   - updatedBy: 
+    ///   - updatedBy:
     public init(shieldInformationBarrierSegment: ShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentField, restrictedSegment: ShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentField, type: ShieldInformationBarrierSegmentRestrictionBaseTypeField? = nil, id: String? = nil, shieldInformationBarrier: ShieldInformationBarrierBase? = nil, createdAt: Date? = nil, createdBy: UserBase? = nil, updatedAt: Date? = nil, updatedBy: UserBase? = nil) {
         self.shieldInformationBarrier = shieldInformationBarrier
         self.createdAt = createdAt
@@ -57,7 +57,7 @@ public class ShieldInformationBarrierSegmentRestriction: ShieldInformationBarrie
         super.init(shieldInformationBarrierSegment: shieldInformationBarrierSegment, restrictedSegment: restrictedSegment, type: type, id: id)
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         shieldInformationBarrier = try container.decodeIfPresent(ShieldInformationBarrierBase.self, forKey: .shieldInformationBarrier)
         createdAt = try container.decodeDateTimeIfPresent(forKey: .createdAt)
@@ -68,7 +68,7 @@ public class ShieldInformationBarrierSegmentRestriction: ShieldInformationBarrie
         try super.init(from: decoder)
     }
 
-    public override func encode(to encoder: Encoder) throws {
+    override public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(shieldInformationBarrier, forKey: .shieldInformationBarrier)
         try container.encodeDateTimeIfPresent(field: createdAt, forKey: .createdAt)
@@ -77,5 +77,4 @@ public class ShieldInformationBarrierSegmentRestriction: ShieldInformationBarrie
         try container.encodeIfPresent(updatedBy, forKey: .updatedBy)
         try super.encode(to: encoder)
     }
-
 }

@@ -24,7 +24,7 @@ public class MetadataTemplateFieldsOptionsField: Codable {
         self.id = id
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         key = try container.decode(String.self, forKey: .key)
         id = try container.decodeIfPresent(String.self, forKey: .id)
@@ -35,5 +35,4 @@ public class MetadataTemplateFieldsOptionsField: Codable {
         try container.encode(key, forKey: .key)
         try container.encodeIfPresent(id, forKey: .id)
     }
-
 }

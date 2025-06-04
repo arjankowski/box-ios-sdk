@@ -17,9 +17,8 @@ public enum StatusSkillCardSkillCardTypeField: CodableStringEnum {
         switch self {
         case .status:
             return "status"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

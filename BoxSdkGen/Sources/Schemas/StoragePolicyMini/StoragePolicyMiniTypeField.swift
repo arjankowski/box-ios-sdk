@@ -17,9 +17,8 @@ public enum StoragePolicyMiniTypeField: CodableStringEnum {
         switch self {
         case .storagePolicy:
             return "storage_policy"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

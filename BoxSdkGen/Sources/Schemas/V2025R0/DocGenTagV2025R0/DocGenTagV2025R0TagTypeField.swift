@@ -42,9 +42,8 @@ public enum DocGenTagV2025R0TagTypeField: CodableStringEnum {
             return "table-loop"
         case .image:
             return "image"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

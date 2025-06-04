@@ -26,5 +26,4 @@ public class GetFileThumbnailByIdQueryParams {
         self.maxHeight = maxHeight
         self.maxWidth = maxWidth
     }
-
 }

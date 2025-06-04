@@ -22,9 +22,8 @@ public enum SearchForContentQueryParamsScopeField: CodableStringEnum {
             return "user_content"
         case .enterpriseContent:
             return "enterprise_content"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

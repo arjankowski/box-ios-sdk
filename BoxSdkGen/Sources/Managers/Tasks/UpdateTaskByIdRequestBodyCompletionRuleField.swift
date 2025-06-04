@@ -22,9 +22,8 @@ public enum UpdateTaskByIdRequestBodyCompletionRuleField: CodableStringEnum {
             return "all_assignees"
         case .anyAssignee:
             return "any_assignee"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

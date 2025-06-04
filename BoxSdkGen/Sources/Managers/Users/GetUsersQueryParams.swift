@@ -3,14 +3,14 @@ import Foundation
 public class GetUsersQueryParams {
     /// Limits the results to only users who's `name` or
     /// `login` start with the search term.
-    /// 
+    ///
     /// For externally managed users, the search term needs
     /// to completely match the in order to find the user, and
     /// it will only return one user at a time.
     public let filterTerm: String?
 
     /// Limits the results to the kind of user specified.
-    /// 
+    ///
     /// * `all` returns every kind of user for whom the
     ///   `login` or `name` partially matches the
     ///   `filter_term`. It will only return an external user
@@ -25,7 +25,7 @@ public class GetUsersQueryParams {
 
     /// Limits the results to app users with the given
     /// `external_app_user_id` value.
-    /// 
+    ///
     /// When creating an app user, an
     /// `external_app_user_id` value can be set. This value can
     /// then be used in this endpoint to find any users that
@@ -35,7 +35,7 @@ public class GetUsersQueryParams {
     /// A comma-separated list of attributes to include in the
     /// response. This can be used to request fields that are
     /// not normally returned in a standard response.
-    /// 
+    ///
     /// Be aware that specifying this parameter will have the
     /// effect that none of the standard fields are returned in
     /// the response unless explicitly specified, instead only
@@ -44,7 +44,7 @@ public class GetUsersQueryParams {
     public let fields: [String]?
 
     /// The offset of the item at which to begin the response.
-    /// 
+    ///
     /// Queries with offset parameter value
     /// exceeding 10000 will be rejected
     /// with a 400 response.
@@ -56,7 +56,7 @@ public class GetUsersQueryParams {
     /// Specifies whether to use marker-based pagination instead of
     /// offset-based pagination. Only one pagination method can
     /// be used at a time.
-    /// 
+    ///
     /// By setting this value to true, the API will return a `marker` field
     /// that can be passed as a parameter to this endpoint to get the next
     /// page of the response.
@@ -64,7 +64,7 @@ public class GetUsersQueryParams {
 
     /// Defines the position marker at which to begin returning results. This is
     /// used when paginating using marker-based pagination.
-    /// 
+    ///
     /// This requires `usemarker` to be set to `true`.
     public let marker: String?
 
@@ -73,12 +73,12 @@ public class GetUsersQueryParams {
     /// - Parameters:
     ///   - filterTerm: Limits the results to only users who's `name` or
     ///     `login` start with the search term.
-    ///     
+    ///
     ///     For externally managed users, the search term needs
     ///     to completely match the in order to find the user, and
     ///     it will only return one user at a time.
     ///   - userType: Limits the results to the kind of user specified.
-    ///     
+    ///
     ///     * `all` returns every kind of user for whom the
     ///       `login` or `name` partially matches the
     ///       `filter_term`. It will only return an external user
@@ -91,7 +91,7 @@ public class GetUsersQueryParams {
     ///       `login` matches the `filter_term` exactly.
     ///   - externalAppUserId: Limits the results to app users with the given
     ///     `external_app_user_id` value.
-    ///     
+    ///
     ///     When creating an app user, an
     ///     `external_app_user_id` value can be set. This value can
     ///     then be used in this endpoint to find any users that
@@ -99,14 +99,14 @@ public class GetUsersQueryParams {
     ///   - fields: A comma-separated list of attributes to include in the
     ///     response. This can be used to request fields that are
     ///     not normally returned in a standard response.
-    ///     
+    ///
     ///     Be aware that specifying this parameter will have the
     ///     effect that none of the standard fields are returned in
     ///     the response unless explicitly specified, instead only
     ///     fields for the mini representation are returned, additional
     ///     to the fields requested.
     ///   - offset: The offset of the item at which to begin the response.
-    ///     
+    ///
     ///     Queries with offset parameter value
     ///     exceeding 10000 will be rejected
     ///     with a 400 response.
@@ -114,13 +114,13 @@ public class GetUsersQueryParams {
     ///   - usemarker: Specifies whether to use marker-based pagination instead of
     ///     offset-based pagination. Only one pagination method can
     ///     be used at a time.
-    ///     
+    ///
     ///     By setting this value to true, the API will return a `marker` field
     ///     that can be passed as a parameter to this endpoint to get the next
     ///     page of the response.
     ///   - marker: Defines the position marker at which to begin returning results. This is
     ///     used when paginating using marker-based pagination.
-    ///     
+    ///
     ///     This requires `usemarker` to be set to `true`.
     public init(filterTerm: String? = nil, userType: GetUsersQueryParamsUserTypeField? = nil, externalAppUserId: String? = nil, fields: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, usemarker: Bool? = nil, marker: String? = nil) {
         self.filterTerm = filterTerm
@@ -132,5 +132,4 @@ public class GetUsersQueryParams {
         self.usemarker = usemarker
         self.marker = marker
     }
-
 }

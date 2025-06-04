@@ -33,8 +33,8 @@ public class CollaborationAllowlistExemptTarget: Codable {
     /// - Parameters:
     ///   - id: The unique identifier for this exemption
     ///   - type: `collaboration_whitelist_exempt_target`
-    ///   - enterprise: 
-    ///   - user: 
+    ///   - enterprise:
+    ///   - user:
     ///   - createdAt: The time the entry was created
     ///   - modifiedAt: The time the entry was modified
     public init(id: String? = nil, type: CollaborationAllowlistExemptTargetTypeField? = nil, enterprise: CollaborationAllowlistExemptTargetEnterpriseField? = nil, user: UserMini? = nil, createdAt: Date? = nil, modifiedAt: Date? = nil) {
@@ -46,7 +46,7 @@ public class CollaborationAllowlistExemptTarget: Codable {
         self.modifiedAt = modifiedAt
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decodeIfPresent(String.self, forKey: .id)
         type = try container.decodeIfPresent(CollaborationAllowlistExemptTargetTypeField.self, forKey: .type)
@@ -65,5 +65,4 @@ public class CollaborationAllowlistExemptTarget: Codable {
         try container.encodeDateTimeIfPresent(field: createdAt, forKey: .createdAt)
         try container.encodeDateTimeIfPresent(field: modifiedAt, forKey: .modifiedAt)
     }
-
 }

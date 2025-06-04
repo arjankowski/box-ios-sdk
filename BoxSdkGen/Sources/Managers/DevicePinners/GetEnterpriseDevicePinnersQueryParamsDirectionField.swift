@@ -22,9 +22,8 @@ public enum GetEnterpriseDevicePinnersQueryParamsDirectionField: CodableStringEn
             return "ASC"
         case .desc:
             return "DESC"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

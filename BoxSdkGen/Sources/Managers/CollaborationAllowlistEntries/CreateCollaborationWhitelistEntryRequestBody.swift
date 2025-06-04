@@ -22,7 +22,7 @@ public class CreateCollaborationWhitelistEntryRequestBody: Codable {
         self.direction = direction
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         domain = try container.decode(String.self, forKey: .domain)
         direction = try container.decode(CreateCollaborationWhitelistEntryRequestBodyDirectionField.self, forKey: .direction)
@@ -33,5 +33,4 @@ public class CreateCollaborationWhitelistEntryRequestBody: Codable {
         try container.encode(domain, forKey: .domain)
         try container.encode(direction, forKey: .direction)
     }
-
 }

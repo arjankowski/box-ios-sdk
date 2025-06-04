@@ -15,12 +15,12 @@ public class UploadFileRequestBodyAttributesField: Codable {
     public let parent: UploadFileRequestBodyAttributesParentField
 
     /// Defines the time the file was originally created at.
-    /// 
+    ///
     /// If not set, the upload time will be used.
     public let contentCreatedAt: Date?
 
     /// Defines the time the file was last modified at.
-    /// 
+    ///
     /// If not set, the upload time will be used.
     public let contentModifiedAt: Date?
 
@@ -30,10 +30,10 @@ public class UploadFileRequestBodyAttributesField: Codable {
     ///   - name: The name of the file
     ///   - parent: The parent folder to upload the file to
     ///   - contentCreatedAt: Defines the time the file was originally created at.
-    ///     
+    ///
     ///     If not set, the upload time will be used.
     ///   - contentModifiedAt: Defines the time the file was last modified at.
-    ///     
+    ///
     ///     If not set, the upload time will be used.
     public init(name: String, parent: UploadFileRequestBodyAttributesParentField, contentCreatedAt: Date? = nil, contentModifiedAt: Date? = nil) {
         self.name = name
@@ -42,7 +42,7 @@ public class UploadFileRequestBodyAttributesField: Codable {
         self.contentModifiedAt = contentModifiedAt
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         name = try container.decode(String.self, forKey: .name)
         parent = try container.decode(UploadFileRequestBodyAttributesParentField.self, forKey: .parent)
@@ -57,5 +57,4 @@ public class UploadFileRequestBodyAttributesField: Codable {
         try container.encodeDateTimeIfPresent(field: contentCreatedAt, forKey: .contentCreatedAt)
         try container.encodeDateTimeIfPresent(field: contentModifiedAt, forKey: .contentModifiedAt)
     }
-
 }

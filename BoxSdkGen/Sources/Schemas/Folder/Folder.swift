@@ -36,7 +36,7 @@ public class Folder: FolderMini {
     public let description: String?
 
     /// The folder size in bytes.
-    /// 
+    ///
     /// Be careful parsing this integer as its
     /// value can get very large.
     public let size: Int64?
@@ -66,18 +66,18 @@ public class Folder: FolderMini {
     @CodableTriState public private(set) var sharedLink: FolderSharedLinkField?
 
     /// The `folder_upload_email` parameter is not `null` if one of the following options is **true**:
-    /// 
+    ///
     ///   * The **Allow uploads to this folder via email** and the **Only allow email uploads from collaborators in this folder** are [enabled for a folder in the Admin Console](https://support.box.com/hc/en-us/articles/360043697534-Upload-to-Box-Through-Email), and the user has at least **Upload** permissions granted.
-    /// 
+    ///
     ///   * The **Allow uploads to this folder via email** setting is enabled for a folder in the Admin Console, and the **Only allow email uploads from collaborators in this folder** setting is deactivated (unchecked).
-    /// 
+    ///
     /// If the conditions are not met, the parameter will have the following value: `folder_upload_email: null`
     @CodableTriState public private(set) var folderUploadEmail: FolderFolderUploadEmailField?
 
     @CodableTriState public private(set) var parent: FolderMini?
 
     /// Defines if this item has been deleted or not.
-    /// 
+    ///
     /// * `active` when the item has is not in the trash
     /// * `trashed` when the item has been moved to the trash but not deleted
     /// * `deleted` when the item has been permanently deleted.
@@ -89,7 +89,7 @@ public class Folder: FolderMini {
     ///
     /// - Parameters:
     ///   - id: The unique identifier that represent a folder.
-    ///     
+    ///
     ///     The ID for any folder can be determined
     ///     by visiting a folder in the web application
     ///     and copying the ID from the URL. For example,
@@ -99,7 +99,7 @@ public class Folder: FolderMini {
     ///     endpoints in the `If-Match` and `If-None-Match` headers to only
     ///     perform changes on the folder if (no) changes have happened.
     ///   - type: `folder`
-    ///   - sequenceId: 
+    ///   - sequenceId:
     ///   - name: The name of the folder.
     ///   - createdAt: The date and time when the folder was created. This value may
     ///     be `null` for some folders such as the root folder or the trash
@@ -107,59 +107,59 @@ public class Folder: FolderMini {
     ///   - modifiedAt: The date and time when the folder was last updated. This value may
     ///     be `null` for some folders such as the root folder or the trash
     ///     folder.
-    ///   - description: 
+    ///   - description:
     ///   - size: The folder size in bytes.
-    ///     
+    ///
     ///     Be careful parsing this integer as its
     ///     value can get very large.
-    ///   - pathCollection: 
-    ///   - createdBy: 
-    ///   - modifiedBy: 
+    ///   - pathCollection:
+    ///   - createdBy:
+    ///   - modifiedBy:
     ///   - trashedAt: The time at which this folder was put in the trash.
     ///   - purgedAt: The time at which this folder is expected to be purged
     ///     from the trash.
     ///   - contentCreatedAt: The date and time at which this folder was originally
     ///     created.
     ///   - contentModifiedAt: The date and time at which this folder was last updated.
-    ///   - ownedBy: 
-    ///   - sharedLink: 
+    ///   - ownedBy:
+    ///   - sharedLink:
     ///   - folderUploadEmail: The `folder_upload_email` parameter is not `null` if one of the following options is **true**:
-    ///     
+    ///
     ///       * The **Allow uploads to this folder via email** and the **Only allow email uploads from collaborators in this folder** are [enabled for a folder in the Admin Console](https://support.box.com/hc/en-us/articles/360043697534-Upload-to-Box-Through-Email), and the user has at least **Upload** permissions granted.
-    ///     
+    ///
     ///       * The **Allow uploads to this folder via email** setting is enabled for a folder in the Admin Console, and the **Only allow email uploads from collaborators in this folder** setting is deactivated (unchecked).
-    ///     
+    ///
     ///     If the conditions are not met, the parameter will have the following value: `folder_upload_email: null`
-    ///   - parent: 
+    ///   - parent:
     ///   - itemStatus: Defines if this item has been deleted or not.
-    ///     
+    ///
     ///     * `active` when the item has is not in the trash
     ///     * `trashed` when the item has been moved to the trash but not deleted
     ///     * `deleted` when the item has been permanently deleted.
-    ///   - itemCollection: 
+    ///   - itemCollection:
     public init(id: String, etag: TriStateField<String> = nil, type: FolderBaseTypeField = FolderBaseTypeField.folder, sequenceId: String? = nil, name: String? = nil, createdAt: TriStateField<Date> = nil, modifiedAt: TriStateField<Date> = nil, description: String? = nil, size: Int64? = nil, pathCollection: FolderPathCollectionField? = nil, createdBy: UserMini? = nil, modifiedBy: UserMini? = nil, trashedAt: TriStateField<Date> = nil, purgedAt: TriStateField<Date> = nil, contentCreatedAt: TriStateField<Date> = nil, contentModifiedAt: TriStateField<Date> = nil, ownedBy: UserMini? = nil, sharedLink: TriStateField<FolderSharedLinkField> = nil, folderUploadEmail: TriStateField<FolderFolderUploadEmailField> = nil, parent: TriStateField<FolderMini> = nil, itemStatus: FolderItemStatusField? = nil, itemCollection: Items? = nil) {
-        self._createdAt = CodableTriState(state: createdAt)
-        self._modifiedAt = CodableTriState(state: modifiedAt)
+        _createdAt = CodableTriState(state: createdAt)
+        _modifiedAt = CodableTriState(state: modifiedAt)
         self.description = description
         self.size = size
         self.pathCollection = pathCollection
         self.createdBy = createdBy
         self.modifiedBy = modifiedBy
-        self._trashedAt = CodableTriState(state: trashedAt)
-        self._purgedAt = CodableTriState(state: purgedAt)
-        self._contentCreatedAt = CodableTriState(state: contentCreatedAt)
-        self._contentModifiedAt = CodableTriState(state: contentModifiedAt)
+        _trashedAt = CodableTriState(state: trashedAt)
+        _purgedAt = CodableTriState(state: purgedAt)
+        _contentCreatedAt = CodableTriState(state: contentCreatedAt)
+        _contentModifiedAt = CodableTriState(state: contentModifiedAt)
         self.ownedBy = ownedBy
-        self._sharedLink = CodableTriState(state: sharedLink)
-        self._folderUploadEmail = CodableTriState(state: folderUploadEmail)
-        self._parent = CodableTriState(state: parent)
+        _sharedLink = CodableTriState(state: sharedLink)
+        _folderUploadEmail = CodableTriState(state: folderUploadEmail)
+        _parent = CodableTriState(state: parent)
         self.itemStatus = itemStatus
         self.itemCollection = itemCollection
 
         super.init(id: id, etag: etag, type: type, sequenceId: sequenceId, name: name)
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         createdAt = try container.decodeDateTimeIfPresent(forKey: .createdAt)
         modifiedAt = try container.decodeDateTimeIfPresent(forKey: .modifiedAt)
@@ -182,7 +182,7 @@ public class Folder: FolderMini {
         try super.init(from: decoder)
     }
 
-    public override func encode(to encoder: Encoder) throws {
+    override public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeDateTime(field: _createdAt.state, forKey: .createdAt)
         try container.encodeDateTime(field: _modifiedAt.state, forKey: .modifiedAt)
@@ -203,5 +203,4 @@ public class Folder: FolderMini {
         try container.encodeIfPresent(itemCollection, forKey: .itemCollection)
         try super.encode(to: encoder)
     }
-
 }

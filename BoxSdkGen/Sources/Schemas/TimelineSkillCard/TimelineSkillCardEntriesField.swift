@@ -18,7 +18,7 @@ public class TimelineSkillCardEntriesField: Codable {
 
     /// The image to show on a for an entry that appears
     /// on a timeline. This image URL is required for every entry.
-    /// 
+    ///
     /// The image will be shown in a
     /// list of items (for example faces), and clicking
     /// the image will show the user where that entry
@@ -35,7 +35,7 @@ public class TimelineSkillCardEntriesField: Codable {
     ///     timeline.
     ///   - imageUrl: The image to show on a for an entry that appears
     ///     on a timeline. This image URL is required for every entry.
-    ///     
+    ///
     ///     The image will be shown in a
     ///     list of items (for example faces), and clicking
     ///     the image will show the user where that entry
@@ -46,7 +46,7 @@ public class TimelineSkillCardEntriesField: Codable {
         self.imageUrl = imageUrl
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         text = try container.decodeIfPresent(String.self, forKey: .text)
         appears = try container.decodeIfPresent([TimelineSkillCardEntriesAppearsField].self, forKey: .appears)
@@ -59,5 +59,4 @@ public class TimelineSkillCardEntriesField: Codable {
         try container.encodeIfPresent(appears, forKey: .appears)
         try container.encodeIfPresent(imageUrl, forKey: .imageUrl)
     }
-
 }

@@ -55,7 +55,7 @@ public class StatusSkillCard: Codable {
         self.skillCardTitle = skillCardTitle
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         status = try container.decode(StatusSkillCardStatusField.self, forKey: .status)
         skill = try container.decode(StatusSkillCardSkillField.self, forKey: .skill)
@@ -76,5 +76,4 @@ public class StatusSkillCard: Codable {
         try container.encode(skillCardType, forKey: .skillCardType)
         try container.encodeIfPresent(skillCardTitle, forKey: .skillCardTitle)
     }
-
 }

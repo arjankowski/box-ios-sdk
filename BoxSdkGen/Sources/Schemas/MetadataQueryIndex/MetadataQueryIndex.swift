@@ -35,7 +35,7 @@ public class MetadataQueryIndex: Codable {
         self.fields = fields
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         type = try container.decode(String.self, forKey: .type)
         status = try container.decode(MetadataQueryIndexStatusField.self, forKey: .status)
@@ -50,5 +50,4 @@ public class MetadataQueryIndex: Codable {
         try container.encodeIfPresent(id, forKey: .id)
         try container.encodeIfPresent(fields, forKey: .fields)
     }
-
 }

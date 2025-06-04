@@ -32,5 +32,4 @@ public class GetAuthorizeUrlOptions {
         self.state = state
         self.scope = scope
     }
-
 }

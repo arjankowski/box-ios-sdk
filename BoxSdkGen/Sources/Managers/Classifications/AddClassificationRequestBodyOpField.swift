@@ -17,9 +17,8 @@ public enum AddClassificationRequestBodyOpField: CodableStringEnum {
         switch self {
         case .addEnumOption:
             return "addEnumOption"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

@@ -28,7 +28,7 @@ public class CollaborationAllowlistEntryEnterpriseField: Codable {
         self.name = name
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decodeIfPresent(String.self, forKey: .id)
         type = try container.decodeIfPresent(CollaborationAllowlistEntryEnterpriseTypeField.self, forKey: .type)
@@ -41,5 +41,4 @@ public class CollaborationAllowlistEntryEnterpriseField: Codable {
         try container.encodeIfPresent(type, forKey: .type)
         try container.encodeIfPresent(name, forKey: .name)
     }
-
 }

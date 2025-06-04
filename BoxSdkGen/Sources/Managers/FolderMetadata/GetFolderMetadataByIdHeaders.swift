@@ -11,5 +11,4 @@ public class GetFolderMetadataByIdHeaders {
     public init(extraHeaders: [String: String?]? = [:]) {
         self.extraHeaders = extraHeaders
     }
-
 }

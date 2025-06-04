@@ -27,10 +27,10 @@ public class CollaborationAcceptanceRequirementsStatusTwoFactorAuthenticationReq
     ///     authentication is not required.
     public init(enterpriseHasTwoFactorAuthEnabled: Bool? = nil, userHasTwoFactorAuthenticationEnabled: TriStateField<Bool> = nil) {
         self.enterpriseHasTwoFactorAuthEnabled = enterpriseHasTwoFactorAuthEnabled
-        self._userHasTwoFactorAuthenticationEnabled = CodableTriState(state: userHasTwoFactorAuthenticationEnabled)
+        _userHasTwoFactorAuthenticationEnabled = CodableTriState(state: userHasTwoFactorAuthenticationEnabled)
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         enterpriseHasTwoFactorAuthEnabled = try container.decodeIfPresent(Bool.self, forKey: .enterpriseHasTwoFactorAuthEnabled)
         userHasTwoFactorAuthenticationEnabled = try container.decodeIfPresent(Bool.self, forKey: .userHasTwoFactorAuthenticationEnabled)
@@ -41,5 +41,4 @@ public class CollaborationAcceptanceRequirementsStatusTwoFactorAuthenticationReq
         try container.encodeIfPresent(enterpriseHasTwoFactorAuthEnabled, forKey: .enterpriseHasTwoFactorAuthEnabled)
         try container.encode(field: _userHasTwoFactorAuthenticationEnabled.state, forKey: .userHasTwoFactorAuthenticationEnabled)
     }
-
 }

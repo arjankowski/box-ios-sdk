@@ -47,7 +47,7 @@ public class MetadataBase: Codable {
         self.version = version
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         parent = try container.decodeIfPresent(String.self, forKey: .parent)
         template = try container.decodeIfPresent(String.self, forKey: .template)
@@ -62,5 +62,4 @@ public class MetadataBase: Codable {
         try container.encodeIfPresent(scope, forKey: .scope)
         try container.encodeIfPresent(version, forKey: .version)
     }
-
 }

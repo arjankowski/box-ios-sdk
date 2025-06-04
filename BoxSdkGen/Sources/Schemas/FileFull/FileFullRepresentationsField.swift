@@ -16,7 +16,7 @@ public class FileFullRepresentationsField: Codable {
         self.entries = entries
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         entries = try container.decodeIfPresent([FileFullRepresentationsEntriesField].self, forKey: .entries)
     }
@@ -25,5 +25,4 @@ public class FileFullRepresentationsField: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(entries, forKey: .entries)
     }
-
 }

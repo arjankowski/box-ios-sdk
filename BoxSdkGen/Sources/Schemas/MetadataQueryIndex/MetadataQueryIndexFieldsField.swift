@@ -22,7 +22,7 @@ public class MetadataQueryIndexFieldsField: Codable {
         self.sortDirection = sortDirection
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         key = try container.decodeIfPresent(String.self, forKey: .key)
         sortDirection = try container.decodeIfPresent(MetadataQueryIndexFieldsSortDirectionField.self, forKey: .sortDirection)
@@ -33,5 +33,4 @@ public class MetadataQueryIndexFieldsField: Codable {
         try container.encodeIfPresent(key, forKey: .key)
         try container.encodeIfPresent(sortDirection, forKey: .sortDirection)
     }
-
 }

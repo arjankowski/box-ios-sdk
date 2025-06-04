@@ -19,7 +19,8 @@ public struct CodableTriState<T: Codable>: Codable {
         set {
             if let newValue = newValue {
                 state = .value(newValue)
-            } else {
+            }
+            else {
                 state = .unset // Interpret direct nil assignment as "unset"
             }
         }
@@ -27,14 +28,14 @@ public struct CodableTriState<T: Codable>: Codable {
 
     /// Default initializer. Initializes the state to `.unset`, meaning the value will be omitted when encoded.
     public init() {
-        self.state = .unset
+        state = .unset
     }
 
     /// Initializes the wrapper with a wrapped value.
     /// - If the value is non-nil, state is `.value(value)`.
     /// - If the value is `nil`, state is `.unset`.
     public init(wrappedValue: T?) {
-        self.state = TriStateField(wrappedValue: wrappedValue)
+        state = TriStateField(wrappedValue: wrappedValue)
     }
 
     /// Initializes the wrapper with an explicit tri-state field.
@@ -46,7 +47,7 @@ public struct CodableTriState<T: Codable>: Codable {
     /// Decoding initializer. Delegates decoding to `TriStateField`.
     /// - Allows correct decoding of `.value`, `.null`, or omission.
     public init(from decoder: Decoder) throws {
-        self.state = try TriStateField(from: decoder)
+        state = try TriStateField(from: decoder)
     }
 
     /// Encodes the wrapped value.

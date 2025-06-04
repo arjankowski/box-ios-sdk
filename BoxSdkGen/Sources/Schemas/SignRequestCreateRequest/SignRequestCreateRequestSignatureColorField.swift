@@ -27,9 +27,8 @@ public enum SignRequestCreateRequestSignatureColorField: CodableStringEnum {
             return "black"
         case .red:
             return "red"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

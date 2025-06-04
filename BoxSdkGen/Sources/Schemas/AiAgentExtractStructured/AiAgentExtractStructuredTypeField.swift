@@ -17,9 +17,8 @@ public enum AiAgentExtractStructuredTypeField: CodableStringEnum {
         switch self {
         case .aiAgentExtractStructured:
             return "ai_agent_extract_structured"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

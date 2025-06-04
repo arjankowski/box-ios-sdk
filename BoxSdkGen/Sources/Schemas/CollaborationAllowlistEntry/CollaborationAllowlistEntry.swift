@@ -36,7 +36,7 @@ public class CollaborationAllowlistEntry: Codable {
     ///   - type: `collaboration_whitelist_entry`
     ///   - domain: The whitelisted domain
     ///   - direction: The direction of the collaborations to allow.
-    ///   - enterprise: 
+    ///   - enterprise:
     ///   - createdAt: The time the entry was created at
     public init(id: String? = nil, type: CollaborationAllowlistEntryTypeField? = nil, domain: String? = nil, direction: CollaborationAllowlistEntryDirectionField? = nil, enterprise: CollaborationAllowlistEntryEnterpriseField? = nil, createdAt: Date? = nil) {
         self.id = id
@@ -47,7 +47,7 @@ public class CollaborationAllowlistEntry: Codable {
         self.createdAt = createdAt
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decodeIfPresent(String.self, forKey: .id)
         type = try container.decodeIfPresent(CollaborationAllowlistEntryTypeField.self, forKey: .type)
@@ -66,5 +66,4 @@ public class CollaborationAllowlistEntry: Codable {
         try container.encodeIfPresent(enterprise, forKey: .enterprise)
         try container.encodeDateTimeIfPresent(field: createdAt, forKey: .createdAt)
     }
-
 }

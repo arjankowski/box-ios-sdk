@@ -22,9 +22,8 @@ public enum CreateStoragePolicyAssignmentRequestBodyAssignedToTypeField: Codable
             return "user"
         case .enterprise:
             return "enterprise"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

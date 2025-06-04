@@ -23,17 +23,17 @@ public class DocGenJobFullV2025R0: DocGenJobV2025R0 {
     ///
     /// - Parameters:
     ///   - id: The unique identifier that represent a Box Doc Gen job.
-    ///   - batch: 
-    ///   - templateFile: 
-    ///   - templateFileVersion: 
+    ///   - batch:
+    ///   - templateFile:
+    ///   - templateFileVersion:
     ///   - status: Status of the job.
     ///   - outputType: Type of the generated file.
-    ///   - createdBy: 
-    ///   - enterprise: 
+    ///   - createdBy:
+    ///   - enterprise:
     ///   - source: Source of the request.
     ///   - type: `docgen_job`
-    ///   - outputFile: 
-    ///   - outputFileVersion: 
+    ///   - outputFile:
+    ///   - outputFileVersion:
     ///   - createdAt: Time of job creation.
     public init(id: String, batch: DocGenBatchBaseV2025R0, templateFile: FileReferenceV2025R0, templateFileVersion: FileVersionBaseV2025R0, status: DocGenJobV2025R0StatusField, outputType: String, createdBy: UserBaseV2025R0, enterprise: EnterpriseReferenceV2025R0, source: String, type: DocGenJobBaseV2025R0TypeField = DocGenJobBaseV2025R0TypeField.docgenJob, outputFile: FileReferenceV2025R0?? = nil, outputFileVersion: FileVersionBaseV2025R0?? = nil, createdAt: String? = nil) {
         self.createdBy = createdBy
@@ -44,7 +44,7 @@ public class DocGenJobFullV2025R0: DocGenJobV2025R0 {
         super.init(id: id, batch: batch, templateFile: templateFile, templateFileVersion: templateFileVersion, status: status, outputType: outputType, type: type, outputFile: outputFile, outputFileVersion: outputFileVersion)
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         createdBy = try container.decode(UserBaseV2025R0.self, forKey: .createdBy)
         enterprise = try container.decode(EnterpriseReferenceV2025R0.self, forKey: .enterprise)
@@ -54,7 +54,7 @@ public class DocGenJobFullV2025R0: DocGenJobV2025R0 {
         try super.init(from: decoder)
     }
 
-    public override func encode(to encoder: Encoder) throws {
+    override public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(createdBy, forKey: .createdBy)
         try container.encode(enterprise, forKey: .enterprise)
@@ -62,5 +62,4 @@ public class DocGenJobFullV2025R0: DocGenJobV2025R0 {
         try container.encodeIfPresent(createdAt, forKey: .createdAt)
         try super.encode(to: encoder)
     }
-
 }

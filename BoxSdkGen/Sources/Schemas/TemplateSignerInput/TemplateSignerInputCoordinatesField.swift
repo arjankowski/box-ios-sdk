@@ -22,7 +22,7 @@ public class TemplateSignerInputCoordinatesField: Codable {
         self.y = y
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         x = try container.decodeIfPresent(Double.self, forKey: .x)
         y = try container.decodeIfPresent(Double.self, forKey: .y)
@@ -33,5 +33,4 @@ public class TemplateSignerInputCoordinatesField: Codable {
         try container.encodeIfPresent(x, forKey: .x)
         try container.encodeIfPresent(y, forKey: .y)
     }
-
 }

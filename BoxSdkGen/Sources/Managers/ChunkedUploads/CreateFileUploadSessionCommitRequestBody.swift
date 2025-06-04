@@ -16,7 +16,7 @@ public class CreateFileUploadSessionCommitRequestBody: Codable {
         self.parts = parts
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         parts = try container.decode([UploadPart].self, forKey: .parts)
     }
@@ -25,5 +25,4 @@ public class CreateFileUploadSessionCommitRequestBody: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(parts, forKey: .parts)
     }
-
 }

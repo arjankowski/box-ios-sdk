@@ -35,11 +35,11 @@ public class AiMultipleAgentResponse: Codable {
     public init(entries: [AiSingleAgentResponseFull], limit: Int64? = nil, nextMarker: TriStateField<String> = nil, prevMarker: TriStateField<String> = nil) {
         self.entries = entries
         self.limit = limit
-        self._nextMarker = CodableTriState(state: nextMarker)
-        self._prevMarker = CodableTriState(state: prevMarker)
+        _nextMarker = CodableTriState(state: nextMarker)
+        _prevMarker = CodableTriState(state: prevMarker)
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         entries = try container.decode([AiSingleAgentResponseFull].self, forKey: .entries)
         limit = try container.decodeIfPresent(Int64.self, forKey: .limit)
@@ -54,5 +54,4 @@ public class AiMultipleAgentResponse: Codable {
         try container.encode(field: _nextMarker.state, forKey: .nextMarker)
         try container.encode(field: _prevMarker.state, forKey: .prevMarker)
     }
-
 }

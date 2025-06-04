@@ -32,9 +32,8 @@ public enum GetAiAgentDefaultConfigQueryParamsModeField: CodableStringEnum {
             return "extract"
         case .extractStructured:
             return "extract_structured"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

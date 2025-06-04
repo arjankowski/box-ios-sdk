@@ -49,13 +49,13 @@ public class RetentionPolicyAssignment: Codable {
     /// - Parameters:
     ///   - id: The unique identifier for a retention policy assignment.
     ///   - type: `retention_policy_assignment`
-    ///   - retentionPolicy: 
+    ///   - retentionPolicy:
     ///   - assignedTo: The `type` and `id` of the content that is under
     ///     retention. The `type` can either be `folder`
     ///     `enterprise`, or `metadata_template`.
     ///   - filterFields: An array of field objects. Values are only returned if the `assigned_to`
     ///     type is `metadata_template`. Otherwise, the array is blank.
-    ///   - assignedBy: 
+    ///   - assignedBy:
     ///   - assignedAt: When the retention policy assignment object was
     ///     created.
     ///   - startDateField: The date the retention policy assignment begins.
@@ -66,13 +66,13 @@ public class RetentionPolicyAssignment: Codable {
         self.type = type
         self.retentionPolicy = retentionPolicy
         self.assignedTo = assignedTo
-        self._filterFields = CodableTriState(state: filterFields)
+        _filterFields = CodableTriState(state: filterFields)
         self.assignedBy = assignedBy
         self.assignedAt = assignedAt
         self.startDateField = startDateField
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
         type = try container.decode(RetentionPolicyAssignmentTypeField.self, forKey: .type)
@@ -95,5 +95,4 @@ public class RetentionPolicyAssignment: Codable {
         try container.encodeDateTimeIfPresent(field: assignedAt, forKey: .assignedAt)
         try container.encodeIfPresent(startDateField, forKey: .startDateField)
     }
-
 }

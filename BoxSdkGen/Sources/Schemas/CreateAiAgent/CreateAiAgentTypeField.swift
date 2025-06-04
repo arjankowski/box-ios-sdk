@@ -17,9 +17,8 @@ public enum CreateAiAgentTypeField: CodableStringEnum {
         switch self {
         case .aiAgent:
             return "ai_agent"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

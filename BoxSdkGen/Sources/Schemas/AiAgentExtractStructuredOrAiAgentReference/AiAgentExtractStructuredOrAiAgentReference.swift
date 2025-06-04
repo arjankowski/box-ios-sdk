@@ -26,23 +26,19 @@ public enum AiAgentExtractStructuredOrAiAgentReference: Codable {
 
                 default:
                     throw DecodingError.typeMismatch(AiAgentExtractStructuredOrAiAgentReference.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "The Decoded object contains an unexpected value for key type"))
-
                 }
             }
-
         }
 
         throw DecodingError.typeMismatch(AiAgentExtractStructuredOrAiAgentReference.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "The type of the decoded object cannot be determined."))
-
     }
 
     public func encode(to encoder: Encoder) throws {
         switch self {
-        case .aiAgentExtractStructured(let aiAgentExtractStructured):
+        case let .aiAgentExtractStructured(aiAgentExtractStructured):
             try aiAgentExtractStructured.encode(to: encoder)
-        case .aiAgentReference(let aiAgentReference):
+        case let .aiAgentReference(aiAgentReference):
             try aiAgentReference.encode(to: encoder)
         }
     }
-
 }

@@ -30,11 +30,11 @@ public class IntegrationMappings: Codable {
     ///   - entries: A list of integration mappings
     public init(limit: Int64? = nil, nextMarker: TriStateField<String> = nil, entries: [IntegrationMapping]? = nil) {
         self.limit = limit
-        self._nextMarker = CodableTriState(state: nextMarker)
+        _nextMarker = CodableTriState(state: nextMarker)
         self.entries = entries
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         limit = try container.decodeIfPresent(Int64.self, forKey: .limit)
         nextMarker = try container.decodeIfPresent(String.self, forKey: .nextMarker)
@@ -47,5 +47,4 @@ public class IntegrationMappings: Codable {
         try container.encode(field: _nextMarker.state, forKey: .nextMarker)
         try container.encodeIfPresent(entries, forKey: .entries)
     }
-
 }

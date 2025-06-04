@@ -25,7 +25,7 @@ public class WorkflowFlowsOutcomesIfRejectedField: Codable {
     ///   - id: The identifier of the outcome
     ///   - type: The outcomes resource type
     ///   - name: The name of the outcome
-    ///   - actionType: 
+    ///   - actionType:
     public init(id: String? = nil, type: WorkflowFlowsOutcomesIfRejectedTypeField? = nil, name: String? = nil, actionType: WorkflowFlowsOutcomesIfRejectedActionTypeField? = nil) {
         self.id = id
         self.type = type
@@ -33,7 +33,7 @@ public class WorkflowFlowsOutcomesIfRejectedField: Codable {
         self.actionType = actionType
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decodeIfPresent(String.self, forKey: .id)
         type = try container.decodeIfPresent(WorkflowFlowsOutcomesIfRejectedTypeField.self, forKey: .type)
@@ -48,5 +48,4 @@ public class WorkflowFlowsOutcomesIfRejectedField: Codable {
         try container.encodeIfPresent(name, forKey: .name)
         try container.encodeIfPresent(actionType, forKey: .actionType)
     }
-
 }

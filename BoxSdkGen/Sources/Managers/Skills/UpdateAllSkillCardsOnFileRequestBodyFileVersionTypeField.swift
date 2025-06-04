@@ -17,9 +17,8 @@ public enum UpdateAllSkillCardsOnFileRequestBodyFileVersionTypeField: CodableStr
         switch self {
         case .fileVersion:
             return "file_version"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

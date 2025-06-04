@@ -64,8 +64,8 @@ public enum Utils {
         ///   - dict1: First dictionary to merge
         ///   - dict2: Second dictionary to merge
         /// - Returns: A new dictionary with the combined keys and values of `dict1` dictionary and `dict2.
-        public static func merge<T1,T2>(_ dict1:[T1:T2]?, _ dict2:[T1:T2]?) -> [T1:T2] {
-            return (dict1 ?? [:]).merging(dict2 ?? [:]) {(_, second) in second }
+        public static func merge<T1, T2>(_ dict1: [T1: T2]?, _ dict2: [T1: T2]?) -> [T1: T2] {
+            return (dict1 ?? [:]).merging(dict2 ?? [:]) { _, second in second }
         }
 
         /// Remove empty entries from dictionary.
@@ -89,7 +89,8 @@ public enum Utils {
         public static func toString(value: Any?) -> String? {
             if let parameterConvertible = value as? ParameterConvertible {
                 return parameterConvertible.paramValue
-            } else if let encodable = value as? Encodable {
+            }
+            else if let encodable = value as? Encodable {
                 return try? encodable.serializeToString()
             }
 
@@ -129,7 +130,7 @@ public enum Utils {
         /// - Throws: GeneralError
         public static func dateTimeFromString(dateTime: String) throws -> Date {
             let result = dateFormatterWithSeconds.date(from: dateTime) ??
-            dateFormatterWithMilliseconds.date(from: dateTime)
+                dateFormatterWithMilliseconds.date(from: dateTime)
 
             guard let result = result else {
                 throw BoxSDKError(message: "Could not create Date from provided string \(dateTime)")
@@ -142,7 +143,7 @@ public enum Utils {
         /// - Parameters:
         ///   - dateTime: Date
         /// - Returns: String
-        public static func  dateTimeToString(dateTime: Date) -> String {
+        public static func dateTimeToString(dateTime: Date) -> String {
             return dateFormatterWithSeconds.string(from: dateTime)
         }
 
@@ -151,7 +152,7 @@ public enum Utils {
         ///   - date: String which represents date in ISO 8601 format `yyyy-MM-dd`
         /// - Returns: Date
         /// - Throws: GeneralError
-        public static func  dateFromString(date: String) throws -> Date {
+        public static func dateFromString(date: String) throws -> Date {
             guard let date = dateFormatter.date(from: date) else {
                 throw BoxSDKError(message: "Could not create Date from provided string \(date)")
             }
@@ -163,7 +164,7 @@ public enum Utils {
         /// - Parameters:
         ///   - date: Date
         /// - Returns: String
-        public static func  dateToString(date: Date) -> String {
+        public static func dateToString(date: Date) -> String {
             dateFormatter.string(from: date)
         }
     }
@@ -218,7 +219,7 @@ public enum Utils {
     ///   - size: The size of  InputStream to create.
     /// - Returns: InputStream.
     public static func generateByteStream(size: Int) -> InputStream {
-        return InputStream(data:generateByteBuffer(size: size))
+        return InputStream(data: generateByteBuffer(size: size))
     }
 
     /// Creates an InputStream from a given Data.
@@ -298,7 +299,6 @@ public enum Utils {
         FileManager.default.temporaryDirectory.absoluteString
     }
 
-
     /// Creates a StreamSequence from a given InputStream.
     ///
     /// - Parameters:
@@ -306,9 +306,9 @@ public enum Utils {
     ///   - chunkSize: Size of chunk
     ///   - fileSize: Size of the file
     /// - Returns: The StreamSequence
-    public static func iterateChunks(stream: InputStream, chunkSize: Int64, fileSize: Int64) -> StreamSequence {
+    public static func iterateChunks(stream: InputStream, chunkSize: Int64, fileSize _: Int64) -> StreamSequence {
         return StreamSequence(inputStream: stream, chunkSize: Int(chunkSize))
-   }
+    }
 
     /// Asynchronously reduces the elements of an `Sequence` using a specified reducer function and initial value.
     ///
@@ -318,7 +318,7 @@ public enum Utils {
     ///   - initialValue: The initial value to start the reduction.
     /// - Returns: The result of combining all elements of the stream using the provided reducer function.
     /// - Throws: Any error thrown by the `reducer` closure during the reduction process.
-    public static func reduceIterator<T,U,S>(iterator: S, reducer: @escaping (U, T) async throws -> U, initialValue: U) async throws -> U where S: Sequence, S.Element == T {
+    public static func reduceIterator<T, U, S>(iterator: S, reducer: @escaping (U, T) async throws -> U, initialValue: U) async throws -> U where S: Sequence, S.Element == T {
         var result = initialValue
 
         for item in iterator {

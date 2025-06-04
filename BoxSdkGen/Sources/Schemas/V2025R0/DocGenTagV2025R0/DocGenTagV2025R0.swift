@@ -29,7 +29,7 @@ public class DocGenTagV2025R0: Codable {
         self.jsonPaths = jsonPaths
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         tagContent = try container.decode(String.self, forKey: .tagContent)
         tagType = try container.decode(DocGenTagV2025R0TagTypeField.self, forKey: .tagType)
@@ -42,5 +42,4 @@ public class DocGenTagV2025R0: Codable {
         try container.encode(tagType, forKey: .tagType)
         try container.encode(jsonPaths, forKey: .jsonPaths)
     }
-
 }

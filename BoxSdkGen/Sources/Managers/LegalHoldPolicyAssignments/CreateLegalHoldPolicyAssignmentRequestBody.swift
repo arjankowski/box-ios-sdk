@@ -22,7 +22,7 @@ public class CreateLegalHoldPolicyAssignmentRequestBody: Codable {
         self.assignTo = assignTo
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         policyId = try container.decode(String.self, forKey: .policyId)
         assignTo = try container.decode(CreateLegalHoldPolicyAssignmentRequestBodyAssignToField.self, forKey: .assignTo)
@@ -33,5 +33,4 @@ public class CreateLegalHoldPolicyAssignmentRequestBody: Codable {
         try container.encode(policyId, forKey: .policyId)
         try container.encode(assignTo, forKey: .assignTo)
     }
-
 }

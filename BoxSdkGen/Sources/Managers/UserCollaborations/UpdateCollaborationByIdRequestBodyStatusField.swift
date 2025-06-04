@@ -27,9 +27,8 @@ public enum UpdateCollaborationByIdRequestBodyStatusField: CodableStringEnum {
             return "accepted"
         case .rejected:
             return "rejected"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

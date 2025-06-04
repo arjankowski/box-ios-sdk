@@ -22,9 +22,8 @@ public enum UpdateFileByIdRequestBodyPermissionsCanDownloadField: CodableStringE
             return "open"
         case .company:
             return "company"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

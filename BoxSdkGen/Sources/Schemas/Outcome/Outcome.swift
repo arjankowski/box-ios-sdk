@@ -28,11 +28,11 @@ public class Outcome: Codable {
     ///
     /// - Parameters:
     ///   - id: ID of a specific outcome
-    ///   - collaborators: 
-    ///   - completionRule: 
-    ///   - fileCollaboratorRole: 
-    ///   - taskCollaborators: 
-    ///   - role: 
+    ///   - collaborators:
+    ///   - completionRule:
+    ///   - fileCollaboratorRole:
+    ///   - taskCollaborators:
+    ///   - role:
     public init(id: String, collaborators: CollaboratorVariable? = nil, completionRule: CompletionRuleVariable? = nil, fileCollaboratorRole: RoleVariable? = nil, taskCollaborators: CollaboratorVariable? = nil, role: RoleVariable? = nil) {
         self.id = id
         self.collaborators = collaborators
@@ -42,7 +42,7 @@ public class Outcome: Codable {
         self.role = role
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
         collaborators = try container.decodeIfPresent(CollaboratorVariable.self, forKey: .collaborators)
@@ -61,5 +61,4 @@ public class Outcome: Codable {
         try container.encodeIfPresent(taskCollaborators, forKey: .taskCollaborators)
         try container.encodeIfPresent(role, forKey: .role)
     }
-
 }

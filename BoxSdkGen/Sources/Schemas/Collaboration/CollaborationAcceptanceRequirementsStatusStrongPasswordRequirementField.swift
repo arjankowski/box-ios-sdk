@@ -27,10 +27,10 @@ public class CollaborationAcceptanceRequirementsStatusStrongPasswordRequirementF
     ///     not required.
     public init(enterpriseHasStrongPasswordRequiredForExternalUsers: Bool? = nil, userHasStrongPassword: TriStateField<Bool> = nil) {
         self.enterpriseHasStrongPasswordRequiredForExternalUsers = enterpriseHasStrongPasswordRequiredForExternalUsers
-        self._userHasStrongPassword = CodableTriState(state: userHasStrongPassword)
+        _userHasStrongPassword = CodableTriState(state: userHasStrongPassword)
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         enterpriseHasStrongPasswordRequiredForExternalUsers = try container.decodeIfPresent(Bool.self, forKey: .enterpriseHasStrongPasswordRequiredForExternalUsers)
         userHasStrongPassword = try container.decodeIfPresent(Bool.self, forKey: .userHasStrongPassword)
@@ -41,5 +41,4 @@ public class CollaborationAcceptanceRequirementsStatusStrongPasswordRequirementF
         try container.encodeIfPresent(enterpriseHasStrongPasswordRequiredForExternalUsers, forKey: .enterpriseHasStrongPasswordRequiredForExternalUsers)
         try container.encode(field: _userHasStrongPassword.state, forKey: .userHasStrongPassword)
     }
-
 }

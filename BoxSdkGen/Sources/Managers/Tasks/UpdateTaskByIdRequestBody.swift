@@ -9,7 +9,7 @@ public class UpdateTaskByIdRequestBody: Codable {
     }
 
     /// The action the task assignee will be prompted to do. Must be
-    /// 
+    ///
     /// * `review` defines an approval task that can be approved or
     /// rejected
     /// * `complete` defines a general task which can be completed
@@ -23,7 +23,7 @@ public class UpdateTaskByIdRequestBody: Codable {
 
     /// Defines which assignees need to complete this task before the task
     /// is considered completed.
-    /// 
+    ///
     /// * `all_assignees` (default) requires all assignees to review or
     /// approve the the task in order for it to be considered completed.
     /// * `any_assignee` accepts any one assignee to review or
@@ -34,7 +34,7 @@ public class UpdateTaskByIdRequestBody: Codable {
     ///
     /// - Parameters:
     ///   - action: The action the task assignee will be prompted to do. Must be
-    ///     
+    ///
     ///     * `review` defines an approval task that can be approved or
     ///     rejected
     ///     * `complete` defines a general task which can be completed
@@ -42,7 +42,7 @@ public class UpdateTaskByIdRequestBody: Codable {
     ///   - dueAt: When the task is due at.
     ///   - completionRule: Defines which assignees need to complete this task before the task
     ///     is considered completed.
-    ///     
+    ///
     ///     * `all_assignees` (default) requires all assignees to review or
     ///     approve the the task in order for it to be considered completed.
     ///     * `any_assignee` accepts any one assignee to review or
@@ -54,7 +54,7 @@ public class UpdateTaskByIdRequestBody: Codable {
         self.completionRule = completionRule
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         action = try container.decodeIfPresent(UpdateTaskByIdRequestBodyActionField.self, forKey: .action)
         message = try container.decodeIfPresent(String.self, forKey: .message)
@@ -69,5 +69,4 @@ public class UpdateTaskByIdRequestBody: Codable {
         try container.encodeDateTimeIfPresent(field: dueAt, forKey: .dueAt)
         try container.encodeIfPresent(completionRule, forKey: .completionRule)
     }
-
 }

@@ -13,5 +13,4 @@ public class DeleteFolderByIdQueryParams {
     public init(recursive: Bool? = nil) {
         self.recursive = recursive
     }
-
 }

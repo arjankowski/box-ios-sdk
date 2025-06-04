@@ -1,5 +1,5 @@
-import Foundation
 import BoxSdkGen
+import Foundation
 import XCTest
 
 class SignRequestsManagerTests: XCTestCase {
@@ -13,7 +13,7 @@ class SignRequestsManagerTests: XCTestCase {
         let signerEmail: String = "\(Utils.getUUID())\("@box.com")"
         let fileToSign: FileFull = try await CommonsManager().uploadNewFile()
         let destinationFolder: FolderFull = try await CommonsManager().createNewFolder()
-        let createdSignRequest: SignRequest = try await client.signRequests.createSignRequest(requestBody: SignRequestCreateRequest(signers: [SignRequestCreateSigner(email: .value(signerEmail), role: SignRequestCreateSignerRoleField.signer, isInPerson: false, embedUrlExternalUserId: .value("123"), declinedRedirectUrl: .value("https://www.box.com"), loginRequired: .value(false), password: .value("password"), suppressNotifications: .value(true))], isDocumentPreparationNeeded: false, redirectUrl: .value("https://www.box.com"), declinedRedirectUrl: .value("https://www.box.com"), areTextSignaturesEnabled: true, emailSubject: .value("Sign this document"), emailMessage: .value("Please sign this document"), areRemindersEnabled: true, name: "Sign Request", prefillTags: [SignRequestPrefillTag(documentTagId: .value("0"), dateValue: .value(try Utils.Dates.dateFromString(date: "2035-01-01")))], daysValid: .value(Int64(30)), externalId: .value("123"), externalSystemName: .value("BoxSignIntegration"), sourceFiles: .value([FileBase(id: fileToSign.id)]), parentFolder: FolderMini(id: destinationFolder.id)))
+        let createdSignRequest: SignRequest = try await client.signRequests.createSignRequest(requestBody: SignRequestCreateRequest(signers: [SignRequestCreateSigner(email: .value(signerEmail), role: SignRequestCreateSignerRoleField.signer, isInPerson: false, embedUrlExternalUserId: .value("123"), declinedRedirectUrl: .value("https://www.box.com"), loginRequired: .value(false), password: .value("password"), suppressNotifications: .value(true))], isDocumentPreparationNeeded: false, redirectUrl: .value("https://www.box.com"), declinedRedirectUrl: .value("https://www.box.com"), areTextSignaturesEnabled: true, emailSubject: .value("Sign this document"), emailMessage: .value("Please sign this document"), areRemindersEnabled: true, name: "Sign Request", prefillTags: [SignRequestPrefillTag(documentTagId: .value("0"), dateValue: .value(Utils.Dates.dateFromString(date: "2035-01-01")))], daysValid: .value(Int64(30)), externalId: .value("123"), externalSystemName: .value("BoxSignIntegration"), sourceFiles: .value([FileBase(id: fileToSign.id)]), parentFolder: FolderMini(id: destinationFolder.id)))
         XCTAssertTrue(createdSignRequest.areRemindersEnabled == true)
         XCTAssertTrue(createdSignRequest.areTextSignaturesEnabled == true)
         XCTAssertTrue(createdSignRequest.daysValid == 30)

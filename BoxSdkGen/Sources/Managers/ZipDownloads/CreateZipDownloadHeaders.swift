@@ -11,5 +11,4 @@ public class CreateZipDownloadHeaders {
     public init(extraHeaders: [String: String?]? = [:]) {
         self.extraHeaders = extraHeaders
     }
-
 }

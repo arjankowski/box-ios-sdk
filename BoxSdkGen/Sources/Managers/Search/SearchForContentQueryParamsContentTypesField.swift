@@ -37,9 +37,8 @@ public enum SearchForContentQueryParamsContentTypesField: CodableStringEnum {
             return "comments"
         case .tag:
             return "tag"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

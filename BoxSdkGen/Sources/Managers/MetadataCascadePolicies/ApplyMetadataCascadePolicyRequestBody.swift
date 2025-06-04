@@ -8,7 +8,7 @@ public class ApplyMetadataCascadePolicyRequestBody: Codable {
     /// Describes the desired behavior when dealing with the conflict
     /// where a metadata template already has an instance applied
     /// to a child.
-    /// 
+    ///
     /// * `none` will preserve the existing value on the file
     /// * `overwrite` will force-apply the templates values over
     ///   any existing values.
@@ -20,7 +20,7 @@ public class ApplyMetadataCascadePolicyRequestBody: Codable {
     ///   - conflictResolution: Describes the desired behavior when dealing with the conflict
     ///     where a metadata template already has an instance applied
     ///     to a child.
-    ///     
+    ///
     ///     * `none` will preserve the existing value on the file
     ///     * `overwrite` will force-apply the templates values over
     ///       any existing values.
@@ -28,7 +28,7 @@ public class ApplyMetadataCascadePolicyRequestBody: Codable {
         self.conflictResolution = conflictResolution
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         conflictResolution = try container.decode(ApplyMetadataCascadePolicyRequestBodyConflictResolutionField.self, forKey: .conflictResolution)
     }
@@ -37,5 +37,4 @@ public class ApplyMetadataCascadePolicyRequestBody: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(conflictResolution, forKey: .conflictResolution)
     }
-
 }

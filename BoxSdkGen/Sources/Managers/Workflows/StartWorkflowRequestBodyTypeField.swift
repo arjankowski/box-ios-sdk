@@ -17,9 +17,8 @@ public enum StartWorkflowRequestBodyTypeField: CodableStringEnum {
         switch self {
         case .workflowParameters:
             return "workflow_parameters"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

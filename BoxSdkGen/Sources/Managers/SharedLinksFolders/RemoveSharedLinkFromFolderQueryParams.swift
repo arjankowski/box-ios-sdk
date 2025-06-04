@@ -13,5 +13,4 @@ public class RemoveSharedLinkFromFolderQueryParams {
     public init(fields: String) {
         self.fields = fields
     }
-
 }

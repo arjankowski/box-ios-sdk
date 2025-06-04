@@ -17,9 +17,8 @@ public enum UpdateClassificationRequestBodyFieldKeyField: CodableStringEnum {
         switch self {
         case .boxSecurityClassificationKey:
             return "Box__Security__Classification__Key"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

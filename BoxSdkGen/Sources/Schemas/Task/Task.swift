@@ -48,7 +48,7 @@ public class Task: Codable {
 
     /// Defines which assignees need to complete this task before the task
     /// is considered completed.
-    /// 
+    ///
     /// * `all_assignees` requires all assignees to review or
     /// approve the the task in order for it to be considered completed.
     /// * `any_assignee` accepts any one assignee to review or
@@ -60,18 +60,18 @@ public class Task: Codable {
     /// - Parameters:
     ///   - id: The unique identifier for this task
     ///   - type: `task`
-    ///   - item: 
+    ///   - item:
     ///   - dueAt: When the task is due
     ///   - action: The type of task the task assignee will be prompted to
     ///     perform.
     ///   - message: A message that will be included with the task
-    ///   - taskAssignmentCollection: 
+    ///   - taskAssignmentCollection:
     ///   - isCompleted: Whether the task has been completed
-    ///   - createdBy: 
+    ///   - createdBy:
     ///   - createdAt: When the task object was created
     ///   - completionRule: Defines which assignees need to complete this task before the task
     ///     is considered completed.
-    ///     
+    ///
     ///     * `all_assignees` requires all assignees to review or
     ///     approve the the task in order for it to be considered completed.
     ///     * `any_assignee` accepts any one assignee to review or
@@ -90,7 +90,7 @@ public class Task: Codable {
         self.completionRule = completionRule
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decodeIfPresent(String.self, forKey: .id)
         type = try container.decodeIfPresent(TaskTypeField.self, forKey: .type)
@@ -119,5 +119,4 @@ public class Task: Codable {
         try container.encodeDateTimeIfPresent(field: createdAt, forKey: .createdAt)
         try container.encodeIfPresent(completionRule, forKey: .completionRule)
     }
-
 }

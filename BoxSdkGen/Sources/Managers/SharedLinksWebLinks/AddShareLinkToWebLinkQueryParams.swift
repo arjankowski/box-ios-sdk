@@ -13,5 +13,4 @@ public class AddShareLinkToWebLinkQueryParams {
     public init(fields: String) {
         self.fields = fields
     }
-
 }

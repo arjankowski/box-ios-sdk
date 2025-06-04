@@ -7,7 +7,7 @@ public class GetRetentionPolicyAssignmentsQueryParams {
     /// A comma-separated list of attributes to include in the
     /// response. This can be used to request fields that are
     /// not normally returned in a standard response.
-    /// 
+    ///
     /// Be aware that specifying this parameter will have the
     /// effect that none of the standard fields are returned in
     /// the response unless explicitly specified, instead only
@@ -29,7 +29,7 @@ public class GetRetentionPolicyAssignmentsQueryParams {
     ///   - fields: A comma-separated list of attributes to include in the
     ///     response. This can be used to request fields that are
     ///     not normally returned in a standard response.
-    ///     
+    ///
     ///     Be aware that specifying this parameter will have the
     ///     effect that none of the standard fields are returned in
     ///     the response unless explicitly specified, instead only
@@ -44,5 +44,4 @@ public class GetRetentionPolicyAssignmentsQueryParams {
         self.marker = marker
         self.limit = limit
     }
-
 }

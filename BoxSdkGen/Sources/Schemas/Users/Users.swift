@@ -26,20 +26,20 @@ public class Users: Codable {
     /// One greater than the offset of the last entry in the entire collection.
     /// The total number of entries in the collection may be less than
     /// `total_count`.
-    /// 
+    ///
     /// This field is only returned for calls that use offset-based pagination.
     /// For marker-based paginated APIs, this field will be omitted.
     public let totalCount: Int64?
 
     /// The 0-based offset of the first entry in this set. This will be the same
     /// as the `offset` query parameter.
-    /// 
+    ///
     /// This field is only returned for calls that use offset-based pagination.
     /// For marker-based paginated APIs, this field will be omitted.
     public let offset: Int64?
 
     /// The order by which items are returned.
-    /// 
+    ///
     /// This field is only returned for calls that use offset-based pagination.
     /// For marker-based paginated APIs, this field will be omitted.
     public let order: [UsersOrderField]?
@@ -58,30 +58,30 @@ public class Users: Codable {
     ///   - totalCount: One greater than the offset of the last entry in the entire collection.
     ///     The total number of entries in the collection may be less than
     ///     `total_count`.
-    ///     
+    ///
     ///     This field is only returned for calls that use offset-based pagination.
     ///     For marker-based paginated APIs, this field will be omitted.
     ///   - offset: The 0-based offset of the first entry in this set. This will be the same
     ///     as the `offset` query parameter.
-    ///     
+    ///
     ///     This field is only returned for calls that use offset-based pagination.
     ///     For marker-based paginated APIs, this field will be omitted.
     ///   - order: The order by which items are returned.
-    ///     
+    ///
     ///     This field is only returned for calls that use offset-based pagination.
     ///     For marker-based paginated APIs, this field will be omitted.
     ///   - entries: A list of users
     public init(limit: Int64? = nil, nextMarker: TriStateField<String> = nil, prevMarker: TriStateField<String> = nil, totalCount: Int64? = nil, offset: Int64? = nil, order: [UsersOrderField]? = nil, entries: [UserFull]? = nil) {
         self.limit = limit
-        self._nextMarker = CodableTriState(state: nextMarker)
-        self._prevMarker = CodableTriState(state: prevMarker)
+        _nextMarker = CodableTriState(state: nextMarker)
+        _prevMarker = CodableTriState(state: prevMarker)
         self.totalCount = totalCount
         self.offset = offset
         self.order = order
         self.entries = entries
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         limit = try container.decodeIfPresent(Int64.self, forKey: .limit)
         nextMarker = try container.decodeIfPresent(String.self, forKey: .nextMarker)
@@ -102,5 +102,4 @@ public class Users: Codable {
         try container.encodeIfPresent(order, forKey: .order)
         try container.encodeIfPresent(entries, forKey: .entries)
     }
-
 }

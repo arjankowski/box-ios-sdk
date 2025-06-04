@@ -24,7 +24,7 @@ public class CreateRetentionPolicyAssignmentRequestBodyFilterFieldsField: Codabl
         self.value = value
     }
 
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         field = try container.decodeIfPresent(String.self, forKey: .field)
         value = try container.decodeIfPresent(String.self, forKey: .value)
@@ -35,5 +35,4 @@ public class CreateRetentionPolicyAssignmentRequestBodyFilterFieldsField: Codabl
         try container.encodeIfPresent(field, forKey: .field)
         try container.encodeIfPresent(value, forKey: .value)
     }
-
 }

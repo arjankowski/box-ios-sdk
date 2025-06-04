@@ -1,9 +1,8 @@
-import Foundation
 import BoxSdkGen
+import Foundation
 
 public class CommonsManager {
-    public init() {
-    }
+    public init() {}
 
     public func getCcgAuth() -> BoxCCGAuth {
         let ccgConfig: CCGConfig = CCGConfig(clientId: Utils.getEnvironmentVariable(name: "CLIENT_ID"), clientSecret: Utils.getEnvironmentVariable(name: "CLIENT_SECRET"), enterpriseId: Utils.getEnvironmentVariable(name: "ENTERPRISE_ID"))
@@ -45,7 +44,6 @@ public class CommonsManager {
             if Utils.Strings.toString(value: firstTos.tosType) == "managed" {
                 return firstTos
             }
-
         }
 
         if numberOfTos >= 2 {
@@ -53,7 +51,6 @@ public class CommonsManager {
             if Utils.Strings.toString(value: secondTos.tosType) == "managed" {
                 return secondTos
             }
-
         }
 
         return try await client.termsOfServices.createTermsOfService(requestBody: CreateTermsOfServiceRequestBody(status: CreateTermsOfServiceRequestBodyStatusField.disabled, text: "Test TOS", tosType: CreateTermsOfServiceRequestBodyTosTypeField.managed))
@@ -75,10 +72,10 @@ public class CommonsManager {
         let client: BoxClient = CommonsManager().getDefaultClient()
         do {
             return try await client.classifications.getClassificationTemplate()
-        } catch {
+        }
+        catch {
             return try await client.classifications.createClassificationTemplate(requestBody: CreateClassificationTemplateRequestBody(fields: [CreateClassificationTemplateRequestBodyFieldsField(options: [])]))
         }
-
     }
 
     public func getOrCreateShieldInformationBarrier(client: BoxClient, enterpriseId: String) async throws -> ShieldInformationBarrier {
@@ -90,5 +87,4 @@ public class CommonsManager {
 
         return barriers.entries![numberOfBarriers - 1]
     }
-
 }

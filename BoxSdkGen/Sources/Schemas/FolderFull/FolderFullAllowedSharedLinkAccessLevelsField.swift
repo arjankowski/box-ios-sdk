@@ -27,9 +27,8 @@ public enum FolderFullAllowedSharedLinkAccessLevelsField: CodableStringEnum {
             return "company"
         case .collaborators:
             return "collaborators"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }

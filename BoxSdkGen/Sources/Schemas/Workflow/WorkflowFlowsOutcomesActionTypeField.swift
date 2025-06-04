@@ -127,9 +127,8 @@ public enum WorkflowFlowsOutcomesActionTypeField: CodableStringEnum {
             return "apply_folder_classification"
         case .sendNotification:
             return "send_notification"
-        case .customValue(let value):
+        case let .customValue(value):
             return value
         }
     }
-
 }
