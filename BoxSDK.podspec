@@ -13,11 +13,12 @@ Pod::Spec.new do |spec|
   spec.ios.deployment_target = '13.0'
   spec.tvos.deployment_target = '13.0'
   spec.watchos.deployment_target = '6.0'
-  spec.visionos.deployment_target = '1.0'
   spec.source       = { :git => "https://github.com/arjankowski/box-ios-sdk.git", :tag => spec.version.to_s }
   spec.swift_versions = ["5"]
   spec.requires_arc = true
 
+  spec.dependency "BoxSDKGen", spec.version.to_s
+  
   spec.default_subspec = "Core"
   spec.subspec "Core" do |ss|
       ss.source_files  = "BoxSDK/Sources/**/*.swift" , "BoxSDK/Sources/**/Environment.plist"

@@ -1,5 +1,5 @@
 Pod::Spec.new do |spec|
-  spec.name         = 'BoxSdkGen'
+  spec.name         = 'BoxSDKGen'
   spec.version      = '8.3.0'
   spec.summary      = 'Official Box Swift Generated SDK'
   spec.homepage     = 'https://github.com/arjankowski/box-swift-sdk-gen'
@@ -13,6 +13,6 @@ Pod::Spec.new do |spec|
   spec.source       = { :git => 'https://github.com/arjankowski/box-ios-sdk.git', :tag => spec.version.to_s }
   spec.swift_versions = ['5']
   spec.requires_arc = true
-  spec.source_files = 'BoxSdkGen/Sources/**/*.swift'
-  spec.resource_bundle = {"BoxSdkGen" => "BoxSdkGen/Sources/PrivacyInfo.xcprivacy"}
+  spec.source_files = 'BoxSDKGen/Sources/**/*.swift'
+  spec.resource_bundle = {"BoxSDKGen" => "BoxSDKGen/Sources/PrivacyInfo.xcprivacy"}
 end

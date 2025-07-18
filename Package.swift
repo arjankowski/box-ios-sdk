@@ -10,8 +10,10 @@ let package = Package(
         .watchOS(.v6)
     ],
     products: [
-        .library(name: "BoxSDK", targets: ["BoxSDK"]),
-        .library(name: "BoxSdkGen", targets: ["BoxSdkGen"])
+        .library(
+            name: "BoxSDK",
+            targets: ["BoxSDKSuite"]
+        )
     ],
     dependencies: [],
     targets: [
@@ -24,17 +26,22 @@ let package = Package(
             ]
         ),
         .target(
-            name: "BoxSdkGen",
+            name: "BoxSDKGen",
             dependencies: [],
-            path: "BoxSdkGen/Sources",
+            path: "BoxSDKGen/Sources",
             resources: [
                 .copy("PrivacyInfo.xcprivacy")
             ]
         ),
+        .target(
+            name: "BoxSDKSuite",
+            dependencies: ["BoxSDK", "BoxSDKGen"],
+            path: "BoxSDKSuite/Sources"
+        ),
         .testTarget(
-            name: "BoxSdkGenTests",
-            dependencies: ["BoxSdkGen"],
-            path: "BoxSdkGen/Tests"
+            name: "BoxSDKGenTests",
+            dependencies: ["BoxSDKGen"],
+            path: "BoxSDKGen/Tests"
         )
     ],
     swiftLanguageVersions: [.v5]
