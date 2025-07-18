@@ -42,6 +42,12 @@ class AnalyticsHeaderGenerator {
             return "macOS"
         #elseif os(visionOS)
             return "visionOS"
+        #elseif os(Linux)
+            return "Linux"
+        #elseif os(Windows)
+            return "Windows"
+        #else
+            return "N/A"
         #endif
     }()
 
@@ -50,11 +56,12 @@ class AnalyticsHeaderGenerator {
             return UIDevice.current.systemVersion
         #elseif os(watchOS)
             return WKInterfaceDevice.current().systemVersion
-        #elseif os(OSX) || os(visionOS)
+        #else
             let version = ProcessInfo.processInfo.operatingSystemVersion
             let versionString = "\(version.majorVersion).\(version.minorVersion).\(version.patchVersion)"
             return versionString
         #endif
+        
     }()
 
     lazy var swiftSDKVersion: String = {

@@ -103,6 +103,8 @@ class ArrayInputStream: InputStream {
             stream.close()
         }
     }
+    
+#if os(iOS) || os(macOS)
 
     override func property(forKey _: Stream.PropertyKey) -> Any? {
         return nil
@@ -111,6 +113,8 @@ class ArrayInputStream: InputStream {
     override func setProperty(_: Any?, forKey _: Stream.PropertyKey) -> Bool {
         return false
     }
+    
+#endif
 
     override var streamStatus: Stream.Status {
         return _streamStatus
