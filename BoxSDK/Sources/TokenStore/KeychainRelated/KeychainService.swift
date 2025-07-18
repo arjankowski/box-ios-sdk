@@ -6,6 +6,7 @@
 //  Copyright © 2019 Box. All rights reserved.
 //
 
+#if os(macOS) || os(iOS) || os(watchOS) || os(tvOS) || os(visionOS)
 import Foundation
 import Security
 
@@ -116,3 +117,4 @@ private extension Encodable {
         return (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)).flatMap { $0 as? [String: Any] }
     }
 }
+#endif

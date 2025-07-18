@@ -6,6 +6,8 @@
 //  Copyright © 2019 Box. All rights reserved.
 //
 
+
+#if os(macOS) || os(iOS) || os(watchOS) || os(tvOS) || os(visionOS)
 import Foundation
 import os.log
 
@@ -70,3 +72,13 @@ public class ConsoleLogDestination: LogDestination {
 
     // swiftlint:enable cyclomatic_complexity
 }
+#else
+import Foundation
+
+open class ConsoleLogDestination: LogDestination {
+    open func write(_ message: StaticString, level: LogLevel, category: LogCategory, _ args: [CVarArg]) {
+        let formattedMessage = String(format: message.description, arguments: args)
+        print("[\(level)][\(category)]: \(formattedMessage)")
+    }
+}
+#endif

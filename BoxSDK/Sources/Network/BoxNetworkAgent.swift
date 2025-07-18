@@ -1,5 +1,5 @@
 import Foundation
-import os
+//import os
 
 /// Represents API request query parameters.
 public typealias QueryParameters = [String: QueryParameterConvertible?]

@@ -6,6 +6,10 @@
 //  Copyright © 2019 Box. All rights reserved.
 //
 
+#if os(macOS) || os(iOS) || os(watchOS) || os(tvOS) || os(visionOS)
+import Foundation
+import os.log
+
 import Foundation
 import os.log
 
@@ -127,3 +131,117 @@ public class FileLogDestination: LogDestination {
         return formattedMessage
     }
 }
+#else
+import Foundation
+
+open class FileLogDestination: LogDestination {
+    private var fileURL: URL
+    private var fileHandler: FileHandle?
+
+    deinit {
+        fileHandler?.closeFile()
+    }
+
+    /// Initializer.
+    ///
+    /// - Parameter fileURL: The file path to write the logs to.
+    public init(fileURL: URL) {
+        if !FileManager.default.fileExists(atPath: fileURL.path) {
+            if !FileManager.default.createFile(atPath: fileURL.path, contents: nil, attributes: nil) {
+                print("ERROR: File for logging could not be created: \(fileURL.path)")
+            }
+        }
+        self.fileURL = fileURL
+        do {
+            self.fileHandler = try FileHandle(forWritingTo: fileURL)
+        }
+        catch {
+            print("ERROR: Cannot write logs to specified file \(fileURL.path): \(error)")
+        }
+    }
+
+    /// Logs a message into a file
+    ///
+    /// - Parameters:
+    ///   - message: Message to be written into the console log
+    ///   - level: Log level defining type of log
+    ///   - category: Log category defining type of data logged
+    ///   - args: Log arguments
+    public func write(_ message: StaticString, level: LogLevel, category: LogCategory, _ args: [CVarArg]) {
+        let logMessage = FileLogDestination.formattedMessage(message: message.description, args: args)
+        let log = "[\(level)] \(category) \(logMessage)\n"
+
+        if let data = log.data(using: .utf8) {
+            do {
+                try fileHandler?.seekToEndOfFile()
+                try fileHandler?.write(contentsOf: data)
+            } catch {
+                print("ERROR: Failed to write log to file \(fileURL.path): \(error)")
+            }
+        } else {
+            print("ERROR: Failed to convert log message to Data for writing: \(logMessage)")
+        }
+    }
+
+    static func formattedMessage(message: String, args: [CVarArg]) -> String {
+        let formatSpecifiers = ["@", "%", "d", "D", "u", "U", "x", "X", "o", "O", "f", "F", "e", "E", "g", "G", "c", "C", "s", "S", "p", "a", "A"]
+        var messageCopy = Substring(message)
+        var formattedMessage = ""
+        var argsIndex = 0
+
+        while let startIndex = messageCopy.firstIndex(of: "%") {
+            formattedMessage += String(messageCopy[..<startIndex])
+            if messageCopy.distance(from: startIndex, to: messageCopy.endIndex) > 1 {
+                let index = messageCopy.index(after: startIndex)
+                messageCopy = messageCopy[index...]
+                var canCheckEndChar = true
+
+                for idx in messageCopy.indices {
+                    if messageCopy[idx] == "{" {
+                        canCheckEndChar = false
+                    }
+                    else if messageCopy[idx] == "}" {
+                        canCheckEndChar = true
+                    }
+                    else if canCheckEndChar, formatSpecifiers.contains(String(messageCopy[idx])) {
+                        let endIndex: String.Index
+                        if messageCopy.distance(from: idx, to: messageCopy.endIndex) == 1 {
+                            endIndex = messageCopy.endIndex
+                        }
+                        else {
+                            endIndex = messageCopy.index(after: idx)
+                        }
+
+                        if messageCopy[idx] == "%" {
+                            formattedMessage += "%"
+                        }
+                        else {
+                            var formatSpecifier = "%" + String(messageCopy[..<endIndex])
+                            if formatSpecifier.contains("{public}") {
+                                formatSpecifier = formatSpecifier.replacingOccurrences(of: "{public}", with: "")
+                                formattedMessage += String(format: formatSpecifier, args[argsIndex])
+                            }
+                            else if formatSpecifier.contains("{private}") || formatSpecifier.contains("@") || formatSpecifier.contains("s") || formatSpecifier.contains("S") {
+                                formattedMessage += "<private>"
+                            }
+                            else {
+                                formattedMessage += String(format: formatSpecifier, args[argsIndex])
+                            }
+                            argsIndex += 1
+                        }
+
+                        messageCopy = messageCopy[endIndex...]
+                        break
+                    }
+                }
+            }
+            else {
+                formattedMessage += String(messageCopy[..<startIndex])
+                messageCopy = ""
+            }
+        }
+        formattedMessage += String(messageCopy)
+        return formattedMessage
+    }
+}
+#endif

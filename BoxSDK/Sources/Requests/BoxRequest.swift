@@ -7,6 +7,10 @@
 //
 
 import Foundation
+#if canImport(FoundationNetworking)
+    import FoundationNetworking
+#endif
+
 
 /// Represents Box SDK API request.
 public class BoxRequest {

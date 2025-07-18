@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import os.log
+//import os.log
 
 // https://www.bignerdranch.com/blog/migrating-to-unified-logging-swift-edition/
 enum LogSubsystem {

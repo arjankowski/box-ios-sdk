@@ -7,6 +7,10 @@
 //
 
 import Foundation
+#if canImport(FoundationNetworking)
+    import FoundationNetworking
+#endif
+
 
 /// The components that make up a description of a BoxResponse
 public struct BoxResponseDescription {

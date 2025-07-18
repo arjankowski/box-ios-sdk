@@ -6,6 +6,7 @@
 //  Copyright © 2019 Box. All rights reserved.
 //
 
+#if os(macOS) || os(iOS) || os(watchOS) || os(tvOS) || os(visionOS)
 import Foundation
 
 // Key for storing the token info
@@ -53,3 +54,4 @@ public class KeychainTokenStore: TokenStore {
         }
     }
 }
+#endif

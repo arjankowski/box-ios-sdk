@@ -16,11 +16,25 @@
 
     /// The color type used natively on the target platform.
     public typealias PlatformColor = NSColor
+#else
+public struct PlatformColor {
+        public let red: Double
+        public let green: Double
+        public let blue: Double
+        public let alpha: Double
+
+        public init(red: Double, green: Double, blue: Double, alpha: Double) {
+            self.red = red
+            self.green = green
+            self.blue = blue
+            self.alpha = alpha
+        }
+    }
 #endif
 
 extension PlatformColor {
     convenience init?(hex: String) {
-        let red, green, blue, alpha: CGFloat
+        let red, green, blue, alpha: Double
         if hex.hasPrefix("#") {
             let start = hex.index(hex.startIndex, offsetBy: 1)
             let hexColor = String(hex[start...])
