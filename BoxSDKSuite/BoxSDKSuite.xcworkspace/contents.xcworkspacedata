@@ -7,4 +7,7 @@
    <FileRef
       location = "container:../BoxSDK/BoxSDK.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "container:BoxSDKSuite.xcodeproj">
+   </FileRef>
 </Workspace>
