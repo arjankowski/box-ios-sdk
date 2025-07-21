@@ -61,7 +61,6 @@ class AnalyticsHeaderGenerator {
             let versionString = "\(version.majorVersion).\(version.minorVersion).\(version.patchVersion)"
             return versionString
         #endif
-        
     }()
 
     lazy var swiftSDKVersion: String = {

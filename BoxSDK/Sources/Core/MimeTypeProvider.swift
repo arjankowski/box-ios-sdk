@@ -24,7 +24,7 @@ enum MimeTypeProvider {
         "jpeg": "image/jpeg",
         "gif": "image/gif",
         "svg": "image/svg+xml",
-        "bmp": "image/bmp",
+        "bmp": "image/bmp"
     ]
 
     /// Converting given filename to mime type
@@ -39,22 +39,22 @@ enum MimeTypeProvider {
         guard let pathExtension = url.pathExtension else {
             return defaultMimeType
         }
-        
-#if os(macOS) || os(iOS) || os(watchOS) || os(tvOS) || os(visionOS)
 
-        if #available(iOS 14, macOS 11.0, watchOS 7.0, tvOS 14.0, *) {
-            return UTType(filenameExtension: pathExtension)?.preferredMIMEType ?? defaultMimeType
-        }
-        else {
-            if let uti = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, pathExtension as NSString, nil)?.takeRetainedValue(),
-               let mimeType = UTTypeCopyPreferredTagWithClass(uti, kUTTagClassMIMEType)?.takeRetainedValue() {
-                return mimeType as String
+        #if os(macOS) || os(iOS) || os(watchOS) || os(tvOS) || os(visionOS)
+
+            if #available(iOS 14, macOS 11.0, watchOS 7.0, tvOS 14.0, *) {
+                return UTType(filenameExtension: pathExtension)?.preferredMIMEType ?? defaultMimeType
             }
-        }
+            else {
+                if let uti = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, pathExtension as NSString, nil)?.takeRetainedValue(),
+                   let mimeType = UTTypeCopyPreferredTagWithClass(uti, kUTTagClassMIMEType)?.takeRetainedValue() {
+                    return mimeType as String
+                }
+            }
 
-        return defaultMimeType
-#else
-        return commonMimeTypes[pathExtension] ?? defaultMimeType
-#endif
+            return defaultMimeType
+        #else
+            return commonMimeTypes[pathExtension] ?? defaultMimeType
+        #endif
     }
 }

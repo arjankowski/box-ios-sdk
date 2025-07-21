@@ -11,7 +11,6 @@ import Foundation
     import FoundationNetworking
 #endif
 
-
 /// Box API response
 public struct BoxResponse {
     /// The Box SDK API request related to this response.

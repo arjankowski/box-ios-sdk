@@ -574,6 +574,41 @@
 			remoteGlobalIDString = 1734EAF62321482F008E3958;
 			remoteInfo = TestApp;
 		};
+		0587E8F22E2E33B1008D009A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0587E8E82E2E33B1008D009A /* BoxSDKGen.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 73E5F4A42A0A227676CC6618;
+			remoteInfo = BoxSdkGen_iOS;
+		};
+		0587E8F42E2E33B1008D009A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0587E8E82E2E33B1008D009A /* BoxSDKGen.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D43BE4A7FB166BBAA1023A07;
+			remoteInfo = BoxSdkGen_macOS;
+		};
+		0587E8F62E2E33B1008D009A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0587E8E82E2E33B1008D009A /* BoxSDKGen.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C3AE1758A329122017298588;
+			remoteInfo = BoxSdkGen_tvOS;
+		};
+		0587E8F82E2E33B1008D009A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0587E8E82E2E33B1008D009A /* BoxSDKGen.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 10EAA57F74A06B7070AD0271;
+			remoteInfo = BoxSdkGen_visionOS;
+		};
+		0587E8FA2E2E33B1008D009A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0587E8E82E2E33B1008D009A /* BoxSDKGen.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7309936F8740B59A0DB3CC08;
+			remoteInfo = BoxSdkGen_watchOS;
+		};
 		05EC89D927577AF900FEBAC6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3549BAFC1DA387DB00C63030 /* Project object */;
@@ -699,6 +734,7 @@
 		0571FC7028F94ABD004846E4 /* QuickSpec+Folders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QuickSpec+Folders.swift"; sourceTree = "<group>"; };
 		0579F6FF27577FD200473A3C /* FolderModuleIntegrationSpecs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderModuleIntegrationSpecs.swift; sourceTree = "<group>"; };
 		057C8CE3276799760092A6EC /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
+		0587E8E82E2E33B1008D009A /* BoxSDKGen.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BoxSDKGen.xcodeproj; path = ../BoxSDKGen/BoxSDKGen.xcodeproj; sourceTree = SOURCE_ROOT; };
 		059CF240283D0666001809CA /* FolderModuleAsyncIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderModuleAsyncIntegrationTests.swift; sourceTree = "<group>"; };
 		05A58A0E26FB16DF00AB309C /* FolderItemSpecs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderItemSpecs.swift; sourceTree = "<group>"; };
 		05A58A1626FB196100AB309C /* WebhookItemSpecs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebhookItemSpecs.swift; sourceTree = "<group>"; };
@@ -1301,6 +1337,18 @@
 				0571FC6A28F949E6004846E4 /* QuickSpec+WebLinks.swift */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		0587E8EB2E2E33B1008D009A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0587E8F32E2E33B1008D009A /* BoxSdkGen.framework */,
+				0587E8F52E2E33B1008D009A /* BoxSdkGen.framework */,
+				0587E8F72E2E33B1008D009A /* BoxSdkGen.framework */,
+				0587E8F92E2E33B1008D009A /* BoxSdkGen.framework */,
+				0587E8FB2E2E33B1008D009A /* BoxSdkGen.framework */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		05B51E0529D72FB400CDFA9B /* PagingIterator */ = {
@@ -2016,6 +2064,7 @@
 		3549BAFB1DA387DB00C63030 = {
 			isa = PBXGroup;
 			children = (
+				0587E8E82E2E33B1008D009A /* BoxSDKGen.xcodeproj */,
 				05EFAB1F26F0F01100DF1830 /* Nimble.xcframework */,
 				05EFAB2126F0F01100DF1830 /* OHHTTPStubs.xcframework */,
 				05EFAB2026F0F01100DF1830 /* Quick.xcframework */,
@@ -2575,6 +2624,12 @@
 			mainGroup = 3549BAFB1DA387DB00C63030;
 			productRefGroup = 3549BB061DA387DB00C63030 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 0587E8EB2E2E33B1008D009A /* Products */;
+					ProjectRef = 0587E8E82E2E33B1008D009A /* BoxSDKGen.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				3549BB201DA389CD00C63030 /* BoxSDK-iOS */,
@@ -2584,6 +2639,44 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		0587E8F32E2E33B1008D009A /* BoxSdkGen.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = BoxSdkGen.framework;
+			remoteRef = 0587E8F22E2E33B1008D009A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0587E8F52E2E33B1008D009A /* BoxSdkGen.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = BoxSdkGen.framework;
+			remoteRef = 0587E8F42E2E33B1008D009A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0587E8F72E2E33B1008D009A /* BoxSdkGen.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = BoxSdkGen.framework;
+			remoteRef = 0587E8F62E2E33B1008D009A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0587E8F92E2E33B1008D009A /* BoxSdkGen.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = BoxSdkGen.framework;
+			remoteRef = 0587E8F82E2E33B1008D009A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0587E8FB2E2E33B1008D009A /* BoxSdkGen.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = BoxSdkGen.framework;
+			remoteRef = 0587E8FA2E2E33B1008D009A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		05EA726727626598001ECFF3 /* Resources */ = {

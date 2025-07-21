@@ -11,7 +11,6 @@ import Foundation
     import FoundationNetworking
 #endif
 
-
 /// Represents Box SDK API request.
 public class BoxRequest {
 

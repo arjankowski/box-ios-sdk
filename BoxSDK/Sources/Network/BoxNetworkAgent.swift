@@ -3,7 +3,6 @@ import Foundation
     import FoundationNetworking
 #endif
 
-
 /// Represents API request query parameters.
 public typealias QueryParameters = [String: QueryParameterConvertible?]
 
@@ -106,17 +105,17 @@ public class BoxNetworkAgent: NSObject, NetworkAgentProtocol {
         let urlRequest = createRequest(for: updatedRequest)
         // swiftlint:disable:next force_unwrapping
         let downloadDestination = request.downloadDestination!
-#if os(macOS) || os(iOS) || os(watchOS) || os(tvOS) || os(visionOS)
-        var observation: NSKeyValueObservation?
-#endif
+        #if os(macOS) || os(iOS) || os(watchOS) || os(tvOS) || os(visionOS)
+            var observation: NSKeyValueObservation?
+        #endif
 
         let task = session.downloadTask(with: urlRequest) { [weak self] location, response, error in
             guard let self = self else {
                 return
             }
-#if os(macOS) || os(iOS) || os(watchOS) || os(tvOS) || os(visionOS)
-            observation?.invalidate()
-#endif
+            #if os(macOS) || os(iOS) || os(watchOS) || os(tvOS) || os(visionOS)
+                observation?.invalidate()
+            #endif
 
             if let unwrappedError = error {
                 completion(.failure(BoxNetworkError(message: .customValue(unwrappedError.localizedDescription), error: unwrappedError)))
@@ -156,12 +155,12 @@ public class BoxNetworkAgent: NSObject, NetworkAgentProtocol {
         }
         request.task(task)
 
-#if os(macOS) || os(iOS) || os(watchOS) || os(tvOS) || os(visionOS)
-        // Key value observer: Observer attaches to Progress object on task. Every time the Progress object updates, the callback is called
-        observation = task.progress.observe(\Progress.fractionCompleted, options: [.new]) { progress, _ in
-            request.progress(progress)
-        }
-#endif
+        #if os(macOS) || os(iOS) || os(watchOS) || os(tvOS) || os(visionOS)
+            // Key value observer: Observer attaches to Progress object on task. Every time the Progress object updates, the callback is called
+            observation = task.progress.observe(\Progress.fractionCompleted, options: [.new]) { progress, _ in
+                request.progress(progress)
+            }
+        #endif
 
         utilityQueue.async {
             task.resume()
@@ -178,19 +177,19 @@ public class BoxNetworkAgent: NSObject, NetworkAgentProtocol {
         logger.logRequest(updatedRequest)
 
         let urlRequest = createRequest(for: updatedRequest)
-        
-#if os(macOS) || os(iOS) || os(watchOS) || os(tvOS) || os(visionOS)
-        var observation: NSKeyValueObservation?
-#endif
+
+        #if os(macOS) || os(iOS) || os(watchOS) || os(tvOS) || os(visionOS)
+            var observation: NSKeyValueObservation?
+        #endif
 
         let task = session.dataTask(with: urlRequest) { [weak self] data, response, error in
             guard let self = self else {
                 return
             }
 
-#if os(macOS) || os(iOS) || os(watchOS) || os(tvOS) || os(visionOS)
-            observation?.invalidate()
-#endif
+            #if os(macOS) || os(iOS) || os(watchOS) || os(tvOS) || os(visionOS)
+                observation?.invalidate()
+            #endif
 
             if let unwrappedError = error {
                 completion(.failure(BoxNetworkError(message: .customValue(unwrappedError.localizedDescription), error: unwrappedError)))
@@ -212,13 +211,13 @@ public class BoxNetworkAgent: NSObject, NetworkAgentProtocol {
             )
         }
         request.task(task)
-        
-#if os(macOS) || os(iOS) || os(watchOS) || os(tvOS) || os(visionOS)
-        // Key value observer: Observer attaches to Progress object on task. Every time the Progress object updates, the callback is called
-        observation = task.progress.observe(\Progress.fractionCompleted, options: [.new]) { progress, _ in
-            request.progress(progress)
-        }
-#endif
+
+        #if os(macOS) || os(iOS) || os(watchOS) || os(tvOS) || os(visionOS)
+            // Key value observer: Observer attaches to Progress object on task. Every time the Progress object updates, the callback is called
+            observation = task.progress.observe(\Progress.fractionCompleted, options: [.new]) { progress, _ in
+                request.progress(progress)
+            }
+        #endif
 
         utilityQueue.async {
             task.resume()

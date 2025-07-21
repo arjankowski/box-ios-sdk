@@ -11,7 +11,6 @@ import Foundation
     import FoundationNetworking
 #endif
 
-
 /// The components that make up a description of a BoxResponse
 public struct BoxResponseDescription {
     /// The HTTP status code of the response

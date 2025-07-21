@@ -9,7 +9,7 @@
 import Foundation
 
 #if os(macOS) || os(iOS) || os(watchOS) || os(tvOS) || os(visionOS)
-import os.log
+    import os.log
 #endif
 
 /// Defines main log destination behaviour
@@ -30,20 +30,20 @@ public enum LogLevel: String {
     /// Logging fatal error
     case fatal
 
-#if os(macOS) || os(iOS) || os(watchOS) || os(tvOS) || os(visionOS)
-    var osLogType: OSLogType {
-        switch self {
-        case .debug:
-            return OSLogType.debug
-        case .info:
-            return OSLogType.info
-        case .error:
-            return OSLogType.error
-        case .fatal:
-            return OSLogType.fault
+    #if os(macOS) || os(iOS) || os(watchOS) || os(tvOS) || os(visionOS)
+        var osLogType: OSLogType {
+            switch self {
+            case .debug:
+                return OSLogType.debug
+            case .info:
+                return OSLogType.info
+            case .error:
+                return OSLogType.error
+            case .fatal:
+                return OSLogType.fault
+            }
         }
-    }
-#endif
+    #endif
 }
 
 extension LogLevel: CustomStringConvertible {
