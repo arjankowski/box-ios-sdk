@@ -17,8 +17,8 @@ Official Box Swift SDK - includes both legacy BoxSDK and new BoxSDKGen.
   spec.swift_versions = ["5"]
   spec.requires_arc = true
 
-  # BoxSDK automatycznie instaluje BoxSDKGen jako dependency
-  spec.dependency "BoxSDKGen", spec.version.to_s
+  # BoxSDK automatycznie instaluje BoxSdkGen jako dependency
+  spec.dependency "BoxSdkGen", spec.version.to_s
 
   # Tylko pliki dla BoxSDK (legacy)
   spec.source_files = "BoxSDK/Sources/**/*.swift", "BoxSDK/Sources/**/Environment.plist"
