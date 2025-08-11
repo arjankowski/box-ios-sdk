@@ -1,4 +1,4 @@
-import BoxSdkGen
+import BoxSDKGen
 import Foundation
 
 public class CommonsManager {

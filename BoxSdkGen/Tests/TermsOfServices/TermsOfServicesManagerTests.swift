@@ -1,4 +1,4 @@
-import BoxSdkGen
+import BoxSDKGen
 import Foundation
 import XCTest
 
