@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name = "BoxSDK"
-  spec.version = "8.3.0"
+  spec.version = "8.8.0"
   spec.summary = "Box Swift SDK"
   spec.description = <<-DESC
 Official Box Swift SDK - includes both legacy BoxSDK and new BoxSDKGen.
@@ -18,9 +18,9 @@ Official Box Swift SDK - includes both legacy BoxSDK and new BoxSDKGen.
   spec.requires_arc = true
 
   # BoxSDK install BoxSdkGen as a dependency
-  spec.dependency "BoxSdkGen", spec.version.to_s
+  spec.dependency "BoxSDKGen", spec.version.to_s
 
-  spec.source_files = "BoxSDK/Sources/**/*.swift", "BoxSDK/Sources/**/Environment.plist"
-  spec.resource_bundle = {"BoxSDK" => "BoxSDK/Sources/PrivacyInfo.xcprivacy"}
+  #spec.source_files = "BoxSDK/Sources/**/*.swift", "BoxSDK/Sources/**/Environment.plist"
+  #spec.resource_bundle = {"BoxSDK" => "BoxSDK/Sources/PrivacyInfo.xcprivacy"}
   spec.framework = "Foundation"
 end

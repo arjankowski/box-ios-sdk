@@ -1,4 +1,3 @@
 // BoxSDKSuite.swift
 
-@_exported import BoxSDK
-@_exported import BoxSdkGen
+@_exported import BoxSDKGen

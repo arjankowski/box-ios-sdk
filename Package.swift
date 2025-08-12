@@ -18,14 +18,6 @@ let package = Package(
     dependencies: [],
     targets: [
         .target(
-            name: "BoxSDK",
-            dependencies: [],
-            path: "BoxSDK/Sources",
-            resources: [
-                .copy("PrivacyInfo.xcprivacy")
-            ]
-        ),
-        .target(
             name: "BoxSDKGen",
             dependencies: [],
             path: "BoxSDKGen/Sources",
@@ -35,7 +27,7 @@ let package = Package(
         ),
         .target(
             name: "BoxSDKSuite",
-            dependencies: ["BoxSDK", "BoxSDKGen"],
+            dependencies: ["BoxSDKGen"],
             path: "BoxSDKSuite/Sources"
         ),
         .testTarget(
