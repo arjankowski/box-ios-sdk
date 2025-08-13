@@ -8,11 +8,11 @@ public class SerializedData {
         self.data = data
     }
 
-    func toUrlParams() throws -> String {
+    internal func toUrlParams() throws -> String {
         return try Utils.Url.urlEncodedFrom(data: data)
     }
 
-    func toJson() throws -> Data {
+    internal func toJson() throws -> Data {
         return data
     }
 }

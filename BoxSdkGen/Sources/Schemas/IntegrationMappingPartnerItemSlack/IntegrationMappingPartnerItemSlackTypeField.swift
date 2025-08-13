@@ -17,8 +17,9 @@ public enum IntegrationMappingPartnerItemSlackTypeField: CodableStringEnum {
         switch self {
         case .channel:
             return "channel"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

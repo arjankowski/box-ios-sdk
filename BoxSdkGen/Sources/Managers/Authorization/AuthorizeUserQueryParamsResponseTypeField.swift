@@ -17,8 +17,9 @@ public enum AuthorizeUserQueryParamsResponseTypeField: CodableStringEnum {
         switch self {
         case .code:
             return "code"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

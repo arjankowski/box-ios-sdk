@@ -17,8 +17,9 @@ public enum SignTemplateAdditionalInfoRequiredSignersField: CodableStringEnum {
         switch self {
         case .email:
             return "email"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

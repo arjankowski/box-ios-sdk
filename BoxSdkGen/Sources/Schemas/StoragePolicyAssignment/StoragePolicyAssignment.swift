@@ -1,7 +1,7 @@
 import Foundation
 
-/// The assignment of a storage policy to a user or enterprise
-public class StoragePolicyAssignment: Codable {
+/// The assignment of a storage policy to a user or enterprise.
+public class StoragePolicyAssignment: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case id
         case type
@@ -9,10 +9,19 @@ public class StoragePolicyAssignment: Codable {
         case assignedTo = "assigned_to"
     }
 
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
+
     /// The unique identifier for a storage policy assignment.
     public let id: String
 
-    /// `storage_policy_assignment`
+    /// The value will always be `storage_policy_assignment`.
     public let type: StoragePolicyAssignmentTypeField
 
     public let storagePolicy: StoragePolicyMini?
@@ -23,9 +32,9 @@ public class StoragePolicyAssignment: Codable {
     ///
     /// - Parameters:
     ///   - id: The unique identifier for a storage policy assignment.
-    ///   - type: `storage_policy_assignment`
-    ///   - storagePolicy:
-    ///   - assignedTo:
+    ///   - type: The value will always be `storage_policy_assignment`.
+    ///   - storagePolicy: 
+    ///   - assignedTo: 
     public init(id: String, type: StoragePolicyAssignmentTypeField = StoragePolicyAssignmentTypeField.storagePolicyAssignment, storagePolicy: StoragePolicyMini? = nil, assignedTo: StoragePolicyAssignmentAssignedToField? = nil) {
         self.id = id
         self.type = type
@@ -33,7 +42,7 @@ public class StoragePolicyAssignment: Codable {
         self.assignedTo = assignedTo
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
         type = try container.decode(StoragePolicyAssignmentTypeField.self, forKey: .type)
@@ -48,4 +57,19 @@ public class StoragePolicyAssignment: Codable {
         try container.encodeIfPresent(storagePolicy, forKey: .storagePolicy)
         try container.encodeIfPresent(assignedTo, forKey: .assignedTo)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

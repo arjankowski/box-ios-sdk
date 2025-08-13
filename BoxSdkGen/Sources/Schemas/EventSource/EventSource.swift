@@ -2,7 +2,7 @@ import Foundation
 
 /// The source file or folder that triggered an event in
 /// the event stream.
-public class EventSource: Codable {
+public class EventSource: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case itemType = "item_type"
         case itemId = "item_id"
@@ -12,18 +12,24 @@ public class EventSource: Codable {
         case ownedBy = "owned_by"
     }
 
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
+
     /// The type of the item that the event
     /// represents. Can be `file` or `folder`.
-    ///
     public let itemType: EventSourceItemTypeField
 
     /// The unique identifier that represents the
     /// item.
-    ///
     public let itemId: String
 
     /// The name of the item.
-    ///
     public let itemName: String
 
     /// The object containing classification information for the item that
@@ -40,27 +46,24 @@ public class EventSource: Codable {
     /// - Parameters:
     ///   - itemType: The type of the item that the event
     ///     represents. Can be `file` or `folder`.
-    ///
     ///   - itemId: The unique identifier that represents the
     ///     item.
-    ///
     ///   - itemName: The name of the item.
-    ///
     ///   - classification: The object containing classification information for the item that
     ///     triggered the event. This field will not appear if the item does not
     ///     have a classification set.
-    ///   - parent:
-    ///   - ownedBy:
+    ///   - parent: 
+    ///   - ownedBy: 
     public init(itemType: EventSourceItemTypeField, itemId: String, itemName: String, classification: EventSourceClassificationField? = nil, parent: TriStateField<FolderMini> = nil, ownedBy: UserMini? = nil) {
         self.itemType = itemType
         self.itemId = itemId
         self.itemName = itemName
         self.classification = classification
-        _parent = CodableTriState(state: parent)
+        self._parent = CodableTriState(state: parent)
         self.ownedBy = ownedBy
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         itemType = try container.decode(EventSourceItemTypeField.self, forKey: .itemType)
         itemId = try container.decode(String.self, forKey: .itemId)
@@ -79,4 +82,19 @@ public class EventSource: Codable {
         try container.encode(field: _parent.state, forKey: .parent)
         try container.encodeIfPresent(ownedBy, forKey: .ownedBy)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

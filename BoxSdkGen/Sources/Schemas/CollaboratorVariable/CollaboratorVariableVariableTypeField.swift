@@ -17,8 +17,9 @@ public enum CollaboratorVariableVariableTypeField: CodableStringEnum {
         switch self {
         case .userList:
             return "user_list"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

@@ -11,4 +11,5 @@ public class DeleteSlackIntegrationMappingByIdHeaders {
     public init(extraHeaders: [String: String?]? = [:]) {
         self.extraHeaders = extraHeaders
     }
+
 }

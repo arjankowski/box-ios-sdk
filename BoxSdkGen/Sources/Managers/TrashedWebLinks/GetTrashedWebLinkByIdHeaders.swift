@@ -11,4 +11,5 @@ public class GetTrashedWebLinkByIdHeaders {
     public init(extraHeaders: [String: String?]? = [:]) {
         self.extraHeaders = extraHeaders
     }
+
 }

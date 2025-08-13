@@ -23,4 +23,5 @@ public class GetAiAgentDefaultConfigQueryParams {
         self.language = language
         self.model = model
     }
+
 }

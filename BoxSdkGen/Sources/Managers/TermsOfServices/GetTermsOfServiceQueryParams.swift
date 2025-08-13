@@ -11,4 +11,5 @@ public class GetTermsOfServiceQueryParams {
     public init(tosType: GetTermsOfServiceQueryParamsTosTypeField? = nil) {
         self.tosType = tosType
     }
+
 }

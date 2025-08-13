@@ -1,10 +1,19 @@
 import Foundation
 
-public class UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyField: Codable {
+public class UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyField: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case id
         case type
     }
+
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
 
     /// The ID of the storage policy to assign.
     public let id: String
@@ -22,7 +31,7 @@ public class UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyField: Cod
         self.type = type
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
         type = try container.decode(UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyTypeField.self, forKey: .type)
@@ -33,4 +42,19 @@ public class UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyField: Cod
         try container.encode(id, forKey: .id)
         try container.encode(type, forKey: .type)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

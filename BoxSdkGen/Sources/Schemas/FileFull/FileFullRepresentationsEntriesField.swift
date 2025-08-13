@@ -1,6 +1,6 @@
 import Foundation
 
-public class FileFullRepresentationsEntriesField: Codable {
+public class FileFullRepresentationsEntriesField: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case content
         case info
@@ -8,6 +8,15 @@ public class FileFullRepresentationsEntriesField: Codable {
         case representation
         case status
     }
+
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
 
     /// An object containing the URL that can be used to actually fetch
     /// the representation.
@@ -44,7 +53,7 @@ public class FileFullRepresentationsEntriesField: Codable {
         self.status = status
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         content = try container.decodeIfPresent(FileFullRepresentationsEntriesContentField.self, forKey: .content)
         info = try container.decodeIfPresent(FileFullRepresentationsEntriesInfoField.self, forKey: .info)
@@ -61,4 +70,19 @@ public class FileFullRepresentationsEntriesField: Codable {
         try container.encodeIfPresent(representation, forKey: .representation)
         try container.encodeIfPresent(status, forKey: .status)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

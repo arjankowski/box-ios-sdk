@@ -17,8 +17,9 @@ public enum FileVersionLegalHoldTypeField: CodableStringEnum {
         switch self {
         case .fileVersionLegalHold:
             return "file_version_legal_hold"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

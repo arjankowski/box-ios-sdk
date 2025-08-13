@@ -13,7 +13,7 @@ public enum TriStateField<T: Codable>: Codable {
     /// Returns `nil` for both `.null` and `.unset`.
     var rawValue: T? {
         switch self {
-        case let .value(v): return v
+        case .value(let v): return v
         default: return nil
         }
     }
@@ -24,8 +24,7 @@ public enum TriStateField<T: Codable>: Codable {
     init(wrappedValue: T?) {
         if let value = wrappedValue {
             self = .value(value)
-        }
-        else {
+        } else {
             self = .unset
         }
     }
@@ -37,8 +36,7 @@ public enum TriStateField<T: Codable>: Codable {
         let container = try decoder.singleValueContainer()
         if container.decodeNil() {
             self = .null
-        }
-        else {
+        } else {
             let value = try container.decode(T.self)
             self = .value(value)
         }
@@ -50,7 +48,7 @@ public enum TriStateField<T: Codable>: Codable {
     /// - `.unset` is not encoded at all.
     public func encode(to encoder: Encoder) throws {
         switch self {
-        case let .value(value):
+        case .value(let value):
             var container = encoder.singleValueContainer()
             try container.encode(value)
         case .null:
@@ -64,9 +62,9 @@ public enum TriStateField<T: Codable>: Codable {
 
 // MARK: - Convenience Initializers
 
-public extension TriStateField {
+extension TriStateField {
     /// Convenience initializer to explicitly wrap a value.
-    init(_ value: T) {
+    public init(_ value: T) {
         self = .value(value)
     }
 }
@@ -75,7 +73,7 @@ public extension TriStateField {
 
 /// Allows `TriStateField` to be initialized with `nil`, resulting in `.unset`
 extension TriStateField: ExpressibleByNilLiteral {
-    public init(nilLiteral _: ()) {
+    public init(nilLiteral: ()) {
         self = .unset
     }
 }

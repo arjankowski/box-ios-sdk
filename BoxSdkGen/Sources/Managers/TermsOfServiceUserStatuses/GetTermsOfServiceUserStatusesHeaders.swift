@@ -11,4 +11,5 @@ public class GetTermsOfServiceUserStatusesHeaders {
     public init(extraHeaders: [String: String?]? = [:]) {
         self.extraHeaders = extraHeaders
     }
+
 }

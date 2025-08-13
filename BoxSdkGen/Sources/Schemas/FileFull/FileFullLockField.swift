@@ -1,6 +1,6 @@
 import Foundation
 
-public class FileFullLockField: Codable {
+public class FileFullLockField: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case id
         case type
@@ -11,10 +11,19 @@ public class FileFullLockField: Codable {
         case appType = "app_type"
     }
 
-    /// The unique identifier for this lock
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
+
+    /// The unique identifier for this lock.
     public let id: String?
 
-    /// `lock`
+    /// The value will always be `lock`.
     public let type: FileFullLockTypeField?
 
     public let createdBy: UserMini?
@@ -37,9 +46,9 @@ public class FileFullLockField: Codable {
     /// Initializer for a FileFullLockField.
     ///
     /// - Parameters:
-    ///   - id: The unique identifier for this lock
-    ///   - type: `lock`
-    ///   - createdBy:
+    ///   - id: The unique identifier for this lock.
+    ///   - type: The value will always be `lock`.
+    ///   - createdBy: 
     ///   - createdAt: The time this lock was created at.
     ///   - expiredAt: The time this lock is to expire at, which might be in the past.
     ///   - isDownloadPrevented: Whether or not the file can be downloaded while locked.
@@ -54,10 +63,10 @@ public class FileFullLockField: Codable {
         self.createdAt = createdAt
         self.expiredAt = expiredAt
         self.isDownloadPrevented = isDownloadPrevented
-        _appType = CodableTriState(state: appType)
+        self._appType = CodableTriState(state: appType)
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decodeIfPresent(String.self, forKey: .id)
         type = try container.decodeIfPresent(FileFullLockTypeField.self, forKey: .type)
@@ -78,4 +87,19 @@ public class FileFullLockField: Codable {
         try container.encodeIfPresent(isDownloadPrevented, forKey: .isDownloadPrevented)
         try container.encode(field: _appType.state, forKey: .appType)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

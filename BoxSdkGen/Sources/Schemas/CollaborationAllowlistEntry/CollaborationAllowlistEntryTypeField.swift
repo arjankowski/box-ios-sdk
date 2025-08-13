@@ -17,8 +17,9 @@ public enum CollaborationAllowlistEntryTypeField: CodableStringEnum {
         switch self {
         case .collaborationWhitelistEntry:
             return "collaboration_whitelist_entry"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

@@ -31,4 +31,5 @@ public class CCGConfig {
         self.userId = userId
         self.tokenStorage = tokenStorage
     }
+
 }

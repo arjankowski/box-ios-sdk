@@ -1,7 +1,7 @@
 import Foundation
 
 /// Represents a trashed web link.
-public class TrashWebLink: Codable {
+public class TrashWebLink: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case type
         case id
@@ -23,10 +23,19 @@ public class TrashWebLink: Codable {
         case itemStatus = "item_status"
     }
 
-    /// `web_link`
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
+
+    /// The value will always be `web_link`.
     public let type: TrashWebLinkTypeField?
 
-    /// The unique identifier for this web link
+    /// The unique identifier for this web link.
     public let id: String?
 
     public let sequenceId: String?
@@ -35,10 +44,10 @@ public class TrashWebLink: Codable {
     /// headers.
     public let etag: String?
 
-    /// The name of the web link
+    /// The name of the web link.
     public let name: String?
 
-    /// The URL this web link points to
+    /// The URL this web link points to.
     public let url: String?
 
     public let parent: FolderMini?
@@ -75,37 +84,37 @@ public class TrashWebLink: Codable {
 
     /// Whether this item is deleted or not. Values include `active`,
     /// `trashed` if the file has been moved to the trash, and `deleted` if
-    /// the file has been permanently deleted
+    /// the file has been permanently deleted.
     public let itemStatus: TrashWebLinkItemStatusField?
 
     /// Initializer for a TrashWebLink.
     ///
     /// - Parameters:
-    ///   - type: `web_link`
-    ///   - id: The unique identifier for this web link
-    ///   - sequenceId:
+    ///   - type: The value will always be `web_link`.
+    ///   - id: The unique identifier for this web link.
+    ///   - sequenceId: 
     ///   - etag: The entity tag of this web link. Used with `If-Match`
     ///     headers.
-    ///   - name: The name of the web link
-    ///   - url: The URL this web link points to
-    ///   - parent:
+    ///   - name: The name of the web link.
+    ///   - url: The URL this web link points to.
+    ///   - parent: 
     ///   - description: The description accompanying the web link. This is
     ///     visible within the Box web application.
-    ///   - pathCollection:
+    ///   - pathCollection: 
     ///   - createdAt: When this file was created on Box’s servers.
     ///   - modifiedAt: When this file was last updated on the Box
     ///     servers.
     ///   - trashedAt: When this file was last moved to the trash.
     ///   - purgedAt: When this file will be permanently deleted.
-    ///   - createdBy:
-    ///   - modifiedBy:
-    ///   - ownedBy:
+    ///   - createdBy: 
+    ///   - modifiedBy: 
+    ///   - ownedBy: 
     ///   - sharedLink: The shared link for this bookmark. This will
     ///     be `null` if a bookmark has been trashed, since the link will no longer
     ///     be active.
     ///   - itemStatus: Whether this item is deleted or not. Values include `active`,
     ///     `trashed` if the file has been moved to the trash, and `deleted` if
-    ///     the file has been permanently deleted
+    ///     the file has been permanently deleted.
     public init(type: TrashWebLinkTypeField? = nil, id: String? = nil, sequenceId: String? = nil, etag: String? = nil, name: String? = nil, url: String? = nil, parent: FolderMini? = nil, description: String? = nil, pathCollection: TrashWebLinkPathCollectionField? = nil, createdAt: Date? = nil, modifiedAt: Date? = nil, trashedAt: TriStateField<Date> = nil, purgedAt: TriStateField<Date> = nil, createdBy: UserMini? = nil, modifiedBy: UserMini? = nil, ownedBy: UserMini? = nil, sharedLink: TriStateField<String> = nil, itemStatus: TrashWebLinkItemStatusField? = nil) {
         self.type = type
         self.id = id
@@ -118,16 +127,16 @@ public class TrashWebLink: Codable {
         self.pathCollection = pathCollection
         self.createdAt = createdAt
         self.modifiedAt = modifiedAt
-        _trashedAt = CodableTriState(state: trashedAt)
-        _purgedAt = CodableTriState(state: purgedAt)
+        self._trashedAt = CodableTriState(state: trashedAt)
+        self._purgedAt = CodableTriState(state: purgedAt)
         self.createdBy = createdBy
         self.modifiedBy = modifiedBy
         self.ownedBy = ownedBy
-        _sharedLink = CodableTriState(state: sharedLink)
+        self._sharedLink = CodableTriState(state: sharedLink)
         self.itemStatus = itemStatus
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         type = try container.decodeIfPresent(TrashWebLinkTypeField.self, forKey: .type)
         id = try container.decodeIfPresent(String.self, forKey: .id)
@@ -170,4 +179,19 @@ public class TrashWebLink: Codable {
         try container.encode(field: _sharedLink.state, forKey: .sharedLink)
         try container.encodeIfPresent(itemStatus, forKey: .itemStatus)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

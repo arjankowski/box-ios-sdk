@@ -26,20 +26,23 @@ public enum AiAgentAllowedEntity: Codable {
                     }
 
                 default:
-                    throw DecodingError.typeMismatch(AiAgentAllowedEntity.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "The Decoded object contains an unexpected value for key type"))
+                    break
                 }
             }
+
         }
 
         throw DecodingError.typeMismatch(AiAgentAllowedEntity.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "The type of the decoded object cannot be determined."))
+
     }
 
     public func encode(to encoder: Encoder) throws {
         switch self {
-        case let .userBase(userBase):
+        case .userBase(let userBase):
             try userBase.encode(to: encoder)
-        case let .groupBase(groupBase):
+        case .groupBase(let groupBase):
             try groupBase.encode(to: encoder)
         }
     }
+
 }

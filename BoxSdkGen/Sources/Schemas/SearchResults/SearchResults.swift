@@ -1,7 +1,7 @@
 import Foundation
 
 /// A list of files, folders and web links that matched the search query.
-public class SearchResults: Codable {
+public class SearchResults: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case totalCount = "total_count"
         case limit
@@ -9,6 +9,15 @@ public class SearchResults: Codable {
         case type
         case entries
     }
+
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
 
     /// One greater than the offset of the last entry in the search results.
     /// The total number of entries in the collection may be less than
@@ -24,7 +33,7 @@ public class SearchResults: Codable {
     /// as the `offset` query parameter used.
     public let offset: Int64?
 
-    /// Specifies the response as search result items without shared links
+    /// Specifies the response as search result items without shared links.
     public let type: SearchResultsTypeField
 
     /// The search results for the query provided.
@@ -41,7 +50,7 @@ public class SearchResults: Codable {
     ///     allowed.
     ///   - offset: The 0-based offset of the first entry in this set. This will be the same
     ///     as the `offset` query parameter used.
-    ///   - type: Specifies the response as search result items without shared links
+    ///   - type: Specifies the response as search result items without shared links.
     ///   - entries: The search results for the query provided.
     public init(totalCount: Int64? = nil, limit: Int64? = nil, offset: Int64? = nil, type: SearchResultsTypeField = SearchResultsTypeField.searchResultsItems, entries: [FileFullOrFolderFullOrWebLink]? = nil) {
         self.totalCount = totalCount
@@ -51,7 +60,7 @@ public class SearchResults: Codable {
         self.entries = entries
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         totalCount = try container.decodeIfPresent(Int64.self, forKey: .totalCount)
         limit = try container.decodeIfPresent(Int64.self, forKey: .limit)
@@ -68,4 +77,19 @@ public class SearchResults: Codable {
         try container.encode(type, forKey: .type)
         try container.encodeIfPresent(entries, forKey: .entries)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

@@ -12,6 +12,15 @@ public class GroupFull: Group {
         case permissions
     }
 
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public override var rawData: [String: Any]? {
+        return _rawData
+    }
+
+
     /// Keeps track of which external source this group is
     /// coming from (e.g. "Active Directory", "Google Groups",
     /// "Facebook Groups").  Setting this will
@@ -34,25 +43,25 @@ public class GroupFull: Group {
 
     /// Specifies who can invite the group to collaborate
     /// on items.
-    ///
+    /// 
     /// When set to `admins_only` the enterprise admin, co-admins,
     /// and the group's admin can invite the group.
-    ///
+    /// 
     /// When set to `admins_and_members` all the admins listed
     /// above and group members can invite the group.
-    ///
+    /// 
     /// When set to `all_managed_users` all managed users in the
     /// enterprise can invite the group.
     public let invitabilityLevel: GroupFullInvitabilityLevelField?
 
     /// Specifies who can view the members of the group
     /// (Get Memberships for Group).
-    ///
+    /// 
     /// * `admins_only` - the enterprise admin, co-admins, group's
-    ///   group admin
-    /// * `admins_and_members` - all admins and group members
+    ///   group admin.
+    /// * `admins_and_members` - all admins and group members.
     /// * `all_managed_users` - all managed users in the
-    ///   enterprise
+    ///   enterprise.
     public let memberViewabilityLevel: GroupFullMemberViewabilityLevelField?
 
     public let permissions: GroupFullPermissionsField?
@@ -60,12 +69,12 @@ public class GroupFull: Group {
     /// Initializer for a GroupFull.
     ///
     /// - Parameters:
-    ///   - id: The unique identifier for this object
-    ///   - type: `group`
-    ///   - name: The name of the group
+    ///   - id: The unique identifier for this object.
+    ///   - type: The value will always be `group`.
+    ///   - name: The name of the group.
     ///   - groupType: The type of the group.
-    ///   - createdAt: When the group object was created
-    ///   - modifiedAt: When the group object was last modified
+    ///   - createdAt: When the group object was created.
+    ///   - modifiedAt: When the group object was last modified.
     ///   - provenance: Keeps track of which external source this group is
     ///     coming from (e.g. "Active Directory", "Google Groups",
     ///     "Facebook Groups").  Setting this will
@@ -82,24 +91,24 @@ public class GroupFull: Group {
     ///   - description: Human readable description of the group.
     ///   - invitabilityLevel: Specifies who can invite the group to collaborate
     ///     on items.
-    ///
+    ///     
     ///     When set to `admins_only` the enterprise admin, co-admins,
     ///     and the group's admin can invite the group.
-    ///
+    ///     
     ///     When set to `admins_and_members` all the admins listed
     ///     above and group members can invite the group.
-    ///
+    ///     
     ///     When set to `all_managed_users` all managed users in the
     ///     enterprise can invite the group.
     ///   - memberViewabilityLevel: Specifies who can view the members of the group
     ///     (Get Memberships for Group).
-    ///
+    ///     
     ///     * `admins_only` - the enterprise admin, co-admins, group's
-    ///       group admin
-    ///     * `admins_and_members` - all admins and group members
+    ///       group admin.
+    ///     * `admins_and_members` - all admins and group members.
     ///     * `all_managed_users` - all managed users in the
-    ///       enterprise
-    ///   - permissions:
+    ///       enterprise.
+    ///   - permissions: 
     public init(id: String, type: GroupBaseTypeField = GroupBaseTypeField.group, name: String? = nil, groupType: GroupMiniGroupTypeField? = nil, createdAt: Date? = nil, modifiedAt: Date? = nil, provenance: String? = nil, externalSyncIdentifier: String? = nil, description: String? = nil, invitabilityLevel: GroupFullInvitabilityLevelField? = nil, memberViewabilityLevel: GroupFullMemberViewabilityLevelField? = nil, permissions: GroupFullPermissionsField? = nil) {
         self.provenance = provenance
         self.externalSyncIdentifier = externalSyncIdentifier
@@ -111,7 +120,7 @@ public class GroupFull: Group {
         super.init(id: id, type: type, name: name, groupType: groupType, createdAt: createdAt, modifiedAt: modifiedAt)
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         provenance = try container.decodeIfPresent(String.self, forKey: .provenance)
         externalSyncIdentifier = try container.decodeIfPresent(String.self, forKey: .externalSyncIdentifier)
@@ -123,7 +132,7 @@ public class GroupFull: Group {
         try super.init(from: decoder)
     }
 
-    override public func encode(to encoder: Encoder) throws {
+    public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(provenance, forKey: .provenance)
         try container.encodeIfPresent(externalSyncIdentifier, forKey: .externalSyncIdentifier)
@@ -133,4 +142,19 @@ public class GroupFull: Group {
         try container.encodeIfPresent(permissions, forKey: .permissions)
         try super.encode(to: encoder)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    override func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    override func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

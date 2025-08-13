@@ -17,8 +17,9 @@ public enum BoxVersionHeaderV2025R0: CodableStringEnum {
         switch self {
         case ._20250:
             return "2025.0"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

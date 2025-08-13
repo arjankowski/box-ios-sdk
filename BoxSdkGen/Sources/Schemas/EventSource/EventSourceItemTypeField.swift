@@ -22,8 +22,9 @@ public enum EventSourceItemTypeField: CodableStringEnum {
             return "file"
         case .folder:
             return "folder"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

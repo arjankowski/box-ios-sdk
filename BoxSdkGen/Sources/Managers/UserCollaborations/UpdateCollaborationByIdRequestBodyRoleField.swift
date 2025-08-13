@@ -52,8 +52,9 @@ public enum UpdateCollaborationByIdRequestBodyRoleField: CodableStringEnum {
             return "co-owner"
         case .owner:
             return "owner"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

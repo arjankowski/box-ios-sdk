@@ -17,8 +17,9 @@ public enum PostOAuth2TokenRefreshAccessTokenGrantTypeField: CodableStringEnum {
         switch self {
         case .refreshToken:
             return "refresh_token"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

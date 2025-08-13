@@ -1,6 +1,6 @@
 import Foundation
 
-public class FileSharedLinkField: Codable {
+public class FileSharedLinkField: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case url
         case effectiveAccess = "effective_access"
@@ -16,11 +16,20 @@ public class FileSharedLinkField: Codable {
         case permissions
     }
 
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
+
     /// The URL that can be used to access the item on Box.
-    ///
+    /// 
     /// This URL will display the item in Box's preview UI where the file
     /// can be downloaded if allowed.
-    ///
+    /// 
     /// This URL will continue to work even when a custom `vanity_url`
     /// has been set for this shared link.
     public let url: String
@@ -49,7 +58,7 @@ public class FileSharedLinkField: Codable {
     /// A URL that can be used to download the file. This URL can be used in
     /// a browser to download the file. This URL includes the file
     /// extension so that the file will be saved with the right file type.
-    ///
+    /// 
     /// This property will be `null` for folders.
     @CodableTriState public private(set) var downloadUrl: String?
 
@@ -61,12 +70,12 @@ public class FileSharedLinkField: Codable {
     @CodableTriState public private(set) var vanityName: String?
 
     /// The access level for this shared link.
-    ///
+    /// 
     /// * `open` - provides access to this item to anyone with this link
     /// * `company` - only provides access to this item to people the same company
     /// * `collaborators` - only provides access to this item to people who are
     ///    collaborators on this item
-    ///
+    /// 
     /// If this field is omitted when creating the shared link, the access level
     /// will be set to the default access level specified by the enterprise admin.
     public let access: FileSharedLinkAccessField?
@@ -84,10 +93,10 @@ public class FileSharedLinkField: Codable {
     ///
     /// - Parameters:
     ///   - url: The URL that can be used to access the item on Box.
-    ///
+    ///     
     ///     This URL will display the item in Box's preview UI where the file
     ///     can be downloaded if allowed.
-    ///
+    ///     
     ///     This URL will continue to work even when a custom `vanity_url`
     ///     has been set for this shared link.
     ///   - effectiveAccess: The effective access level for the shared link. This can be a more
@@ -104,18 +113,18 @@ public class FileSharedLinkField: Codable {
     ///   - downloadUrl: A URL that can be used to download the file. This URL can be used in
     ///     a browser to download the file. This URL includes the file
     ///     extension so that the file will be saved with the right file type.
-    ///
+    ///     
     ///     This property will be `null` for folders.
     ///   - vanityUrl: The "Custom URL" that can also be used to preview the item on Box.  Custom
     ///     URLs can only be created or modified in the Box Web application.
     ///   - vanityName: The custom name of a shared link, as used in the `vanity_url` field.
     ///   - access: The access level for this shared link.
-    ///
+    ///     
     ///     * `open` - provides access to this item to anyone with this link
     ///     * `company` - only provides access to this item to people the same company
     ///     * `collaborators` - only provides access to this item to people who are
     ///        collaborators on this item
-    ///
+    ///     
     ///     If this field is omitted when creating the shared link, the access level
     ///     will be set to the default access level specified by the enterprise admin.
     ///   - unsharedAt: The date and time when this link will be unshared. This field can only be
@@ -130,15 +139,15 @@ public class FileSharedLinkField: Codable {
         self.isPasswordEnabled = isPasswordEnabled
         self.downloadCount = downloadCount
         self.previewCount = previewCount
-        _downloadUrl = CodableTriState(state: downloadUrl)
-        _vanityUrl = CodableTriState(state: vanityUrl)
-        _vanityName = CodableTriState(state: vanityName)
+        self._downloadUrl = CodableTriState(state: downloadUrl)
+        self._vanityUrl = CodableTriState(state: vanityUrl)
+        self._vanityName = CodableTriState(state: vanityName)
         self.access = access
-        _unsharedAt = CodableTriState(state: unsharedAt)
+        self._unsharedAt = CodableTriState(state: unsharedAt)
         self.permissions = permissions
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         url = try container.decode(String.self, forKey: .url)
         effectiveAccess = try container.decode(FileSharedLinkEffectiveAccessField.self, forKey: .effectiveAccess)
@@ -169,4 +178,19 @@ public class FileSharedLinkField: Codable {
         try container.encodeDateTime(field: _unsharedAt.state, forKey: .unsharedAt)
         try container.encodeIfPresent(permissions, forKey: .permissions)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

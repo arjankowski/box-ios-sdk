@@ -22,8 +22,9 @@ public enum CreateRetentionPolicyRequestBodyDispositionActionField: CodableStrin
             return "permanently_delete"
         case .removeRetention:
             return "remove_retention"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

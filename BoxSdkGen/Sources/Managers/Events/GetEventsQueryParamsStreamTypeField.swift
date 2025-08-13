@@ -37,8 +37,9 @@ public enum GetEventsQueryParamsStreamTypeField: CodableStringEnum {
             return "admin_logs"
         case .adminLogsStreaming:
             return "admin_logs_streaming"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

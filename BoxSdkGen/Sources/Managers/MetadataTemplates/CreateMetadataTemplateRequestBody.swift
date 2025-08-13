@@ -1,6 +1,6 @@
 import Foundation
 
-public class CreateMetadataTemplateRequestBody: Codable {
+public class CreateMetadataTemplateRequestBody: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case scope
         case displayName
@@ -10,10 +10,19 @@ public class CreateMetadataTemplateRequestBody: Codable {
         case copyInstanceOnItemCopy
     }
 
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
+
     /// The scope of the metadata template to create. Applications can
     /// only create templates for use within the authenticated user's
     /// enterprise.
-    ///
+    /// 
     /// This value needs to be set to `enterprise`, as `global` scopes can
     /// not be created by applications.
     public let scope: String
@@ -24,7 +33,7 @@ public class CreateMetadataTemplateRequestBody: Codable {
     /// A unique identifier for the template. This identifier needs to be
     /// unique across the enterprise for which the metadata template is
     /// being created.
-    ///
+    /// 
     /// When not provided, the API will create a unique `templateKey`
     /// based on the value of the `displayName`.
     public let templateKey: String?
@@ -49,14 +58,14 @@ public class CreateMetadataTemplateRequestBody: Codable {
     ///   - scope: The scope of the metadata template to create. Applications can
     ///     only create templates for use within the authenticated user's
     ///     enterprise.
-    ///
+    ///     
     ///     This value needs to be set to `enterprise`, as `global` scopes can
     ///     not be created by applications.
     ///   - displayName: The display name of the template.
     ///   - templateKey: A unique identifier for the template. This identifier needs to be
     ///     unique across the enterprise for which the metadata template is
     ///     being created.
-    ///
+    ///     
     ///     When not provided, the API will create a unique `templateKey`
     ///     based on the value of the `displayName`.
     ///   - hidden: Defines if this template is visible in the Box web app UI, or if
@@ -76,7 +85,7 @@ public class CreateMetadataTemplateRequestBody: Codable {
         self.copyInstanceOnItemCopy = copyInstanceOnItemCopy
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         scope = try container.decode(String.self, forKey: .scope)
         displayName = try container.decode(String.self, forKey: .displayName)
@@ -95,4 +104,19 @@ public class CreateMetadataTemplateRequestBody: Codable {
         try container.encodeIfPresent(fields, forKey: .fields)
         try container.encodeIfPresent(copyInstanceOnItemCopy, forKey: .copyInstanceOnItemCopy)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

@@ -17,8 +17,9 @@ public enum CreateStoragePolicyAssignmentRequestBodyStoragePolicyTypeField: Coda
         switch self {
         case .storagePolicy:
             return "storage_policy"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

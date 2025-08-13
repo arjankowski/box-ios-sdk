@@ -1,7 +1,7 @@
 import Foundation
 
 /// The schema for creating a Box Doc Gen job batch request.
-public class DocGenBatchCreateRequestV2025R0: Codable {
+public class DocGenBatchCreateRequestV2025R0: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case file
         case inputSource = "input_source"
@@ -10,6 +10,15 @@ public class DocGenBatchCreateRequestV2025R0: Codable {
         case documentGenerationData = "document_generation_data"
         case fileVersion = "file_version"
     }
+
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
 
     public let file: FileReferenceV2025R0
 
@@ -28,12 +37,12 @@ public class DocGenBatchCreateRequestV2025R0: Codable {
     /// Initializer for a DocGenBatchCreateRequestV2025R0.
     ///
     /// - Parameters:
-    ///   - file:
+    ///   - file: 
     ///   - inputSource: Source of input. The value has to be `api` for all the API-based document generation requests.
-    ///   - destinationFolder:
+    ///   - destinationFolder: 
     ///   - outputType: Type of the output file.
-    ///   - documentGenerationData:
-    ///   - fileVersion:
+    ///   - documentGenerationData: 
+    ///   - fileVersion: 
     public init(file: FileReferenceV2025R0, inputSource: String, destinationFolder: DocGenBatchCreateRequestV2025R0DestinationFolderField, outputType: String, documentGenerationData: [DocGenDocumentGenerationDataV2025R0], fileVersion: FileVersionBaseV2025R0? = nil) {
         self.file = file
         self.inputSource = inputSource
@@ -43,7 +52,7 @@ public class DocGenBatchCreateRequestV2025R0: Codable {
         self.fileVersion = fileVersion
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         file = try container.decode(FileReferenceV2025R0.self, forKey: .file)
         inputSource = try container.decode(String.self, forKey: .inputSource)
@@ -62,4 +71,19 @@ public class DocGenBatchCreateRequestV2025R0: Codable {
         try container.encode(documentGenerationData, forKey: .documentGenerationData)
         try container.encodeIfPresent(fileVersion, forKey: .fileVersion)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

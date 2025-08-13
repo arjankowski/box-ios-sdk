@@ -22,8 +22,9 @@ public enum CreateTermsOfServiceRequestBodyStatusField: CodableStringEnum {
             return "enabled"
         case .disabled:
             return "disabled"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

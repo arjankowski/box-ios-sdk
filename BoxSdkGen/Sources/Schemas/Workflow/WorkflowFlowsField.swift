@@ -1,6 +1,6 @@
 import Foundation
 
-public class WorkflowFlowsField: Codable {
+public class WorkflowFlowsField: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case id
         case type
@@ -10,17 +10,26 @@ public class WorkflowFlowsField: Codable {
         case createdBy = "created_by"
     }
 
-    /// The identifier of the flow
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
+
+    /// The identifier of the flow.
     public let id: String?
 
-    /// The flow's resource type
+    /// The flow's resource type.
     public let type: WorkflowFlowsTypeField?
 
     public let trigger: WorkflowFlowsTriggerField?
 
     public let outcomes: [WorkflowFlowsOutcomesField]?
 
-    /// When this flow was created
+    /// When this flow was created.
     public let createdAt: Date?
 
     public let createdBy: UserBase?
@@ -28,12 +37,12 @@ public class WorkflowFlowsField: Codable {
     /// Initializer for a WorkflowFlowsField.
     ///
     /// - Parameters:
-    ///   - id: The identifier of the flow
-    ///   - type: The flow's resource type
-    ///   - trigger:
-    ///   - outcomes:
-    ///   - createdAt: When this flow was created
-    ///   - createdBy:
+    ///   - id: The identifier of the flow.
+    ///   - type: The flow's resource type.
+    ///   - trigger: 
+    ///   - outcomes: 
+    ///   - createdAt: When this flow was created.
+    ///   - createdBy: 
     public init(id: String? = nil, type: WorkflowFlowsTypeField? = nil, trigger: WorkflowFlowsTriggerField? = nil, outcomes: [WorkflowFlowsOutcomesField]? = nil, createdAt: Date? = nil, createdBy: UserBase? = nil) {
         self.id = id
         self.type = type
@@ -43,7 +52,7 @@ public class WorkflowFlowsField: Codable {
         self.createdBy = createdBy
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decodeIfPresent(String.self, forKey: .id)
         type = try container.decodeIfPresent(WorkflowFlowsTypeField.self, forKey: .type)
@@ -62,4 +71,19 @@ public class WorkflowFlowsField: Codable {
         try container.encodeDateTimeIfPresent(field: createdAt, forKey: .createdAt)
         try container.encodeIfPresent(createdBy, forKey: .createdBy)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

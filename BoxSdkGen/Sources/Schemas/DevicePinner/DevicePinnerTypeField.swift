@@ -17,8 +17,9 @@ public enum DevicePinnerTypeField: CodableStringEnum {
         switch self {
         case .devicePinner:
             return "device_pinner"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

@@ -17,8 +17,9 @@ public enum AppItemAssociationTypeField: CodableStringEnum {
         switch self {
         case .appItemAssociation:
             return "app_item_association"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

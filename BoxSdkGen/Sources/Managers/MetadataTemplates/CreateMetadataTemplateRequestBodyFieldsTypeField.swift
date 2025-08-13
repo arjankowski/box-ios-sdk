@@ -37,8 +37,9 @@ public enum CreateMetadataTemplateRequestBodyFieldsTypeField: CodableStringEnum 
             return "enum"
         case .multiSelect:
             return "multiSelect"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

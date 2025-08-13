@@ -13,6 +13,7 @@ public enum AnyCodable: Codable {
     case array([AnyCodable])
     case dictionary([String: AnyCodable])
     case codable(Codable)
+    case null
 
     /// Creates an `AnyCodable` instance from any `Codable` value.
     ///
@@ -33,15 +34,17 @@ public enum AnyCodable: Codable {
     ///
     public var value: Any {
         switch self {
-        case let .int(v): return v
-        case let .double(v): return v
-        case let .bool(v): return v
-        case let .string(v): return v
-        case let .array(arr): return arr.map { $0.value }
-        case let .dictionary(dict):
+        case .int(let v): return v
+        case .double(let v): return v
+        case .bool(let v): return v
+        case .string(let v): return v
+        case .array(let arr): return arr.map { $0.value }
+        case .dictionary(let dict):
             return dict.mapValues { $0.value }
-        case let .codable(codable):
+        case .codable(let codable):
             return codable
+        case .null:
+            return JSONNull()
         }
     }
 
@@ -51,13 +54,26 @@ public enum AnyCodable: Codable {
         var container = encoder.singleValueContainer()
 
         switch self {
-        case let .int(v): try container.encode(v)
-        case let .double(v): try container.encode(v)
-        case let .bool(v): try container.encode(v)
-        case let .string(v): try container.encode(v)
-        case let .array(v): try container.encode(v)
-        case let .dictionary(v): try container.encode(v)
-        case let .codable(box): try box.encode(to: encoder)
+        case .int(let v): try container.encode(v)
+        case .double(let v): try container.encode(v)
+        case .bool(let v): try container.encode(v)
+        case .string(let v): try container.encode(v)
+        case .array(let v): try container.encode(v)
+        case .dictionary(let v): try container.encode(v)
+        case .codable(let box): try box.encode(to: encoder)
+        case .null: try container.encodeNil()
+        }
+    }
+
+
+    private struct AnyCodingKey: CodingKey {
+        var stringValue: String
+        init?(stringValue: String) { self.stringValue = stringValue }
+
+        var intValue: Int?
+        init?(intValue: Int) {
+            self.stringValue = "\(intValue)"
+            self.intValue = intValue
         }
     }
 
@@ -66,25 +82,21 @@ public enum AnyCodable: Codable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
 
-        if let value = try? container.decode(Int.self) {
+        if container.decodeNil() {
+            self = .null
+        } else if let value = try? container.decode(Int.self) {
             self = .int(value)
-        }
-        else if let value = try? container.decode(Double.self) {
+        } else if let value = try? container.decode(Double.self) {
             self = .double(value)
-        }
-        else if let value = try? container.decode(Bool.self) {
+        } else if let value = try? container.decode(Bool.self) {
             self = .bool(value)
-        }
-        else if let value = try? container.decode(String.self) {
+        } else if let value = try? container.decode(String.self) {
             self = .string(value)
-        }
-        else if let value = try? container.decode([AnyCodable].self) {
+        } else if let value = try? container.decode([AnyCodable].self) {
             self = .array(value)
-        }
-        else if let value = try? container.decode([String: AnyCodable].self) {
+        } else if let value = try? container.decode([String: AnyCodable].self) {
             self = .dictionary(value)
-        }
-        else {
+        } else {
             throw DecodingError.dataCorruptedError(in: container, debugDescription: "Unknown type")
         }
     }
@@ -94,49 +106,49 @@ public extension AnyCodable {
     /// Returns the associated `Int` value if this instance is `.int`, otherwise `nil`.
     ///
     var intValue: Int? {
-        if case let .int(v) = self { return v }
+        if case .int(let v) = self { return v }
         return nil
     }
 
     /// Returns the associated `Double` value if this instance is `.double`, otherwise `nil`.
     ///
     var doubleValue: Double? {
-        if case let .double(v) = self { return v }
+        if case .double(let v) = self { return v }
         return nil
     }
 
     /// Returns the associated `Bool` value if this instance is `.bool`, otherwise `nil`.
     ///
     var boolValue: Bool? {
-        if case let .bool(v) = self { return v }
+        if case .bool(let v) = self { return v }
         return nil
     }
 
     /// Returns the associated `String` value if this instance is `.string`, otherwise `nil`.
     ///
     var stringValue: String? {
-        if case let .string(v) = self { return v }
+        if case .string(let v) = self { return v }
         return nil
     }
 
     /// Returns the associated array of `AnyCodable` if this instance is `.array`, otherwise `nil`.
     ///
     var arrayValue: [AnyCodable]? {
-        if case let .array(v) = self { return v }
+        if case .array(let v) = self { return v }
         return nil
     }
 
     /// Returns the associated dictionary of `[String: AnyCodable]` if this instance is `.dictionary`, otherwise `nil`.
     ///
     var dictionaryValue: [String: AnyCodable]? {
-        if case let .dictionary(v) = self { return v }
+        if case .dictionary(let v) = self { return v }
         return nil
     }
 
     /// Returns the associated `CodableBox` if this instance is `.codable`, otherwise `nil`.
     ///
     var codableValue: Codable? {
-        if case let .codable(v) = self { return v }
+        if case .codable(let v) = self { return v }
         return nil
     }
 }
@@ -188,24 +200,24 @@ extension AnyCodable: ExpressibleByDictionaryLiteral {
 extension AnyCodable: ParameterConvertible {
     public var paramValue: String? {
         switch self {
-        case let .int(v): return v.paramValue
-        case let .double(v): return v.paramValue
-        case let .bool(v): return v.paramValue
-        case let .string(v): return v.paramValue
-        case let .array(arr): return arr.paramValue
-        case let .dictionary(dict):
+        case .int(let v): return v.paramValue
+        case .double(let v): return v.paramValue
+        case .bool(let v): return v.paramValue
+        case .string(let v): return v.paramValue
+        case .array(let arr): return arr.paramValue
+        case .dictionary(let dict):
             let content = dict.map { "\($0): \($1.paramValue ?? "")" }.joined(separator: ", ")
             return "{" + content + "}"
-        case let .codable(codable):
+        case .codable(let codable):
             let encoder = JSONEncoder()
             encoder.outputFormatting = .prettyPrinted
             if let data = try? encoder.encode(AnyCodable.codable(codable)),
                let jsonString = String(data: data, encoding: .utf8) {
                 return jsonString
-            }
-            else {
+            } else {
                 return nil
             }
+        case .null: return "null"
         }
     }
 }
@@ -215,17 +227,71 @@ extension AnyCodable: ParameterConvertible {
 extension AnyCodable: CustomStringConvertible {
     public var description: String {
         switch self {
-        case let .int(v): return "Int(\(v))"
-        case let .double(v): return "Double(\(v))"
-        case let .bool(v): return "Bool(\(v))"
-        case let .string(v): return "String(\"\(v)\")"
-        case let .array(arr): return "Array(\(arr.map { $0.description }.joined(separator: ", ")))"
-        case let .dictionary(dict):
+        case .int(let v): return "Int(\(v))"
+        case .double(let v): return "Double(\(v))"
+        case .bool(let v): return "Bool(\(v))"
+        case .string(let v): return "String(\"\(v)\")"
+        case .array(let arr): return "Array(\(arr.map { $0.description }.joined(separator: ", ")))"
+        case .dictionary(let dict):
             let dictDescription = dict.map { "\"\($0)\": \($1.description)" }
                 .joined(separator: ", ")
             return "Dictionary({\(dictDescription)})"
-        case let .codable(codable):
+        case .codable(let codable):
             return "Codable(\(codable))"
+        case .null:
+            return "null"
         }
+    }
+}
+
+
+/// A representation of a JSON `null` value.
+///
+/// `JSONNull` is used as a concrete placeholder for `null` values in JSON when decoding into `AnyCodable`.
+/// Since Swift's `nil` cannot be assigned to a value of type `Any`, this type allows a `null` to be explicitly
+/// represented and handled just like any other value. It conforms to `Codable`, `Equatable`, and `CustomStringConvertible`
+/// so that it can be encoded, compared, and printed like other values.
+///
+/// This is especially useful when you want to preserve `null` in encoded data or avoid dealing with `Optional<Any>`.
+public struct JSONNull: Codable, CustomStringConvertible, Equatable {
+
+    /// Creates a new instance representing a JSON `null` value.
+    public init() {}
+
+    /// Decodes a `null` from a decoder. Throws if the value is not actually `null`.
+    ///
+    /// - Parameter decoder: The decoder to decode from.
+    /// - Throws: A `DecodingError.typeMismatch` if the value is not `null`.
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        if !container.decodeNil() {
+            throw DecodingError.typeMismatch(
+                JSONNull.self,
+                DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Expected null")
+            )
+        }
+    }
+
+    /// Encodes this instance as `null` into the given encoder.
+    ///
+    /// - Parameter encoder: The encoder to encode to.
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        try container.encodeNil()
+    }
+
+    /// A textual representation of the value, which is simply `"null"`.
+    public var description: String {
+        return "null"
+    }
+
+    /// Compares two `JSONNull` instances. Always returns `true` since all `JSONNull` values are equal.
+    ///
+    /// - Parameters:
+    ///   - lhs: A `JSONNull` instance.
+    ///   - rhs: Another `JSONNull` instance.
+    /// - Returns: `true` always.
+    public static func == (lhs: JSONNull, rhs: JSONNull) -> Bool {
+        return true
     }
 }

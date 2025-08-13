@@ -11,4 +11,5 @@ public class DeleteShieldInformationBarrierSegmentMemberByIdHeaders {
     public init(extraHeaders: [String: String?]? = [:]) {
         self.extraHeaders = extraHeaders
     }
+
 }

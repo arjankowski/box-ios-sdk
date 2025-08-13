@@ -1,12 +1,21 @@
 import Foundation
 
-public class CreateTermsOfServiceStatusForUserRequestBodyTosField: Codable {
+public class CreateTermsOfServiceStatusForUserRequestBodyTosField: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case id
         case type
     }
 
-    /// The ID of terms of service
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
+
+    /// The ID of terms of service.
     public let id: String
 
     /// The type of object.
@@ -15,14 +24,14 @@ public class CreateTermsOfServiceStatusForUserRequestBodyTosField: Codable {
     /// Initializer for a CreateTermsOfServiceStatusForUserRequestBodyTosField.
     ///
     /// - Parameters:
-    ///   - id: The ID of terms of service
+    ///   - id: The ID of terms of service.
     ///   - type: The type of object.
     public init(id: String, type: CreateTermsOfServiceStatusForUserRequestBodyTosTypeField = CreateTermsOfServiceStatusForUserRequestBodyTosTypeField.termsOfService) {
         self.id = id
         self.type = type
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
         type = try container.decode(CreateTermsOfServiceStatusForUserRequestBodyTosTypeField.self, forKey: .type)
@@ -33,4 +42,19 @@ public class CreateTermsOfServiceStatusForUserRequestBodyTosField: Codable {
         try container.encode(id, forKey: .id)
         try container.encode(type, forKey: .type)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

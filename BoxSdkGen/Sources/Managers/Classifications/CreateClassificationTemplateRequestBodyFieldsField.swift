@@ -1,6 +1,6 @@
 import Foundation
 
-public class CreateClassificationTemplateRequestBodyFieldsField: Codable {
+public class CreateClassificationTemplateRequestBodyFieldsField: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case options
         case type
@@ -8,6 +8,15 @@ public class CreateClassificationTemplateRequestBodyFieldsField: Codable {
         case displayName
         case hidden
     }
+
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
 
     /// The actual list of classifications that are present on
     /// this template.
@@ -17,7 +26,7 @@ public class CreateClassificationTemplateRequestBodyFieldsField: Codable {
     /// that is always enum.
     public let type: CreateClassificationTemplateRequestBodyFieldsTypeField
 
-    /// Defines classifications
+    /// Defines classifications 
     /// available in the enterprise.
     public let key: CreateClassificationTemplateRequestBodyFieldsKeyField
 
@@ -38,7 +47,7 @@ public class CreateClassificationTemplateRequestBodyFieldsField: Codable {
     ///     this template.
     ///   - type: The type of the field
     ///     that is always enum.
-    ///   - key: Defines classifications
+    ///   - key: Defines classifications 
     ///     available in the enterprise.
     ///   - displayName: A display name for the classification.
     ///   - hidden: Determines if the classification
@@ -54,7 +63,7 @@ public class CreateClassificationTemplateRequestBodyFieldsField: Codable {
         self.hidden = hidden
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         options = try container.decode([CreateClassificationTemplateRequestBodyFieldsOptionsField].self, forKey: .options)
         type = try container.decode(CreateClassificationTemplateRequestBodyFieldsTypeField.self, forKey: .type)
@@ -71,4 +80,19 @@ public class CreateClassificationTemplateRequestBodyFieldsField: Codable {
         try container.encode(displayName, forKey: .displayName)
         try container.encodeIfPresent(hidden, forKey: .hidden)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

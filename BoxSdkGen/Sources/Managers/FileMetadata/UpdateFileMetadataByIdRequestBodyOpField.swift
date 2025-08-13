@@ -42,8 +42,9 @@ public enum UpdateFileMetadataByIdRequestBodyOpField: CodableStringEnum {
             return "move"
         case .copy:
             return "copy"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

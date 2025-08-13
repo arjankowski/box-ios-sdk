@@ -1,6 +1,6 @@
 import Foundation
 
-public class UpdateFileByIdRequestBody: Codable {
+public class UpdateFileByIdRequestBody: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case name
         case description
@@ -13,8 +13,20 @@ public class UpdateFileByIdRequestBody: Codable {
         case tags
     }
 
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
+
     /// An optional different name for the file. This can be used to
     /// rename the file.
+    /// 
+    /// File names must be unique within their parent folder. The name check is case-insensitive, so a file 
+    /// named `New File` cannot be created in a parent folder that already contains a folder named `new file`.
     public let name: String?
 
     /// The description for a file. This can be seen in the right-hand sidebar panel
@@ -30,7 +42,7 @@ public class UpdateFileByIdRequestBody: Codable {
     /// Defines a lock on an item. This prevents the item from being
     /// moved, renamed, or otherwise changed by anyone other than the user
     /// who created the lock.
-    ///
+    /// 
     /// Set this to `null` to remove the lock.
     @CodableTriState public private(set) var lock: UpdateFileByIdRequestBodyLockField?
 
@@ -44,22 +56,22 @@ public class UpdateFileByIdRequestBody: Codable {
     /// An array of collections to make this file
     /// a member of. Currently
     /// we only support the `favorites` collection.
-    ///
+    /// 
     /// To get the ID for a collection, use the
     /// [List all collections][1] endpoint.
-    ///
+    /// 
     /// Passing an empty array `[]` or `null` will remove
     /// the file from all collections.
-    ///
+    /// 
     /// [1]: e://get-collections
     @CodableTriState public private(set) var collections: [UpdateFileByIdRequestBodyCollectionsField]?
 
     /// The tags for this item. These tags are shown in
     /// the Box web app and mobile apps next to an item.
-    ///
+    /// 
     /// To add or remove a tag, retrieve the item's current tags,
     /// modify them, and then update this field.
-    ///
+    /// 
     /// There is a limit of 100 tags per item, and 10,000
     /// unique tags per enterprise.
     public let tags: [String]?
@@ -69,16 +81,19 @@ public class UpdateFileByIdRequestBody: Codable {
     /// - Parameters:
     ///   - name: An optional different name for the file. This can be used to
     ///     rename the file.
+    ///     
+    ///     File names must be unique within their parent folder. The name check is case-insensitive, so a file 
+    ///     named `New File` cannot be created in a parent folder that already contains a folder named `new file`.
     ///   - description: The description for a file. This can be seen in the right-hand sidebar panel
     ///     when viewing a file in the Box web app. Additionally, this index is used in
     ///     the search index of the file, allowing users to find the file by the content
     ///     in the description.
-    ///   - parent:
-    ///   - sharedLink:
+    ///   - parent: 
+    ///   - sharedLink: 
     ///   - lock: Defines a lock on an item. This prevents the item from being
     ///     moved, renamed, or otherwise changed by anyone other than the user
     ///     who created the lock.
-    ///
+    ///     
     ///     Set this to `null` to remove the lock.
     ///   - dispositionAt: The retention expiration timestamp for the given file. This
     ///     date cannot be shortened once set on a file.
@@ -86,35 +101,35 @@ public class UpdateFileByIdRequestBody: Codable {
     ///   - collections: An array of collections to make this file
     ///     a member of. Currently
     ///     we only support the `favorites` collection.
-    ///
+    ///     
     ///     To get the ID for a collection, use the
     ///     [List all collections][1] endpoint.
-    ///
+    ///     
     ///     Passing an empty array `[]` or `null` will remove
     ///     the file from all collections.
-    ///
+    ///     
     ///     [1]: e://get-collections
     ///   - tags: The tags for this item. These tags are shown in
     ///     the Box web app and mobile apps next to an item.
-    ///
+    ///     
     ///     To add or remove a tag, retrieve the item's current tags,
     ///     modify them, and then update this field.
-    ///
+    ///     
     ///     There is a limit of 100 tags per item, and 10,000
     ///     unique tags per enterprise.
     public init(name: String? = nil, description: String? = nil, parent: UpdateFileByIdRequestBodyParentField? = nil, sharedLink: TriStateField<UpdateFileByIdRequestBodySharedLinkField> = nil, lock: TriStateField<UpdateFileByIdRequestBodyLockField> = nil, dispositionAt: Date? = nil, permissions: UpdateFileByIdRequestBodyPermissionsField? = nil, collections: TriStateField<[UpdateFileByIdRequestBodyCollectionsField]> = nil, tags: [String]? = nil) {
         self.name = name
         self.description = description
         self.parent = parent
-        _sharedLink = CodableTriState(state: sharedLink)
-        _lock = CodableTriState(state: lock)
+        self._sharedLink = CodableTriState(state: sharedLink)
+        self._lock = CodableTriState(state: lock)
         self.dispositionAt = dispositionAt
         self.permissions = permissions
-        _collections = CodableTriState(state: collections)
+        self._collections = CodableTriState(state: collections)
         self.tags = tags
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         name = try container.decodeIfPresent(String.self, forKey: .name)
         description = try container.decodeIfPresent(String.self, forKey: .description)
@@ -139,4 +154,19 @@ public class UpdateFileByIdRequestBody: Codable {
         try container.encode(field: _collections.state, forKey: .collections)
         try container.encodeIfPresent(tags, forKey: .tags)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

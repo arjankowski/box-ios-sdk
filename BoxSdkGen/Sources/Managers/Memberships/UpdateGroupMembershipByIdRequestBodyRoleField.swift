@@ -22,8 +22,9 @@ public enum UpdateGroupMembershipByIdRequestBodyRoleField: CodableStringEnum {
             return "member"
         case .admin:
             return "admin"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

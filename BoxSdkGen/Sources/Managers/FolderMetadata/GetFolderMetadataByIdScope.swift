@@ -22,8 +22,9 @@ public enum GetFolderMetadataByIdScope: CodableStringEnum {
             return "global"
         case .enterprise:
             return "enterprise"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

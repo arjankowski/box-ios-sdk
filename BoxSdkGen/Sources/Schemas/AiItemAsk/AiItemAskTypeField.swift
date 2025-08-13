@@ -22,8 +22,9 @@ public enum AiItemAskTypeField: CodableStringEnum {
             return "file"
         case .hubs:
             return "hubs"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

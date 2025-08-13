@@ -32,4 +32,5 @@ public class FetchResponse {
         self.data = data
         self.downloadDestinationUrl = downloadDestinationUrl
     }
+
 }

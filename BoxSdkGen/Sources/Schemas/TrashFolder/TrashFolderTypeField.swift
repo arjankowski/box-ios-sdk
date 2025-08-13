@@ -17,8 +17,9 @@ public enum TrashFolderTypeField: CodableStringEnum {
         switch self {
         case .folder:
             return "folder"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

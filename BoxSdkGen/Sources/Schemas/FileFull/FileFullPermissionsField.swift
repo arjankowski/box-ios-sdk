@@ -1,6 +1,6 @@
 import Foundation
 
-public class FileFullPermissionsField: Codable {
+public class FileFullPermissionsField: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case canDelete = "can_delete"
         case canDownload = "can_download"
@@ -15,6 +15,15 @@ public class FileFullPermissionsField: Codable {
         case canViewAnnotationsAll = "can_view_annotations_all"
         case canViewAnnotationsSelf = "can_view_annotations_self"
     }
+
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
 
     /// Specifies if the current user can delete this item.
     public let canDelete: Bool
@@ -50,11 +59,11 @@ public class FileFullPermissionsField: Codable {
     /// Specifies if the user can upload a new version of this file.
     public let canUpload: Bool
 
-    /// Specifies if the user view all annotations placed on this file
+    /// Specifies if the user view all annotations placed on this file.
     public let canViewAnnotationsAll: Bool
 
     /// Specifies if the user view annotations placed by themselves
-    /// on this file
+    /// on this file.
     public let canViewAnnotationsSelf: Bool
 
     /// Initializer for a FileFullPermissionsField.
@@ -74,9 +83,9 @@ public class FileFullPermissionsField: Codable {
     ///   - canComment: Specifies if the user can place comments on this file.
     ///   - canPreview: Specifies if the user can preview this file.
     ///   - canUpload: Specifies if the user can upload a new version of this file.
-    ///   - canViewAnnotationsAll: Specifies if the user view all annotations placed on this file
+    ///   - canViewAnnotationsAll: Specifies if the user view all annotations placed on this file.
     ///   - canViewAnnotationsSelf: Specifies if the user view annotations placed by themselves
-    ///     on this file
+    ///     on this file.
     public init(canDelete: Bool, canDownload: Bool, canInviteCollaborator: Bool, canRename: Bool, canSetShareAccess: Bool, canShare: Bool, canAnnotate: Bool, canComment: Bool, canPreview: Bool, canUpload: Bool, canViewAnnotationsAll: Bool, canViewAnnotationsSelf: Bool) {
         self.canDelete = canDelete
         self.canDownload = canDownload
@@ -92,7 +101,7 @@ public class FileFullPermissionsField: Codable {
         self.canViewAnnotationsSelf = canViewAnnotationsSelf
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         canDelete = try container.decode(Bool.self, forKey: .canDelete)
         canDownload = try container.decode(Bool.self, forKey: .canDownload)
@@ -123,4 +132,19 @@ public class FileFullPermissionsField: Codable {
         try container.encode(canViewAnnotationsAll, forKey: .canViewAnnotationsAll)
         try container.encode(canViewAnnotationsSelf, forKey: .canViewAnnotationsSelf)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

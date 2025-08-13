@@ -22,8 +22,9 @@ public enum UpdateShieldInformationBarrierStatusRequestBodyStatusField: CodableS
             return "pending"
         case .disabled:
             return "disabled"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

@@ -12,7 +12,16 @@ public class IntegrationMappingTeams: IntegrationMappingBase {
         case modifiedAt = "modified_at"
     }
 
-    /// Mapped item object for Teams
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public override var rawData: [String: Any]? {
+        return _rawData
+    }
+
+
+    /// Mapped item object for Teams.
     public let partnerItem: IntegrationMappingPartnerItemTeamsUnion
 
     public let boxItem: FolderReference
@@ -20,18 +29,18 @@ public class IntegrationMappingTeams: IntegrationMappingBase {
     /// Identifies the Box partner app,
     /// with which the mapping is associated.
     /// Supports Slack and Teams.
-    /// (part of the composite key together with `id`)
+    /// (part of the composite key together with `id`).
     public let integrationType: IntegrationMappingTeamsIntegrationTypeField?
 
     /// Identifies whether the mapping has
     /// been manually set by the team owner from UI for channels
-    /// (as opposed to being automatically created)
+    /// (as opposed to being automatically created).
     public let isOverriddenByManualMapping: Bool?
 
-    /// When the integration mapping object was created
+    /// When the integration mapping object was created.
     public let createdAt: Date?
 
-    /// When the integration mapping object was last modified
+    /// When the integration mapping object was last modified.
     public let modifiedAt: Date?
 
     /// Initializer for a IntegrationMappingTeams.
@@ -39,19 +48,19 @@ public class IntegrationMappingTeams: IntegrationMappingBase {
     /// - Parameters:
     ///   - id: A unique identifier of a folder mapping
     ///     (part of a composite key together
-    ///     with `integration_type`)
-    ///   - partnerItem: Mapped item object for Teams
-    ///   - boxItem:
-    ///   - type: Mapping type
+    ///     with `integration_type`).
+    ///   - partnerItem: Mapped item object for Teams.
+    ///   - boxItem: 
+    ///   - type: Mapping type.
     ///   - integrationType: Identifies the Box partner app,
     ///     with which the mapping is associated.
     ///     Supports Slack and Teams.
-    ///     (part of the composite key together with `id`)
+    ///     (part of the composite key together with `id`).
     ///   - isOverriddenByManualMapping: Identifies whether the mapping has
     ///     been manually set by the team owner from UI for channels
-    ///     (as opposed to being automatically created)
-    ///   - createdAt: When the integration mapping object was created
-    ///   - modifiedAt: When the integration mapping object was last modified
+    ///     (as opposed to being automatically created).
+    ///   - createdAt: When the integration mapping object was created.
+    ///   - modifiedAt: When the integration mapping object was last modified.
     public init(id: String, partnerItem: IntegrationMappingPartnerItemTeamsUnion, boxItem: FolderReference, type: IntegrationMappingBaseTypeField = IntegrationMappingBaseTypeField.integrationMapping, integrationType: IntegrationMappingTeamsIntegrationTypeField? = nil, isOverriddenByManualMapping: Bool? = nil, createdAt: Date? = nil, modifiedAt: Date? = nil) {
         self.partnerItem = partnerItem
         self.boxItem = boxItem
@@ -63,7 +72,7 @@ public class IntegrationMappingTeams: IntegrationMappingBase {
         super.init(id: id, type: type)
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         partnerItem = try container.decode(IntegrationMappingPartnerItemTeamsUnion.self, forKey: .partnerItem)
         boxItem = try container.decode(FolderReference.self, forKey: .boxItem)
@@ -75,7 +84,7 @@ public class IntegrationMappingTeams: IntegrationMappingBase {
         try super.init(from: decoder)
     }
 
-    override public func encode(to encoder: Encoder) throws {
+    public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(partnerItem, forKey: .partnerItem)
         try container.encode(boxItem, forKey: .boxItem)
@@ -85,4 +94,19 @@ public class IntegrationMappingTeams: IntegrationMappingBase {
         try container.encodeDateTimeIfPresent(field: modifiedAt, forKey: .modifiedAt)
         try super.encode(to: encoder)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    override func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    override func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

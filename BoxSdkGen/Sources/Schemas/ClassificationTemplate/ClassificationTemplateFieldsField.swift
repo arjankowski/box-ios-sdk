@@ -1,6 +1,6 @@
 import Foundation
 
-public class ClassificationTemplateFieldsField: Codable {
+public class ClassificationTemplateFieldsField: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case id
         case options
@@ -9,6 +9,15 @@ public class ClassificationTemplateFieldsField: Codable {
         case displayName
         case hidden
     }
+
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
 
     /// The unique ID of the field.
     public let id: String
@@ -19,11 +28,11 @@ public class ClassificationTemplateFieldsField: Codable {
     /// The array item type.
     public let type: ClassificationTemplateFieldsTypeField
 
-    /// Defines classifications
+    /// Defines classifications 
     /// available in the enterprise.
     public let key: ClassificationTemplateFieldsKeyField
 
-    /// `Classification`
+    /// The value will always be `Classification`.
     public let displayName: ClassificationTemplateFieldsDisplayNameField
 
     /// Classifications are always visible to web and mobile users.
@@ -35,9 +44,9 @@ public class ClassificationTemplateFieldsField: Codable {
     ///   - id: The unique ID of the field.
     ///   - options: A list of classifications available in this enterprise.
     ///   - type: The array item type.
-    ///   - key: Defines classifications
+    ///   - key: Defines classifications 
     ///     available in the enterprise.
-    ///   - displayName: `Classification`
+    ///   - displayName: The value will always be `Classification`.
     ///   - hidden: Classifications are always visible to web and mobile users.
     public init(id: String, options: [ClassificationTemplateFieldsOptionsField], type: ClassificationTemplateFieldsTypeField = ClassificationTemplateFieldsTypeField.enum_, key: ClassificationTemplateFieldsKeyField = ClassificationTemplateFieldsKeyField.boxSecurityClassificationKey, displayName: ClassificationTemplateFieldsDisplayNameField = ClassificationTemplateFieldsDisplayNameField.classification, hidden: Bool? = nil) {
         self.id = id
@@ -48,7 +57,7 @@ public class ClassificationTemplateFieldsField: Codable {
         self.hidden = hidden
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
         options = try container.decode([ClassificationTemplateFieldsOptionsField].self, forKey: .options)
@@ -67,4 +76,19 @@ public class ClassificationTemplateFieldsField: Codable {
         try container.encode(displayName, forKey: .displayName)
         try container.encodeIfPresent(hidden, forKey: .hidden)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

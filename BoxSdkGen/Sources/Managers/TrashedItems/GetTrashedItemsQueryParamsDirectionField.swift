@@ -22,8 +22,9 @@ public enum GetTrashedItemsQueryParamsDirectionField: CodableStringEnum {
             return "ASC"
         case .desc:
             return "DESC"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

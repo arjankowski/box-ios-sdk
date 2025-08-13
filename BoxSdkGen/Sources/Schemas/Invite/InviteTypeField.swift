@@ -17,8 +17,9 @@ public enum InviteTypeField: CodableStringEnum {
         switch self {
         case .invite:
             return "invite"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

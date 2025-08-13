@@ -1,16 +1,25 @@
 import Foundation
 
 /// A page of files and folders that matched the metadata query.
-public class MetadataQueryResults: Codable {
+public class MetadataQueryResults: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case entries
         case limit
         case nextMarker = "next_marker"
     }
 
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
+
     /// The mini representation of the files and folders that match the search
     /// terms.
-    ///
+    /// 
     /// By default, this endpoint returns only the most basic info about the
     /// items. To get additional fields for each item, including any of the
     /// metadata, use the `fields` attribute in the query.
@@ -29,7 +38,7 @@ public class MetadataQueryResults: Codable {
     /// - Parameters:
     ///   - entries: The mini representation of the files and folders that match the search
     ///     terms.
-    ///
+    ///     
     ///     By default, this endpoint returns only the most basic info about the
     ///     items. To get additional fields for each item, including any of the
     ///     metadata, use the `fields` attribute in the query.
@@ -43,7 +52,7 @@ public class MetadataQueryResults: Codable {
         self.nextMarker = nextMarker
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         entries = try container.decodeIfPresent([FileFullOrFolderFull].self, forKey: .entries)
         limit = try container.decodeIfPresent(Int64.self, forKey: .limit)
@@ -56,4 +65,19 @@ public class MetadataQueryResults: Codable {
         try container.encodeIfPresent(limit, forKey: .limit)
         try container.encodeIfPresent(nextMarker, forKey: .nextMarker)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

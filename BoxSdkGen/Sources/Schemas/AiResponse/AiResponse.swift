@@ -1,13 +1,22 @@
 import Foundation
 
-/// AI response
-public class AiResponse: Codable {
+/// AI response.
+public class AiResponse: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case answer
         case createdAt = "created_at"
         case completionReason = "completion_reason"
         case aiAgentInfo = "ai_agent_info"
     }
+
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
 
     /// The answer provided by the LLM.
     public let answer: String
@@ -26,7 +35,7 @@ public class AiResponse: Codable {
     ///   - answer: The answer provided by the LLM.
     ///   - createdAt: The ISO date formatted timestamp of when the answer to the prompt was created.
     ///   - completionReason: The reason the response finishes.
-    ///   - aiAgentInfo:
+    ///   - aiAgentInfo: 
     public init(answer: String, createdAt: Date, completionReason: String? = nil, aiAgentInfo: AiAgentInfo? = nil) {
         self.answer = answer
         self.createdAt = createdAt
@@ -34,7 +43,7 @@ public class AiResponse: Codable {
         self.aiAgentInfo = aiAgentInfo
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         answer = try container.decode(String.self, forKey: .answer)
         createdAt = try container.decodeDateTime(forKey: .createdAt)
@@ -49,4 +58,19 @@ public class AiResponse: Codable {
         try container.encodeIfPresent(completionReason, forKey: .completionReason)
         try container.encodeIfPresent(aiAgentInfo, forKey: .aiAgentInfo)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

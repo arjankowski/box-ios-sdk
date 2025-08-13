@@ -17,8 +17,9 @@ public enum SearchResultsTypeField: CodableStringEnum {
         switch self {
         case .searchResultsItems:
             return "search_results_items"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

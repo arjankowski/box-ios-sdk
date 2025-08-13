@@ -32,8 +32,9 @@ public enum CreateUserRequestBodyStatusField: CodableStringEnum {
             return "cannot_delete_edit"
         case .cannotDeleteEditUpload:
             return "cannot_delete_edit_upload"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

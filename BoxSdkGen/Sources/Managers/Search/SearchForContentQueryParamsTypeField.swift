@@ -27,8 +27,9 @@ public enum SearchForContentQueryParamsTypeField: CodableStringEnum {
             return "folder"
         case .webLink:
             return "web_link"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

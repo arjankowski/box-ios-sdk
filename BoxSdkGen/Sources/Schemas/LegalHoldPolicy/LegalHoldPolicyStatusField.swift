@@ -32,8 +32,9 @@ public enum LegalHoldPolicyStatusField: CodableStringEnum {
             return "releasing"
         case .released:
             return "released"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

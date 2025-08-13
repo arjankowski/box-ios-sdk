@@ -34,20 +34,22 @@ public enum MetadataFieldFilterDateRangeOrMetadataFieldFilterFloatRangeOrArrayOf
         }
 
         throw DecodingError.typeMismatch(MetadataFieldFilterDateRangeOrMetadataFieldFilterFloatRangeOrArrayOfStringOrNumberOrString.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "The type of the decoded object cannot be determined."))
+
     }
 
     public func encode(to encoder: Encoder) throws {
         switch self {
-        case let .stringArray(stringArray):
+        case .stringArray(let stringArray):
             try stringArray.encode(to: encoder)
-        case let .double(double):
+        case .double(let double):
             try double.encode(to: encoder)
-        case let .metadataFieldFilterDateRange(metadataFieldFilterDateRange):
+        case .metadataFieldFilterDateRange(let metadataFieldFilterDateRange):
             try metadataFieldFilterDateRange.encode(to: encoder)
-        case let .metadataFieldFilterFloatRange(metadataFieldFilterFloatRange):
+        case .metadataFieldFilterFloatRange(let metadataFieldFilterFloatRange):
             try metadataFieldFilterFloatRange.encode(to: encoder)
-        case let .string(string):
+        case .string(let string):
             try string.encode(to: encoder)
         }
     }
+
 }

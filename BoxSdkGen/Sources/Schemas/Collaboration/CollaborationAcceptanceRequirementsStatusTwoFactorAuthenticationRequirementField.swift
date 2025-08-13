@@ -1,10 +1,19 @@
 import Foundation
 
-public class CollaborationAcceptanceRequirementsStatusTwoFactorAuthenticationRequirementField: Codable {
+public class CollaborationAcceptanceRequirementsStatusTwoFactorAuthenticationRequirementField: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case enterpriseHasTwoFactorAuthEnabled = "enterprise_has_two_factor_auth_enabled"
         case userHasTwoFactorAuthenticationEnabled = "user_has_two_factor_authentication_enabled"
     }
+
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
 
     /// Whether or not the enterprise that owns the content requires
     /// two-factor authentication to be enabled in order to
@@ -27,10 +36,10 @@ public class CollaborationAcceptanceRequirementsStatusTwoFactorAuthenticationReq
     ///     authentication is not required.
     public init(enterpriseHasTwoFactorAuthEnabled: Bool? = nil, userHasTwoFactorAuthenticationEnabled: TriStateField<Bool> = nil) {
         self.enterpriseHasTwoFactorAuthEnabled = enterpriseHasTwoFactorAuthEnabled
-        _userHasTwoFactorAuthenticationEnabled = CodableTriState(state: userHasTwoFactorAuthenticationEnabled)
+        self._userHasTwoFactorAuthenticationEnabled = CodableTriState(state: userHasTwoFactorAuthenticationEnabled)
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         enterpriseHasTwoFactorAuthEnabled = try container.decodeIfPresent(Bool.self, forKey: .enterpriseHasTwoFactorAuthEnabled)
         userHasTwoFactorAuthenticationEnabled = try container.decodeIfPresent(Bool.self, forKey: .userHasTwoFactorAuthenticationEnabled)
@@ -41,4 +50,19 @@ public class CollaborationAcceptanceRequirementsStatusTwoFactorAuthenticationReq
         try container.encodeIfPresent(enterpriseHasTwoFactorAuthEnabled, forKey: .enterpriseHasTwoFactorAuthEnabled)
         try container.encode(field: _userHasTwoFactorAuthenticationEnabled.state, forKey: .userHasTwoFactorAuthenticationEnabled)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

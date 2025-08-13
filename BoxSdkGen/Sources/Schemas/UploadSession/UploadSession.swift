@@ -1,7 +1,7 @@
 import Foundation
 
 /// An upload session for chunk uploading a file.
-public class UploadSession: Codable {
+public class UploadSession: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case id
         case type
@@ -12,10 +12,19 @@ public class UploadSession: Codable {
         case sessionEndpoints = "session_endpoints"
     }
 
-    /// The unique identifier for this session
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
+
+    /// The unique identifier for this session.
     public let id: String?
 
-    /// `upload_session`
+    /// The value will always be `upload_session`.
     public let type: UploadSessionTypeField?
 
     /// The date and time when this session expires.
@@ -23,7 +32,7 @@ public class UploadSession: Codable {
 
     /// The  size in bytes that must be used for all parts of of the
     /// upload.
-    ///
+    /// 
     /// Only the last part is allowed to be of a smaller size.
     public let partSize: Int64?
 
@@ -33,7 +42,7 @@ public class UploadSession: Codable {
 
     /// The number of parts that have been uploaded and processed
     /// by the server. This starts at `0`.
-    ///
+    /// 
     /// When committing a file files, inspecting this property can
     /// provide insight if all parts have been uploaded correctly.
     public let numPartsProcessed: Int?
@@ -43,21 +52,21 @@ public class UploadSession: Codable {
     /// Initializer for a UploadSession.
     ///
     /// - Parameters:
-    ///   - id: The unique identifier for this session
-    ///   - type: `upload_session`
+    ///   - id: The unique identifier for this session.
+    ///   - type: The value will always be `upload_session`.
     ///   - sessionExpiresAt: The date and time when this session expires.
     ///   - partSize: The  size in bytes that must be used for all parts of of the
     ///     upload.
-    ///
+    ///     
     ///     Only the last part is allowed to be of a smaller size.
     ///   - totalParts: The total number of parts expected in this upload session,
     ///     as determined by the file size and part size.
     ///   - numPartsProcessed: The number of parts that have been uploaded and processed
     ///     by the server. This starts at `0`.
-    ///
+    ///     
     ///     When committing a file files, inspecting this property can
     ///     provide insight if all parts have been uploaded correctly.
-    ///   - sessionEndpoints:
+    ///   - sessionEndpoints: 
     public init(id: String? = nil, type: UploadSessionTypeField? = nil, sessionExpiresAt: Date? = nil, partSize: Int64? = nil, totalParts: Int? = nil, numPartsProcessed: Int? = nil, sessionEndpoints: UploadSessionSessionEndpointsField? = nil) {
         self.id = id
         self.type = type
@@ -68,7 +77,7 @@ public class UploadSession: Codable {
         self.sessionEndpoints = sessionEndpoints
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decodeIfPresent(String.self, forKey: .id)
         type = try container.decodeIfPresent(UploadSessionTypeField.self, forKey: .type)
@@ -89,4 +98,19 @@ public class UploadSession: Codable {
         try container.encodeIfPresent(numPartsProcessed, forKey: .numPartsProcessed)
         try container.encodeIfPresent(sessionEndpoints, forKey: .sessionEndpoints)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

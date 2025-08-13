@@ -1,7 +1,7 @@
 import Foundation
 
 /// An invite for a user to an enterprise.
-public class Invite: Codable {
+public class Invite: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case id
         case type
@@ -13,23 +13,32 @@ public class Invite: Codable {
         case modifiedAt = "modified_at"
     }
 
-    /// The unique identifier for this invite
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
+
+    /// The unique identifier for this invite.
     public let id: String
 
-    /// `invite`
+    /// The value will always be `invite`.
     public let type: InviteTypeField
 
-    /// A representation of a Box enterprise
+    /// A representation of a Box enterprise.
     public let invitedTo: InviteInvitedToField?
 
     public let actionableBy: UserMini?
 
     public let invitedBy: UserMini?
 
-    /// The status of the invite
+    /// The status of the invite.
     public let status: String?
 
-    /// When the invite was created
+    /// When the invite was created.
     public let createdAt: Date?
 
     /// When the invite was modified.
@@ -38,13 +47,13 @@ public class Invite: Codable {
     /// Initializer for a Invite.
     ///
     /// - Parameters:
-    ///   - id: The unique identifier for this invite
-    ///   - type: `invite`
-    ///   - invitedTo: A representation of a Box enterprise
-    ///   - actionableBy:
-    ///   - invitedBy:
-    ///   - status: The status of the invite
-    ///   - createdAt: When the invite was created
+    ///   - id: The unique identifier for this invite.
+    ///   - type: The value will always be `invite`.
+    ///   - invitedTo: A representation of a Box enterprise.
+    ///   - actionableBy: 
+    ///   - invitedBy: 
+    ///   - status: The status of the invite.
+    ///   - createdAt: When the invite was created.
     ///   - modifiedAt: When the invite was modified.
     public init(id: String, type: InviteTypeField = InviteTypeField.invite, invitedTo: InviteInvitedToField? = nil, actionableBy: UserMini? = nil, invitedBy: UserMini? = nil, status: String? = nil, createdAt: Date? = nil, modifiedAt: Date? = nil) {
         self.id = id
@@ -57,7 +66,7 @@ public class Invite: Codable {
         self.modifiedAt = modifiedAt
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
         type = try container.decode(InviteTypeField.self, forKey: .type)
@@ -80,4 +89,19 @@ public class Invite: Codable {
         try container.encodeDateTimeIfPresent(field: createdAt, forKey: .createdAt)
         try container.encodeDateTimeIfPresent(field: modifiedAt, forKey: .modifiedAt)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

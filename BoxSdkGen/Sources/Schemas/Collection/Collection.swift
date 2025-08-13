@@ -1,14 +1,14 @@
 import Foundation
 
 /// A collection of items, including files and folders.
-///
+/// 
 /// Currently, the only collection available
 /// is the `favorites` collection.
-///
+/// 
 /// The contents of a collection can be explored in a
 /// similar way to which the contents of a folder is
 /// explored.
-public class Collection: Codable {
+public class Collection: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case id
         case type
@@ -16,10 +16,19 @@ public class Collection: Codable {
         case collectionType = "collection_type"
     }
 
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
+
     /// The unique identifier for this collection.
     public let id: String?
 
-    /// `collection`
+    /// The value will always be `collection`.
     public let type: CollectionTypeField?
 
     /// The name of the collection.
@@ -34,7 +43,7 @@ public class Collection: Codable {
     ///
     /// - Parameters:
     ///   - id: The unique identifier for this collection.
-    ///   - type: `collection`
+    ///   - type: The value will always be `collection`.
     ///   - name: The name of the collection.
     ///   - collectionType: The type of the collection. This is used to
     ///     determine the proper visual treatment for
@@ -46,7 +55,7 @@ public class Collection: Codable {
         self.collectionType = collectionType
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decodeIfPresent(String.self, forKey: .id)
         type = try container.decodeIfPresent(CollectionTypeField.self, forKey: .type)
@@ -61,4 +70,19 @@ public class Collection: Codable {
         try container.encodeIfPresent(name, forKey: .name)
         try container.encodeIfPresent(collectionType, forKey: .collectionType)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

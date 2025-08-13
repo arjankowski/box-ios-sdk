@@ -25,20 +25,23 @@ public enum FileFullOrFolderFull: Codable {
                     }
 
                 default:
-                    throw DecodingError.typeMismatch(FileFullOrFolderFull.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "The Decoded object contains an unexpected value for key type"))
+                    break
                 }
             }
+
         }
 
         throw DecodingError.typeMismatch(FileFullOrFolderFull.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "The type of the decoded object cannot be determined."))
+
     }
 
     public func encode(to encoder: Encoder) throws {
         switch self {
-        case let .fileFull(fileFull):
+        case .fileFull(let fileFull):
             try fileFull.encode(to: encoder)
-        case let .folderFull(folderFull):
+        case .folderFull(let folderFull):
             try folderFull.encode(to: encoder)
         }
     }
+
 }

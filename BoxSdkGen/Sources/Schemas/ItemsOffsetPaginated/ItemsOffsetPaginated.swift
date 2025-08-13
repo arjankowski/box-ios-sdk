@@ -2,7 +2,7 @@ import Foundation
 
 /// A list of files, folders, and web links in
 /// their mini representation.
-public class ItemsOffsetPaginated: Codable {
+public class ItemsOffsetPaginated: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case totalCount = "total_count"
         case limit
@@ -11,10 +11,19 @@ public class ItemsOffsetPaginated: Codable {
         case entries
     }
 
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
+
     /// One greater than the offset of the last entry in the entire collection.
     /// The total number of entries in the collection may be less than
     /// `total_count`.
-    ///
+    /// 
     /// This field is only returned for calls that use offset-based pagination.
     /// For marker-based paginated APIs, this field will be omitted.
     public let totalCount: Int64?
@@ -26,13 +35,13 @@ public class ItemsOffsetPaginated: Codable {
 
     /// The 0-based offset of the first entry in this set. This will be the same
     /// as the `offset` query parameter.
-    ///
+    /// 
     /// This field is only returned for calls that use offset-based pagination.
     /// For marker-based paginated APIs, this field will be omitted.
     public let offset: Int64?
 
     /// The order by which items are returned.
-    ///
+    /// 
     /// This field is only returned for calls that use offset-based pagination.
     /// For marker-based paginated APIs, this field will be omitted.
     public let order: [ItemsOffsetPaginatedOrderField]?
@@ -46,7 +55,7 @@ public class ItemsOffsetPaginated: Codable {
     ///   - totalCount: One greater than the offset of the last entry in the entire collection.
     ///     The total number of entries in the collection may be less than
     ///     `total_count`.
-    ///
+    ///     
     ///     This field is only returned for calls that use offset-based pagination.
     ///     For marker-based paginated APIs, this field will be omitted.
     ///   - limit: The limit that was used for these entries. This will be the same as the
@@ -54,11 +63,11 @@ public class ItemsOffsetPaginated: Codable {
     ///     allowed. The maximum value varies by API.
     ///   - offset: The 0-based offset of the first entry in this set. This will be the same
     ///     as the `offset` query parameter.
-    ///
+    ///     
     ///     This field is only returned for calls that use offset-based pagination.
     ///     For marker-based paginated APIs, this field will be omitted.
     ///   - order: The order by which items are returned.
-    ///
+    ///     
     ///     This field is only returned for calls that use offset-based pagination.
     ///     For marker-based paginated APIs, this field will be omitted.
     ///   - entries: The items in this collection.
@@ -70,7 +79,7 @@ public class ItemsOffsetPaginated: Codable {
         self.entries = entries
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         totalCount = try container.decodeIfPresent(Int64.self, forKey: .totalCount)
         limit = try container.decodeIfPresent(Int64.self, forKey: .limit)
@@ -87,4 +96,19 @@ public class ItemsOffsetPaginated: Codable {
         try container.encodeIfPresent(order, forKey: .order)
         try container.encodeIfPresent(entries, forKey: .entries)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

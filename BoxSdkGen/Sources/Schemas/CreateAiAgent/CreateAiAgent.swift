@@ -1,7 +1,7 @@
 import Foundation
 
 /// The schema for AI agent create request.
-public class CreateAiAgent: Codable {
+public class CreateAiAgent: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case name
         case accessState = "access_state"
@@ -13,6 +13,15 @@ public class CreateAiAgent: Codable {
         case extract
     }
 
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
+
     /// The name of the AI Agent.
     public let name: String
 
@@ -23,7 +32,7 @@ public class CreateAiAgent: Codable {
     public let type: CreateAiAgentTypeField
 
     /// The icon reference of the AI Agent. It should have format of the URL `https://cdn01.boxcdn.net/app-assets/aistudio/avatars/<file_name>`
-    /// where possible values of `file_name` are: `logo_boxAi.png`,`logo_stamp.png`,`logo_legal.png`,`logo_finance.png`,`logo_config.png`,`logo_handshake.png`,`logo_analytics.png`,`logo_classification.png`
+    /// where possible values of `file_name` are: `logo_boxAi.png`,`logo_stamp.png`,`logo_legal.png`,`logo_finance.png`,`logo_config.png`,`logo_handshake.png`,`logo_analytics.png`,`logo_classification.png`.
     public let iconReference: String?
 
     /// List of allowed users or groups.
@@ -42,11 +51,11 @@ public class CreateAiAgent: Codable {
     ///   - accessState: The state of the AI Agent. Possible values are: `enabled`, `disabled`, and `enabled_for_selected_users`.
     ///   - type: The type of agent used to handle queries.
     ///   - iconReference: The icon reference of the AI Agent. It should have format of the URL `https://cdn01.boxcdn.net/app-assets/aistudio/avatars/<file_name>`
-    ///     where possible values of `file_name` are: `logo_boxAi.png`,`logo_stamp.png`,`logo_legal.png`,`logo_finance.png`,`logo_config.png`,`logo_handshake.png`,`logo_analytics.png`,`logo_classification.png`
+    ///     where possible values of `file_name` are: `logo_boxAi.png`,`logo_stamp.png`,`logo_legal.png`,`logo_finance.png`,`logo_config.png`,`logo_handshake.png`,`logo_analytics.png`,`logo_classification.png`.
     ///   - allowedEntities: List of allowed users or groups.
-    ///   - ask:
-    ///   - textGen:
-    ///   - extract:
+    ///   - ask: 
+    ///   - textGen: 
+    ///   - extract: 
     public init(name: String, accessState: String, type: CreateAiAgentTypeField = CreateAiAgentTypeField.aiAgent, iconReference: String? = nil, allowedEntities: [AiAgentAllowedEntity]? = nil, ask: AiStudioAgentAsk? = nil, textGen: AiStudioAgentTextGen? = nil, extract: AiStudioAgentExtract? = nil) {
         self.name = name
         self.accessState = accessState
@@ -58,7 +67,7 @@ public class CreateAiAgent: Codable {
         self.extract = extract
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         name = try container.decode(String.self, forKey: .name)
         accessState = try container.decode(String.self, forKey: .accessState)
@@ -81,4 +90,19 @@ public class CreateAiAgent: Codable {
         try container.encodeIfPresent(textGen, forKey: .textGen)
         try container.encodeIfPresent(extract, forKey: .extract)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

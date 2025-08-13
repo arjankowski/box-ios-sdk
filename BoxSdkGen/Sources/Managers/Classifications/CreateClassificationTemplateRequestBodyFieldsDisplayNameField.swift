@@ -17,8 +17,9 @@ public enum CreateClassificationTemplateRequestBodyFieldsDisplayNameField: Codab
         switch self {
         case .classification:
             return "Classification"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

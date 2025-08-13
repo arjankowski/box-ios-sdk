@@ -1,6 +1,6 @@
 import Foundation
 
-public class UpdateUserByIdRequestBody: Codable {
+public class UpdateUserByIdRequestBody: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case enterprise
         case notify
@@ -25,40 +25,49 @@ public class UpdateUserByIdRequestBody: Codable {
         case externalAppUserId = "external_app_user_id"
     }
 
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
+
     /// Set this to `null` to roll the user out of the enterprise
-    /// and make them a free user
+    /// and make them a free user.
     @CodableTriState public private(set) var enterprise: String?
 
     /// Whether the user should receive an email when they
-    /// are rolled out of an enterprise
+    /// are rolled out of an enterprise.
     public let notify: Bool?
 
-    /// The name of the user
+    /// The name of the user.
     public let name: String?
 
     /// The email address the user uses to log in
-    ///
+    /// 
     /// Note: If the target user's email is not confirmed, then the
     /// primary login address cannot be changed.
     public let login: String?
 
-    /// The user’s enterprise role
+    /// The user’s enterprise role.
     public let role: UpdateUserByIdRequestBodyRoleField?
 
     /// The language of the user, formatted in modified version of the
     /// [ISO 639-1](/guides/api-calls/language-codes) format.
     public let language: String?
 
-    /// Whether the user can use Box Sync
+    /// Whether the user can use Box Sync.
     public let isSyncEnabled: Bool?
 
-    /// The user’s job title
+    /// The user’s job title.
     public let jobTitle: String?
 
-    /// The user’s phone number
+    /// The user’s phone number.
     public let phone: String?
 
-    /// The user’s address
+    /// The user’s address.
     public let address: String?
 
     /// Tracking codes allow an admin to generate reports from the
@@ -68,26 +77,26 @@ public class UpdateUserByIdRequestBody: Codable {
     public let trackingCodes: [TrackingCode]?
 
     /// Whether the user can see other enterprise users in their
-    /// contact list
+    /// contact list.
     public let canSeeManagedUsers: Bool?
 
-    /// The user's timezone
+    /// The user's timezone.
     public let timezone: String?
 
     /// Whether the user is allowed to collaborate with users outside
-    /// their enterprise
+    /// their enterprise.
     public let isExternalCollabRestricted: Bool?
 
-    /// Whether to exempt the user from enterprise device limits
+    /// Whether to exempt the user from enterprise device limits.
     public let isExemptFromDeviceLimits: Bool?
 
-    /// Whether the user must use two-factor authentication
+    /// Whether the user must use two-factor authentication.
     public let isExemptFromLoginVerification: Bool?
 
-    /// Whether the user is required to reset their password
+    /// Whether the user is required to reset their password.
     public let isPasswordResetRequired: Bool?
 
-    /// The user's account status
+    /// The user's account status.
     public let status: UpdateUserByIdRequestBodyStatusField?
 
     /// The user’s total available space in bytes. Set this to `-1` to
@@ -98,14 +107,14 @@ public class UpdateUserByIdRequestBody: Codable {
     /// notifications are sent. When it's confirmed, this will be
     /// the email address to which notifications are sent instead of
     /// to the primary email address.
-    ///
+    /// 
     /// Set this value to `null` to remove the notification email.
     @CodableTriState public private(set) var notificationEmail: UpdateUserByIdRequestBodyNotificationEmailField?
 
     /// An external identifier for an app user, which can be used to look
     /// up the user. This can be used to tie user IDs from external
     /// identity providers to Box users.
-    ///
+    /// 
     /// Note: In order to update this field, you need to request a token
     /// using the application that created the app user.
     public let externalAppUserId: String?
@@ -114,50 +123,50 @@ public class UpdateUserByIdRequestBody: Codable {
     ///
     /// - Parameters:
     ///   - enterprise: Set this to `null` to roll the user out of the enterprise
-    ///     and make them a free user
+    ///     and make them a free user.
     ///   - notify: Whether the user should receive an email when they
-    ///     are rolled out of an enterprise
-    ///   - name: The name of the user
+    ///     are rolled out of an enterprise.
+    ///   - name: The name of the user.
     ///   - login: The email address the user uses to log in
-    ///
+    ///     
     ///     Note: If the target user's email is not confirmed, then the
     ///     primary login address cannot be changed.
-    ///   - role: The user’s enterprise role
+    ///   - role: The user’s enterprise role.
     ///   - language: The language of the user, formatted in modified version of the
     ///     [ISO 639-1](/guides/api-calls/language-codes) format.
-    ///   - isSyncEnabled: Whether the user can use Box Sync
-    ///   - jobTitle: The user’s job title
-    ///   - phone: The user’s phone number
-    ///   - address: The user’s address
+    ///   - isSyncEnabled: Whether the user can use Box Sync.
+    ///   - jobTitle: The user’s job title.
+    ///   - phone: The user’s phone number.
+    ///   - address: The user’s address.
     ///   - trackingCodes: Tracking codes allow an admin to generate reports from the
     ///     admin console and assign an attribute to a specific group
     ///     of users. This setting must be enabled for an enterprise before it
     ///     can be used.
     ///   - canSeeManagedUsers: Whether the user can see other enterprise users in their
-    ///     contact list
-    ///   - timezone: The user's timezone
+    ///     contact list.
+    ///   - timezone: The user's timezone.
     ///   - isExternalCollabRestricted: Whether the user is allowed to collaborate with users outside
-    ///     their enterprise
-    ///   - isExemptFromDeviceLimits: Whether to exempt the user from enterprise device limits
-    ///   - isExemptFromLoginVerification: Whether the user must use two-factor authentication
-    ///   - isPasswordResetRequired: Whether the user is required to reset their password
-    ///   - status: The user's account status
+    ///     their enterprise.
+    ///   - isExemptFromDeviceLimits: Whether to exempt the user from enterprise device limits.
+    ///   - isExemptFromLoginVerification: Whether the user must use two-factor authentication.
+    ///   - isPasswordResetRequired: Whether the user is required to reset their password.
+    ///   - status: The user's account status.
     ///   - spaceAmount: The user’s total available space in bytes. Set this to `-1` to
     ///     indicate unlimited storage.
     ///   - notificationEmail: An alternate notification email address to which email
     ///     notifications are sent. When it's confirmed, this will be
     ///     the email address to which notifications are sent instead of
     ///     to the primary email address.
-    ///
+    ///     
     ///     Set this value to `null` to remove the notification email.
     ///   - externalAppUserId: An external identifier for an app user, which can be used to look
     ///     up the user. This can be used to tie user IDs from external
     ///     identity providers to Box users.
-    ///
+    ///     
     ///     Note: In order to update this field, you need to request a token
     ///     using the application that created the app user.
     public init(enterprise: TriStateField<String> = nil, notify: Bool? = nil, name: String? = nil, login: String? = nil, role: UpdateUserByIdRequestBodyRoleField? = nil, language: String? = nil, isSyncEnabled: Bool? = nil, jobTitle: String? = nil, phone: String? = nil, address: String? = nil, trackingCodes: [TrackingCode]? = nil, canSeeManagedUsers: Bool? = nil, timezone: String? = nil, isExternalCollabRestricted: Bool? = nil, isExemptFromDeviceLimits: Bool? = nil, isExemptFromLoginVerification: Bool? = nil, isPasswordResetRequired: Bool? = nil, status: UpdateUserByIdRequestBodyStatusField? = nil, spaceAmount: Int64? = nil, notificationEmail: TriStateField<UpdateUserByIdRequestBodyNotificationEmailField> = nil, externalAppUserId: String? = nil) {
-        _enterprise = CodableTriState(state: enterprise)
+        self._enterprise = CodableTriState(state: enterprise)
         self.notify = notify
         self.name = name
         self.login = login
@@ -176,11 +185,11 @@ public class UpdateUserByIdRequestBody: Codable {
         self.isPasswordResetRequired = isPasswordResetRequired
         self.status = status
         self.spaceAmount = spaceAmount
-        _notificationEmail = CodableTriState(state: notificationEmail)
+        self._notificationEmail = CodableTriState(state: notificationEmail)
         self.externalAppUserId = externalAppUserId
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         enterprise = try container.decodeIfPresent(String.self, forKey: .enterprise)
         notify = try container.decodeIfPresent(Bool.self, forKey: .notify)
@@ -229,4 +238,19 @@ public class UpdateUserByIdRequestBody: Codable {
         try container.encode(field: _notificationEmail.state, forKey: .notificationEmail)
         try container.encodeIfPresent(externalAppUserId, forKey: .externalAppUserId)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

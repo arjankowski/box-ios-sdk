@@ -27,8 +27,9 @@ public enum TemplateSignerRoleField: CodableStringEnum {
             return "approver"
         case .finalCopyReader:
             return "final_copy_reader"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

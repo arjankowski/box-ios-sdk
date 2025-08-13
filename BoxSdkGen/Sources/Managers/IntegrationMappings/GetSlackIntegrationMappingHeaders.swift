@@ -11,4 +11,5 @@ public class GetSlackIntegrationMappingHeaders {
     public init(extraHeaders: [String: String?]? = [:]) {
         self.extraHeaders = extraHeaders
     }
+
 }

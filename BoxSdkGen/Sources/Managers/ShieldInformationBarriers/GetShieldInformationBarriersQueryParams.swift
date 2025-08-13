@@ -18,4 +18,5 @@ public class GetShieldInformationBarriersQueryParams {
         self.marker = marker
         self.limit = limit
     }
+
 }

@@ -2,7 +2,7 @@ import Foundation
 
 /// Create a search using SQL-like syntax to return items that match specific
 /// metadata.
-public class MetadataQuery: Codable {
+public class MetadataQuery: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case from
         case ancestorFolderId = "ancestor_folder_id"
@@ -13,6 +13,15 @@ public class MetadataQuery: Codable {
         case marker
         case fields
     }
+
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
 
     /// Specifies the template used in the query. Must be in the form
     /// `scope.templateKey`. Not all templates can be used in this field,
@@ -30,7 +39,7 @@ public class MetadataQuery: Codable {
     /// to a SQL `SELECT` statement. Values in the search query can be turned into
     /// parameters specified in the `query_param` arguments list to prevent having
     /// to manually insert search values into the query string.
-    ///
+    /// 
     /// For example, a value of `:amount` would represent the `amount` value in
     /// `query_params` object.
     public let query: String?
@@ -42,7 +51,7 @@ public class MetadataQuery: Codable {
 
     /// A list of template fields and directions to sort the metadata query
     /// results by.
-    ///
+    /// 
     /// The ordering `direction` must be the same for each item in the array.
     public let orderBy: [MetadataQueryOrderByField]?
 
@@ -58,12 +67,12 @@ public class MetadataQuery: Codable {
     /// By default, this endpoint returns only the most basic info about the items for
     /// which the query matches. This attribute can be used to specify a list of
     /// additional attributes to return for any item, including its metadata.
-    ///
+    /// 
     /// This attribute takes a list of item fields, metadata template identifiers,
     /// or metadata template field identifiers.
-    ///
+    /// 
     /// For example:
-    ///
+    /// 
     /// * `created_by` will add the details of the user who created the item to
     /// the response.
     /// * `metadata.<scope>.<templateKey>` will return the mini-representation
@@ -89,7 +98,7 @@ public class MetadataQuery: Codable {
     ///     to a SQL `SELECT` statement. Values in the search query can be turned into
     ///     parameters specified in the `query_param` arguments list to prevent having
     ///     to manually insert search values into the query string.
-    ///
+    ///     
     ///     For example, a value of `:amount` would represent the `amount` value in
     ///     `query_params` object.
     ///   - queryParams: Set of arguments corresponding to the parameters specified in the
@@ -97,7 +106,7 @@ public class MetadataQuery: Codable {
     ///     the type of the corresponding metadata template field.
     ///   - orderBy: A list of template fields and directions to sort the metadata query
     ///     results by.
-    ///
+    ///     
     ///     The ordering `direction` must be the same for each item in the array.
     ///   - limit: A value between 0 and 100 that indicates the maximum number of results
     ///     to return for a single request. This only specifies a maximum
@@ -107,12 +116,12 @@ public class MetadataQuery: Codable {
     ///   - fields: By default, this endpoint returns only the most basic info about the items for
     ///     which the query matches. This attribute can be used to specify a list of
     ///     additional attributes to return for any item, including its metadata.
-    ///
+    ///     
     ///     This attribute takes a list of item fields, metadata template identifiers,
     ///     or metadata template field identifiers.
-    ///
+    ///     
     ///     For example:
-    ///
+    ///     
     ///     * `created_by` will add the details of the user who created the item to
     ///     the response.
     ///     * `metadata.<scope>.<templateKey>` will return the mini-representation
@@ -132,7 +141,7 @@ public class MetadataQuery: Codable {
         self.fields = fields
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         from = try container.decode(String.self, forKey: .from)
         ancestorFolderId = try container.decode(String.self, forKey: .ancestorFolderId)
@@ -155,4 +164,19 @@ public class MetadataQuery: Codable {
         try container.encodeIfPresent(marker, forKey: .marker)
         try container.encodeIfPresent(fields, forKey: .fields)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

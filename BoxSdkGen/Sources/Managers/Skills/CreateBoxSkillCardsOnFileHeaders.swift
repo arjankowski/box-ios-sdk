@@ -11,4 +11,5 @@ public class CreateBoxSkillCardsOnFileHeaders {
     public init(extraHeaders: [String: String?]? = [:]) {
         self.extraHeaders = extraHeaders
     }
+
 }

@@ -22,8 +22,9 @@ public enum GetStoragePolicyAssignmentsQueryParamsResolvedForTypeField: CodableS
             return "user"
         case .enterprise:
             return "enterprise"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

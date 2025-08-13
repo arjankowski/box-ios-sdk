@@ -9,4 +9,5 @@ public class DeveloperTokenConfig {
         self.clientId = clientId
         self.clientSecret = clientSecret
     }
+
 }

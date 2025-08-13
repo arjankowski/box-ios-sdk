@@ -212,8 +212,9 @@ public enum UpdateWebhookByIdRequestBodyTriggersField: CodableStringEnum {
             return "SIGN_REQUEST.EXPIRED"
         case .signRequestSignerEmailBounced:
             return "SIGN_REQUEST.SIGNER_EMAIL_BOUNCED"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

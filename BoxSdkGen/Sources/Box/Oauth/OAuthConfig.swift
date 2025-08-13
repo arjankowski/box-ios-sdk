@@ -12,4 +12,5 @@ public class OAuthConfig {
         self.clientSecret = clientSecret
         self.tokenStorage = tokenStorage
     }
+
 }

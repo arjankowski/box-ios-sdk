@@ -1,16 +1,25 @@
 import Foundation
 
-public class ShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentField: Codable {
+public class ShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentField: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case id
         case type
     }
 
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
+
     /// The ID reference of the
     /// restricted shield information barrier segment.
     public let id: String?
 
-    /// The type of the shield information segment
+    /// The type of the shield information segment.
     public let type: ShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentTypeField?
 
     /// Initializer for a ShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentField.
@@ -18,13 +27,13 @@ public class ShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentFiel
     /// - Parameters:
     ///   - id: The ID reference of the
     ///     restricted shield information barrier segment.
-    ///   - type: The type of the shield information segment
+    ///   - type: The type of the shield information segment.
     public init(id: String? = nil, type: ShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentTypeField? = nil) {
         self.id = id
         self.type = type
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decodeIfPresent(String.self, forKey: .id)
         type = try container.decodeIfPresent(ShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentTypeField.self, forKey: .type)
@@ -35,4 +44,19 @@ public class ShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentFiel
         try container.encodeIfPresent(id, forKey: .id)
         try container.encodeIfPresent(type, forKey: .type)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

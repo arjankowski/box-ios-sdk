@@ -42,7 +42,7 @@ public enum AppItemEventSourceOrEventSourceOrFileOrFolderOrGenericSourceOrUser: 
                     }
 
                 default:
-                    throw DecodingError.typeMismatch(AppItemEventSourceOrEventSourceOrFileOrFolderOrGenericSourceOrUser.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "The Decoded object contains an unexpected value for key type"))
+                    break
                 }
             }
 
@@ -61,9 +61,10 @@ public enum AppItemEventSourceOrEventSourceOrFileOrFolderOrGenericSourceOrUser: 
                     }
 
                 default:
-                    throw DecodingError.typeMismatch(AppItemEventSourceOrEventSourceOrFileOrFolderOrGenericSourceOrUser.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "The Decoded object contains an unexpected value for key itemType"))
+                    break
                 }
             }
+
         }
 
         if let content = try? GenericSource(from: decoder) {
@@ -72,22 +73,24 @@ public enum AppItemEventSourceOrEventSourceOrFileOrFolderOrGenericSourceOrUser: 
         }
 
         throw DecodingError.typeMismatch(AppItemEventSourceOrEventSourceOrFileOrFolderOrGenericSourceOrUser.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "The type of the decoded object cannot be determined."))
+
     }
 
     public func encode(to encoder: Encoder) throws {
         switch self {
-        case let .appItemEventSource(appItemEventSource):
+        case .appItemEventSource(let appItemEventSource):
             try appItemEventSource.encode(to: encoder)
-        case let .file(file):
+        case .file(let file):
             try file.encode(to: encoder)
-        case let .folder(folder):
+        case .folder(let folder):
             try folder.encode(to: encoder)
-        case let .user(user):
+        case .user(let user):
             try user.encode(to: encoder)
-        case let .eventSource(eventSource):
+        case .eventSource(let eventSource):
             try eventSource.encode(to: encoder)
-        case let .genericSource(genericSource):
+        case .genericSource(let genericSource):
             try genericSource.encode(to: encoder)
         }
     }
+
 }

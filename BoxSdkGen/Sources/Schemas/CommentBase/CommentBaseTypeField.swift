@@ -17,8 +17,9 @@ public enum CommentBaseTypeField: CodableStringEnum {
         switch self {
         case .comment:
             return "comment"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

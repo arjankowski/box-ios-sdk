@@ -1,13 +1,22 @@
 import Foundation
 
-public class FolderFullClassificationField: Codable {
+public class FolderFullClassificationField: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case name
         case definition
         case color
     }
 
-    /// The name of the classification
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
+
+    /// The name of the classification.
     public let name: String?
 
     /// An explanation of the meaning of this classification.
@@ -21,7 +30,7 @@ public class FolderFullClassificationField: Codable {
     /// Initializer for a FolderFullClassificationField.
     ///
     /// - Parameters:
-    ///   - name: The name of the classification
+    ///   - name: The name of the classification.
     ///   - definition: An explanation of the meaning of this classification.
     ///   - color: The color that is used to display the
     ///     classification label in a user-interface. Colors are defined by the admin
@@ -32,7 +41,7 @@ public class FolderFullClassificationField: Codable {
         self.color = color
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         name = try container.decodeIfPresent(String.self, forKey: .name)
         definition = try container.decodeIfPresent(String.self, forKey: .definition)
@@ -45,4 +54,19 @@ public class FolderFullClassificationField: Codable {
         try container.encodeIfPresent(definition, forKey: .definition)
         try container.encodeIfPresent(color, forKey: .color)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

@@ -1,6 +1,6 @@
 import Foundation
 
-public class AiExtractStructuredFieldsField: Codable {
+public class AiExtractStructuredFieldsField: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case key
         case description
@@ -9,6 +9,15 @@ public class AiExtractStructuredFieldsField: Codable {
         case type
         case options
     }
+
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
 
     /// A unique identifier for the field.
     public let key: String
@@ -46,7 +55,7 @@ public class AiExtractStructuredFieldsField: Codable {
         self.options = options
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         key = try container.decode(String.self, forKey: .key)
         description = try container.decodeIfPresent(String.self, forKey: .description)
@@ -65,4 +74,19 @@ public class AiExtractStructuredFieldsField: Codable {
         try container.encodeIfPresent(type, forKey: .type)
         try container.encodeIfPresent(options, forKey: .options)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

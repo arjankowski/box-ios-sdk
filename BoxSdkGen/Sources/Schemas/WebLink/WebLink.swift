@@ -2,7 +2,7 @@ import Foundation
 
 /// Web links are objects that point to URLs. These objects
 /// are also known as bookmarks within the Box web application.
-///
+/// 
 /// Web link objects are treated similarly to file objects,
 /// they will also support most actions that apply to regular files.
 public class WebLink: WebLinkMini {
@@ -20,6 +20,15 @@ public class WebLink: WebLinkMini {
         case sharedLink = "shared_link"
         case itemStatus = "item_status"
     }
+
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public override var rawData: [String: Any]? {
+        return _rawData
+    }
+
 
     public let parent: FolderMini?
 
@@ -52,43 +61,43 @@ public class WebLink: WebLinkMini {
 
     /// Whether this item is deleted or not. Values include `active`,
     /// `trashed` if the file has been moved to the trash, and `deleted` if
-    /// the file has been permanently deleted
+    /// the file has been permanently deleted.
     public let itemStatus: WebLinkItemStatusField?
 
     /// Initializer for a WebLink.
     ///
     /// - Parameters:
-    ///   - id: The unique identifier for this web link
-    ///   - type: `web_link`
+    ///   - id: The unique identifier for this web link.
+    ///   - type: The value will always be `web_link`.
     ///   - etag: The entity tag of this web link. Used with `If-Match`
     ///     headers.
-    ///   - url: The URL this web link points to
-    ///   - sequenceId:
-    ///   - name: The name of the web link
-    ///   - parent:
+    ///   - url: The URL this web link points to.
+    ///   - sequenceId: 
+    ///   - name: The name of the web link.
+    ///   - parent: 
     ///   - description: The description accompanying the web link. This is
     ///     visible within the Box web application.
-    ///   - pathCollection:
+    ///   - pathCollection: 
     ///   - createdAt: When this file was created on Box’s servers.
     ///   - modifiedAt: When this file was last updated on the Box
     ///     servers.
     ///   - trashedAt: When this file was moved to the trash.
     ///   - purgedAt: When this file will be permanently deleted.
-    ///   - createdBy:
-    ///   - modifiedBy:
-    ///   - ownedBy:
-    ///   - sharedLink:
+    ///   - createdBy: 
+    ///   - modifiedBy: 
+    ///   - ownedBy: 
+    ///   - sharedLink: 
     ///   - itemStatus: Whether this item is deleted or not. Values include `active`,
     ///     `trashed` if the file has been moved to the trash, and `deleted` if
-    ///     the file has been permanently deleted
+    ///     the file has been permanently deleted.
     public init(id: String, type: WebLinkBaseTypeField = WebLinkBaseTypeField.webLink, etag: String? = nil, url: String? = nil, sequenceId: String? = nil, name: String? = nil, parent: FolderMini? = nil, description: String? = nil, pathCollection: WebLinkPathCollectionField? = nil, createdAt: Date? = nil, modifiedAt: Date? = nil, trashedAt: TriStateField<Date> = nil, purgedAt: TriStateField<Date> = nil, createdBy: UserMini? = nil, modifiedBy: UserMini? = nil, ownedBy: UserMini? = nil, sharedLink: WebLinkSharedLinkField? = nil, itemStatus: WebLinkItemStatusField? = nil) {
         self.parent = parent
         self.description = description
         self.pathCollection = pathCollection
         self.createdAt = createdAt
         self.modifiedAt = modifiedAt
-        _trashedAt = CodableTriState(state: trashedAt)
-        _purgedAt = CodableTriState(state: purgedAt)
+        self._trashedAt = CodableTriState(state: trashedAt)
+        self._purgedAt = CodableTriState(state: purgedAt)
         self.createdBy = createdBy
         self.modifiedBy = modifiedBy
         self.ownedBy = ownedBy
@@ -98,7 +107,7 @@ public class WebLink: WebLinkMini {
         super.init(id: id, type: type, etag: etag, url: url, sequenceId: sequenceId, name: name)
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         parent = try container.decodeIfPresent(FolderMini.self, forKey: .parent)
         description = try container.decodeIfPresent(String.self, forKey: .description)
@@ -116,7 +125,7 @@ public class WebLink: WebLinkMini {
         try super.init(from: decoder)
     }
 
-    override public func encode(to encoder: Encoder) throws {
+    public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(parent, forKey: .parent)
         try container.encodeIfPresent(description, forKey: .description)
@@ -132,4 +141,19 @@ public class WebLink: WebLinkMini {
         try container.encodeIfPresent(itemStatus, forKey: .itemStatus)
         try super.encode(to: encoder)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    override func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    override func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

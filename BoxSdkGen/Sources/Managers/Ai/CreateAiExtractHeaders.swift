@@ -11,4 +11,5 @@ public class CreateAiExtractHeaders {
     public init(extraHeaders: [String: String?]? = [:]) {
         self.extraHeaders = extraHeaders
     }
+
 }

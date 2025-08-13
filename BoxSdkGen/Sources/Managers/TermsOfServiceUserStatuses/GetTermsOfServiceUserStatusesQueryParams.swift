@@ -16,4 +16,5 @@ public class GetTermsOfServiceUserStatusesQueryParams {
         self.tosId = tosId
         self.userId = userId
     }
+
 }

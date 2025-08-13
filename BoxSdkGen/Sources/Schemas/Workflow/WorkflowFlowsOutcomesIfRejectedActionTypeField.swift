@@ -127,8 +127,9 @@ public enum WorkflowFlowsOutcomesIfRejectedActionTypeField: CodableStringEnum {
             return "apply_folder_classification"
         case .sendNotification:
             return "send_notification"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

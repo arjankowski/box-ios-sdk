@@ -2,7 +2,7 @@ import Foundation
 
 /// File version legal hold is an entity representing all
 /// holds on a File Version.
-public class FileVersionLegalHold: Codable {
+public class FileVersionLegalHold: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case id
         case type
@@ -12,10 +12,19 @@ public class FileVersionLegalHold: Codable {
         case deletedAt = "deleted_at"
     }
 
-    /// The unique identifier for this file version legal hold
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
+
+    /// The unique identifier for this file version legal hold.
     public let id: String?
 
-    /// `file_version_legal_hold`
+    /// The value will always be `file_version_legal_hold`.
     public let type: FileVersionLegalHoldTypeField?
 
     public let fileVersion: FileVersionMini?
@@ -32,10 +41,10 @@ public class FileVersionLegalHold: Codable {
     /// Initializer for a FileVersionLegalHold.
     ///
     /// - Parameters:
-    ///   - id: The unique identifier for this file version legal hold
-    ///   - type: `file_version_legal_hold`
-    ///   - fileVersion:
-    ///   - file:
+    ///   - id: The unique identifier for this file version legal hold.
+    ///   - type: The value will always be `file_version_legal_hold`.
+    ///   - fileVersion: 
+    ///   - file: 
     ///   - legalHoldPolicyAssignments: List of assignments contributing to this Hold.
     ///   - deletedAt: Time that this File-Version-Legal-Hold was
     ///     deleted.
@@ -48,7 +57,7 @@ public class FileVersionLegalHold: Codable {
         self.deletedAt = deletedAt
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decodeIfPresent(String.self, forKey: .id)
         type = try container.decodeIfPresent(FileVersionLegalHoldTypeField.self, forKey: .type)
@@ -67,4 +76,19 @@ public class FileVersionLegalHold: Codable {
         try container.encodeIfPresent(legalHoldPolicyAssignments, forKey: .legalHoldPolicyAssignments)
         try container.encodeDateTimeIfPresent(field: deletedAt, forKey: .deletedAt)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

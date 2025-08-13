@@ -1,13 +1,22 @@
 import Foundation
 
 /// AI Extract Structured Request object.
-public class AiExtractStructured: Codable {
+public class AiExtractStructured: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case items
         case metadataTemplate = "metadata_template"
         case fields
         case aiAgent = "ai_agent"
     }
+
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
 
     /// The items to be processed by the LLM. Currently you can use files only.
     public let items: [AiItemBase]
@@ -30,7 +39,7 @@ public class AiExtractStructured: Codable {
     ///     For your request to work, you must provide either `metadata_template` or `fields`, but not both.
     ///   - fields: The fields to be extracted from the provided items.
     ///     For your request to work, you must provide either `metadata_template` or `fields`, but not both.
-    ///   - aiAgent:
+    ///   - aiAgent: 
     public init(items: [AiItemBase], metadataTemplate: AiExtractStructuredMetadataTemplateField? = nil, fields: [AiExtractStructuredFieldsField]? = nil, aiAgent: AiAgentExtractStructuredOrAiAgentReference? = nil) {
         self.items = items
         self.metadataTemplate = metadataTemplate
@@ -38,7 +47,7 @@ public class AiExtractStructured: Codable {
         self.aiAgent = aiAgent
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         items = try container.decode([AiItemBase].self, forKey: .items)
         metadataTemplate = try container.decodeIfPresent(AiExtractStructuredMetadataTemplateField.self, forKey: .metadataTemplate)
@@ -53,4 +62,19 @@ public class AiExtractStructured: Codable {
         try container.encodeIfPresent(fields, forKey: .fields)
         try container.encodeIfPresent(aiAgent, forKey: .aiAgent)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

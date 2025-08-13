@@ -9,6 +9,15 @@ public class RetentionPolicyMini: RetentionPolicyBase {
         case dispositionAction = "disposition_action"
     }
 
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public override var rawData: [String: Any]? {
+        return _rawData
+    }
+
+
     /// The name given to the retention policy.
     public let policyName: String?
 
@@ -33,7 +42,7 @@ public class RetentionPolicyMini: RetentionPolicyBase {
     ///
     /// - Parameters:
     ///   - id: The unique identifier that represents a retention policy.
-    ///   - type: `retention_policy`
+    ///   - type: The value will always be `retention_policy`.
     ///   - policyName: The name given to the retention policy.
     ///   - retentionLength: The length of the retention policy. This value
     ///     specifies the duration in days that the retention
@@ -56,7 +65,7 @@ public class RetentionPolicyMini: RetentionPolicyBase {
         super.init(id: id, type: type)
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         policyName = try container.decodeIfPresent(String.self, forKey: .policyName)
         retentionLength = try container.decodeIfPresent(String.self, forKey: .retentionLength)
@@ -65,11 +74,26 @@ public class RetentionPolicyMini: RetentionPolicyBase {
         try super.init(from: decoder)
     }
 
-    override public func encode(to encoder: Encoder) throws {
+    public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(policyName, forKey: .policyName)
         try container.encodeIfPresent(retentionLength, forKey: .retentionLength)
         try container.encodeIfPresent(dispositionAction, forKey: .dispositionAction)
         try super.encode(to: encoder)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    override func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    override func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

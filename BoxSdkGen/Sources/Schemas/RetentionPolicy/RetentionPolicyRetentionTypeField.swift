@@ -22,8 +22,9 @@ public enum RetentionPolicyRetentionTypeField: CodableStringEnum {
             return "modifiable"
         case .nonModifiable:
             return "non_modifiable"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

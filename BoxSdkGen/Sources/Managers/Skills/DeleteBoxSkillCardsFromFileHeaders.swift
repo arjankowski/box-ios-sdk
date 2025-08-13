@@ -11,4 +11,5 @@ public class DeleteBoxSkillCardsFromFileHeaders {
     public init(extraHeaders: [String: String?]? = [:]) {
         self.extraHeaders = extraHeaders
     }
+
 }

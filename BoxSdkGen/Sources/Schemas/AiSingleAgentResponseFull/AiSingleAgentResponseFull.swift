@@ -8,6 +8,15 @@ public class AiSingleAgentResponseFull: AiSingleAgentResponse {
         case extract
     }
 
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public override var rawData: [String: Any]? {
+        return _rawData
+    }
+
+
     public let ask: AiStudioAgentAskResponse?
 
     public let textGen: AiStudioAgentTextGenResponse?
@@ -28,9 +37,9 @@ public class AiSingleAgentResponseFull: AiSingleAgentResponse {
     ///   - modifiedAt: The ISO date-time formatted timestamp of when this AI agent was recently modified.
     ///   - iconReference: The icon reference of the AI Agent.
     ///   - allowedEntities: List of allowed users or groups.
-    ///   - ask:
-    ///   - textGen:
-    ///   - extract:
+    ///   - ask: 
+    ///   - textGen: 
+    ///   - extract: 
     public init(id: String, origin: String, name: String, accessState: String, type: AiSingleAgentResponseTypeField? = nil, createdBy: UserBase? = nil, createdAt: Date? = nil, modifiedBy: UserBase? = nil, modifiedAt: Date? = nil, iconReference: String? = nil, allowedEntities: [AiAgentAllowedEntity]? = nil, ask: AiStudioAgentAskResponse? = nil, textGen: AiStudioAgentTextGenResponse? = nil, extract: AiStudioAgentExtractResponse? = nil) {
         self.ask = ask
         self.textGen = textGen
@@ -39,7 +48,7 @@ public class AiSingleAgentResponseFull: AiSingleAgentResponse {
         super.init(id: id, origin: origin, name: name, accessState: accessState, type: type, createdBy: createdBy, createdAt: createdAt, modifiedBy: modifiedBy, modifiedAt: modifiedAt, iconReference: iconReference, allowedEntities: allowedEntities)
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         ask = try container.decodeIfPresent(AiStudioAgentAskResponse.self, forKey: .ask)
         textGen = try container.decodeIfPresent(AiStudioAgentTextGenResponse.self, forKey: .textGen)
@@ -48,11 +57,26 @@ public class AiSingleAgentResponseFull: AiSingleAgentResponse {
         try super.init(from: decoder)
     }
 
-    override public func encode(to encoder: Encoder) throws {
+    public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(ask, forKey: .ask)
         try container.encodeIfPresent(textGen, forKey: .textGen)
         try container.encodeIfPresent(extract, forKey: .extract)
         try super.encode(to: encoder)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    override func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    override func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

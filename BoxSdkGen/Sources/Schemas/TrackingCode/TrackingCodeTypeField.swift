@@ -17,8 +17,9 @@ public enum TrackingCodeTypeField: CodableStringEnum {
         switch self {
         case .trackingCode:
             return "tracking_code"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

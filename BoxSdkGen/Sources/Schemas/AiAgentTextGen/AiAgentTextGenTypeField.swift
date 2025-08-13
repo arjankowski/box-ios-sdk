@@ -17,8 +17,9 @@ public enum AiAgentTextGenTypeField: CodableStringEnum {
         switch self {
         case .aiAgentTextGen:
             return "ai_agent_text_gen"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

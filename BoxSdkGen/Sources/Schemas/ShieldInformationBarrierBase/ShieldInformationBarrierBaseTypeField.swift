@@ -17,8 +17,9 @@ public enum ShieldInformationBarrierBaseTypeField: CodableStringEnum {
         switch self {
         case .shieldInformationBarrier:
             return "shield_information_barrier"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

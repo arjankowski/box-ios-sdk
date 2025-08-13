@@ -1,7 +1,7 @@
 import Foundation
 
 /// The AppItem that triggered an event in the event stream.
-public class AppItemEventSource: Codable {
+public class AppItemEventSource: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case id
         case appItemType = "app_item_type"
@@ -10,14 +10,22 @@ public class AppItemEventSource: Codable {
         case group
     }
 
-    /// The id of the `AppItem`
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
+
+    /// The id of the `AppItem`.
     public let id: String
 
-    /// The type of the `AppItem`
+    /// The type of the `AppItem`.
     public let appItemType: String
 
     /// The type of the source that this event represents. Can only be `app_item`.
-    ///
     public let type: AppItemEventSourceTypeField
 
     public let user: UserMini?
@@ -27,12 +35,11 @@ public class AppItemEventSource: Codable {
     /// Initializer for a AppItemEventSource.
     ///
     /// - Parameters:
-    ///   - id: The id of the `AppItem`
-    ///   - appItemType: The type of the `AppItem`
+    ///   - id: The id of the `AppItem`.
+    ///   - appItemType: The type of the `AppItem`.
     ///   - type: The type of the source that this event represents. Can only be `app_item`.
-    ///
-    ///   - user:
-    ///   - group:
+    ///   - user: 
+    ///   - group: 
     public init(id: String, appItemType: String, type: AppItemEventSourceTypeField = AppItemEventSourceTypeField.appItem, user: UserMini? = nil, group: GroupMini? = nil) {
         self.id = id
         self.appItemType = appItemType
@@ -41,7 +48,7 @@ public class AppItemEventSource: Codable {
         self.group = group
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
         appItemType = try container.decode(String.self, forKey: .appItemType)
@@ -58,4 +65,19 @@ public class AppItemEventSource: Codable {
         try container.encodeIfPresent(user, forKey: .user)
         try container.encodeIfPresent(group, forKey: .group)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

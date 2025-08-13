@@ -32,8 +32,9 @@ public enum UpdateTaskAssignmentByIdRequestBodyResolutionStateField: CodableStri
             return "approved"
         case .rejected:
             return "rejected"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

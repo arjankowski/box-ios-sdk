@@ -11,4 +11,5 @@ public class GetFileCollaborationsHeaders {
     public init(extraHeaders: [String: String?]? = [:]) {
         self.extraHeaders = extraHeaders
     }
+
 }

@@ -17,8 +17,9 @@ public enum ShieldInformationBarrierSegmentMemberShieldInformationBarrierSegment
         switch self {
         case .shieldInformationBarrierSegment:
             return "shield_information_barrier_segment"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

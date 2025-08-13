@@ -11,4 +11,5 @@ public class UpdateFileWatermarkHeaders {
     public init(extraHeaders: [String: String?]? = [:]) {
         self.extraHeaders = extraHeaders
     }
+
 }

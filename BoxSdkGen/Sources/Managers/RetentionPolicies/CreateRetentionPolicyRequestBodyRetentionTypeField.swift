@@ -22,8 +22,9 @@ public enum CreateRetentionPolicyRequestBodyRetentionTypeField: CodableStringEnu
             return "modifiable"
         case .nonModifiable:
             return "non_modifiable"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

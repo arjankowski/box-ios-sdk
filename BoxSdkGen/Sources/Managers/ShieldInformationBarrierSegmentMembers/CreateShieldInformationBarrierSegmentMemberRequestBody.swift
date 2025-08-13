@@ -1,12 +1,21 @@
 import Foundation
 
-public class CreateShieldInformationBarrierSegmentMemberRequestBody: Codable {
+public class CreateShieldInformationBarrierSegmentMemberRequestBody: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case shieldInformationBarrierSegment = "shield_information_barrier_segment"
         case user
         case type
         case shieldInformationBarrier = "shield_information_barrier"
     }
+
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
 
     /// The `type` and `id` of the
     /// requested shield information barrier segment.
@@ -15,7 +24,7 @@ public class CreateShieldInformationBarrierSegmentMemberRequestBody: Codable {
     /// User to which restriction will be applied.
     public let user: UserBase
 
-    /// -| A type of the shield barrier segment member.
+    /// A type of the shield barrier segment member.
     public let type: CreateShieldInformationBarrierSegmentMemberRequestBodyTypeField?
 
     public let shieldInformationBarrier: ShieldInformationBarrierBase?
@@ -26,8 +35,8 @@ public class CreateShieldInformationBarrierSegmentMemberRequestBody: Codable {
     ///   - shieldInformationBarrierSegment: The `type` and `id` of the
     ///     requested shield information barrier segment.
     ///   - user: User to which restriction will be applied.
-    ///   - type: -| A type of the shield barrier segment member.
-    ///   - shieldInformationBarrier:
+    ///   - type: A type of the shield barrier segment member.
+    ///   - shieldInformationBarrier: 
     public init(shieldInformationBarrierSegment: CreateShieldInformationBarrierSegmentMemberRequestBodyShieldInformationBarrierSegmentField, user: UserBase, type: CreateShieldInformationBarrierSegmentMemberRequestBodyTypeField? = nil, shieldInformationBarrier: ShieldInformationBarrierBase? = nil) {
         self.shieldInformationBarrierSegment = shieldInformationBarrierSegment
         self.user = user
@@ -35,7 +44,7 @@ public class CreateShieldInformationBarrierSegmentMemberRequestBody: Codable {
         self.shieldInformationBarrier = shieldInformationBarrier
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         shieldInformationBarrierSegment = try container.decode(CreateShieldInformationBarrierSegmentMemberRequestBodyShieldInformationBarrierSegmentField.self, forKey: .shieldInformationBarrierSegment)
         user = try container.decode(UserBase.self, forKey: .user)
@@ -50,4 +59,19 @@ public class CreateShieldInformationBarrierSegmentMemberRequestBody: Codable {
         try container.encodeIfPresent(type, forKey: .type)
         try container.encodeIfPresent(shieldInformationBarrier, forKey: .shieldInformationBarrier)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

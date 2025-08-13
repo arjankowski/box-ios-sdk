@@ -1,13 +1,22 @@
 import Foundation
 
 /// A list of Box Doc Gen jobs with a full set of parameters.
-public class DocGenJobsFullV2025R0: Codable {
+public class DocGenJobsFullV2025R0: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case limit
         case nextMarker = "next_marker"
         case prevMarker = "prev_marker"
         case entries
     }
+
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
 
     /// The limit that was used for these entries. This will be the same as the
     /// `limit` query parameter unless that value exceeded the maximum value
@@ -34,12 +43,12 @@ public class DocGenJobsFullV2025R0: Codable {
     ///   - entries: List of jobs.
     public init(limit: Int64? = nil, nextMarker: TriStateField<String> = nil, prevMarker: TriStateField<String> = nil, entries: [DocGenJobFullV2025R0]? = nil) {
         self.limit = limit
-        _nextMarker = CodableTriState(state: nextMarker)
-        _prevMarker = CodableTriState(state: prevMarker)
+        self._nextMarker = CodableTriState(state: nextMarker)
+        self._prevMarker = CodableTriState(state: prevMarker)
         self.entries = entries
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         limit = try container.decodeIfPresent(Int64.self, forKey: .limit)
         nextMarker = try container.decodeIfPresent(String.self, forKey: .nextMarker)
@@ -54,4 +63,19 @@ public class DocGenJobsFullV2025R0: Codable {
         try container.encode(field: _prevMarker.state, forKey: .prevMarker)
         try container.encodeIfPresent(entries, forKey: .entries)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

@@ -1,11 +1,20 @@
 import Foundation
 
-/// A request to create a Teams Integration Mapping object
-public class IntegrationMappingTeamsCreateRequest: Codable {
+/// A request to create a Teams Integration Mapping object.
+public class IntegrationMappingTeamsCreateRequest: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case partnerItem = "partner_item"
         case boxItem = "box_item"
     }
+
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
 
     public let partnerItem: IntegrationMappingPartnerItemTeamsCreateRequest
 
@@ -16,7 +25,7 @@ public class IntegrationMappingTeamsCreateRequest: Codable {
         self.boxItem = boxItem
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         partnerItem = try container.decode(IntegrationMappingPartnerItemTeamsCreateRequest.self, forKey: .partnerItem)
         boxItem = try container.decode(FolderReference.self, forKey: .boxItem)
@@ -27,4 +36,19 @@ public class IntegrationMappingTeamsCreateRequest: Codable {
         try container.encode(partnerItem, forKey: .partnerItem)
         try container.encode(boxItem, forKey: .boxItem)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

@@ -82,8 +82,9 @@ public enum FileOrFolderScopeScopeField: CodableStringEnum {
             return "item_upload"
         case .itemRead:
             return "item_read"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

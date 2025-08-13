@@ -1,6 +1,6 @@
 import Foundation
 
-public class CreateLegalHoldPolicyRequestBody: Codable {
+public class CreateLegalHoldPolicyRequestBody: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case policyName = "policy_name"
         case description
@@ -9,6 +9,15 @@ public class CreateLegalHoldPolicyRequestBody: Codable {
         case isOngoing = "is_ongoing"
     }
 
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
+
     /// The name of the policy.
     public let policyName: String
 
@@ -16,38 +25,38 @@ public class CreateLegalHoldPolicyRequestBody: Codable {
     public let description: String?
 
     /// The filter start date.
-    ///
+    /// 
     /// When this policy is applied using a `custodian` legal
     /// hold assignments, it will only apply to file versions
     /// created or uploaded inside of the
     /// date range. Other assignment types, such as folders and
     /// files, will ignore the date filter.
-    ///
+    /// 
     /// Required if `is_ongoing` is set to `false`.
     public let filterStartedAt: Date?
 
     /// The filter end date.
-    ///
+    /// 
     /// When this policy is applied using a `custodian` legal
     /// hold assignments, it will only apply to file versions
     /// created or uploaded inside of the
     /// date range. Other assignment types, such as folders and
     /// files, will ignore the date filter.
-    ///
+    /// 
     /// Required if `is_ongoing` is set to `false`.
     public let filterEndedAt: Date?
 
     /// Whether new assignments under this policy should
     /// continue applying to files even after initialization.
-    ///
+    /// 
     /// When this policy is applied using a legal hold assignment,
     /// it will continue applying the policy to any new file versions
     /// even after it has been applied.
-    ///
+    /// 
     /// For example, if a legal hold assignment is placed on a user
     /// today, and that user uploads a file tomorrow, that file will
     /// get held. This will continue until the policy is retired.
-    ///
+    /// 
     /// Required if no filter dates are set.
     public let isOngoing: Bool?
 
@@ -57,34 +66,34 @@ public class CreateLegalHoldPolicyRequestBody: Codable {
     ///   - policyName: The name of the policy.
     ///   - description: A description for the policy.
     ///   - filterStartedAt: The filter start date.
-    ///
+    ///     
     ///     When this policy is applied using a `custodian` legal
     ///     hold assignments, it will only apply to file versions
     ///     created or uploaded inside of the
     ///     date range. Other assignment types, such as folders and
     ///     files, will ignore the date filter.
-    ///
+    ///     
     ///     Required if `is_ongoing` is set to `false`.
     ///   - filterEndedAt: The filter end date.
-    ///
+    ///     
     ///     When this policy is applied using a `custodian` legal
     ///     hold assignments, it will only apply to file versions
     ///     created or uploaded inside of the
     ///     date range. Other assignment types, such as folders and
     ///     files, will ignore the date filter.
-    ///
+    ///     
     ///     Required if `is_ongoing` is set to `false`.
     ///   - isOngoing: Whether new assignments under this policy should
     ///     continue applying to files even after initialization.
-    ///
+    ///     
     ///     When this policy is applied using a legal hold assignment,
     ///     it will continue applying the policy to any new file versions
     ///     even after it has been applied.
-    ///
+    ///     
     ///     For example, if a legal hold assignment is placed on a user
     ///     today, and that user uploads a file tomorrow, that file will
     ///     get held. This will continue until the policy is retired.
-    ///
+    ///     
     ///     Required if no filter dates are set.
     public init(policyName: String, description: String? = nil, filterStartedAt: Date? = nil, filterEndedAt: Date? = nil, isOngoing: Bool? = nil) {
         self.policyName = policyName
@@ -94,7 +103,7 @@ public class CreateLegalHoldPolicyRequestBody: Codable {
         self.isOngoing = isOngoing
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         policyName = try container.decode(String.self, forKey: .policyName)
         description = try container.decodeIfPresent(String.self, forKey: .description)
@@ -111,4 +120,19 @@ public class CreateLegalHoldPolicyRequestBody: Codable {
         try container.encodeDateTimeIfPresent(field: filterEndedAt, forKey: .filterEndedAt)
         try container.encodeIfPresent(isOngoing, forKey: .isOngoing)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

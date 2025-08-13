@@ -1,7 +1,7 @@
 import Foundation
 
-/// A shield information barrier segment object
-public class ShieldInformationBarrierSegment: Codable {
+/// A shield information barrier segment object.
+public class ShieldInformationBarrierSegment: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case id
         case type
@@ -14,18 +14,27 @@ public class ShieldInformationBarrierSegment: Codable {
         case updatedBy = "updated_by"
     }
 
-    /// The unique identifier for the shield information barrier segment
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
+
+    /// The unique identifier for the shield information barrier segment.
     public let id: String?
 
-    /// The type of the shield information barrier segment
+    /// The type of the shield information barrier segment.
     public let type: ShieldInformationBarrierSegmentTypeField?
 
     public let shieldInformationBarrier: ShieldInformationBarrierBase?
 
-    /// Name of the shield information barrier segment
+    /// Name of the shield information barrier segment.
     public let name: String?
 
-    /// Description of the shield information barrier segment
+    /// Description of the shield information barrier segment.
     public let description: String?
 
     /// ISO date time string when this shield information
@@ -43,17 +52,17 @@ public class ShieldInformationBarrierSegment: Codable {
     /// Initializer for a ShieldInformationBarrierSegment.
     ///
     /// - Parameters:
-    ///   - id: The unique identifier for the shield information barrier segment
-    ///   - type: The type of the shield information barrier segment
-    ///   - shieldInformationBarrier:
-    ///   - name: Name of the shield information barrier segment
-    ///   - description: Description of the shield information barrier segment
+    ///   - id: The unique identifier for the shield information barrier segment.
+    ///   - type: The type of the shield information barrier segment.
+    ///   - shieldInformationBarrier: 
+    ///   - name: Name of the shield information barrier segment.
+    ///   - description: Description of the shield information barrier segment.
     ///   - createdAt: ISO date time string when this shield information
     ///     barrier object was created.
-    ///   - createdBy:
+    ///   - createdBy: 
     ///   - updatedAt: ISO date time string when this
     ///     shield information barrier segment was updated.
-    ///   - updatedBy:
+    ///   - updatedBy: 
     public init(id: String? = nil, type: ShieldInformationBarrierSegmentTypeField? = nil, shieldInformationBarrier: ShieldInformationBarrierBase? = nil, name: String? = nil, description: String? = nil, createdAt: Date? = nil, createdBy: UserBase? = nil, updatedAt: Date? = nil, updatedBy: UserBase? = nil) {
         self.id = id
         self.type = type
@@ -66,7 +75,7 @@ public class ShieldInformationBarrierSegment: Codable {
         self.updatedBy = updatedBy
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decodeIfPresent(String.self, forKey: .id)
         type = try container.decodeIfPresent(ShieldInformationBarrierSegmentTypeField.self, forKey: .type)
@@ -91,4 +100,19 @@ public class ShieldInformationBarrierSegment: Codable {
         try container.encodeDateTimeIfPresent(field: updatedAt, forKey: .updatedAt)
         try container.encodeIfPresent(updatedBy, forKey: .updatedBy)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

@@ -1,7 +1,7 @@
 import Foundation
 
-/// A generic error
-public class ClientError: Codable {
+/// A generic error.
+public class ClientError: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case type
         case status
@@ -12,13 +12,22 @@ public class ClientError: Codable {
         case requestId = "request_id"
     }
 
-    /// error
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
+
+    /// The value will always be `error`.
     public let type: ClientErrorTypeField?
 
     /// The HTTP status of the response.
     public let status: Int?
 
-    /// A Box-specific error code
+    /// A Box-specific error code.
     public let code: ClientErrorCodeField?
 
     /// A short message describing the error.
@@ -39,9 +48,9 @@ public class ClientError: Codable {
     /// Initializer for a ClientError.
     ///
     /// - Parameters:
-    ///   - type: error
+    ///   - type: The value will always be `error`.
     ///   - status: The HTTP status of the response.
-    ///   - code: A Box-specific error code
+    ///   - code: A Box-specific error code.
     ///   - message: A short message describing the error.
     ///   - contextInfo: A free-form object that contains additional context
     ///     about the error. The possible fields are defined on
@@ -54,12 +63,12 @@ public class ClientError: Codable {
         self.status = status
         self.code = code
         self.message = message
-        _contextInfo = CodableTriState(state: contextInfo)
+        self._contextInfo = CodableTriState(state: contextInfo)
         self.helpUrl = helpUrl
         self.requestId = requestId
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         type = try container.decodeIfPresent(ClientErrorTypeField.self, forKey: .type)
         status = try container.decodeIfPresent(Int.self, forKey: .status)
@@ -80,4 +89,19 @@ public class ClientError: Codable {
         try container.encodeIfPresent(helpUrl, forKey: .helpUrl)
         try container.encodeIfPresent(requestId, forKey: .requestId)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

@@ -17,8 +17,9 @@ public enum FileVersionBaseV2025R0TypeField: CodableStringEnum {
         switch self {
         case .fileVersion:
             return "file_version"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

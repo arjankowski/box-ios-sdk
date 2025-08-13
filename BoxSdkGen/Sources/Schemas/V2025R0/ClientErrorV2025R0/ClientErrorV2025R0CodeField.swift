@@ -97,8 +97,9 @@ public enum ClientErrorV2025R0CodeField: CodableStringEnum {
             return "item_name_invalid"
         case .insufficientScope:
             return "insufficient_scope"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

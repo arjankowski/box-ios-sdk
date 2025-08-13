@@ -11,4 +11,5 @@ public class CreateCollaborationHeaders {
     public init(extraHeaders: [String: String?]? = [:]) {
         self.extraHeaders = extraHeaders
     }
+
 }

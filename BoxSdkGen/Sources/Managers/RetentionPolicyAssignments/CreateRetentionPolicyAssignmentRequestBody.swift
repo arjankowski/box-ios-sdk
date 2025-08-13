@@ -1,6 +1,6 @@
 import Foundation
 
-public class CreateRetentionPolicyAssignmentRequestBody: Codable {
+public class CreateRetentionPolicyAssignmentRequestBody: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case policyId = "policy_id"
         case assignTo = "assign_to"
@@ -8,10 +8,19 @@ public class CreateRetentionPolicyAssignmentRequestBody: Codable {
         case startDateField = "start_date_field"
     }
 
-    /// The ID of the retention policy to assign
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
+
+    /// The ID of the retention policy to assign.
     public let policyId: String
 
-    /// The item to assign the policy to
+    /// The item to assign the policy to.
     public let assignTo: CreateRetentionPolicyAssignmentRequestBodyAssignToField
 
     /// If the `assign_to` type is `metadata_template`,
@@ -21,7 +30,7 @@ public class CreateRetentionPolicyAssignmentRequestBody: Codable {
     public let filterFields: [CreateRetentionPolicyAssignmentRequestBodyFilterFieldsField]?
 
     /// The date the retention policy assignment begins.
-    ///
+    /// 
     /// If the `assigned_to` type is `metadata_template`,
     /// this field can be a date field's metadata attribute key id.
     public let startDateField: String?
@@ -29,14 +38,14 @@ public class CreateRetentionPolicyAssignmentRequestBody: Codable {
     /// Initializer for a CreateRetentionPolicyAssignmentRequestBody.
     ///
     /// - Parameters:
-    ///   - policyId: The ID of the retention policy to assign
-    ///   - assignTo: The item to assign the policy to
+    ///   - policyId: The ID of the retention policy to assign.
+    ///   - assignTo: The item to assign the policy to.
     ///   - filterFields: If the `assign_to` type is `metadata_template`,
     ///     then optionally add the `filter_fields` parameter which will
     ///     require an array of objects with a field entry and a value entry.
     ///     Currently only one object of `field` and `value` is supported.
     ///   - startDateField: The date the retention policy assignment begins.
-    ///
+    ///     
     ///     If the `assigned_to` type is `metadata_template`,
     ///     this field can be a date field's metadata attribute key id.
     public init(policyId: String, assignTo: CreateRetentionPolicyAssignmentRequestBodyAssignToField, filterFields: [CreateRetentionPolicyAssignmentRequestBodyFilterFieldsField]? = nil, startDateField: String? = nil) {
@@ -46,7 +55,7 @@ public class CreateRetentionPolicyAssignmentRequestBody: Codable {
         self.startDateField = startDateField
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         policyId = try container.decode(String.self, forKey: .policyId)
         assignTo = try container.decode(CreateRetentionPolicyAssignmentRequestBodyAssignToField.self, forKey: .assignTo)
@@ -61,4 +70,19 @@ public class CreateRetentionPolicyAssignmentRequestBody: Codable {
         try container.encodeIfPresent(filterFields, forKey: .filterFields)
         try container.encodeIfPresent(startDateField, forKey: .startDateField)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

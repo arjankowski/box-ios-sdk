@@ -27,8 +27,9 @@ public enum FileFullSharedLinkPermissionOptionsField: CodableStringEnum {
             return "can_download"
         case .canEdit:
             return "can_edit"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

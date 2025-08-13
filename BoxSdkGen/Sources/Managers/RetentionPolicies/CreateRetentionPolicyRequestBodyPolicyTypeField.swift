@@ -22,8 +22,9 @@ public enum CreateRetentionPolicyRequestBodyPolicyTypeField: CodableStringEnum {
             return "finite"
         case .indefinite:
             return "indefinite"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

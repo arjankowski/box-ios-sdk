@@ -17,8 +17,9 @@ public enum WorkflowFlowsTriggerTypeField: CodableStringEnum {
         switch self {
         case .trigger:
             return "trigger"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

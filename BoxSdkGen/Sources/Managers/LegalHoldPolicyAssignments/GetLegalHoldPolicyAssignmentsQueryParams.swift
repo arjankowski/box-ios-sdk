@@ -1,7 +1,7 @@
 import Foundation
 
 public class GetLegalHoldPolicyAssignmentsQueryParams {
-    /// The ID of the legal hold policy
+    /// The ID of the legal hold policy.
     public let policyId: String
 
     /// Filters the results by the type of item the
@@ -14,7 +14,7 @@ public class GetLegalHoldPolicyAssignmentsQueryParams {
 
     /// Defines the position marker at which to begin returning results. This is
     /// used when paginating using marker-based pagination.
-    ///
+    /// 
     /// This requires `usemarker` to be set to `true`.
     public let marker: String?
 
@@ -24,7 +24,7 @@ public class GetLegalHoldPolicyAssignmentsQueryParams {
     /// A comma-separated list of attributes to include in the
     /// response. This can be used to request fields that are
     /// not normally returned in a standard response.
-    ///
+    /// 
     /// Be aware that specifying this parameter will have the
     /// effect that none of the standard fields are returned in
     /// the response unless explicitly specified, instead only
@@ -35,20 +35,20 @@ public class GetLegalHoldPolicyAssignmentsQueryParams {
     /// Initializer for a GetLegalHoldPolicyAssignmentsQueryParams.
     ///
     /// - Parameters:
-    ///   - policyId: The ID of the legal hold policy
+    ///   - policyId: The ID of the legal hold policy.
     ///   - assignToType: Filters the results by the type of item the
     ///     policy was applied to.
     ///   - assignToId: Filters the results by the ID of item the
     ///     policy was applied to.
     ///   - marker: Defines the position marker at which to begin returning results. This is
     ///     used when paginating using marker-based pagination.
-    ///
+    ///     
     ///     This requires `usemarker` to be set to `true`.
     ///   - limit: The maximum number of items to return per page.
     ///   - fields: A comma-separated list of attributes to include in the
     ///     response. This can be used to request fields that are
     ///     not normally returned in a standard response.
-    ///
+    ///     
     ///     Be aware that specifying this parameter will have the
     ///     effect that none of the standard fields are returned in
     ///     the response unless explicitly specified, instead only
@@ -62,4 +62,5 @@ public class GetLegalHoldPolicyAssignmentsQueryParams {
         self.limit = limit
         self.fields = fields
     }
+
 }

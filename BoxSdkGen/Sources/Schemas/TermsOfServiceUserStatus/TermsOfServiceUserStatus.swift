@@ -1,7 +1,7 @@
 import Foundation
 
-/// The association between a Terms of Service and a user
-public class TermsOfServiceUserStatus: Codable {
+/// The association between a Terms of Service and a user.
+public class TermsOfServiceUserStatus: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case id
         case type
@@ -12,20 +12,29 @@ public class TermsOfServiceUserStatus: Codable {
         case modifiedAt = "modified_at"
     }
 
-    /// The unique identifier for this terms of service user status
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
+
+    /// The unique identifier for this terms of service user status.
     public let id: String
 
-    /// `terms_of_service_user_status`
+    /// The value will always be `terms_of_service_user_status`.
     public let type: TermsOfServiceUserStatusTypeField
 
     public let tos: TermsOfServiceBase?
 
     public let user: UserMini?
 
-    /// If the user has accepted the terms of services
+    /// If the user has accepted the terms of services.
     public let isAccepted: Bool?
 
-    /// When the legal item was created
+    /// When the legal item was created.
     public let createdAt: Date?
 
     /// When the legal item was modified.
@@ -34,12 +43,12 @@ public class TermsOfServiceUserStatus: Codable {
     /// Initializer for a TermsOfServiceUserStatus.
     ///
     /// - Parameters:
-    ///   - id: The unique identifier for this terms of service user status
-    ///   - type: `terms_of_service_user_status`
-    ///   - tos:
-    ///   - user:
-    ///   - isAccepted: If the user has accepted the terms of services
-    ///   - createdAt: When the legal item was created
+    ///   - id: The unique identifier for this terms of service user status.
+    ///   - type: The value will always be `terms_of_service_user_status`.
+    ///   - tos: 
+    ///   - user: 
+    ///   - isAccepted: If the user has accepted the terms of services.
+    ///   - createdAt: When the legal item was created.
     ///   - modifiedAt: When the legal item was modified.
     public init(id: String, type: TermsOfServiceUserStatusTypeField = TermsOfServiceUserStatusTypeField.termsOfServiceUserStatus, tos: TermsOfServiceBase? = nil, user: UserMini? = nil, isAccepted: Bool? = nil, createdAt: Date? = nil, modifiedAt: Date? = nil) {
         self.id = id
@@ -51,7 +60,7 @@ public class TermsOfServiceUserStatus: Codable {
         self.modifiedAt = modifiedAt
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
         type = try container.decode(TermsOfServiceUserStatusTypeField.self, forKey: .type)
@@ -72,4 +81,19 @@ public class TermsOfServiceUserStatus: Codable {
         try container.encodeDateTimeIfPresent(field: createdAt, forKey: .createdAt)
         try container.encodeDateTimeIfPresent(field: modifiedAt, forKey: .modifiedAt)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

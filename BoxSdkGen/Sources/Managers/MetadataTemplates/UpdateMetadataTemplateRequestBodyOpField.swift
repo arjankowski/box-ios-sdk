@@ -77,8 +77,9 @@ public enum UpdateMetadataTemplateRequestBodyOpField: CodableStringEnum {
             return "editMultiSelectOption"
         case .removeMultiSelectOption:
             return "removeMultiSelectOption"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

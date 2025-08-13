@@ -1,7 +1,7 @@
 import Foundation
 
 /// A task assignment defines which task is assigned to which user to complete.
-public class TaskAssignment: Codable {
+public class TaskAssignment: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case id
         case type
@@ -15,10 +15,19 @@ public class TaskAssignment: Codable {
         case assignedBy = "assigned_by"
     }
 
-    /// The unique identifier for this task assignment
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
+
+    /// The unique identifier for this task assignment.
     public let id: String?
 
-    /// `task_assignment`
+    /// The value will always be `task_assignment`.
     public let type: TaskAssignmentTypeField?
 
     public let item: FileMini?
@@ -50,10 +59,10 @@ public class TaskAssignment: Codable {
     /// Initializer for a TaskAssignment.
     ///
     /// - Parameters:
-    ///   - id: The unique identifier for this task assignment
-    ///   - type: `task_assignment`
-    ///   - item:
-    ///   - assignedTo:
+    ///   - id: The unique identifier for this task assignment.
+    ///   - type: The value will always be `task_assignment`.
+    ///   - item: 
+    ///   - assignedTo: 
     ///   - message: A message that will is included with the task
     ///     assignment. This is visible to the assigned user in the web and mobile
     ///     UI.
@@ -64,7 +73,7 @@ public class TaskAssignment: Codable {
     ///     assignment.
     ///   - resolutionState: The current state of the assignment. The available states depend on
     ///     the `action` value of the task object.
-    ///   - assignedBy:
+    ///   - assignedBy: 
     public init(id: String? = nil, type: TaskAssignmentTypeField? = nil, item: FileMini? = nil, assignedTo: UserMini? = nil, message: String? = nil, completedAt: Date? = nil, assignedAt: Date? = nil, remindedAt: Date? = nil, resolutionState: TaskAssignmentResolutionStateField? = nil, assignedBy: UserMini? = nil) {
         self.id = id
         self.type = type
@@ -78,7 +87,7 @@ public class TaskAssignment: Codable {
         self.assignedBy = assignedBy
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decodeIfPresent(String.self, forKey: .id)
         type = try container.decodeIfPresent(TaskAssignmentTypeField.self, forKey: .type)
@@ -105,4 +114,19 @@ public class TaskAssignment: Codable {
         try container.encodeIfPresent(resolutionState, forKey: .resolutionState)
         try container.encodeIfPresent(assignedBy, forKey: .assignedBy)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

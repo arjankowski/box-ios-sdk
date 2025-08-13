@@ -2,7 +2,7 @@ import Foundation
 
 /// Legal Hold Assignments are used to assign Legal Hold
 /// Policies to Users, Folders, Files, or File Versions.
-///
+/// 
 /// Creating a Legal Hold Assignment puts a hold
 /// on the File-Versions that belong to the Assignment's
 /// 'apply-to' entity.
@@ -15,6 +15,15 @@ public class LegalHoldPolicyAssignment: LegalHoldPolicyAssignmentBase {
         case deletedAt = "deleted_at"
     }
 
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public override var rawData: [String: Any]? {
+        return _rawData
+    }
+
+
     public let legalHoldPolicy: LegalHoldPolicyMini?
 
     public let assignedTo: FileOrFolderOrWebLink?
@@ -22,7 +31,7 @@ public class LegalHoldPolicyAssignment: LegalHoldPolicyAssignmentBase {
     public let assignedBy: UserMini?
 
     /// When the legal hold policy assignment object was
-    /// created
+    /// created.
     public let assignedAt: Date?
 
     /// When the assignment release request was sent.
@@ -35,13 +44,13 @@ public class LegalHoldPolicyAssignment: LegalHoldPolicyAssignmentBase {
     /// Initializer for a LegalHoldPolicyAssignment.
     ///
     /// - Parameters:
-    ///   - id: The unique identifier for this legal hold assignment
-    ///   - type: `legal_hold_policy_assignment`
-    ///   - legalHoldPolicy:
-    ///   - assignedTo:
-    ///   - assignedBy:
+    ///   - id: The unique identifier for this legal hold assignment.
+    ///   - type: The value will always be `legal_hold_policy_assignment`.
+    ///   - legalHoldPolicy: 
+    ///   - assignedTo: 
+    ///   - assignedBy: 
     ///   - assignedAt: When the legal hold policy assignment object was
-    ///     created
+    ///     created.
     ///   - deletedAt: When the assignment release request was sent.
     ///     (Because it can take time for an assignment to fully
     ///     delete, this isn't quite the same time that the
@@ -57,7 +66,7 @@ public class LegalHoldPolicyAssignment: LegalHoldPolicyAssignmentBase {
         super.init(id: id, type: type)
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         legalHoldPolicy = try container.decodeIfPresent(LegalHoldPolicyMini.self, forKey: .legalHoldPolicy)
         assignedTo = try container.decodeIfPresent(FileOrFolderOrWebLink.self, forKey: .assignedTo)
@@ -68,7 +77,7 @@ public class LegalHoldPolicyAssignment: LegalHoldPolicyAssignmentBase {
         try super.init(from: decoder)
     }
 
-    override public func encode(to encoder: Encoder) throws {
+    public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(legalHoldPolicy, forKey: .legalHoldPolicy)
         try container.encodeIfPresent(assignedTo, forKey: .assignedTo)
@@ -77,4 +86,19 @@ public class LegalHoldPolicyAssignment: LegalHoldPolicyAssignmentBase {
         try container.encodeDateTimeIfPresent(field: deletedAt, forKey: .deletedAt)
         try super.encode(to: encoder)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    override func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    override func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

@@ -10,7 +10,7 @@ public class ResponseInfo {
     public let body: SerializedData?
     /// The string representation of the response body
     public let rawBody: String?
-    /// A Box-specific error code
+    ///A Box-specific error code
     public let code: String?
     /// A free-form object that contains additional context about the error
     public let contextInfo: [String: Any]?
@@ -20,6 +20,7 @@ public class ResponseInfo {
     public let helpUrl: String?
     /// A short message describing the error
     public let message: String?
+
 
     /// Initializer
     ///
@@ -41,9 +42,10 @@ public class ResponseInfo {
         self.code = code
         self.contextInfo = contextInfo
         self.requestId = requestId
-        helpUrl = helperUrl
+        self.helpUrl = helperUrl
         self.message = message
     }
+
 }
 
 extension ResponseInfo {
@@ -51,10 +53,11 @@ extension ResponseInfo {
     ///
     /// - Returns: A dictionary representing a `ResponseInfo`.
     func getDictionary(dataSanitizer: DataSanitizer) -> [String: Any] {
+
         var dict = [String: Any]()
         dict["statusCode"] = statusCode
         dict["headers"] = dataSanitizer.sanitizeHeaders(headers: headers)
-        dict["rawBody"] = rawBody
+        dict["body"] = JsonUtils.sdToJsonDictionary(from: dataSanitizer.sanitizeBody(body: body ?? SerializedData(data: Data())))
         dict["code"] = code
         dict["contextInfo"] = contextInfo
         dict["requestId"] = requestId

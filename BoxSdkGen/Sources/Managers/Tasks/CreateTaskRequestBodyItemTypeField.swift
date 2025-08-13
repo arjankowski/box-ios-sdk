@@ -17,8 +17,9 @@ public enum CreateTaskRequestBodyItemTypeField: CodableStringEnum {
         switch self {
         case .file:
             return "file"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

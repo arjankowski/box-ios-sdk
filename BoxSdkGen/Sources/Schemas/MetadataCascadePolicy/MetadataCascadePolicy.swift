@@ -2,7 +2,7 @@ import Foundation
 
 /// A metadata cascade policy automatically applies a metadata template instance
 /// to all the files and folders within the targeted folder.
-public class MetadataCascadePolicy: Codable {
+public class MetadataCascadePolicy: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case id
         case type
@@ -12,10 +12,19 @@ public class MetadataCascadePolicy: Codable {
         case templateKey
     }
 
-    /// The ID of the metadata cascade policy object
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
+
+    /// The ID of the metadata cascade policy object.
     public let id: String
 
-    /// `metadata_cascade_policy`
+    /// The value will always be `metadata_cascade_policy`.
     public let type: MetadataCascadePolicyTypeField
 
     /// The enterprise that owns this policy.
@@ -33,16 +42,16 @@ public class MetadataCascadePolicy: Codable {
 
     /// The key of the template that is cascaded down to the folder's
     /// children.
-    ///
+    /// 
     /// In many cases the template key is automatically derived
     /// of its display name, for example `Contract Template` would
     /// become `contractTemplate`. In some cases the creator of the
     /// template will have provided its own template key.
-    ///
+    /// 
     /// Please [list the templates for an enterprise][list], or
     /// get all instances on a [file][file] or [folder][folder]
     /// to inspect a template's key.
-    ///
+    /// 
     /// [list]: e://get-metadata-templates-enterprise
     /// [file]: e://get-files-id-metadata
     /// [folder]: e://get-folders-id-metadata
@@ -51,8 +60,8 @@ public class MetadataCascadePolicy: Codable {
     /// Initializer for a MetadataCascadePolicy.
     ///
     /// - Parameters:
-    ///   - id: The ID of the metadata cascade policy object
-    ///   - type: `metadata_cascade_policy`
+    ///   - id: The ID of the metadata cascade policy object.
+    ///   - type: The value will always be `metadata_cascade_policy`.
     ///   - ownerEnterprise: The enterprise that owns this policy.
     ///   - parent: Represent the folder the policy is applied to.
     ///   - scope: The scope of the metadata cascade policy can either be `global` or
@@ -62,16 +71,16 @@ public class MetadataCascadePolicy: Codable {
     ///     will be the ID of that enterprise.
     ///   - templateKey: The key of the template that is cascaded down to the folder's
     ///     children.
-    ///
+    ///     
     ///     In many cases the template key is automatically derived
     ///     of its display name, for example `Contract Template` would
     ///     become `contractTemplate`. In some cases the creator of the
     ///     template will have provided its own template key.
-    ///
+    ///     
     ///     Please [list the templates for an enterprise][list], or
     ///     get all instances on a [file][file] or [folder][folder]
     ///     to inspect a template's key.
-    ///
+    ///     
     ///     [list]: e://get-metadata-templates-enterprise
     ///     [file]: e://get-files-id-metadata
     ///     [folder]: e://get-folders-id-metadata
@@ -84,7 +93,7 @@ public class MetadataCascadePolicy: Codable {
         self.templateKey = templateKey
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
         type = try container.decode(MetadataCascadePolicyTypeField.self, forKey: .type)
@@ -103,4 +112,19 @@ public class MetadataCascadePolicy: Codable {
         try container.encodeIfPresent(scope, forKey: .scope)
         try container.encodeIfPresent(templateKey, forKey: .templateKey)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

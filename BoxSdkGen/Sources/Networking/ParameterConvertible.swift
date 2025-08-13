@@ -52,9 +52,8 @@ extension Array: ParameterConvertible where Element: Encodable {
     /// Query parameter value
     public var paramValue: String? {
         if Element.self is AnyClass {
-            return try? serializeToString()
-        }
-        else if let array = self as? [ParameterConvertible] {
+            return try? self.serializeToString()
+        } else if let array = self as? [ParameterConvertible] {
             return array.compactMap { $0.paramValue }.joined(separator: ",")
         }
 

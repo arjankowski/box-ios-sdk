@@ -1,7 +1,7 @@
 import Foundation
 
 /// Represents a folder restored from the trash.
-public class TrashFolderRestored: Codable {
+public class TrashFolderRestored: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case id
         case etag
@@ -26,8 +26,17 @@ public class TrashFolderRestored: Codable {
         case itemStatus = "item_status"
     }
 
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
+
     /// The unique identifier that represent a folder.
-    ///
+    /// 
     /// The ID for any folder can be determined
     /// by visiting a folder in the web application
     /// and copying the ID from the URL. For example,
@@ -40,7 +49,7 @@ public class TrashFolderRestored: Codable {
     /// perform changes on the folder if (no) changes have happened.
     @CodableTriState public private(set) var etag: String?
 
-    /// `folder`
+    /// The value will always be `folder`.
     public let type: TrashFolderRestoredTypeField?
 
     public let sequenceId: String?
@@ -61,7 +70,7 @@ public class TrashFolderRestored: Codable {
     public let description: String?
 
     /// The folder size in bytes.
-    ///
+    /// 
     /// Be careful parsing this integer as its
     /// value can get very large.
     public let size: Int64?
@@ -102,9 +111,9 @@ public class TrashFolderRestored: Codable {
     public let parent: FolderMini?
 
     /// Defines if this item has been deleted or not.
-    ///
-    /// * `active` when the item has is not in the trash
-    /// * `trashed` when the item has been moved to the trash but not deleted
+    /// 
+    /// * `active` when the item has is not in the trash,
+    /// * `trashed` when the item has been moved to the trash but not deleted,
     /// * `deleted` when the item has been permanently deleted.
     public let itemStatus: TrashFolderRestoredItemStatusField?
 
@@ -112,7 +121,7 @@ public class TrashFolderRestored: Codable {
     ///
     /// - Parameters:
     ///   - id: The unique identifier that represent a folder.
-    ///
+    ///     
     ///     The ID for any folder can be determined
     ///     by visiting a folder in the web application
     ///     and copying the ID from the URL. For example,
@@ -121,8 +130,8 @@ public class TrashFolderRestored: Codable {
     ///   - etag: The HTTP `etag` of this folder. This can be used within some API
     ///     endpoints in the `If-Match` and `If-None-Match` headers to only
     ///     perform changes on the folder if (no) changes have happened.
-    ///   - type: `folder`
-    ///   - sequenceId:
+    ///   - type: The value will always be `folder`.
+    ///   - sequenceId: 
     ///   - name: The name of the folder.
     ///   - createdAt: The date and time when the folder was created. This value may
     ///     be `null` for some folders such as the root folder or the trash
@@ -130,14 +139,14 @@ public class TrashFolderRestored: Codable {
     ///   - modifiedAt: The date and time when the folder was last updated. This value may
     ///     be `null` for some folders such as the root folder or the trash
     ///     folder.
-    ///   - description:
+    ///   - description: 
     ///   - size: The folder size in bytes.
-    ///
+    ///     
     ///     Be careful parsing this integer as its
     ///     value can get very large.
-    ///   - pathCollection:
-    ///   - createdBy:
-    ///   - modifiedBy:
+    ///   - pathCollection: 
+    ///   - createdBy: 
+    ///   - modifiedBy: 
     ///   - trashedAt: The time at which this folder was put in the
     ///     trash - becomes `null` after restore.
     ///   - purgedAt: The time at which this folder is expected to be purged
@@ -145,44 +154,44 @@ public class TrashFolderRestored: Codable {
     ///   - contentCreatedAt: The date and time at which this folder was originally
     ///     created.
     ///   - contentModifiedAt: The date and time at which this folder was last updated.
-    ///   - ownedBy:
+    ///   - ownedBy: 
     ///   - sharedLink: The shared link for this file. This will
     ///     be `null` if a folder had been trashed, even though the original shared
     ///     link does become active again.
     ///   - folderUploadEmail: The folder upload email for this folder. This will
     ///     be `null` if a folder has been trashed, even though the original upload
     ///     email does become active again.
-    ///   - parent:
+    ///   - parent: 
     ///   - itemStatus: Defines if this item has been deleted or not.
-    ///
-    ///     * `active` when the item has is not in the trash
-    ///     * `trashed` when the item has been moved to the trash but not deleted
+    ///     
+    ///     * `active` when the item has is not in the trash,
+    ///     * `trashed` when the item has been moved to the trash but not deleted,
     ///     * `deleted` when the item has been permanently deleted.
     public init(id: String? = nil, etag: TriStateField<String> = nil, type: TrashFolderRestoredTypeField? = nil, sequenceId: String? = nil, name: String? = nil, createdAt: TriStateField<Date> = nil, modifiedAt: TriStateField<Date> = nil, description: String? = nil, size: Int64? = nil, pathCollection: TrashFolderRestoredPathCollectionField? = nil, createdBy: UserMini? = nil, modifiedBy: UserMini? = nil, trashedAt: TriStateField<String> = nil, purgedAt: TriStateField<String> = nil, contentCreatedAt: TriStateField<Date> = nil, contentModifiedAt: TriStateField<Date> = nil, ownedBy: UserMini? = nil, sharedLink: TriStateField<String> = nil, folderUploadEmail: TriStateField<String> = nil, parent: FolderMini? = nil, itemStatus: TrashFolderRestoredItemStatusField? = nil) {
         self.id = id
-        _etag = CodableTriState(state: etag)
+        self._etag = CodableTriState(state: etag)
         self.type = type
         self.sequenceId = sequenceId
         self.name = name
-        _createdAt = CodableTriState(state: createdAt)
-        _modifiedAt = CodableTriState(state: modifiedAt)
+        self._createdAt = CodableTriState(state: createdAt)
+        self._modifiedAt = CodableTriState(state: modifiedAt)
         self.description = description
         self.size = size
         self.pathCollection = pathCollection
         self.createdBy = createdBy
         self.modifiedBy = modifiedBy
-        _trashedAt = CodableTriState(state: trashedAt)
-        _purgedAt = CodableTriState(state: purgedAt)
-        _contentCreatedAt = CodableTriState(state: contentCreatedAt)
-        _contentModifiedAt = CodableTriState(state: contentModifiedAt)
+        self._trashedAt = CodableTriState(state: trashedAt)
+        self._purgedAt = CodableTriState(state: purgedAt)
+        self._contentCreatedAt = CodableTriState(state: contentCreatedAt)
+        self._contentModifiedAt = CodableTriState(state: contentModifiedAt)
         self.ownedBy = ownedBy
-        _sharedLink = CodableTriState(state: sharedLink)
-        _folderUploadEmail = CodableTriState(state: folderUploadEmail)
+        self._sharedLink = CodableTriState(state: sharedLink)
+        self._folderUploadEmail = CodableTriState(state: folderUploadEmail)
         self.parent = parent
         self.itemStatus = itemStatus
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decodeIfPresent(String.self, forKey: .id)
         etag = try container.decodeIfPresent(String.self, forKey: .etag)
@@ -231,4 +240,19 @@ public class TrashFolderRestored: Codable {
         try container.encodeIfPresent(parent, forKey: .parent)
         try container.encodeIfPresent(itemStatus, forKey: .itemStatus)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

@@ -47,8 +47,9 @@ public enum FolderFullAllowedInviteeRolesField: CodableStringEnum {
             return "viewer uploader"
         case .coOwner:
             return "co-owner"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

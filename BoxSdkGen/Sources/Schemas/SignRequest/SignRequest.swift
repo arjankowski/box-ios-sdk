@@ -19,7 +19,16 @@ public class SignRequest: SignRequestBase {
         case senderId = "sender_id"
     }
 
-    /// object type
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public override var rawData: [String: Any]? {
+        return _rawData
+    }
+
+
+    /// The value will always be `sign-request`.
     public let type: SignRequestTypeField?
 
     /// List of files to create a signing document from. This is currently limited to ten files. Only the ID and type fields are required for each file.
@@ -57,7 +66,7 @@ public class SignRequest: SignRequestBase {
 
     public let parentFolder: FolderMini?
 
-    /// The collaborator level of the user to the sign request. Values can include "owner", "editor", and "viewer"
+    /// The collaborator level of the user to the sign request. Values can include "owner", "editor", and "viewer".
     @CodableTriState public private(set) var collaboratorLevel: String?
 
     /// The email address of the sender of the sign request.
@@ -82,7 +91,7 @@ public class SignRequest: SignRequestBase {
     ///   - externalId: This can be used to reference an ID in an external system that the sign request is related to.
     ///   - templateId: When a signature request is created from a template this field will indicate the id of that template.
     ///   - externalSystemName: Used as an optional system name to appear in the signature log next to the signers who have been assigned the `embed_url_external_id`.
-    ///   - type: object type
+    ///   - type: The value will always be `sign-request`.
     ///   - sourceFiles: List of files to create a signing document from. This is currently limited to ten files. Only the ID and type fields are required for each file.
     ///   - signers: Array of signers for the signature request.
     ///   - signatureColor: Force a specific color for the signature (blue, black, or red).
@@ -93,36 +102,36 @@ public class SignRequest: SignRequestBase {
     ///     using the UI. The signature request is not
     ///     sent until the preparation
     ///     phase is complete.
-    ///   - signingLog:
+    ///   - signingLog: 
     ///   - status: Describes the status of the signature request.
     ///   - signFiles: List of files that will be signed, which are copies of the original
     ///     source files. A new version of these files are created as signers sign
     ///     and can be downloaded at any point in the signing process.
     ///   - autoExpireAt: Uses `days_valid` to calculate the date and time, in GMT, the sign request will expire if unsigned.
-    ///   - parentFolder:
-    ///   - collaboratorLevel: The collaborator level of the user to the sign request. Values can include "owner", "editor", and "viewer"
+    ///   - parentFolder: 
+    ///   - collaboratorLevel: The collaborator level of the user to the sign request. Values can include "owner", "editor", and "viewer".
     ///   - senderEmail: The email address of the sender of the sign request.
     ///   - senderId: The user ID of the sender of the sign request.
     public init(isDocumentPreparationNeeded: Bool? = nil, redirectUrl: TriStateField<String> = nil, declinedRedirectUrl: TriStateField<String> = nil, areTextSignaturesEnabled: Bool? = nil, emailSubject: TriStateField<String> = nil, emailMessage: TriStateField<String> = nil, areRemindersEnabled: Bool? = nil, name: String? = nil, prefillTags: [SignRequestPrefillTag]? = nil, daysValid: TriStateField<Int64> = nil, externalId: TriStateField<String> = nil, templateId: TriStateField<String> = nil, externalSystemName: TriStateField<String> = nil, type: SignRequestTypeField? = nil, sourceFiles: [FileBase]? = nil, signers: [SignRequestSigner]? = nil, signatureColor: TriStateField<String> = nil, id: String? = nil, prepareUrl: TriStateField<String> = nil, signingLog: FileMini? = nil, status: SignRequestStatusField? = nil, signFiles: SignRequestSignFilesField? = nil, autoExpireAt: TriStateField<Date> = nil, parentFolder: FolderMini? = nil, collaboratorLevel: TriStateField<String> = nil, senderEmail: TriStateField<String> = nil, senderId: TriStateField<Int64> = nil) {
         self.type = type
         self.sourceFiles = sourceFiles
         self.signers = signers
-        _signatureColor = CodableTriState(state: signatureColor)
+        self._signatureColor = CodableTriState(state: signatureColor)
         self.id = id
-        _prepareUrl = CodableTriState(state: prepareUrl)
+        self._prepareUrl = CodableTriState(state: prepareUrl)
         self.signingLog = signingLog
         self.status = status
         self.signFiles = signFiles
-        _autoExpireAt = CodableTriState(state: autoExpireAt)
+        self._autoExpireAt = CodableTriState(state: autoExpireAt)
         self.parentFolder = parentFolder
-        _collaboratorLevel = CodableTriState(state: collaboratorLevel)
-        _senderEmail = CodableTriState(state: senderEmail)
-        _senderId = CodableTriState(state: senderId)
+        self._collaboratorLevel = CodableTriState(state: collaboratorLevel)
+        self._senderEmail = CodableTriState(state: senderEmail)
+        self._senderId = CodableTriState(state: senderId)
 
         super.init(isDocumentPreparationNeeded: isDocumentPreparationNeeded, redirectUrl: redirectUrl, declinedRedirectUrl: declinedRedirectUrl, areTextSignaturesEnabled: areTextSignaturesEnabled, emailSubject: emailSubject, emailMessage: emailMessage, areRemindersEnabled: areRemindersEnabled, name: name, prefillTags: prefillTags, daysValid: daysValid, externalId: externalId, templateId: templateId, externalSystemName: externalSystemName)
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         type = try container.decodeIfPresent(SignRequestTypeField.self, forKey: .type)
         sourceFiles = try container.decodeIfPresent([FileBase].self, forKey: .sourceFiles)
@@ -142,7 +151,7 @@ public class SignRequest: SignRequestBase {
         try super.init(from: decoder)
     }
 
-    override public func encode(to encoder: Encoder) throws {
+    public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(type, forKey: .type)
         try container.encodeIfPresent(sourceFiles, forKey: .sourceFiles)
@@ -160,4 +169,19 @@ public class SignRequest: SignRequestBase {
         try container.encode(field: _senderId.state, forKey: .senderId)
         try super.encode(to: encoder)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    override func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    override func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

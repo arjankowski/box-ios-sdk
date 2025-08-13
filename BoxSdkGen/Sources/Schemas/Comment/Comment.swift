@@ -11,19 +11,28 @@ public class Comment: CommentBase {
         case item
     }
 
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public override var rawData: [String: Any]? {
+        return _rawData
+    }
+
+
     /// Whether or not this comment is a reply to another
-    /// comment
+    /// comment.
     public let isReplyComment: Bool?
 
-    /// The text of the comment, as provided by the user
+    /// The text of the comment, as provided by the user.
     public let message: String?
 
     public let createdBy: UserMini?
 
-    /// The time this comment was created
+    /// The time this comment was created.
     public let createdAt: Date?
 
-    /// The time this comment was last modified
+    /// The time this comment was last modified.
     public let modifiedAt: Date?
 
     public let item: CommentItemField?
@@ -32,14 +41,14 @@ public class Comment: CommentBase {
     ///
     /// - Parameters:
     ///   - id: The unique identifier for this comment.
-    ///   - type: `comment`
+    ///   - type: The value will always be `comment`.
     ///   - isReplyComment: Whether or not this comment is a reply to another
-    ///     comment
-    ///   - message: The text of the comment, as provided by the user
-    ///   - createdBy:
-    ///   - createdAt: The time this comment was created
-    ///   - modifiedAt: The time this comment was last modified
-    ///   - item:
+    ///     comment.
+    ///   - message: The text of the comment, as provided by the user.
+    ///   - createdBy: 
+    ///   - createdAt: The time this comment was created.
+    ///   - modifiedAt: The time this comment was last modified.
+    ///   - item: 
     public init(id: String? = nil, type: CommentBaseTypeField? = nil, isReplyComment: Bool? = nil, message: String? = nil, createdBy: UserMini? = nil, createdAt: Date? = nil, modifiedAt: Date? = nil, item: CommentItemField? = nil) {
         self.isReplyComment = isReplyComment
         self.message = message
@@ -51,7 +60,7 @@ public class Comment: CommentBase {
         super.init(id: id, type: type)
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         isReplyComment = try container.decodeIfPresent(Bool.self, forKey: .isReplyComment)
         message = try container.decodeIfPresent(String.self, forKey: .message)
@@ -63,7 +72,7 @@ public class Comment: CommentBase {
         try super.init(from: decoder)
     }
 
-    override public func encode(to encoder: Encoder) throws {
+    public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(isReplyComment, forKey: .isReplyComment)
         try container.encodeIfPresent(message, forKey: .message)
@@ -73,4 +82,19 @@ public class Comment: CommentBase {
         try container.encodeIfPresent(item, forKey: .item)
         try super.encode(to: encoder)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    override func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    override func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

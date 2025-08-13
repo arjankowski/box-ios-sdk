@@ -1,6 +1,6 @@
 import Foundation
 #if canImport(FoundationNetworking)
-    import FoundationNetworking
+import FoundationNetworking
 #endif
 
 enum HTTPHeaderKey {
@@ -18,7 +18,20 @@ public class DefaultNetworkClient: NetworkClient {
 
     private let utilityQueue = DispatchQueue.global(qos: .utility)
 
-    public init() {}
+    /// The URLSession object used to perform network requests.
+    private let session: URLSession
+
+    /// Handles redirect behavior for URLSession tasks on a per-task basis.
+    private let redirectHandler: RedirectHandler
+
+    ///  Initializer
+    ///
+    /// - Parameters:
+    ///   - configuration: A configuration object that specifies certain behaviors, such as caching policies, timeouts, proxies, pipelining, TLS versions to support, cookie policies, and credential storage.
+    public init(configuration: URLSessionConfiguration = URLSessionConfiguration.default) {
+        self.redirectHandler = RedirectHandler()
+        self.session = URLSession(configuration: configuration, delegate: redirectHandler, delegateQueue: nil)
+    }
 
     /// Executes requests
     ///
@@ -62,13 +75,12 @@ public class DefaultNetworkClient: NetworkClient {
             memoryInputStream.reset()
         }
 
-        if let downloadDestinationURL = options.downloadDestinationUrl, options.responseFormat == .binary {
-            let (downloadUrl, urlResponse) = try await sendDownloadRequest(urlRequest, downloadDestinationURL: downloadDestinationURL, networkSession: networkSession)
+        if let downloadDestinationUrl = options.downloadDestinationUrl, options.responseFormat == .binary {
+            let (downloadUrl, urlResponse) = try await sendDownloadRequest(urlRequest, downloadDestinationURL: downloadDestinationUrl)
             let conversation = FetchConversation(options: options, urlRequest: urlRequest, urlResponse: urlResponse as! HTTPURLResponse, responseType: .url(downloadUrl))
             return try await processResponse(using: conversation, networkSession: networkSession, attempt: attempt)
-        }
-        else {
-            let (data, urlResponse) = try await sendDataRequest(urlRequest, networkSession: networkSession)
+        } else {
+            let (data, urlResponse) =  try await sendDataRequest(urlRequest, followRedirects: options.followRedirects ?? true)
             let conversation = FetchConversation(options: options, urlRequest: urlRequest, urlResponse: urlResponse as! HTTPURLResponse, responseType: .data(data))
             return try await processResponse(using: conversation, networkSession: networkSession, attempt: attempt)
         }
@@ -78,12 +90,19 @@ public class DefaultNetworkClient: NetworkClient {
     ///
     /// - Parameters:
     ///   - urlRequest: The request object.
-    ///   - networkSession: The Networking Session object which provides the URLSession object along with a network configuration parameters used in network communication.
+    ///   - followRedirects: Whether the request should follow redirect or not
     /// - Returns: Tuple of  of (Data, URLResponse)
     /// - Throws: An error if the request fails for any reason.
-    private func sendDataRequest(_ urlRequest: URLRequest, networkSession: NetworkSession) async throws -> (Data, URLResponse) {
-        return try await withCheckedThrowingContinuation { continuation in
-            networkSession.session.dataTask(with: urlRequest) { data, response, error in
+    private func sendDataRequest(_ urlRequest: URLRequest, followRedirects: Bool) async throws -> (Data, URLResponse) {
+        return try await withCheckedThrowingContinuation { [weak self] continuation in
+            guard let self = self else {
+                continuation.resume(
+                    with: .failure(BoxNetworkError(message: "Request failed: self was deallocated before execution."))
+                )
+                return
+            }
+
+            let task = self.session.dataTask(with: urlRequest) { data, response, error in
                 if let error = error {
                     continuation.resume(with: .failure(BoxNetworkError(message: error.localizedDescription, error: error)))
                     return
@@ -100,7 +119,9 @@ public class DefaultNetworkClient: NetworkClient {
                     with: .success((data ?? Data(), response))
                 )
             }
-            .resume()
+
+            self.redirectHandler.setRedirectAllowed(followRedirects, for: task)
+            task.resume()
         }
     }
 
@@ -108,12 +129,19 @@ public class DefaultNetworkClient: NetworkClient {
     ///
     /// - Parameters:
     ///   - urlRequest: The request object.
-    ///   - networkSession: The Networking Session object which provides the URLSession object along with a network configuration parameters used in network communication.
+    ///   - downloadDestinationURL: The URL on disk where the file will be saved.
     /// - Returns: Tuple of  of (URL, URLResponse)
     /// - Throws: An error if the request fails for any reason.
-    private func sendDownloadRequest(_ urlRequest: URLRequest, downloadDestinationURL: URL, networkSession: NetworkSession) async throws -> (URL, URLResponse) {
-        return try await withCheckedThrowingContinuation { continuation in
-            networkSession.session.downloadTask(with: urlRequest) { location, response, error in
+    private func sendDownloadRequest(_ urlRequest: URLRequest, downloadDestinationURL: URL) async throws -> (URL, URLResponse) {
+        return try await withCheckedThrowingContinuation { [weak self] continuation in
+            guard let self = self else {
+                continuation.resume(
+                    with: .failure(BoxNetworkError(message: "Request failed: self was deallocated before execution."))
+                )
+                return
+            }
+
+            let task = self.session.downloadTask(with: urlRequest) { location, response, error in
                 if let error = error {
                     continuation.resume(with: .failure(BoxNetworkError(message: error.localizedDescription, error: error)))
                     return
@@ -146,7 +174,10 @@ public class DefaultNetworkClient: NetworkClient {
                 continuation.resume(
                     with: .success((downloadDestinationURL, response))
                 )
-            }.resume()
+            }
+
+            self.redirectHandler.setRedirectAllowed(true, for: task)
+            task.resume()
         }
     }
 
@@ -169,16 +200,14 @@ public class DefaultNetworkClient: NetworkClient {
 
         if let fileStream = options.fileStream {
             urlRequest.httpBodyStream = fileStream
-        }
-        else if let multipartData = options.multipartData {
+        } else if let multipartData = options.multipartData {
             try updateRequestWithMultipartData(&urlRequest, multipartData: multipartData)
         }
 
         if let serializedData = options.data {
             if HTTPHeaderContentTypeValue.urlEncoded == options.contentType {
-                urlRequest.httpBody = try (serializedData.toUrlParams()).data(using: .utf8)
-            }
-            else {
+                urlRequest.httpBody = (try serializedData.toUrlParams()).data(using: .utf8)
+            } else {
                 urlRequest.httpBody = try serializedData.toJson()
             }
         }
@@ -233,9 +262,8 @@ public class DefaultNetworkClient: NetworkClient {
         let boundary = "Boundary-\(UUID().uuidString)"
         for part in multipartData {
             if let body = part.data {
-                parameters[part.partName] = try Utils.Strings.from(data: body.toJson())
-            }
-            else if let fileStream = part.fileStream {
+                parameters[part.partName] = Utils.Strings.from(data: try body.toJson())
+            } else if let fileStream = part.fileStream {
                 let unwrapFileName = part.fileName ?? ""
                 let unwrapMimeType = part.contentType ?? ""
 
@@ -302,6 +330,8 @@ public class DefaultNetworkClient: NetworkClient {
         let nonNullQueryParams: [String: String] = params.compactMapValues { $0?.paramValue }
         var components = URLComponents(url: URL(string: url)!, resolvingAgainstBaseURL: true)!
         components.queryItems = nonNullQueryParams.map { URLQueryItem(name: $0.key, value: $0.value) }
+        components.percentEncodedQuery = components.percentEncodedQuery?
+            .replacingOccurrences(of: "+", with: "%2B")
 
         return components.url!
     }
@@ -333,7 +363,7 @@ public class DefaultNetworkClient: NetworkClient {
         }
 
         // Unauthorized
-        if statusCode == 401, let auth = conversation.options.auth {
+        if statusCode == 401, let auth = conversation.options.auth  {
             _ = try await auth.refreshToken(networkSession: networkSession)
             return try await fetch(options: conversation.options, networkSession: networkSession, attempt: attempt + 1)
         }
@@ -341,7 +371,7 @@ public class DefaultNetworkClient: NetworkClient {
         // Retryable
         if statusCode == 429 || statusCode >= 500 || isStatusCodeAcceptedWithRetryAfterHeader {
             let retryTimeout = Double(conversation.urlResponse.value(forHTTPHeaderField: HTTPHeaderKey.retryAfter) ?? "")
-                ?? networkSession.networkSettings.retryStrategy.getRetryTimeout(attempt: attempt)
+            ?? networkSession.networkSettings.retryStrategy.getRetryTimeout(attempt: attempt)
             try await wait(seconds: retryTimeout)
 
             return try await fetch(options: conversation.options, networkSession: networkSession, attempt: attempt + 1)

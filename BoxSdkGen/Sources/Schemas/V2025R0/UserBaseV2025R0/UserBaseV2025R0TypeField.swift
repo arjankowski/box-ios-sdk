@@ -17,8 +17,9 @@ public enum UserBaseV2025R0TypeField: CodableStringEnum {
         switch self {
         case .user:
             return "user"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

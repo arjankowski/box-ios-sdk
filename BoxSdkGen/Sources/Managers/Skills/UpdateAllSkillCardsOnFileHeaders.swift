@@ -11,4 +11,5 @@ public class UpdateAllSkillCardsOnFileHeaders {
     public init(extraHeaders: [String: String?]? = [:]) {
         self.extraHeaders = extraHeaders
     }
+
 }

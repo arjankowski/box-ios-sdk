@@ -27,8 +27,9 @@ public enum GetRetentionPolicyAssignmentsQueryParamsTypeField: CodableStringEnum
             return "enterprise"
         case .metadataTemplate:
             return "metadata_template"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

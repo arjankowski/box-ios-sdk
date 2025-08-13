@@ -22,8 +22,9 @@ public enum CompletionRuleVariableVariableValueField: CodableStringEnum {
             return "all_assignees"
         case .anyAssignees:
             return "any_assignees"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

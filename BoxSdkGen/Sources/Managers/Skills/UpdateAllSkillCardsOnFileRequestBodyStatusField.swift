@@ -37,8 +37,9 @@ public enum UpdateAllSkillCardsOnFileRequestBodyStatusField: CodableStringEnum {
             return "transient_failure"
         case .permanentFailure:
             return "permanent_failure"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

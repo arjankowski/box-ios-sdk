@@ -1,6 +1,6 @@
 import Foundation
 
-public class CreateClassificationTemplateRequestBody: Codable {
+public class CreateClassificationTemplateRequestBody: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case fields
         case scope
@@ -9,6 +9,15 @@ public class CreateClassificationTemplateRequestBody: Codable {
         case hidden
         case copyInstanceOnItemCopy
     }
+
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
 
     /// The classification template requires exactly
     /// one field, which holds
@@ -64,7 +73,7 @@ public class CreateClassificationTemplateRequestBody: Codable {
         self.copyInstanceOnItemCopy = copyInstanceOnItemCopy
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         fields = try container.decode([CreateClassificationTemplateRequestBodyFieldsField].self, forKey: .fields)
         scope = try container.decode(CreateClassificationTemplateRequestBodyScopeField.self, forKey: .scope)
@@ -83,4 +92,19 @@ public class CreateClassificationTemplateRequestBody: Codable {
         try container.encodeIfPresent(hidden, forKey: .hidden)
         try container.encodeIfPresent(copyInstanceOnItemCopy, forKey: .copyInstanceOnItemCopy)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

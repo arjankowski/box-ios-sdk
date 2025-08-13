@@ -2,7 +2,7 @@ import Foundation
 
 /// A standard representation of a
 /// segment restriction of a shield information barrier
-/// object
+/// object.
 public class ShieldInformationBarrierSegmentRestriction: ShieldInformationBarrierSegmentRestrictionMini {
     private enum CodingKeys: String, CodingKey {
         case shieldInformationBarrier = "shield_information_barrier"
@@ -11,6 +11,15 @@ public class ShieldInformationBarrierSegmentRestriction: ShieldInformationBarrie
         case updatedAt = "updated_at"
         case updatedBy = "updated_by"
     }
+
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public override var rawData: [String: Any]? {
+        return _rawData
+    }
+
 
     public let shieldInformationBarrier: ShieldInformationBarrierBase?
 
@@ -35,18 +44,18 @@ public class ShieldInformationBarrierSegmentRestriction: ShieldInformationBarrie
     ///     requested shield information barrier segment.
     ///   - restrictedSegment: The `type` and `id` of the
     ///     restricted shield information barrier segment.
-    ///   - type: Shield information barrier segment restriction
+    ///   - type: Shield information barrier segment restriction.
     ///   - id: The unique identifier for the
     ///     shield information barrier segment restriction.
-    ///   - shieldInformationBarrier:
+    ///   - shieldInformationBarrier: 
     ///   - createdAt: ISO date time string when this
     ///     shield information barrier
     ///     Segment Restriction object was created.
-    ///   - createdBy:
+    ///   - createdBy: 
     ///   - updatedAt: ISO date time string when this
     ///     shield information barrier segment
     ///     Restriction was updated.
-    ///   - updatedBy:
+    ///   - updatedBy: 
     public init(shieldInformationBarrierSegment: ShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentField, restrictedSegment: ShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentField, type: ShieldInformationBarrierSegmentRestrictionBaseTypeField? = nil, id: String? = nil, shieldInformationBarrier: ShieldInformationBarrierBase? = nil, createdAt: Date? = nil, createdBy: UserBase? = nil, updatedAt: Date? = nil, updatedBy: UserBase? = nil) {
         self.shieldInformationBarrier = shieldInformationBarrier
         self.createdAt = createdAt
@@ -57,7 +66,7 @@ public class ShieldInformationBarrierSegmentRestriction: ShieldInformationBarrie
         super.init(shieldInformationBarrierSegment: shieldInformationBarrierSegment, restrictedSegment: restrictedSegment, type: type, id: id)
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         shieldInformationBarrier = try container.decodeIfPresent(ShieldInformationBarrierBase.self, forKey: .shieldInformationBarrier)
         createdAt = try container.decodeDateTimeIfPresent(forKey: .createdAt)
@@ -68,7 +77,7 @@ public class ShieldInformationBarrierSegmentRestriction: ShieldInformationBarrie
         try super.init(from: decoder)
     }
 
-    override public func encode(to encoder: Encoder) throws {
+    public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(shieldInformationBarrier, forKey: .shieldInformationBarrier)
         try container.encodeDateTimeIfPresent(field: createdAt, forKey: .createdAt)
@@ -77,4 +86,19 @@ public class ShieldInformationBarrierSegmentRestriction: ShieldInformationBarrie
         try container.encodeIfPresent(updatedBy, forKey: .updatedBy)
         try super.encode(to: encoder)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    override func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    override func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

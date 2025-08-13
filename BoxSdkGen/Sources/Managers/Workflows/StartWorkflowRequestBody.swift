@@ -1,6 +1,6 @@
 import Foundation
 
-public class StartWorkflowRequestBody: Codable {
+public class StartWorkflowRequestBody: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case flow
         case files
@@ -9,7 +9,16 @@ public class StartWorkflowRequestBody: Codable {
         case outcomes
     }
 
-    /// The flow that will be triggered
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
+
+    /// The flow that will be triggered.
     public let flow: StartWorkflowRequestBodyFlowField
 
     /// The array of files for which the workflow should start. All files
@@ -19,7 +28,7 @@ public class StartWorkflowRequestBody: Codable {
     /// The folder object for which the workflow is configured.
     public let folder: StartWorkflowRequestBodyFolderField
 
-    /// The type of the parameters object
+    /// The type of the parameters object.
     public let type: StartWorkflowRequestBodyTypeField?
 
     /// A configurable outcome the workflow should complete.
@@ -28,11 +37,11 @@ public class StartWorkflowRequestBody: Codable {
     /// Initializer for a StartWorkflowRequestBody.
     ///
     /// - Parameters:
-    ///   - flow: The flow that will be triggered
+    ///   - flow: The flow that will be triggered.
     ///   - files: The array of files for which the workflow should start. All files
     ///     must be in the workflow's configured folder.
     ///   - folder: The folder object for which the workflow is configured.
-    ///   - type: The type of the parameters object
+    ///   - type: The type of the parameters object.
     ///   - outcomes: A configurable outcome the workflow should complete.
     public init(flow: StartWorkflowRequestBodyFlowField, files: [StartWorkflowRequestBodyFilesField], folder: StartWorkflowRequestBodyFolderField, type: StartWorkflowRequestBodyTypeField? = nil, outcomes: [Outcome]? = nil) {
         self.flow = flow
@@ -42,7 +51,7 @@ public class StartWorkflowRequestBody: Codable {
         self.outcomes = outcomes
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         flow = try container.decode(StartWorkflowRequestBodyFlowField.self, forKey: .flow)
         files = try container.decode([StartWorkflowRequestBodyFilesField].self, forKey: .files)
@@ -59,4 +68,19 @@ public class StartWorkflowRequestBody: Codable {
         try container.encodeIfPresent(type, forKey: .type)
         try container.encodeIfPresent(outcomes, forKey: .outcomes)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

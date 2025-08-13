@@ -1,6 +1,6 @@
 import Foundation
 
-/// Input created by a Signer on a Template
+/// Input created by a Signer on a Template.
 public class TemplateSignerInput: SignRequestPrefillTag {
     private enum CodingKeys: String, CodingKey {
         case pageIndex = "page_index"
@@ -16,13 +16,22 @@ public class TemplateSignerInput: SignRequestPrefillTag {
         case readOnly = "read_only"
     }
 
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public override var rawData: [String: Any]? {
+        return _rawData
+    }
+
+
     /// Index of page that the input is on.
     public let pageIndex: Int64
 
-    /// Type of input
+    /// Type of input.
     public let type: TemplateSignerInputTypeField?
 
-    /// Content type of input
+    /// Content type of input.
     public let contentType: TemplateSignerInputContentTypeField?
 
     /// Whether or not the input is required.
@@ -31,10 +40,13 @@ public class TemplateSignerInput: SignRequestPrefillTag {
     /// Document identifier.
     @CodableTriState public private(set) var documentId: String?
 
-    /// When the input is of the type `dropdown` this values will be filled with all the dropdown options.
+    /// When the input is of the type `dropdown` this
+    /// values will be filled with all the
+    /// dropdown options.
     @CodableTriState public private(set) var dropdownChoices: [String]?
 
-    /// When the input is of type `radio` they can be grouped to gather with this identifier.
+    /// When the input is of type `radio` they can be
+    /// grouped to gather with this identifier.
     @CodableTriState public private(set) var groupId: String?
 
     /// Where the input is located on a page.
@@ -46,7 +58,7 @@ public class TemplateSignerInput: SignRequestPrefillTag {
     /// The label field is used especially for text, attachment, radio, and checkbox type inputs.
     @CodableTriState public private(set) var label: String?
 
-    /// Whether this input was defined as read-only(immutable by signers) or not
+    /// Whether this input was defined as read-only(immutable by signers) or not.
     public let readOnly: Bool?
 
     /// Initializer for a TemplateSignerInput.
@@ -54,36 +66,39 @@ public class TemplateSignerInput: SignRequestPrefillTag {
     /// - Parameters:
     ///   - pageIndex: Index of page that the input is on.
     ///   - documentTagId: This references the ID of a specific tag contained in a file of the signature request.
-    ///   - textValue: Text prefill value
-    ///   - checkboxValue: Checkbox prefill value
-    ///   - dateValue: Date prefill value
-    ///   - type: Type of input
-    ///   - contentType: Content type of input
+    ///   - textValue: Text prefill value.
+    ///   - checkboxValue: Checkbox prefill value.
+    ///   - dateValue: Date prefill value.
+    ///   - type: Type of input.
+    ///   - contentType: Content type of input.
     ///   - isRequired: Whether or not the input is required.
     ///   - documentId: Document identifier.
-    ///   - dropdownChoices: When the input is of the type `dropdown` this values will be filled with all the dropdown options.
-    ///   - groupId: When the input is of type `radio` they can be grouped to gather with this identifier.
+    ///   - dropdownChoices: When the input is of the type `dropdown` this
+    ///     values will be filled with all the
+    ///     dropdown options.
+    ///   - groupId: When the input is of type `radio` they can be
+    ///     grouped to gather with this identifier.
     ///   - coordinates: Where the input is located on a page.
     ///   - dimensions: The size of the input.
     ///   - label: The label field is used especially for text, attachment, radio, and checkbox type inputs.
-    ///   - readOnly: Whether this input was defined as read-only(immutable by signers) or not
+    ///   - readOnly: Whether this input was defined as read-only(immutable by signers) or not.
     public init(pageIndex: Int64, documentTagId: TriStateField<String> = nil, textValue: TriStateField<String> = nil, checkboxValue: TriStateField<Bool> = nil, dateValue: TriStateField<Date> = nil, type: TemplateSignerInputTypeField? = nil, contentType: TemplateSignerInputContentTypeField? = nil, isRequired: Bool? = nil, documentId: TriStateField<String> = nil, dropdownChoices: TriStateField<[String]> = nil, groupId: TriStateField<String> = nil, coordinates: TemplateSignerInputCoordinatesField? = nil, dimensions: TemplateSignerInputDimensionsField? = nil, label: TriStateField<String> = nil, readOnly: Bool? = nil) {
         self.pageIndex = pageIndex
         self.type = type
         self.contentType = contentType
         self.isRequired = isRequired
-        _documentId = CodableTriState(state: documentId)
-        _dropdownChoices = CodableTriState(state: dropdownChoices)
-        _groupId = CodableTriState(state: groupId)
+        self._documentId = CodableTriState(state: documentId)
+        self._dropdownChoices = CodableTriState(state: dropdownChoices)
+        self._groupId = CodableTriState(state: groupId)
         self.coordinates = coordinates
         self.dimensions = dimensions
-        _label = CodableTriState(state: label)
+        self._label = CodableTriState(state: label)
         self.readOnly = readOnly
 
         super.init(documentTagId: documentTagId, textValue: textValue, checkboxValue: checkboxValue, dateValue: dateValue)
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         pageIndex = try container.decode(Int64.self, forKey: .pageIndex)
         type = try container.decodeIfPresent(TemplateSignerInputTypeField.self, forKey: .type)
@@ -100,7 +115,7 @@ public class TemplateSignerInput: SignRequestPrefillTag {
         try super.init(from: decoder)
     }
 
-    override public func encode(to encoder: Encoder) throws {
+    public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(pageIndex, forKey: .pageIndex)
         try container.encodeIfPresent(type, forKey: .type)
@@ -115,4 +130,19 @@ public class TemplateSignerInput: SignRequestPrefillTag {
         try container.encodeIfPresent(readOnly, forKey: .readOnly)
         try super.encode(to: encoder)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    override func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    override func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

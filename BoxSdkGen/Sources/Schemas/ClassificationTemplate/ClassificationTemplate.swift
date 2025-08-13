@@ -2,7 +2,7 @@ import Foundation
 
 /// A metadata template that holds the security classifications
 /// defined by an enterprise.
-public class ClassificationTemplate: Codable {
+public class ClassificationTemplate: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case id
         case scope
@@ -13,6 +13,15 @@ public class ClassificationTemplate: Codable {
         case hidden
         case copyInstanceOnItemCopy
     }
+
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
 
     /// The ID of the classification template.
     public let id: String
@@ -26,10 +35,10 @@ public class ClassificationTemplate: Codable {
     /// the different classifications available in this enterprise.
     public let fields: [ClassificationTemplateFieldsField]
 
-    /// `metadata_template`
+    /// The value will always be `metadata_template`.
     public let type: ClassificationTemplateTypeField
 
-    /// `securityClassification-6VMVochwUWo`
+    /// The value will always be `securityClassification-6VMVochwUWo`.
     public let templateKey: ClassificationTemplateTemplateKeyField
 
     /// The name of this template as shown in web and mobile interfaces.
@@ -39,7 +48,7 @@ public class ClassificationTemplate: Codable {
     /// template is always available in web and mobile interfaces.
     public let hidden: Bool?
 
-    /// Determines if
+    /// Determines if 
     /// classifications are
     /// copied along when the file or folder is
     /// copied.
@@ -54,12 +63,12 @@ public class ClassificationTemplate: Codable {
     ///   - fields: A list of fields for this classification template. This includes
     ///     only one field, the `Box__Security__Classification__Key`, which defines
     ///     the different classifications available in this enterprise.
-    ///   - type: `metadata_template`
-    ///   - templateKey: `securityClassification-6VMVochwUWo`
+    ///   - type: The value will always be `metadata_template`.
+    ///   - templateKey: The value will always be `securityClassification-6VMVochwUWo`.
     ///   - displayName: The name of this template as shown in web and mobile interfaces.
     ///   - hidden: Determines if the
     ///     template is always available in web and mobile interfaces.
-    ///   - copyInstanceOnItemCopy: Determines if
+    ///   - copyInstanceOnItemCopy: Determines if 
     ///     classifications are
     ///     copied along when the file or folder is
     ///     copied.
@@ -74,7 +83,7 @@ public class ClassificationTemplate: Codable {
         self.copyInstanceOnItemCopy = copyInstanceOnItemCopy
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
         scope = try container.decode(String.self, forKey: .scope)
@@ -97,4 +106,19 @@ public class ClassificationTemplate: Codable {
         try container.encodeIfPresent(hidden, forKey: .hidden)
         try container.encodeIfPresent(copyInstanceOnItemCopy, forKey: .copyInstanceOnItemCopy)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

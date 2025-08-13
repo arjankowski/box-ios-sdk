@@ -1,10 +1,19 @@
 import Foundation
 
-public class CreateFolderLockRequestBody: Codable {
+public class CreateFolderLockRequestBody: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case folder
         case lockedOperations = "locked_operations"
     }
+
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
 
     /// The folder to apply the lock to.
     public let folder: CreateFolderLockRequestBodyFolderField
@@ -26,7 +35,7 @@ public class CreateFolderLockRequestBody: Codable {
         self.lockedOperations = lockedOperations
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         folder = try container.decode(CreateFolderLockRequestBodyFolderField.self, forKey: .folder)
         lockedOperations = try container.decodeIfPresent(CreateFolderLockRequestBodyLockedOperationsField.self, forKey: .lockedOperations)
@@ -37,4 +46,19 @@ public class CreateFolderLockRequestBody: Codable {
         try container.encode(folder, forKey: .folder)
         try container.encodeIfPresent(lockedOperations, forKey: .lockedOperations)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

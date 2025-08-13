@@ -1,7 +1,7 @@
 import Foundation
 
 /// An email alias for a user.
-public class EmailAlias: Codable {
+public class EmailAlias: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case id
         case type
@@ -9,25 +9,34 @@ public class EmailAlias: Codable {
         case isConfirmed = "is_confirmed"
     }
 
-    /// The unique identifier for this object
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
+
+    /// The unique identifier for this object.
     public let id: String?
 
-    /// `email_alias`
+    /// The value will always be `email_alias`.
     public let type: EmailAliasTypeField?
 
-    /// The email address
+    /// The email address.
     public let email: String?
 
-    /// Whether the email address has been confirmed
+    /// Whether the email address has been confirmed.
     public let isConfirmed: Bool?
 
     /// Initializer for a EmailAlias.
     ///
     /// - Parameters:
-    ///   - id: The unique identifier for this object
-    ///   - type: `email_alias`
-    ///   - email: The email address
-    ///   - isConfirmed: Whether the email address has been confirmed
+    ///   - id: The unique identifier for this object.
+    ///   - type: The value will always be `email_alias`.
+    ///   - email: The email address.
+    ///   - isConfirmed: Whether the email address has been confirmed.
     public init(id: String? = nil, type: EmailAliasTypeField? = nil, email: String? = nil, isConfirmed: Bool? = nil) {
         self.id = id
         self.type = type
@@ -35,7 +44,7 @@ public class EmailAlias: Codable {
         self.isConfirmed = isConfirmed
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decodeIfPresent(String.self, forKey: .id)
         type = try container.decodeIfPresent(EmailAliasTypeField.self, forKey: .type)
@@ -50,4 +59,19 @@ public class EmailAlias: Codable {
         try container.encodeIfPresent(email, forKey: .email)
         try container.encodeIfPresent(isConfirmed, forKey: .isConfirmed)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

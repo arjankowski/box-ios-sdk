@@ -17,8 +17,9 @@ public enum UpdateFileByIdRequestBodyLockAccessField: CodableStringEnum {
         switch self {
         case .lock:
             return "lock"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

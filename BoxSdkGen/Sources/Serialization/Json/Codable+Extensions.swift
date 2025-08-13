@@ -1,45 +1,39 @@
 import Foundation
 
-public extension Encodable {
-    func encode(with encoder: JSONEncoder = JSONEncoder()) throws -> Data {
+extension Encodable {
+    public func encode(with encoder: JSONEncoder = JSONEncoder()) throws -> Data {
         return try encoder.encode(self)
     }
 
-    func serialize() throws -> SerializedData {
-        return try SerializedData(data: encode())
+    public func serialize() throws -> SerializedData {
+        return SerializedData(data: try self.encode())
     }
 
-    func serializeToString(with encoder: JSONEncoder = JSONEncoder()) throws -> String {
-        return try String(decoding: encode(with: encoder), as: UTF8.self)
+    public func serializeToString(with encoder: JSONEncoder = JSONEncoder()) throws -> String {
+        return String(decoding: try self.encode(with: encoder), as: UTF8.self)
     }
 }
 
-public extension Decodable {
-    static func decode(from data: Data, with decoder: JSONDecoder = JSONDecoder()) throws -> Self {
-        let obj = try decoder.decode(Self.self, from: data)
+extension Decodable {
+    public static func decode(from data: Data, with decoder: JSONDecoder = JSONDecoder()) throws -> Self {
+        let obj =  try decoder.decode(Self.self, from: data)
 
-        if var jsonStorage = obj as? RawJSONStorage {
-            jsonStorage.setRawData(JsonUtils.dataToJsonDictionary(from: data))
+        if let jsonStorage = obj as? RawJSONReadable {
+            jsonStorage.setRawData(rawData: JsonUtils.dataToJsonDictionary(from: data))
         }
-
-        let jsonString = String(data: data, encoding: .utf8)
 
         return obj
     }
 
-    static func decode(string: String, with decoder: JSONDecoder = JSONDecoder()) throws -> Self {
+    public static func decode(string: String, with decoder: JSONDecoder = JSONDecoder()) throws -> Self {
         if let data = string.data(using: .utf8) {
-            return try decode(from: data, with: decoder)
+            return try self.decode(from: data, with: decoder)
         }
 
         throw BoxSDKError(message: "Could not create `Data` from provided string")
     }
 
-    static func deserialize(from serializedData: SerializedData, with decoder: JSONDecoder = JSONDecoder()) throws -> Self {
-        return try decode(from: serializedData.data, with: decoder)
+    public static func deserialize(from serializedData: SerializedData, with decoder: JSONDecoder = JSONDecoder()) throws -> Self {
+        return try self.decode(from: serializedData.data, with: decoder)
     }
-}
-
-protocol RawJSONStorage {
-    func setRawData(_ rawData: [String: Any]?)
 }

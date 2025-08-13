@@ -27,8 +27,9 @@ public enum GetTrashedItemsQueryParamsSortField: CodableStringEnum {
             return "date"
         case .size:
             return "size"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

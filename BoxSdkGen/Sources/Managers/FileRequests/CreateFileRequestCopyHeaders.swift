@@ -11,4 +11,5 @@ public class CreateFileRequestCopyHeaders {
     public init(extraHeaders: [String: String?]? = [:]) {
         self.extraHeaders = extraHeaders
     }
+
 }

@@ -22,8 +22,9 @@ public enum AiAskModeField: CodableStringEnum {
             return "multiple_item_qa"
         case .singleItemQa:
             return "single_item_qa"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

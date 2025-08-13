@@ -1,7 +1,7 @@
 import Foundation
 
 /// The metadata assigned to a using for Box skills.
-public class SkillCardsMetadata: Codable {
+public class SkillCardsMetadata: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case canEdit = "$canEdit"
         case id = "$id"
@@ -14,20 +14,29 @@ public class SkillCardsMetadata: Codable {
         case cards
     }
 
-    /// Whether the user can edit this metadata
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
+
+    /// Whether the user can edit this metadata.
     public let canEdit: Bool?
 
-    /// A UUID to identify the metadata object
+    /// A UUID to identify the metadata object.
     public let id: String?
 
-    /// An ID for the parent folder
+    /// An ID for the parent folder.
     public let parent: String?
 
     /// An ID for the scope in which this template
-    /// has been applied
+    /// has been applied.
     public let scope: String?
 
-    /// The name of the template
+    /// The name of the template.
     public let template: String?
 
     /// A unique identifier for the "type" of this instance. This is an internal
@@ -48,12 +57,12 @@ public class SkillCardsMetadata: Codable {
     /// Initializer for a SkillCardsMetadata.
     ///
     /// - Parameters:
-    ///   - canEdit: Whether the user can edit this metadata
-    ///   - id: A UUID to identify the metadata object
-    ///   - parent: An ID for the parent folder
+    ///   - canEdit: Whether the user can edit this metadata.
+    ///   - id: A UUID to identify the metadata object.
+    ///   - parent: An ID for the parent folder.
     ///   - scope: An ID for the scope in which this template
-    ///     has been applied
-    ///   - template: The name of the template
+    ///     has been applied.
+    ///   - template: The name of the template.
     ///   - type: A unique identifier for the "type" of this instance. This is an internal
     ///     system property and should not be used by a client application.
     ///   - typeVersion: The last-known version of the template of the object. This is an internal
@@ -73,7 +82,7 @@ public class SkillCardsMetadata: Codable {
         self.cards = cards
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         canEdit = try container.decodeIfPresent(Bool.self, forKey: .canEdit)
         id = try container.decodeIfPresent(String.self, forKey: .id)
@@ -98,4 +107,19 @@ public class SkillCardsMetadata: Codable {
         try container.encodeIfPresent(version, forKey: .version)
         try container.encodeIfPresent(cards, forKey: .cards)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

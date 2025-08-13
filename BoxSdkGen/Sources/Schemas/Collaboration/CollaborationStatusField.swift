@@ -27,8 +27,9 @@ public enum CollaborationStatusField: CodableStringEnum {
             return "pending"
         case .rejected:
             return "rejected"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

@@ -21,6 +21,15 @@ public class RetentionPolicy: RetentionPolicyMini {
         case assignmentCounts = "assignment_counts"
     }
 
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public override var rawData: [String: Any]? {
+        return _rawData
+    }
+
+
     /// The additional text description of the retention policy.
     public let description: String?
 
@@ -32,13 +41,13 @@ public class RetentionPolicy: RetentionPolicyMini {
     public let policyType: RetentionPolicyPolicyTypeField?
 
     /// Specifies the retention type:
-    ///
+    /// 
     /// * `modifiable`: You can modify the retention policy. For example,
     ///  you can add or remove folders, shorten or lengthen
     ///  the policy duration, or delete the assignment.
     ///  Use this type if your retention policy
     ///  is not related to any regulatory purposes.
-    ///
+    /// 
     /// * `non-modifiable`: You can modify the retention policy
     ///  only in a limited way: add a folder, lengthen the duration,
     ///  retire the policy, change the disposition action
@@ -83,7 +92,7 @@ public class RetentionPolicy: RetentionPolicyMini {
     ///
     /// - Parameters:
     ///   - id: The unique identifier that represents a retention policy.
-    ///   - type: `retention_policy`
+    ///   - type: The value will always be `retention_policy`.
     ///   - policyName: The name given to the retention policy.
     ///   - retentionLength: The length of the retention policy. This value
     ///     specifies the duration in days that the retention
@@ -105,13 +114,13 @@ public class RetentionPolicy: RetentionPolicyMini {
     ///     upfront, or `indefinite`, where the amount of time
     ///     to retain the content is still unknown.
     ///   - retentionType: Specifies the retention type:
-    ///
+    ///     
     ///     * `modifiable`: You can modify the retention policy. For example,
     ///      you can add or remove folders, shorten or lengthen
     ///      the policy duration, or delete the assignment.
     ///      Use this type if your retention policy
     ///      is not related to any regulatory purposes.
-    ///
+    ///     
     ///     * `non-modifiable`: You can modify the retention policy
     ///      only in a limited way: add a folder, lengthen the duration,
     ///      retire the policy, change the disposition action
@@ -124,7 +133,7 @@ public class RetentionPolicy: RetentionPolicyMini {
     ///     administrator, in which case the status will be `retired`.
     ///     Once a policy has been retired, it cannot become
     ///     active again.
-    ///   - createdBy:
+    ///   - createdBy: 
     ///   - createdAt: When the retention policy object was created.
     ///   - modifiedAt: When the retention policy object was last modified.
     ///   - canOwnerExtendRetention: Determines if the owner of items under the policy
@@ -151,7 +160,7 @@ public class RetentionPolicy: RetentionPolicyMini {
         super.init(id: id, type: type, policyName: policyName, retentionLength: retentionLength, dispositionAction: dispositionAction)
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         description = try container.decodeIfPresent(String.self, forKey: .description)
         policyType = try container.decodeIfPresent(RetentionPolicyPolicyTypeField.self, forKey: .policyType)
@@ -168,7 +177,7 @@ public class RetentionPolicy: RetentionPolicyMini {
         try super.init(from: decoder)
     }
 
-    override public func encode(to encoder: Encoder) throws {
+    public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(description, forKey: .description)
         try container.encodeIfPresent(policyType, forKey: .policyType)
@@ -183,4 +192,19 @@ public class RetentionPolicy: RetentionPolicyMini {
         try container.encodeIfPresent(assignmentCounts, forKey: .assignmentCounts)
         try super.encode(to: encoder)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    override func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    override func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

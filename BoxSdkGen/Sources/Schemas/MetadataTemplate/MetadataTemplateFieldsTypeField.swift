@@ -42,8 +42,9 @@ public enum MetadataTemplateFieldsTypeField: CodableStringEnum {
             return "multiSelect"
         case .integer:
             return "integer"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

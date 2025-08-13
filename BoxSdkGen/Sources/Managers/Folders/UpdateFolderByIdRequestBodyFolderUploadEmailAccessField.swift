@@ -22,8 +22,9 @@ public enum UpdateFolderByIdRequestBodyFolderUploadEmailAccessField: CodableStri
             return "open"
         case .collaborators:
             return "collaborators"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

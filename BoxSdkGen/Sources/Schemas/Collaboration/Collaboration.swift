@@ -4,7 +4,7 @@ import Foundation
 /// folders, similar to access control lists. A collaboration object grants a
 /// user or group access to a file or folder with permissions defined by a
 /// specific role.
-public class Collaboration: Codable {
+public class Collaboration: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case id
         case type
@@ -23,10 +23,19 @@ public class Collaboration: Codable {
         case acceptanceRequirementsStatus = "acceptance_requirements_status"
     }
 
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
+
     /// The unique identifier for this collaboration.
     public let id: String
 
-    /// `collaboration`
+    /// The value will always be `collaboration`.
     public let type: CollaborationTypeField
 
     @CodableTriState public private(set) var item: FileOrFolderOrWebLink?
@@ -75,10 +84,10 @@ public class Collaboration: Codable {
     ///
     /// - Parameters:
     ///   - id: The unique identifier for this collaboration.
-    ///   - type: `collaboration`
-    ///   - item:
-    ///   - appItem:
-    ///   - accessibleBy:
+    ///   - type: The value will always be `collaboration`.
+    ///   - item: 
+    ///   - appItem: 
+    ///   - accessibleBy: 
     ///   - inviteEmail: The email address used to invite an unregistered collaborator, if
     ///     they are not a registered user.
     ///   - role: The level of access granted.
@@ -93,19 +102,19 @@ public class Collaboration: Codable {
     ///     is `pending`, `login` and `name` return an empty string.
     ///   - acknowledgedAt: When the `status` of the collaboration object changed to
     ///     `accepted` or `rejected`.
-    ///   - createdBy:
+    ///   - createdBy: 
     ///   - createdAt: When the collaboration object was created.
     ///   - modifiedAt: When the collaboration object was last modified.
-    ///   - acceptanceRequirementsStatus:
+    ///   - acceptanceRequirementsStatus: 
     public init(id: String, type: CollaborationTypeField = CollaborationTypeField.collaboration, item: TriStateField<FileOrFolderOrWebLink> = nil, appItem: TriStateField<AppItem> = nil, accessibleBy: GroupMiniOrUserCollaborations? = nil, inviteEmail: TriStateField<String> = nil, role: CollaborationRoleField? = nil, expiresAt: TriStateField<Date> = nil, isAccessOnly: Bool? = nil, status: CollaborationStatusField? = nil, acknowledgedAt: Date? = nil, createdBy: UserCollaborations? = nil, createdAt: Date? = nil, modifiedAt: Date? = nil, acceptanceRequirementsStatus: CollaborationAcceptanceRequirementsStatusField? = nil) {
         self.id = id
         self.type = type
-        _item = CodableTriState(state: item)
-        _appItem = CodableTriState(state: appItem)
+        self._item = CodableTriState(state: item)
+        self._appItem = CodableTriState(state: appItem)
         self.accessibleBy = accessibleBy
-        _inviteEmail = CodableTriState(state: inviteEmail)
+        self._inviteEmail = CodableTriState(state: inviteEmail)
         self.role = role
-        _expiresAt = CodableTriState(state: expiresAt)
+        self._expiresAt = CodableTriState(state: expiresAt)
         self.isAccessOnly = isAccessOnly
         self.status = status
         self.acknowledgedAt = acknowledgedAt
@@ -115,7 +124,7 @@ public class Collaboration: Codable {
         self.acceptanceRequirementsStatus = acceptanceRequirementsStatus
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
         type = try container.decode(CollaborationTypeField.self, forKey: .type)
@@ -152,4 +161,19 @@ public class Collaboration: Codable {
         try container.encodeDateTimeIfPresent(field: modifiedAt, forKey: .modifiedAt)
         try container.encodeIfPresent(acceptanceRequirementsStatus, forKey: .acceptanceRequirementsStatus)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

@@ -1,6 +1,6 @@
 import Foundation
 
-public class UpdateAllSkillCardsOnFileRequestBody: Codable {
+public class UpdateAllSkillCardsOnFileRequestBody: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case status
         case metadata
@@ -8,6 +8,15 @@ public class UpdateAllSkillCardsOnFileRequestBody: Codable {
         case fileVersion = "file_version"
         case usage
     }
+
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
 
     /// Defines the status of this invocation. Set this to `success` when setting Skill cards.
     public let status: UpdateAllSkillCardsOnFileRequestBodyStatusField
@@ -24,7 +33,7 @@ public class UpdateAllSkillCardsOnFileRequestBody: Codable {
     public let fileVersion: UpdateAllSkillCardsOnFileRequestBodyFileVersionField?
 
     /// A descriptor that defines what items are affected by this call.
-    ///
+    /// 
     /// Set this to the default values when setting a card to a `success`
     /// state, and leave it out in most other situations.
     public let usage: UpdateAllSkillCardsOnFileRequestBodyUsageField?
@@ -39,7 +48,7 @@ public class UpdateAllSkillCardsOnFileRequestBody: Codable {
     ///   - file: The file to assign the cards to.
     ///   - fileVersion: The optional file version to assign the cards to.
     ///   - usage: A descriptor that defines what items are affected by this call.
-    ///
+    ///     
     ///     Set this to the default values when setting a card to a `success`
     ///     state, and leave it out in most other situations.
     public init(status: UpdateAllSkillCardsOnFileRequestBodyStatusField, metadata: UpdateAllSkillCardsOnFileRequestBodyMetadataField, file: UpdateAllSkillCardsOnFileRequestBodyFileField, fileVersion: UpdateAllSkillCardsOnFileRequestBodyFileVersionField? = nil, usage: UpdateAllSkillCardsOnFileRequestBodyUsageField? = nil) {
@@ -50,7 +59,7 @@ public class UpdateAllSkillCardsOnFileRequestBody: Codable {
         self.usage = usage
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         status = try container.decode(UpdateAllSkillCardsOnFileRequestBodyStatusField.self, forKey: .status)
         metadata = try container.decode(UpdateAllSkillCardsOnFileRequestBodyMetadataField.self, forKey: .metadata)
@@ -67,4 +76,19 @@ public class UpdateAllSkillCardsOnFileRequestBody: Codable {
         try container.encodeIfPresent(fileVersion, forKey: .fileVersion)
         try container.encodeIfPresent(usage, forKey: .usage)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

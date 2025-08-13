@@ -17,8 +17,9 @@ public enum AiLlmEndpointParamsGoogleTypeField: CodableStringEnum {
         switch self {
         case .googleParams:
             return "google_params"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

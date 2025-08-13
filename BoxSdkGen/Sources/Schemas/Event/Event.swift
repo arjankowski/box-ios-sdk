@@ -1,7 +1,7 @@
 import Foundation
 
-/// The description of an event that happened within Box
-public class Event: Codable {
+/// The description of an event that happened within Box.
+public class Event: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case type
         case createdAt = "created_at"
@@ -14,16 +14,25 @@ public class Event: Codable {
         case additionalDetails = "additional_details"
     }
 
-    /// `event`
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
+
+    /// The value will always be `event`.
     public let type: String?
 
-    /// When the event object was created
+    /// When the event object was created.
     public let createdAt: Date?
 
-    /// When the event object was recorded in database
+    /// When the event object was recorded in database.
     public let recordedAt: Date?
 
-    /// The ID of the event object. You can use this to detect duplicate events
+    /// The ID of the event object. You can use this to detect duplicate events.
     public let eventId: String?
 
     public let createdBy: UserMini?
@@ -37,7 +46,7 @@ public class Event: Codable {
     public let source: AppItemEventSourceOrEventSourceOrFileOrFolderOrGenericSourceOrUser?
 
     /// This object provides additional information about the event if available.
-    ///
+    /// 
     /// This can include how a user performed an event as well as additional
     /// information to correlate an event to external KeySafe logs. Not all events
     /// have an `additional_details` object.  This object is only available in the
@@ -47,17 +56,17 @@ public class Event: Codable {
     /// Initializer for a Event.
     ///
     /// - Parameters:
-    ///   - type: `event`
-    ///   - createdAt: When the event object was created
-    ///   - recordedAt: When the event object was recorded in database
-    ///   - eventId: The ID of the event object. You can use this to detect duplicate events
-    ///   - createdBy:
-    ///   - eventType:
+    ///   - type: The value will always be `event`.
+    ///   - createdAt: When the event object was created.
+    ///   - recordedAt: When the event object was recorded in database.
+    ///   - eventId: The ID of the event object. You can use this to detect duplicate events.
+    ///   - createdBy: 
+    ///   - eventType: 
     ///   - sessionId: The session of the user that performed the action. Not all events will
     ///     populate this attribute.
-    ///   - source:
+    ///   - source: 
     ///   - additionalDetails: This object provides additional information about the event if available.
-    ///
+    ///     
     ///     This can include how a user performed an event as well as additional
     ///     information to correlate an event to external KeySafe logs. Not all events
     ///     have an `additional_details` object.  This object is only available in the
@@ -74,7 +83,7 @@ public class Event: Codable {
         self.additionalDetails = additionalDetails
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         type = try container.decodeIfPresent(String.self, forKey: .type)
         createdAt = try container.decodeDateTimeIfPresent(forKey: .createdAt)
@@ -99,4 +108,19 @@ public class Event: Codable {
         try container.encodeIfPresent(source, forKey: .source)
         try container.encodeIfPresent(additionalDetails, forKey: .additionalDetails)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

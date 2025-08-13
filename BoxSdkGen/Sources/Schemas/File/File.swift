@@ -1,7 +1,7 @@
 import Foundation
 
 /// A standard representation of a file, as returned from any
-/// file API endpoints by default
+/// file API endpoints by default.
 public class File: FileMini {
     private enum CodingKeys: String, CodingKey {
         case description
@@ -20,6 +20,15 @@ public class File: FileMini {
         case parent
         case itemStatus = "item_status"
     }
+
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public override var rawData: [String: Any]? {
+        return _rawData
+    }
+
 
     /// The optional description of this file.
     /// If the description exceeds 255 characters, the first 255 characters
@@ -64,7 +73,7 @@ public class File: FileMini {
     @CodableTriState public private(set) var parent: FolderMini?
 
     /// Defines if this item has been deleted or not.
-    ///
+    /// 
     /// * `active` when the item has is not in the trash
     /// * `trashed` when the item has been moved to the trash but not deleted
     /// * `deleted` when the item has been permanently deleted.
@@ -74,7 +83,7 @@ public class File: FileMini {
     ///
     /// - Parameters:
     ///   - id: The unique identifier that represent a file.
-    ///
+    ///     
     ///     The ID for any file can be determined
     ///     by visiting a file in the web application
     ///     and copying the ID from the URL. For example,
@@ -83,18 +92,18 @@ public class File: FileMini {
     ///   - etag: The HTTP `etag` of this file. This can be used within some API
     ///     endpoints in the `If-Match` and `If-None-Match` headers to only
     ///     perform changes on the file if (no) changes have happened.
-    ///   - type: `file`
-    ///   - sequenceId:
-    ///   - name: The name of the file
+    ///   - type: The value will always be `file`.
+    ///   - sequenceId: 
+    ///   - name: The name of the file.
     ///   - sha1: The SHA1 hash of the file. This can be used to compare the contents
     ///     of a file on Box with a local file.
-    ///   - fileVersion:
+    ///   - fileVersion: 
     ///   - description: The optional description of this file.
     ///     If the description exceeds 255 characters, the first 255 characters
     ///     are set as a file description and the rest of it is ignored.
     ///   - size: The file size in bytes. Be careful parsing this integer as it can
     ///     get very large and cause an integer overflow.
-    ///   - pathCollection:
+    ///   - pathCollection: 
     ///   - createdAt: The date and time when the file was created on Box.
     ///   - modifiedAt: The date and time when the file was last updated on Box.
     ///   - trashedAt: The time at which this file was put in the trash.
@@ -104,13 +113,13 @@ public class File: FileMini {
     ///     created, which might be before it was uploaded to Box.
     ///   - contentModifiedAt: The date and time at which this file was last updated,
     ///     which might be before it was uploaded to Box.
-    ///   - createdBy:
-    ///   - modifiedBy:
-    ///   - ownedBy:
-    ///   - sharedLink:
-    ///   - parent:
+    ///   - createdBy: 
+    ///   - modifiedBy: 
+    ///   - ownedBy: 
+    ///   - sharedLink: 
+    ///   - parent: 
     ///   - itemStatus: Defines if this item has been deleted or not.
-    ///
+    ///     
     ///     * `active` when the item has is not in the trash
     ///     * `trashed` when the item has been moved to the trash but not deleted
     ///     * `deleted` when the item has been permanently deleted.
@@ -120,21 +129,21 @@ public class File: FileMini {
         self.pathCollection = pathCollection
         self.createdAt = createdAt
         self.modifiedAt = modifiedAt
-        _trashedAt = CodableTriState(state: trashedAt)
-        _purgedAt = CodableTriState(state: purgedAt)
-        _contentCreatedAt = CodableTriState(state: contentCreatedAt)
-        _contentModifiedAt = CodableTriState(state: contentModifiedAt)
+        self._trashedAt = CodableTriState(state: trashedAt)
+        self._purgedAt = CodableTriState(state: purgedAt)
+        self._contentCreatedAt = CodableTriState(state: contentCreatedAt)
+        self._contentModifiedAt = CodableTriState(state: contentModifiedAt)
         self.createdBy = createdBy
         self.modifiedBy = modifiedBy
         self.ownedBy = ownedBy
         self.sharedLink = sharedLink
-        _parent = CodableTriState(state: parent)
+        self._parent = CodableTriState(state: parent)
         self.itemStatus = itemStatus
 
         super.init(id: id, etag: etag, type: type, sequenceId: sequenceId, name: name, sha1: sha1, fileVersion: fileVersion)
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         description = try container.decodeIfPresent(String.self, forKey: .description)
         size = try container.decodeIfPresent(Int64.self, forKey: .size)
@@ -155,7 +164,7 @@ public class File: FileMini {
         try super.init(from: decoder)
     }
 
-    override public func encode(to encoder: Encoder) throws {
+    public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(description, forKey: .description)
         try container.encodeIfPresent(size, forKey: .size)
@@ -174,4 +183,19 @@ public class File: FileMini {
         try container.encodeIfPresent(itemStatus, forKey: .itemStatus)
         try super.encode(to: encoder)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    override func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    override func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

@@ -2,10 +2,10 @@ import Foundation
 
 /// An instance of the classification metadata template, containing
 /// the classification applied to the file or folder.
-///
+/// 
 /// To get more details about the classification applied to an item,
 /// request the classification metadata template.
-public class Classification: Codable {
+public class Classification: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case boxSecurityClassificationKey = "Box__Security__Classification__Key"
         case parent = "$parent"
@@ -17,6 +17,15 @@ public class Classification: Codable {
         case canEdit = "$canEdit"
     }
 
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
+
     /// The name of the classification applied to the item.
     public let boxSecurityClassificationKey: String?
 
@@ -25,12 +34,12 @@ public class Classification: Codable {
     /// of the parent in the form `{type}_{id}`.
     public let parent: String?
 
-    /// `securityClassification-6VMVochwUWo`
+    /// The value will always be `securityClassification-6VMVochwUWo`.
     public let template: ClassificationTemplateField?
 
     /// The scope of the enterprise that this classification has been
     /// applied for.
-    ///
+    /// 
     /// This will be in the format `enterprise_{enterprise_id}`.
     public let scope: String?
 
@@ -57,10 +66,10 @@ public class Classification: Codable {
     ///   - parent: The identifier of the item that this metadata instance
     ///     has been attached to. This combines the `type` and the `id`
     ///     of the parent in the form `{type}_{id}`.
-    ///   - template: `securityClassification-6VMVochwUWo`
+    ///   - template: The value will always be `securityClassification-6VMVochwUWo`.
     ///   - scope: The scope of the enterprise that this classification has been
     ///     applied for.
-    ///
+    ///     
     ///     This will be in the format `enterprise_{enterprise_id}`.
     ///   - version: The version of the metadata instance. This version starts at 0 and
     ///     increases every time a classification is updated.
@@ -81,7 +90,7 @@ public class Classification: Codable {
         self.canEdit = canEdit
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         boxSecurityClassificationKey = try container.decodeIfPresent(String.self, forKey: .boxSecurityClassificationKey)
         parent = try container.decodeIfPresent(String.self, forKey: .parent)
@@ -104,4 +113,19 @@ public class Classification: Codable {
         try container.encodeIfPresent(typeVersion, forKey: .typeVersion)
         try container.encodeIfPresent(canEdit, forKey: .canEdit)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

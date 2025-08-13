@@ -27,8 +27,9 @@ public enum TrashFolderItemStatusField: CodableStringEnum {
             return "trashed"
         case .deleted:
             return "deleted"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

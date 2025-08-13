@@ -1,8 +1,8 @@
 import Foundation
 
 /// A standard representation of a
-/// shield information barrier object
-public class ShieldInformationBarrier: Codable {
+/// shield information barrier object.
+public class ShieldInformationBarrier: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case id
         case type
@@ -16,16 +16,25 @@ public class ShieldInformationBarrier: Codable {
         case enabledBy = "enabled_by"
     }
 
-    /// The unique identifier for the shield information barrier
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
+
+    /// The unique identifier for the shield information barrier.
     public let id: String?
 
-    /// The type of the shield information barrier
+    /// The type of the shield information barrier.
     public let type: ShieldInformationBarrierTypeField?
 
     /// The `type` and `id` of enterprise this barrier is under.
     public let enterprise: EnterpriseBase?
 
-    /// Status of the shield information barrier
+    /// Status of the shield information barrier.
     public let status: ShieldInformationBarrierStatusField?
 
     /// ISO date time string when this
@@ -49,17 +58,17 @@ public class ShieldInformationBarrier: Codable {
     /// Initializer for a ShieldInformationBarrier.
     ///
     /// - Parameters:
-    ///   - id: The unique identifier for the shield information barrier
-    ///   - type: The type of the shield information barrier
+    ///   - id: The unique identifier for the shield information barrier.
+    ///   - type: The type of the shield information barrier.
     ///   - enterprise: The `type` and `id` of enterprise this barrier is under.
-    ///   - status: Status of the shield information barrier
+    ///   - status: Status of the shield information barrier.
     ///   - createdAt: ISO date time string when this
     ///     shield information barrier object was created.
     ///   - createdBy: The user who created this shield information barrier.
     ///   - updatedAt: ISO date time string when this shield information barrier was updated.
     ///   - updatedBy: The user that updated this shield information barrier.
     ///   - enabledAt: ISO date time string when this shield information barrier was enabled.
-    ///   - enabledBy:
+    ///   - enabledBy: 
     public init(id: String? = nil, type: ShieldInformationBarrierTypeField? = nil, enterprise: EnterpriseBase? = nil, status: ShieldInformationBarrierStatusField? = nil, createdAt: Date? = nil, createdBy: UserBase? = nil, updatedAt: Date? = nil, updatedBy: UserBase? = nil, enabledAt: Date? = nil, enabledBy: UserBase? = nil) {
         self.id = id
         self.type = type
@@ -73,7 +82,7 @@ public class ShieldInformationBarrier: Codable {
         self.enabledBy = enabledBy
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decodeIfPresent(String.self, forKey: .id)
         type = try container.decodeIfPresent(ShieldInformationBarrierTypeField.self, forKey: .type)
@@ -100,4 +109,19 @@ public class ShieldInformationBarrier: Codable {
         try container.encodeDateTimeIfPresent(field: enabledAt, forKey: .enabledAt)
         try container.encodeIfPresent(enabledBy, forKey: .enabledBy)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

@@ -87,8 +87,9 @@ public enum SignRequestSignerInputContentTypeField: CodableStringEnum {
             return "radio"
         case .dropdown:
             return "dropdown"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

@@ -1,6 +1,6 @@
 import Foundation
 
-public class CreateCollaborationRequestBody: Codable {
+public class CreateCollaborationRequestBody: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case item
         case accessibleBy = "accessible_by"
@@ -9,6 +9,15 @@ public class CreateCollaborationRequestBody: Codable {
         case canViewPath = "can_view_path"
         case expiresAt = "expires_at"
     }
+
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
 
     /// The item to attach the comment to.
     public let item: CreateCollaborationRequestBodyItemField
@@ -30,20 +39,20 @@ public class CreateCollaborationRequestBody: Codable {
     /// the associated folder. The user will not gain privileges in any
     /// parent folder and therefore can not see content the user is not
     /// collaborated on.
-    ///
+    /// 
     /// Be aware that this meaningfully increases the time required to load the
     /// invitee's **All Files** page. We recommend you limit the number of
     /// collaborations with `can_view_path` enabled to 1,000 per user.
-    ///
+    /// 
     /// Only owner or co-owners can invite collaborators with a `can_view_path` of
     /// `true`.
-    ///
+    /// 
     /// `can_view_path` can only be used for folder collaborations.
     public let canViewPath: Bool?
 
     /// Set the expiration date for the collaboration. At this date, the
     /// collaboration will be automatically removed from the item.
-    ///
+    /// 
     /// This feature will only work if the **Automatically remove invited
     /// collaborators: Allow folder owners to extend the expiry date**
     /// setting has been enabled in the **Enterprise Settings**
@@ -67,18 +76,18 @@ public class CreateCollaborationRequestBody: Codable {
     ///     the associated folder. The user will not gain privileges in any
     ///     parent folder and therefore can not see content the user is not
     ///     collaborated on.
-    ///
+    ///     
     ///     Be aware that this meaningfully increases the time required to load the
     ///     invitee's **All Files** page. We recommend you limit the number of
     ///     collaborations with `can_view_path` enabled to 1,000 per user.
-    ///
+    ///     
     ///     Only owner or co-owners can invite collaborators with a `can_view_path` of
     ///     `true`.
-    ///
+    ///     
     ///     `can_view_path` can only be used for folder collaborations.
     ///   - expiresAt: Set the expiration date for the collaboration. At this date, the
     ///     collaboration will be automatically removed from the item.
-    ///
+    ///     
     ///     This feature will only work if the **Automatically remove invited
     ///     collaborators: Allow folder owners to extend the expiry date**
     ///     setting has been enabled in the **Enterprise Settings**
@@ -94,7 +103,7 @@ public class CreateCollaborationRequestBody: Codable {
         self.expiresAt = expiresAt
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         item = try container.decode(CreateCollaborationRequestBodyItemField.self, forKey: .item)
         accessibleBy = try container.decode(CreateCollaborationRequestBodyAccessibleByField.self, forKey: .accessibleBy)
@@ -113,4 +122,19 @@ public class CreateCollaborationRequestBody: Codable {
         try container.encodeIfPresent(canViewPath, forKey: .canViewPath)
         try container.encodeDateTimeIfPresent(field: expiresAt, forKey: .expiresAt)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

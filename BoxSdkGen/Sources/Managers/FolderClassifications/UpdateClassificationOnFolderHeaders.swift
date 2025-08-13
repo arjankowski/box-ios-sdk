@@ -11,4 +11,5 @@ public class UpdateClassificationOnFolderHeaders {
     public init(extraHeaders: [String: String?]? = [:]) {
         self.extraHeaders = extraHeaders
     }
+
 }

@@ -22,8 +22,9 @@ public enum TaskCompletionRuleField: CodableStringEnum {
             return "all_assignees"
         case .anyAssignee:
             return "any_assignee"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

@@ -3,7 +3,7 @@ import Foundation
 /// A task allows for file-centric workflows within Box. Users can
 /// create tasks on files and assign them to other users for them to complete the
 /// tasks.
-public class Task: Codable {
+public class Task: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case id
         case type
@@ -18,37 +18,46 @@ public class Task: Codable {
         case completionRule = "completion_rule"
     }
 
-    /// The unique identifier for this task
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
+
+    /// The unique identifier for this task.
     public let id: String?
 
-    /// `task`
+    /// The value will always be `task`.
     public let type: TaskTypeField?
 
     public let item: FileMini?
 
-    /// When the task is due
+    /// When the task is due.
     public let dueAt: Date?
 
     /// The type of task the task assignee will be prompted to
     /// perform.
     public let action: TaskActionField?
 
-    /// A message that will be included with the task
+    /// A message that will be included with the task.
     public let message: String?
 
     public let taskAssignmentCollection: TaskAssignments?
 
-    /// Whether the task has been completed
+    /// Whether the task has been completed.
     public let isCompleted: Bool?
 
     public let createdBy: UserMini?
 
-    /// When the task object was created
+    /// When the task object was created.
     public let createdAt: Date?
 
     /// Defines which assignees need to complete this task before the task
     /// is considered completed.
-    ///
+    /// 
     /// * `all_assignees` requires all assignees to review or
     /// approve the the task in order for it to be considered completed.
     /// * `any_assignee` accepts any one assignee to review or
@@ -58,20 +67,20 @@ public class Task: Codable {
     /// Initializer for a Task.
     ///
     /// - Parameters:
-    ///   - id: The unique identifier for this task
-    ///   - type: `task`
-    ///   - item:
-    ///   - dueAt: When the task is due
+    ///   - id: The unique identifier for this task.
+    ///   - type: The value will always be `task`.
+    ///   - item: 
+    ///   - dueAt: When the task is due.
     ///   - action: The type of task the task assignee will be prompted to
     ///     perform.
-    ///   - message: A message that will be included with the task
-    ///   - taskAssignmentCollection:
-    ///   - isCompleted: Whether the task has been completed
-    ///   - createdBy:
-    ///   - createdAt: When the task object was created
+    ///   - message: A message that will be included with the task.
+    ///   - taskAssignmentCollection: 
+    ///   - isCompleted: Whether the task has been completed.
+    ///   - createdBy: 
+    ///   - createdAt: When the task object was created.
     ///   - completionRule: Defines which assignees need to complete this task before the task
     ///     is considered completed.
-    ///
+    ///     
     ///     * `all_assignees` requires all assignees to review or
     ///     approve the the task in order for it to be considered completed.
     ///     * `any_assignee` accepts any one assignee to review or
@@ -90,7 +99,7 @@ public class Task: Codable {
         self.completionRule = completionRule
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decodeIfPresent(String.self, forKey: .id)
         type = try container.decodeIfPresent(TaskTypeField.self, forKey: .type)
@@ -119,4 +128,19 @@ public class Task: Codable {
         try container.encodeDateTimeIfPresent(field: createdAt, forKey: .createdAt)
         try container.encodeIfPresent(completionRule, forKey: .completionRule)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

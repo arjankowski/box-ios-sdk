@@ -1,7 +1,7 @@
 import Foundation
 
-/// A template for metadata that can be applied to files and folders
-public class MetadataTemplate: Codable {
+/// A template for metadata that can be applied to files and folders.
+public class MetadataTemplate: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case id
         case type
@@ -13,10 +13,19 @@ public class MetadataTemplate: Codable {
         case copyInstanceOnItemCopy
     }
 
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
+
     /// The ID of the metadata template.
     public let id: String
 
-    /// `metadata_template`
+    /// The value will always be `metadata_template`.
     public let type: MetadataTemplateTypeField
 
     /// The scope of the metadata template can either be `global` or
@@ -51,7 +60,7 @@ public class MetadataTemplate: Codable {
     ///
     /// - Parameters:
     ///   - id: The ID of the metadata template.
-    ///   - type: `metadata_template`
+    ///   - type: The value will always be `metadata_template`.
     ///   - scope: The scope of the metadata template can either be `global` or
     ///     `enterprise_*`. The `global` scope is used for templates that are
     ///     available to any Box enterprise. The `enterprise_*` scope represents
@@ -79,7 +88,7 @@ public class MetadataTemplate: Codable {
         self.copyInstanceOnItemCopy = copyInstanceOnItemCopy
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
         type = try container.decode(MetadataTemplateTypeField.self, forKey: .type)
@@ -102,4 +111,19 @@ public class MetadataTemplate: Codable {
         try container.encodeIfPresent(fields, forKey: .fields)
         try container.encodeIfPresent(copyInstanceOnItemCopy, forKey: .copyInstanceOnItemCopy)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

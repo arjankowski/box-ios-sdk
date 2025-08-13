@@ -17,8 +17,9 @@ public enum FileFullExpiringEmbedLinkTokenTypeField: CodableStringEnum {
         switch self {
         case .bearer:
             return "bearer"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

@@ -22,8 +22,9 @@ public enum GroupMiniGroupTypeField: CodableStringEnum {
             return "managed_group"
         case .allUsersGroup:
             return "all_users_group"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

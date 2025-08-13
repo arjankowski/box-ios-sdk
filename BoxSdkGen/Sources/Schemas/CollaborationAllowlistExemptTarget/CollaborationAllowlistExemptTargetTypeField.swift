@@ -17,8 +17,9 @@ public enum CollaborationAllowlistExemptTargetTypeField: CodableStringEnum {
         switch self {
         case .collaborationWhitelistExemptTarget:
             return "collaboration_whitelist_exempt_target"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

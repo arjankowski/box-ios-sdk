@@ -22,8 +22,9 @@ public enum GetFileThumbnailByIdExtension: CodableStringEnum {
             return "png"
         case .jpg:
             return "jpg"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

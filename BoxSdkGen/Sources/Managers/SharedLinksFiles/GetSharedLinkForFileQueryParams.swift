@@ -13,4 +13,5 @@ public class GetSharedLinkForFileQueryParams {
     public init(fields: String) {
         self.fields = fields
     }
+
 }

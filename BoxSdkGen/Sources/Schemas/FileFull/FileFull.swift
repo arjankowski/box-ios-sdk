@@ -1,7 +1,7 @@
 import Foundation
 
 /// A full representation of a file, as can be returned from any
-/// file API endpoints by default
+/// file API endpoints by default.
 public class FileFull: File {
     private enum CodingKeys: String, CodingKey {
         case versionNumber = "version_number"
@@ -27,10 +27,19 @@ public class FileFull: File {
         case isAssociatedWithAppItem = "is_associated_with_app_item"
     }
 
-    /// The version number of this file
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public override var rawData: [String: Any]? {
+        return _rawData
+    }
+
+
+    /// The version number of this file.
     public let versionNumber: String?
 
-    /// The number of comments on this file
+    /// The number of comments on this file.
     public let commentCount: Int64?
 
     public let permissions: FileFullPermissionsField?
@@ -69,7 +78,7 @@ public class FileFull: File {
 
     public let metadata: FileFullMetadataField?
 
-    /// When the file will automatically be deleted
+    /// When the file will automatically be deleted.
     @CodableTriState public private(set) var expiresAt: Date?
 
     public let representations: FileFullRepresentationsField?
@@ -78,7 +87,7 @@ public class FileFull: File {
 
     public let uploaderDisplayName: String?
 
-    /// The retention expiration timestamp for the given file
+    /// The retention expiration timestamp for the given file.
     @CodableTriState public private(set) var dispositionAt: Date?
 
     /// A list of the types of roles that user can be invited at
@@ -91,13 +100,11 @@ public class FileFull: File {
     /// associated with the file.
     public let isAssociatedWithAppItem: Bool?
 
-    public internal(set) var rawData: [String: Any]? = nil
-
     /// Initializer for a FileFull.
     ///
     /// - Parameters:
     ///   - id: The unique identifier that represent a file.
-    ///
+    ///     
     ///     The ID for any file can be determined
     ///     by visiting a file in the web application
     ///     and copying the ID from the URL. For example,
@@ -106,18 +113,18 @@ public class FileFull: File {
     ///   - etag: The HTTP `etag` of this file. This can be used within some API
     ///     endpoints in the `If-Match` and `If-None-Match` headers to only
     ///     perform changes on the file if (no) changes have happened.
-    ///   - type: `file`
-    ///   - sequenceId:
-    ///   - name: The name of the file
+    ///   - type: The value will always be `file`.
+    ///   - sequenceId: 
+    ///   - name: The name of the file.
     ///   - sha1: The SHA1 hash of the file. This can be used to compare the contents
     ///     of a file on Box with a local file.
-    ///   - fileVersion:
+    ///   - fileVersion: 
     ///   - description: The optional description of this file.
     ///     If the description exceeds 255 characters, the first 255 characters
     ///     are set as a file description and the rest of it is ignored.
     ///   - size: The file size in bytes. Be careful parsing this integer as it can
     ///     get very large and cause an integer overflow.
-    ///   - pathCollection:
+    ///   - pathCollection: 
     ///   - createdAt: The date and time when the file was created on Box.
     ///   - modifiedAt: The date and time when the file was last updated on Box.
     ///   - trashedAt: The time at which this file was put in the trash.
@@ -127,27 +134,27 @@ public class FileFull: File {
     ///     created, which might be before it was uploaded to Box.
     ///   - contentModifiedAt: The date and time at which this file was last updated,
     ///     which might be before it was uploaded to Box.
-    ///   - createdBy:
-    ///   - modifiedBy:
-    ///   - ownedBy:
-    ///   - sharedLink:
-    ///   - parent:
+    ///   - createdBy: 
+    ///   - modifiedBy: 
+    ///   - ownedBy: 
+    ///   - sharedLink: 
+    ///   - parent: 
     ///   - itemStatus: Defines if this item has been deleted or not.
-    ///
+    ///     
     ///     * `active` when the item has is not in the trash
     ///     * `trashed` when the item has been moved to the trash but not deleted
     ///     * `deleted` when the item has been permanently deleted.
-    ///   - versionNumber: The version number of this file
-    ///   - commentCount: The number of comments on this file
-    ///   - permissions:
-    ///   - tags:
-    ///   - lock:
+    ///   - versionNumber: The version number of this file.
+    ///   - commentCount: The number of comments on this file.
+    ///   - permissions: 
+    ///   - tags: 
+    ///   - lock: 
     ///   - extension_: Indicates the (optional) file extension for this file. By default,
     ///     this is set to an empty string.
     ///   - isPackage: Indicates if the file is a package. Packages are commonly used
     ///     by Mac Applications and can include iWork files.
-    ///   - expiringEmbedLink:
-    ///   - watermarkInfo:
+    ///   - expiringEmbedLink: 
+    ///   - watermarkInfo: 
     ///   - isAccessibleViaSharedLink: Specifies if the file can be accessed
     ///     via the direct shared link or a shared link
     ///     to a parent folder.
@@ -156,12 +163,12 @@ public class FileFull: File {
     ///   - isExternallyOwned: Specifies if this file is owned by a user outside of the
     ///     authenticated enterprise.
     ///   - hasCollaborations: Specifies if this file has any other collaborators.
-    ///   - metadata:
-    ///   - expiresAt: When the file will automatically be deleted
-    ///   - representations:
-    ///   - classification:
-    ///   - uploaderDisplayName:
-    ///   - dispositionAt: The retention expiration timestamp for the given file
+    ///   - metadata: 
+    ///   - expiresAt: When the file will automatically be deleted.
+    ///   - representations: 
+    ///   - classification: 
+    ///   - uploaderDisplayName: 
+    ///   - dispositionAt: The retention expiration timestamp for the given file.
     ///   - sharedLinkPermissionOptions: A list of the types of roles that user can be invited at
     ///     when sharing this file.
     ///   - isAssociatedWithAppItem: This field will return true if the file or any ancestor of the file
@@ -173,7 +180,7 @@ public class FileFull: File {
         self.commentCount = commentCount
         self.permissions = permissions
         self.tags = tags
-        _lock = CodableTriState(state: lock)
+        self._lock = CodableTriState(state: lock)
         self.extension_ = extension_
         self.isPackage = isPackage
         self.expiringEmbedLink = expiringEmbedLink
@@ -183,18 +190,18 @@ public class FileFull: File {
         self.isExternallyOwned = isExternallyOwned
         self.hasCollaborations = hasCollaborations
         self.metadata = metadata
-        _expiresAt = CodableTriState(state: expiresAt)
+        self._expiresAt = CodableTriState(state: expiresAt)
         self.representations = representations
         self.classification = classification
         self.uploaderDisplayName = uploaderDisplayName
-        _dispositionAt = CodableTriState(state: dispositionAt)
-        _sharedLinkPermissionOptions = CodableTriState(state: sharedLinkPermissionOptions)
+        self._dispositionAt = CodableTriState(state: dispositionAt)
+        self._sharedLinkPermissionOptions = CodableTriState(state: sharedLinkPermissionOptions)
         self.isAssociatedWithAppItem = isAssociatedWithAppItem
 
         super.init(id: id, etag: etag, type: type, sequenceId: sequenceId, name: name, sha1: sha1, fileVersion: fileVersion, description: description, size: size, pathCollection: pathCollection, createdAt: createdAt, modifiedAt: modifiedAt, trashedAt: trashedAt, purgedAt: purgedAt, contentCreatedAt: contentCreatedAt, contentModifiedAt: contentModifiedAt, createdBy: createdBy, modifiedBy: modifiedBy, ownedBy: ownedBy, sharedLink: sharedLink, parent: parent, itemStatus: itemStatus)
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         versionNumber = try container.decodeIfPresent(String.self, forKey: .versionNumber)
         commentCount = try container.decodeIfPresent(Int64.self, forKey: .commentCount)
@@ -221,7 +228,7 @@ public class FileFull: File {
         try super.init(from: decoder)
     }
 
-    override public func encode(to encoder: Encoder) throws {
+    public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(versionNumber, forKey: .versionNumber)
         try container.encodeIfPresent(commentCount, forKey: .commentCount)
@@ -247,7 +254,18 @@ public class FileFull: File {
         try super.encode(to: encoder)
     }
 
-    func setRawData(_ rawData: [String: Any]?) {
-        self.rawData = rawData
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    override func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
     }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    override func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

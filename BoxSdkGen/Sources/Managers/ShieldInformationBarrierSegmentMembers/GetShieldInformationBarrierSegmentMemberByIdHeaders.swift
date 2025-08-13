@@ -11,4 +11,5 @@ public class GetShieldInformationBarrierSegmentMemberByIdHeaders {
     public init(extraHeaders: [String: String?]? = [:]) {
         self.extraHeaders = extraHeaders
     }
+
 }

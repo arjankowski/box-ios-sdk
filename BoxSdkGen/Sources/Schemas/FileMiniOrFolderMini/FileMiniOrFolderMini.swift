@@ -25,20 +25,23 @@ public enum FileMiniOrFolderMini: Codable {
                     }
 
                 default:
-                    throw DecodingError.typeMismatch(FileMiniOrFolderMini.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "The Decoded object contains an unexpected value for key type"))
+                    break
                 }
             }
+
         }
 
         throw DecodingError.typeMismatch(FileMiniOrFolderMini.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "The type of the decoded object cannot be determined."))
+
     }
 
     public func encode(to encoder: Encoder) throws {
         switch self {
-        case let .fileMini(fileMini):
+        case .fileMini(let fileMini):
             try fileMini.encode(to: encoder)
-        case let .folderMini(folderMini):
+        case .folderMini(let folderMini):
             try folderMini.encode(to: encoder)
         }
     }
+
 }

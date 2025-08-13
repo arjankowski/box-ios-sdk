@@ -2,7 +2,7 @@ import Foundation
 
 /// The schema for a Signer object used in
 /// for creating a Box Sign request object.
-public class SignRequestCreateSigner: Codable {
+public class SignRequestCreateSigner: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case email
         case role
@@ -18,6 +18,15 @@ public class SignRequestCreateSigner: Codable {
         case suppressNotifications = "suppress_notifications"
     }
 
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
+
     /// Email address of the signer.
     /// The email address of the signer is required when making signature requests, except when using templates that are configured to include emails.
     @CodableTriState public private(set) var email: String?
@@ -32,7 +41,7 @@ public class SignRequestCreateSigner: Codable {
     /// sender signs, they are redirected to the next `in_person` signer.
     public let isInPerson: Bool?
 
-    /// Order of the signer
+    /// Order of the signer.
     public let order: Int64?
 
     /// User ID for the signer in an external application responsible
@@ -77,7 +86,7 @@ public class SignRequestCreateSigner: Codable {
     /// instead for signers in the same signer group.
     @CodableTriState public private(set) var signerGroupId: String?
 
-    /// If true, no emails about the sign request will be sent
+    /// If true, no emails about the sign request will be sent.
     @CodableTriState public private(set) var suppressNotifications: Bool?
 
     /// Initializer for a SignRequestCreateSigner.
@@ -91,7 +100,7 @@ public class SignRequestCreateSigner: Codable {
     ///     log.
     ///   - isInPerson: Used in combination with an embed URL for a sender. After the
     ///     sender signs, they are redirected to the next `in_person` signer.
-    ///   - order: Order of the signer
+    ///   - order: Order of the signer.
     ///   - embedUrlExternalUserId: User ID for the signer in an external application responsible
     ///     for authentication when accessing the embed URL.
     ///   - redirectUrl: The URL that a signer will be redirected
@@ -120,23 +129,23 @@ public class SignRequestCreateSigner: Codable {
     ///     as it was intended for an individual signer. The value provided can be any string and only used to
     ///     determine which signers belongs to same group. A successful response will provide a generated UUID value
     ///     instead for signers in the same signer group.
-    ///   - suppressNotifications: If true, no emails about the sign request will be sent
+    ///   - suppressNotifications: If true, no emails about the sign request will be sent.
     public init(email: TriStateField<String> = nil, role: SignRequestCreateSignerRoleField? = nil, isInPerson: Bool? = nil, order: Int64? = nil, embedUrlExternalUserId: TriStateField<String> = nil, redirectUrl: TriStateField<String> = nil, declinedRedirectUrl: TriStateField<String> = nil, loginRequired: TriStateField<Bool> = nil, verificationPhoneNumber: TriStateField<String> = nil, password: TriStateField<String> = nil, signerGroupId: TriStateField<String> = nil, suppressNotifications: TriStateField<Bool> = nil) {
-        _email = CodableTriState(state: email)
+        self._email = CodableTriState(state: email)
         self.role = role
         self.isInPerson = isInPerson
         self.order = order
-        _embedUrlExternalUserId = CodableTriState(state: embedUrlExternalUserId)
-        _redirectUrl = CodableTriState(state: redirectUrl)
-        _declinedRedirectUrl = CodableTriState(state: declinedRedirectUrl)
-        _loginRequired = CodableTriState(state: loginRequired)
-        _verificationPhoneNumber = CodableTriState(state: verificationPhoneNumber)
-        _password = CodableTriState(state: password)
-        _signerGroupId = CodableTriState(state: signerGroupId)
-        _suppressNotifications = CodableTriState(state: suppressNotifications)
+        self._embedUrlExternalUserId = CodableTriState(state: embedUrlExternalUserId)
+        self._redirectUrl = CodableTriState(state: redirectUrl)
+        self._declinedRedirectUrl = CodableTriState(state: declinedRedirectUrl)
+        self._loginRequired = CodableTriState(state: loginRequired)
+        self._verificationPhoneNumber = CodableTriState(state: verificationPhoneNumber)
+        self._password = CodableTriState(state: password)
+        self._signerGroupId = CodableTriState(state: signerGroupId)
+        self._suppressNotifications = CodableTriState(state: suppressNotifications)
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         email = try container.decodeIfPresent(String.self, forKey: .email)
         role = try container.decodeIfPresent(SignRequestCreateSignerRoleField.self, forKey: .role)
@@ -167,4 +176,19 @@ public class SignRequestCreateSigner: Codable {
         try container.encode(field: _signerGroupId.state, forKey: .signerGroupId)
         try container.encode(field: _suppressNotifications.state, forKey: .suppressNotifications)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

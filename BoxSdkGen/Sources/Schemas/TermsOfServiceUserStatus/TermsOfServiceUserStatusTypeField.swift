@@ -17,8 +17,9 @@ public enum TermsOfServiceUserStatusTypeField: CodableStringEnum {
         switch self {
         case .termsOfServiceUserStatus:
             return "terms_of_service_user_status"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

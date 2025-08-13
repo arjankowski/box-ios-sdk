@@ -17,8 +17,9 @@ public enum WorkflowFlowsOutcomesTypeField: CodableStringEnum {
         switch self {
         case .outcome:
             return "outcome"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

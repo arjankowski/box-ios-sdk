@@ -1,7 +1,7 @@
 import Foundation
 
 /// Standard representation of an AI Agent instance.
-public class AiSingleAgentResponse: Codable {
+public class AiSingleAgentResponse: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case id
         case origin
@@ -15,6 +15,15 @@ public class AiSingleAgentResponse: Codable {
         case iconReference = "icon_reference"
         case allowedEntities = "allowed_entities"
     }
+
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
 
     /// The unique identifier of the AI Agent.
     public let id: String
@@ -77,7 +86,7 @@ public class AiSingleAgentResponse: Codable {
         self.allowedEntities = allowedEntities
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
         origin = try container.decode(String.self, forKey: .origin)
@@ -106,4 +115,19 @@ public class AiSingleAgentResponse: Codable {
         try container.encodeIfPresent(iconReference, forKey: .iconReference)
         try container.encodeIfPresent(allowedEntities, forKey: .allowedEntities)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

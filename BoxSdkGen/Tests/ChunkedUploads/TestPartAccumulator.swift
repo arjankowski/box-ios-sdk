@@ -1,5 +1,5 @@
-import BoxSDKGen
 import Foundation
+import BoxSDKGen
 import XCTest
 
 public class TestPartAccumulator {
@@ -23,4 +23,5 @@ public class TestPartAccumulator {
         self.uploadPartUrl = uploadPartUrl
         self.uploadSessionId = uploadSessionId
     }
+
 }

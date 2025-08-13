@@ -1,6 +1,6 @@
 import Foundation
 
-public class UpdateWebLinkByIdRequestBodySharedLinkField: Codable {
+public class UpdateWebLinkByIdRequestBodySharedLinkField: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case access
         case password
@@ -8,16 +8,25 @@ public class UpdateWebLinkByIdRequestBodySharedLinkField: Codable {
         case unsharedAt = "unshared_at"
     }
 
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
+
     /// The level of access for the shared link. This can be
     /// restricted to anyone with the link (`open`), only people
     /// within the company (`company`) and only those who
     /// have been invited to the folder (`collaborators`).
-    ///
+    /// 
     /// If not set, this field defaults to the access level specified
     /// by the enterprise admin. To create a shared link with this
     /// default setting pass the `shared_link` object with
     /// no `access` field, for example `{ "shared_link": {} }`.
-    ///
+    /// 
     /// The `company` access level is only available to paid
     /// accounts.
     public let access: UpdateWebLinkByIdRequestBodySharedLinkAccessField?
@@ -32,7 +41,7 @@ public class UpdateWebLinkByIdRequestBodySharedLinkField: Codable {
 
     /// Defines a custom vanity name to use in the shared link URL,
     /// for example `https://app.box.com/v/my-shared-link`.
-    ///
+    /// 
     /// Custom URLs should not be used when sharing sensitive content
     /// as vanity URLs are a lot easier to guess than regular shared
     /// links.
@@ -51,12 +60,12 @@ public class UpdateWebLinkByIdRequestBodySharedLinkField: Codable {
     ///     restricted to anyone with the link (`open`), only people
     ///     within the company (`company`) and only those who
     ///     have been invited to the folder (`collaborators`).
-    ///
+    ///     
     ///     If not set, this field defaults to the access level specified
     ///     by the enterprise admin. To create a shared link with this
     ///     default setting pass the `shared_link` object with
     ///     no `access` field, for example `{ "shared_link": {} }`.
-    ///
+    ///     
     ///     The `company` access level is only available to paid
     ///     accounts.
     ///   - password: The password required to access the shared link. Set the
@@ -67,7 +76,7 @@ public class UpdateWebLinkByIdRequestBodySharedLinkField: Codable {
     ///     A password can only be set when `access` is set to `open`.
     ///   - vanityName: Defines a custom vanity name to use in the shared link URL,
     ///     for example `https://app.box.com/v/my-shared-link`.
-    ///
+    ///     
     ///     Custom URLs should not be used when sharing sensitive content
     ///     as vanity URLs are a lot easier to guess than regular shared
     ///     links.
@@ -77,12 +86,12 @@ public class UpdateWebLinkByIdRequestBodySharedLinkField: Codable {
     ///     current date and time.
     public init(access: UpdateWebLinkByIdRequestBodySharedLinkAccessField? = nil, password: TriStateField<String> = nil, vanityName: String? = nil, unsharedAt: Date? = nil) {
         self.access = access
-        _password = CodableTriState(state: password)
+        self._password = CodableTriState(state: password)
         self.vanityName = vanityName
         self.unsharedAt = unsharedAt
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         access = try container.decodeIfPresent(UpdateWebLinkByIdRequestBodySharedLinkAccessField.self, forKey: .access)
         password = try container.decodeIfPresent(String.self, forKey: .password)
@@ -97,4 +106,19 @@ public class UpdateWebLinkByIdRequestBodySharedLinkField: Codable {
         try container.encodeIfPresent(vanityName, forKey: .vanityName)
         try container.encodeDateTimeIfPresent(field: unsharedAt, forKey: .unsharedAt)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

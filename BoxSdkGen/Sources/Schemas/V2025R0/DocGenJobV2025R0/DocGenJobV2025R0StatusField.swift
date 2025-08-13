@@ -37,8 +37,9 @@ public enum DocGenJobV2025R0StatusField: CodableStringEnum {
             return "completed_with_error"
         case .pending:
             return "pending"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

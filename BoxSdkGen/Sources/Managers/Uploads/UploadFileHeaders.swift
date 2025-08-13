@@ -18,4 +18,5 @@ public class UploadFileHeaders {
         self.contentMd5 = contentMd5
         self.extraHeaders = extraHeaders
     }
+
 }

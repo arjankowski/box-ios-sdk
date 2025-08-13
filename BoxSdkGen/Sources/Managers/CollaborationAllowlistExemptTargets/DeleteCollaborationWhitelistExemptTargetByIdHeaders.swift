@@ -11,4 +11,5 @@ public class DeleteCollaborationWhitelistExemptTargetByIdHeaders {
     public init(extraHeaders: [String: String?]? = [:]) {
         self.extraHeaders = extraHeaders
     }
+
 }

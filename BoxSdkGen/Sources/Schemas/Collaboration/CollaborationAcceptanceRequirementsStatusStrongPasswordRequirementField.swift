@@ -1,10 +1,19 @@
 import Foundation
 
-public class CollaborationAcceptanceRequirementsStatusStrongPasswordRequirementField: Codable {
+public class CollaborationAcceptanceRequirementsStatusStrongPasswordRequirementField: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case enterpriseHasStrongPasswordRequiredForExternalUsers = "enterprise_has_strong_password_required_for_external_users"
         case userHasStrongPassword = "user_has_strong_password"
     }
+
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
 
     /// Whether or not the enterprise that owns the content requires
     /// a strong password to collaborate on the content, or enforces
@@ -27,10 +36,10 @@ public class CollaborationAcceptanceRequirementsStatusStrongPasswordRequirementF
     ///     not required.
     public init(enterpriseHasStrongPasswordRequiredForExternalUsers: Bool? = nil, userHasStrongPassword: TriStateField<Bool> = nil) {
         self.enterpriseHasStrongPasswordRequiredForExternalUsers = enterpriseHasStrongPasswordRequiredForExternalUsers
-        _userHasStrongPassword = CodableTriState(state: userHasStrongPassword)
+        self._userHasStrongPassword = CodableTriState(state: userHasStrongPassword)
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         enterpriseHasStrongPasswordRequiredForExternalUsers = try container.decodeIfPresent(Bool.self, forKey: .enterpriseHasStrongPasswordRequiredForExternalUsers)
         userHasStrongPassword = try container.decodeIfPresent(Bool.self, forKey: .userHasStrongPassword)
@@ -41,4 +50,19 @@ public class CollaborationAcceptanceRequirementsStatusStrongPasswordRequirementF
         try container.encodeIfPresent(enterpriseHasStrongPasswordRequiredForExternalUsers, forKey: .enterpriseHasStrongPasswordRequiredForExternalUsers)
         try container.encode(field: _userHasStrongPassword.state, forKey: .userHasStrongPassword)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

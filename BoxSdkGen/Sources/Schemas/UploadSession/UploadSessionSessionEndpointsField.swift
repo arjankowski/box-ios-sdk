@@ -1,6 +1,6 @@
 import Foundation
 
-public class UploadSessionSessionEndpointsField: Codable {
+public class UploadSessionSessionEndpointsField: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case uploadPart = "upload_part"
         case commit
@@ -10,10 +10,19 @@ public class UploadSessionSessionEndpointsField: Codable {
         case logEvent = "log_event"
     }
 
-    /// The URL to upload parts to
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
+
+    /// The URL to upload parts to.
     public let uploadPart: String?
 
-    /// The URL used to commit the file
+    /// The URL used to commit the file.
     public let commit: String?
 
     /// The URL for used to abort the session.
@@ -31,8 +40,8 @@ public class UploadSessionSessionEndpointsField: Codable {
     /// Initializer for a UploadSessionSessionEndpointsField.
     ///
     /// - Parameters:
-    ///   - uploadPart: The URL to upload parts to
-    ///   - commit: The URL used to commit the file
+    ///   - uploadPart: The URL to upload parts to.
+    ///   - commit: The URL used to commit the file.
     ///   - abort: The URL for used to abort the session.
     ///   - listParts: The URL users to list all parts.
     ///   - status: The URL used to get the status of the upload.
@@ -46,7 +55,7 @@ public class UploadSessionSessionEndpointsField: Codable {
         self.logEvent = logEvent
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         uploadPart = try container.decodeIfPresent(String.self, forKey: .uploadPart)
         commit = try container.decodeIfPresent(String.self, forKey: .commit)
@@ -65,4 +74,19 @@ public class UploadSessionSessionEndpointsField: Codable {
         try container.encodeIfPresent(status, forKey: .status)
         try container.encodeIfPresent(logEvent, forKey: .logEvent)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

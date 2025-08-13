@@ -22,8 +22,9 @@ public enum UpdateTaskByIdRequestBodyActionField: CodableStringEnum {
             return "review"
         case .complete:
             return "complete"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

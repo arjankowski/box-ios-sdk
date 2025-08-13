@@ -17,8 +17,9 @@ public enum UserFullEnterpriseTypeField: CodableStringEnum {
         switch self {
         case .enterprise:
             return "enterprise"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

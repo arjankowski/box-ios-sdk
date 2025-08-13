@@ -22,8 +22,9 @@ public enum SearchForContentQueryParamsDirectionField: CodableStringEnum {
             return "DESC"
         case .asc:
             return "ASC"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

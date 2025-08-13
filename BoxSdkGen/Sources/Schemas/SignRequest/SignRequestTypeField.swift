@@ -17,8 +17,9 @@ public enum SignRequestTypeField: CodableStringEnum {
         switch self {
         case .signRequest:
             return "sign-request"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

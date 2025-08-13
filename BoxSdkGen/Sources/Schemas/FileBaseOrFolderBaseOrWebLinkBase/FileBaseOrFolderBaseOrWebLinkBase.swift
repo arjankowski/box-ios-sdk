@@ -32,22 +32,25 @@ public enum FileBaseOrFolderBaseOrWebLinkBase: Codable {
                     }
 
                 default:
-                    throw DecodingError.typeMismatch(FileBaseOrFolderBaseOrWebLinkBase.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "The Decoded object contains an unexpected value for key type"))
+                    break
                 }
             }
+
         }
 
         throw DecodingError.typeMismatch(FileBaseOrFolderBaseOrWebLinkBase.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "The type of the decoded object cannot be determined."))
+
     }
 
     public func encode(to encoder: Encoder) throws {
         switch self {
-        case let .fileBase(fileBase):
+        case .fileBase(let fileBase):
             try fileBase.encode(to: encoder)
-        case let .folderBase(folderBase):
+        case .folderBase(let folderBase):
             try folderBase.encode(to: encoder)
-        case let .webLinkBase(webLinkBase):
+        case .webLinkBase(let webLinkBase):
             try webLinkBase.encode(to: encoder)
         }
     }
+
 }

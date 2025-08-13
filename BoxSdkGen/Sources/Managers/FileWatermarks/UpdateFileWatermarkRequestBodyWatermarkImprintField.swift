@@ -17,8 +17,9 @@ public enum UpdateFileWatermarkRequestBodyWatermarkImprintField: CodableStringEn
         switch self {
         case .default_:
             return "default"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

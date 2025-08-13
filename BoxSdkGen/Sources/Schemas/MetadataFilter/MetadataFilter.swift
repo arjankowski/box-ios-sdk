@@ -1,31 +1,40 @@
 import Foundation
 
 /// A metadata template used to filter the search results.
-public class MetadataFilter: Codable {
+public class MetadataFilter: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case scope
         case templateKey
         case filters
     }
 
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
+
     /// Specifies the scope of the template to filter search results by.
-    ///
+    /// 
     /// This will be `enterprise_{enterprise_id}` for templates defined
     /// for use in this enterprise, and `global` for general templates
     /// that are available to all enterprises using Box.
     public let scope: MetadataFilterScopeField?
 
     /// The key of the template used to filter search results.
-    ///
+    /// 
     /// In many cases the template key is automatically derived
     /// of its display name, for example `Contract Template` would
     /// become `contractTemplate`. In some cases the creator of the
     /// template will have provided its own template key.
-    ///
+    /// 
     /// Please [list the templates for an enterprise][list], or
     /// get all instances on a [file][file] or [folder][folder]
     /// to inspect a template's key.
-    ///
+    /// 
     /// [list]: e://get-metadata-templates-enterprise
     /// [file]: e://get-files-id-metadata
     /// [folder]: e://get-folders-id-metadata
@@ -41,21 +50,21 @@ public class MetadataFilter: Codable {
     ///
     /// - Parameters:
     ///   - scope: Specifies the scope of the template to filter search results by.
-    ///
+    ///     
     ///     This will be `enterprise_{enterprise_id}` for templates defined
     ///     for use in this enterprise, and `global` for general templates
     ///     that are available to all enterprises using Box.
     ///   - templateKey: The key of the template used to filter search results.
-    ///
+    ///     
     ///     In many cases the template key is automatically derived
     ///     of its display name, for example `Contract Template` would
     ///     become `contractTemplate`. In some cases the creator of the
     ///     template will have provided its own template key.
-    ///
+    ///     
     ///     Please [list the templates for an enterprise][list], or
     ///     get all instances on a [file][file] or [folder][folder]
     ///     to inspect a template's key.
-    ///
+    ///     
     ///     [list]: e://get-metadata-templates-enterprise
     ///     [file]: e://get-files-id-metadata
     ///     [folder]: e://get-folders-id-metadata
@@ -69,7 +78,7 @@ public class MetadataFilter: Codable {
         self.filters = filters
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         scope = try container.decodeIfPresent(MetadataFilterScopeField.self, forKey: .scope)
         templateKey = try container.decodeIfPresent(String.self, forKey: .templateKey)
@@ -82,4 +91,19 @@ public class MetadataFilter: Codable {
         try container.encodeIfPresent(templateKey, forKey: .templateKey)
         try container.encodeIfPresent(filters, forKey: .filters)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

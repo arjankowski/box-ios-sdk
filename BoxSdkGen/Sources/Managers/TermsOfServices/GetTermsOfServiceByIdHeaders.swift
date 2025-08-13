@@ -11,4 +11,5 @@ public class GetTermsOfServiceByIdHeaders {
     public init(extraHeaders: [String: String?]? = [:]) {
         self.extraHeaders = extraHeaders
     }
+
 }

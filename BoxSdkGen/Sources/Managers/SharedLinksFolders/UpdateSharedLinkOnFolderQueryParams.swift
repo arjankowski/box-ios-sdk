@@ -13,4 +13,5 @@ public class UpdateSharedLinkOnFolderQueryParams {
     public init(fields: String) {
         self.fields = fields
     }
+
 }

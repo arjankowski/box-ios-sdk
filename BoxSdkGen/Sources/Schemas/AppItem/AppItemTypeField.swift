@@ -17,8 +17,9 @@ public enum AppItemTypeField: CodableStringEnum {
         switch self {
         case .appItem:
             return "app_item"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

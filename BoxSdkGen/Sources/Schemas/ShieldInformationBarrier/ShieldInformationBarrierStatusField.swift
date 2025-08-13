@@ -37,8 +37,9 @@ public enum ShieldInformationBarrierStatusField: CodableStringEnum {
             return "enabled"
         case .invalid:
             return "invalid"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

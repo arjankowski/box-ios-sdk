@@ -12,6 +12,15 @@ public class DocGenJobV2025R0: DocGenJobBaseV2025R0 {
         case outputFileVersion = "output_file_version"
     }
 
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public override var rawData: [String: Any]? {
+        return _rawData
+    }
+
+
     public let batch: DocGenBatchBaseV2025R0
 
     public let templateFile: FileReferenceV2025R0
@@ -32,14 +41,14 @@ public class DocGenJobV2025R0: DocGenJobBaseV2025R0 {
     ///
     /// - Parameters:
     ///   - id: The unique identifier that represent a Box Doc Gen job.
-    ///   - batch:
-    ///   - templateFile:
-    ///   - templateFileVersion:
+    ///   - batch: 
+    ///   - templateFile: 
+    ///   - templateFileVersion: 
     ///   - status: Status of the job.
     ///   - outputType: Type of the generated file.
-    ///   - type: `docgen_job`
-    ///   - outputFile:
-    ///   - outputFileVersion:
+    ///   - type: The value will always be `docgen_job`.
+    ///   - outputFile: 
+    ///   - outputFileVersion: 
     public init(id: String, batch: DocGenBatchBaseV2025R0, templateFile: FileReferenceV2025R0, templateFileVersion: FileVersionBaseV2025R0, status: DocGenJobV2025R0StatusField, outputType: String, type: DocGenJobBaseV2025R0TypeField = DocGenJobBaseV2025R0TypeField.docgenJob, outputFile: FileReferenceV2025R0?? = nil, outputFileVersion: FileVersionBaseV2025R0?? = nil) {
         self.batch = batch
         self.templateFile = templateFile
@@ -52,7 +61,7 @@ public class DocGenJobV2025R0: DocGenJobBaseV2025R0 {
         super.init(id: id, type: type)
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         batch = try container.decode(DocGenBatchBaseV2025R0.self, forKey: .batch)
         templateFile = try container.decode(FileReferenceV2025R0.self, forKey: .templateFile)
@@ -65,7 +74,7 @@ public class DocGenJobV2025R0: DocGenJobBaseV2025R0 {
         try super.init(from: decoder)
     }
 
-    override public func encode(to encoder: Encoder) throws {
+    public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(batch, forKey: .batch)
         try container.encode(templateFile, forKey: .templateFile)
@@ -76,4 +85,19 @@ public class DocGenJobV2025R0: DocGenJobBaseV2025R0 {
         try container.encodeIfPresent(outputFileVersion, forKey: .outputFileVersion)
         try super.encode(to: encoder)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    override func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    override func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

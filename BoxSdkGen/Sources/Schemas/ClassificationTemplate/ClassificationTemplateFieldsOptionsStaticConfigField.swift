@@ -1,12 +1,21 @@
 import Foundation
 
-public class ClassificationTemplateFieldsOptionsStaticConfigField: Codable {
+public class ClassificationTemplateFieldsOptionsStaticConfigField: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case classification
     }
 
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
+
     /// Additional information about the classification.
-    ///
+    /// 
     /// This is not an exclusive list of properties, and
     /// more object fields might be returned. These fields
     /// are used for internal Box Shield and Box Governance
@@ -18,7 +27,7 @@ public class ClassificationTemplateFieldsOptionsStaticConfigField: Codable {
     ///
     /// - Parameters:
     ///   - classification: Additional information about the classification.
-    ///
+    ///     
     ///     This is not an exclusive list of properties, and
     ///     more object fields might be returned. These fields
     ///     are used for internal Box Shield and Box Governance
@@ -28,7 +37,7 @@ public class ClassificationTemplateFieldsOptionsStaticConfigField: Codable {
         self.classification = classification
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         classification = try container.decodeIfPresent(ClassificationTemplateFieldsOptionsStaticConfigClassificationField.self, forKey: .classification)
     }
@@ -37,4 +46,19 @@ public class ClassificationTemplateFieldsOptionsStaticConfigField: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(classification, forKey: .classification)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

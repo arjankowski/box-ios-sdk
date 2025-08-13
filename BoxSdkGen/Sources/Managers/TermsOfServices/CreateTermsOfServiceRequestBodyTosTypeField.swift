@@ -22,8 +22,9 @@ public enum CreateTermsOfServiceRequestBodyTosTypeField: CodableStringEnum {
             return "external"
         case .managed:
             return "managed"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

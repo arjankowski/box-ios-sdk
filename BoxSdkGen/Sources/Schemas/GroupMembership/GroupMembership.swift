@@ -2,7 +2,7 @@ import Foundation
 
 /// Membership is used to signify that a user is part of a
 /// group.
-public class GroupMembership: Codable {
+public class GroupMembership: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case id
         case type
@@ -13,10 +13,19 @@ public class GroupMembership: Codable {
         case modifiedAt = "modified_at"
     }
 
-    /// The unique identifier for this group membership
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
+
+    /// The unique identifier for this group membership.
     public let id: String?
 
-    /// `group_membership`
+    /// The value will always be `group_membership`.
     public let type: GroupMembershipTypeField?
 
     public let user: UserMini?
@@ -35,10 +44,10 @@ public class GroupMembership: Codable {
     /// Initializer for a GroupMembership.
     ///
     /// - Parameters:
-    ///   - id: The unique identifier for this group membership
-    ///   - type: `group_membership`
-    ///   - user:
-    ///   - group:
+    ///   - id: The unique identifier for this group membership.
+    ///   - type: The value will always be `group_membership`.
+    ///   - user: 
+    ///   - group: 
     ///   - role: The role of the user in the group.
     ///   - createdAt: The time this membership was created.
     ///   - modifiedAt: The time this membership was last modified.
@@ -52,7 +61,7 @@ public class GroupMembership: Codable {
         self.modifiedAt = modifiedAt
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decodeIfPresent(String.self, forKey: .id)
         type = try container.decodeIfPresent(GroupMembershipTypeField.self, forKey: .type)
@@ -73,4 +82,19 @@ public class GroupMembership: Codable {
         try container.encodeDateTimeIfPresent(field: createdAt, forKey: .createdAt)
         try container.encodeDateTimeIfPresent(field: modifiedAt, forKey: .modifiedAt)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

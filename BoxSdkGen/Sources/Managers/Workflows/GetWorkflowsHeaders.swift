@@ -11,4 +11,5 @@ public class GetWorkflowsHeaders {
     public init(extraHeaders: [String: String?]? = [:]) {
         self.extraHeaders = extraHeaders
     }
+
 }

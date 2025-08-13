@@ -32,8 +32,9 @@ public enum FileFullLockAppTypeField: CodableStringEnum {
             return "office_wopiplus"
         case .other:
             return "other"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

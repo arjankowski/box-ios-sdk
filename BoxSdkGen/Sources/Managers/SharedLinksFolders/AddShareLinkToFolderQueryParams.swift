@@ -13,4 +13,5 @@ public class AddShareLinkToFolderQueryParams {
     public init(fields: String) {
         self.fields = fields
     }
+
 }

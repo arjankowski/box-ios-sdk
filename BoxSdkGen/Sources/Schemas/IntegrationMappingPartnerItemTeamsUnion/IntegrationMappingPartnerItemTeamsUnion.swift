@@ -24,18 +24,21 @@ public enum IntegrationMappingPartnerItemTeamsUnion: Codable {
                     }
 
                 default:
-                    throw DecodingError.typeMismatch(IntegrationMappingPartnerItemTeamsUnion.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "The Decoded object contains an unexpected value for key type"))
+                    break
                 }
             }
+
         }
 
         throw DecodingError.typeMismatch(IntegrationMappingPartnerItemTeamsUnion.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "The type of the decoded object cannot be determined."))
+
     }
 
     public func encode(to encoder: Encoder) throws {
         switch self {
-        case let .integrationMappingPartnerItemTeams(integrationMappingPartnerItemTeams):
+        case .integrationMappingPartnerItemTeams(let integrationMappingPartnerItemTeams):
             try integrationMappingPartnerItemTeams.encode(to: encoder)
         }
     }
+
 }

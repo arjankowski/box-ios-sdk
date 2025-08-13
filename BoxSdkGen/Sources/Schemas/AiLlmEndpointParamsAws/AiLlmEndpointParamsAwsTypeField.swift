@@ -17,8 +17,9 @@ public enum AiLlmEndpointParamsAwsTypeField: CodableStringEnum {
         switch self {
         case .awsParams:
             return "aws_params"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

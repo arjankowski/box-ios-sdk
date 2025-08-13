@@ -22,8 +22,9 @@ public enum IntegrationMappingPartnerItemTeamsCreateRequestTypeField: CodableStr
             return "channel"
         case .team:
             return "team"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

@@ -1,0 +1,4 @@
+module BoxSDKSuitePackageTests {
+    header "/Users/ajankowski/work/sdk/box-ios-sdk-fork/.build/arm64-apple-macosx/debug/BoxSDKSuitePackageTests.build/BoxSDKSuitePackageTests-Swift.h"
+    requires objc
+}

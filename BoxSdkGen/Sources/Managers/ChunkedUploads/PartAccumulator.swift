@@ -18,4 +18,5 @@ public class PartAccumulator {
         self.uploadPartUrl = uploadPartUrl
         self.fileHash = fileHash
     }
+
 }

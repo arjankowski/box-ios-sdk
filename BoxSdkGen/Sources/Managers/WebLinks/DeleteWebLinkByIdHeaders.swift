@@ -11,4 +11,5 @@ public class DeleteWebLinkByIdHeaders {
     public init(extraHeaders: [String: String?]? = [:]) {
         self.extraHeaders = extraHeaders
     }
+
 }

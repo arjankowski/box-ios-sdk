@@ -22,8 +22,9 @@ public enum GetTeamsIntegrationMappingQueryParamsPartnerItemTypeField: CodableSt
             return "channel"
         case .team:
             return "team"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

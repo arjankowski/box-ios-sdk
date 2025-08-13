@@ -9,20 +9,29 @@ public class SignRequestCreateRequest: SignRequestBase {
         case parentFolder = "parent_folder"
     }
 
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public override var rawData: [String: Any]? {
+        return _rawData
+    }
+
+
     /// Array of signers for the signature request. 35 is the
     /// max number of signers permitted.
-    ///
+    /// 
     /// **Note**: It may happen that some signers belong to conflicting [segments](r://shield-information-barrier-segment-member) (user groups).
     /// This means that due to the security policies, users are assigned to segments to prevent exchanges or communication that could lead to ethical conflicts.
     /// In such a case, an attempt to send the sign request will result in an error.
-    ///
+    /// 
     /// Read more about [segments and ethical walls](https://support.box.com/hc/en-us/articles/9920431507603-Understanding-Information-Barriers#h_01GFVJEHQA06N7XEZ4GCZ9GFAQ).
     public let signers: [SignRequestCreateSigner]
 
     /// List of files to create a signing document from. This is currently limited to ten files. Only the ID and type fields are required for each file.
     @CodableTriState public private(set) var sourceFiles: [FileBase]?
 
-    /// Force a specific color for the signature (blue, black, or red)
+    /// Force a specific color for the signature (blue, black, or red).
     @CodableTriState public private(set) var signatureColor: SignRequestCreateRequestSignatureColorField?
 
     public let parentFolder: FolderMini?
@@ -32,11 +41,11 @@ public class SignRequestCreateRequest: SignRequestBase {
     /// - Parameters:
     ///   - signers: Array of signers for the signature request. 35 is the
     ///     max number of signers permitted.
-    ///
+    ///     
     ///     **Note**: It may happen that some signers belong to conflicting [segments](r://shield-information-barrier-segment-member) (user groups).
     ///     This means that due to the security policies, users are assigned to segments to prevent exchanges or communication that could lead to ethical conflicts.
     ///     In such a case, an attempt to send the sign request will result in an error.
-    ///
+    ///     
     ///     Read more about [segments and ethical walls](https://support.box.com/hc/en-us/articles/9920431507603-Understanding-Information-Barriers#h_01GFVJEHQA06N7XEZ4GCZ9GFAQ).
     ///   - isDocumentPreparationNeeded: Indicates if the sender should receive a `prepare_url` in the response to complete document preparation using the UI.
     ///   - redirectUrl: When specified, the signature request will be redirected to this url when a document is signed.
@@ -52,18 +61,18 @@ public class SignRequestCreateRequest: SignRequestBase {
     ///   - templateId: When a signature request is created from a template this field will indicate the id of that template.
     ///   - externalSystemName: Used as an optional system name to appear in the signature log next to the signers who have been assigned the `embed_url_external_id`.
     ///   - sourceFiles: List of files to create a signing document from. This is currently limited to ten files. Only the ID and type fields are required for each file.
-    ///   - signatureColor: Force a specific color for the signature (blue, black, or red)
-    ///   - parentFolder:
+    ///   - signatureColor: Force a specific color for the signature (blue, black, or red).
+    ///   - parentFolder: 
     public init(signers: [SignRequestCreateSigner], isDocumentPreparationNeeded: Bool? = nil, redirectUrl: TriStateField<String> = nil, declinedRedirectUrl: TriStateField<String> = nil, areTextSignaturesEnabled: Bool? = nil, emailSubject: TriStateField<String> = nil, emailMessage: TriStateField<String> = nil, areRemindersEnabled: Bool? = nil, name: String? = nil, prefillTags: [SignRequestPrefillTag]? = nil, daysValid: TriStateField<Int64> = nil, externalId: TriStateField<String> = nil, templateId: TriStateField<String> = nil, externalSystemName: TriStateField<String> = nil, sourceFiles: TriStateField<[FileBase]> = nil, signatureColor: TriStateField<SignRequestCreateRequestSignatureColorField> = nil, parentFolder: FolderMini? = nil) {
         self.signers = signers
-        _sourceFiles = CodableTriState(state: sourceFiles)
-        _signatureColor = CodableTriState(state: signatureColor)
+        self._sourceFiles = CodableTriState(state: sourceFiles)
+        self._signatureColor = CodableTriState(state: signatureColor)
         self.parentFolder = parentFolder
 
         super.init(isDocumentPreparationNeeded: isDocumentPreparationNeeded, redirectUrl: redirectUrl, declinedRedirectUrl: declinedRedirectUrl, areTextSignaturesEnabled: areTextSignaturesEnabled, emailSubject: emailSubject, emailMessage: emailMessage, areRemindersEnabled: areRemindersEnabled, name: name, prefillTags: prefillTags, daysValid: daysValid, externalId: externalId, templateId: templateId, externalSystemName: externalSystemName)
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         signers = try container.decode([SignRequestCreateSigner].self, forKey: .signers)
         sourceFiles = try container.decodeIfPresent([FileBase].self, forKey: .sourceFiles)
@@ -73,7 +82,7 @@ public class SignRequestCreateRequest: SignRequestBase {
         try super.init(from: decoder)
     }
 
-    override public func encode(to encoder: Encoder) throws {
+    public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(signers, forKey: .signers)
         try container.encode(field: _sourceFiles.state, forKey: .sourceFiles)
@@ -81,4 +90,19 @@ public class SignRequestCreateRequest: SignRequestBase {
         try container.encodeIfPresent(parentFolder, forKey: .parentFolder)
         try super.encode(to: encoder)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    override func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    override func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

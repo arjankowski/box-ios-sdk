@@ -27,8 +27,9 @@ public enum ZipDownloadStatusStateField: CodableStringEnum {
             return "failed"
         case .succeeded:
             return "succeeded"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

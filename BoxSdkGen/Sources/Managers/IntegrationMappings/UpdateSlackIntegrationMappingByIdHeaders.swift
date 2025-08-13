@@ -11,4 +11,5 @@ public class UpdateSlackIntegrationMappingByIdHeaders {
     public init(extraHeaders: [String: String?]? = [:]) {
         self.extraHeaders = extraHeaders
     }
+
 }

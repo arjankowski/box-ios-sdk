@@ -1,5 +1,5 @@
 import Foundation
 
-public enum Version {
-    public static let sdkVersion = "0.6.1"
+public struct Version {
+    public static let sdkVersion = "4.5.6"
 }

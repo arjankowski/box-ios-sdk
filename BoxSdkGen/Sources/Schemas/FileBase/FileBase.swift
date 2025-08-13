@@ -3,15 +3,24 @@ import Foundation
 /// The bare basic representation of a file, the minimal
 /// amount of fields returned when using the `fields` query
 /// parameter.
-public class FileBase: Codable {
+public class FileBase: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case id
         case etag
         case type
     }
 
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
+
     /// The unique identifier that represent a file.
-    ///
+    /// 
     /// The ID for any file can be determined
     /// by visiting a file in the web application
     /// and copying the ID from the URL. For example,
@@ -24,14 +33,14 @@ public class FileBase: Codable {
     /// perform changes on the file if (no) changes have happened.
     @CodableTriState public private(set) var etag: String?
 
-    /// `file`
+    /// The value will always be `file`.
     public let type: FileBaseTypeField
 
     /// Initializer for a FileBase.
     ///
     /// - Parameters:
     ///   - id: The unique identifier that represent a file.
-    ///
+    ///     
     ///     The ID for any file can be determined
     ///     by visiting a file in the web application
     ///     and copying the ID from the URL. For example,
@@ -40,14 +49,14 @@ public class FileBase: Codable {
     ///   - etag: The HTTP `etag` of this file. This can be used within some API
     ///     endpoints in the `If-Match` and `If-None-Match` headers to only
     ///     perform changes on the file if (no) changes have happened.
-    ///   - type: `file`
+    ///   - type: The value will always be `file`.
     public init(id: String, etag: TriStateField<String> = nil, type: FileBaseTypeField = FileBaseTypeField.file) {
         self.id = id
-        _etag = CodableTriState(state: etag)
+        self._etag = CodableTriState(state: etag)
         self.type = type
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
         etag = try container.decodeIfPresent(String.self, forKey: .etag)
@@ -60,4 +69,19 @@ public class FileBase: Codable {
         try container.encode(field: _etag.state, forKey: .etag)
         try container.encode(type, forKey: .type)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

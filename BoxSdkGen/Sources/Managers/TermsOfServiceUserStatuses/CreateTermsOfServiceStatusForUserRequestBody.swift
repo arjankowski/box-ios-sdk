@@ -1,11 +1,20 @@
 import Foundation
 
-public class CreateTermsOfServiceStatusForUserRequestBody: Codable {
+public class CreateTermsOfServiceStatusForUserRequestBody: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case tos
         case user
         case isAccepted = "is_accepted"
     }
+
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
 
     /// The terms of service to set the status for.
     public let tos: CreateTermsOfServiceStatusForUserRequestBodyTosField
@@ -28,7 +37,7 @@ public class CreateTermsOfServiceStatusForUserRequestBody: Codable {
         self.isAccepted = isAccepted
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         tos = try container.decode(CreateTermsOfServiceStatusForUserRequestBodyTosField.self, forKey: .tos)
         user = try container.decode(CreateTermsOfServiceStatusForUserRequestBodyUserField.self, forKey: .user)
@@ -41,4 +50,19 @@ public class CreateTermsOfServiceStatusForUserRequestBody: Codable {
         try container.encode(user, forKey: .user)
         try container.encode(isAccepted, forKey: .isAccepted)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

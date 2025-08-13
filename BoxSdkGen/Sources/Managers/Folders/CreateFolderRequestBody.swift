@@ -1,6 +1,6 @@
 import Foundation
 
-public class CreateFolderRequestBody: Codable {
+public class CreateFolderRequestBody: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case name
         case parent
@@ -8,15 +8,25 @@ public class CreateFolderRequestBody: Codable {
         case syncState = "sync_state"
     }
 
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
+
     /// The name for the new folder.
-    ///
-    /// There are some restrictions to the file name. Names containing
+    /// 
+    /// The following restrictions to folder names apply: names containing
     /// non-printable ASCII characters, forward and backward slashes
-    /// (`/`, `\`), as well as names with trailing spaces are
-    /// prohibited.
-    ///
-    /// Additionally, the names `.` and `..` are
-    /// not allowed either.
+    /// (`/`, `\`), names with trailing spaces, and names `.` and `..` are
+    /// not allowed.
+    /// 
+    /// Folder names must be unique within their parent folder. The name check is case-insensitive, 
+    /// so a folder named `New Folder` cannot be created in a parent folder that already contains 
+    /// a folder named `new folder`.
     public let name: String
 
     /// The parent folder to create the new folder within.
@@ -33,16 +43,17 @@ public class CreateFolderRequestBody: Codable {
     ///
     /// - Parameters:
     ///   - name: The name for the new folder.
-    ///
-    ///     There are some restrictions to the file name. Names containing
+    ///     
+    ///     The following restrictions to folder names apply: names containing
     ///     non-printable ASCII characters, forward and backward slashes
-    ///     (`/`, `\`), as well as names with trailing spaces are
-    ///     prohibited.
-    ///
-    ///     Additionally, the names `.` and `..` are
-    ///     not allowed either.
+    ///     (`/`, `\`), names with trailing spaces, and names `.` and `..` are
+    ///     not allowed.
+    ///     
+    ///     Folder names must be unique within their parent folder. The name check is case-insensitive, 
+    ///     so a folder named `New Folder` cannot be created in a parent folder that already contains 
+    ///     a folder named `new folder`.
     ///   - parent: The parent folder to create the new folder within.
-    ///   - folderUploadEmail:
+    ///   - folderUploadEmail: 
     ///   - syncState: Specifies whether a folder should be synced to a
     ///     user's device or not. This is used by Box Sync
     ///     (discontinued) and is not used by Box Drive.
@@ -53,7 +64,7 @@ public class CreateFolderRequestBody: Codable {
         self.syncState = syncState
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         name = try container.decode(String.self, forKey: .name)
         parent = try container.decode(CreateFolderRequestBodyParentField.self, forKey: .parent)
@@ -68,4 +79,19 @@ public class CreateFolderRequestBody: Codable {
         try container.encodeIfPresent(folderUploadEmail, forKey: .folderUploadEmail)
         try container.encodeIfPresent(syncState, forKey: .syncState)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

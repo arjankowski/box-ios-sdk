@@ -17,8 +17,9 @@ public enum UpdateClassificationOnFolderRequestBodyOpField: CodableStringEnum {
         switch self {
         case .replace:
             return "replace"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

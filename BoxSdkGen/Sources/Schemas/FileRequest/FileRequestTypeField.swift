@@ -17,8 +17,9 @@ public enum FileRequestTypeField: CodableStringEnum {
         switch self {
         case .fileRequest:
             return "file_request"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

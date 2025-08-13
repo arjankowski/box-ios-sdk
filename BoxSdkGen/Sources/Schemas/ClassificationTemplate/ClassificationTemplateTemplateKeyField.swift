@@ -17,8 +17,9 @@ public enum ClassificationTemplateTemplateKeyField: CodableStringEnum {
         switch self {
         case .securityClassification6VmVochwUWo:
             return "securityClassification-6VMVochwUWo"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

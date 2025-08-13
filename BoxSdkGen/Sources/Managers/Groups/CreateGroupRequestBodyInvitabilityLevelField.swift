@@ -27,8 +27,9 @@ public enum CreateGroupRequestBodyInvitabilityLevelField: CodableStringEnum {
             return "admins_and_members"
         case .allManagedUsers:
             return "all_managed_users"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

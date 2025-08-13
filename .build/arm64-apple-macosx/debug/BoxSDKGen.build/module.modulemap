@@ -1,0 +1,4 @@
+module BoxSDKGen {
+    header "/Users/ajankowski/work/sdk/box-ios-sdk-fork/.build/arm64-apple-macosx/debug/BoxSDKGen.build/BoxSDKGen-Swift.h"
+    requires objc
+}

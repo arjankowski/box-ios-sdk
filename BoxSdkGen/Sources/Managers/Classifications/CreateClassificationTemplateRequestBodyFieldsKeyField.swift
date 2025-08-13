@@ -17,8 +17,9 @@ public enum CreateClassificationTemplateRequestBodyFieldsKeyField: CodableString
         switch self {
         case .boxSecurityClassificationKey:
             return "Box__Security__Classification__Key"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

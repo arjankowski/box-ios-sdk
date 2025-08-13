@@ -11,4 +11,5 @@ public class GetMetadataTemplatesByInstanceIdHeaders {
     public init(extraHeaders: [String: String?]? = [:]) {
         self.extraHeaders = extraHeaders
     }
+
 }

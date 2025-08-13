@@ -1,7 +1,7 @@
 import Foundation
 
 /// A standard representation of a signature request object.
-public class SignRequestBase: Codable {
+public class SignRequestBase: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case isDocumentPreparationNeeded = "is_document_preparation_needed"
         case redirectUrl = "redirect_url"
@@ -17,6 +17,15 @@ public class SignRequestBase: Codable {
         case templateId = "template_id"
         case externalSystemName = "external_system_name"
     }
+
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
 
     /// Indicates if the sender should receive a `prepare_url` in the response to complete document preparation using the UI.
     public let isDocumentPreparationNeeded: Bool?
@@ -75,21 +84,21 @@ public class SignRequestBase: Codable {
     ///   - externalSystemName: Used as an optional system name to appear in the signature log next to the signers who have been assigned the `embed_url_external_id`.
     public init(isDocumentPreparationNeeded: Bool? = nil, redirectUrl: TriStateField<String> = nil, declinedRedirectUrl: TriStateField<String> = nil, areTextSignaturesEnabled: Bool? = nil, emailSubject: TriStateField<String> = nil, emailMessage: TriStateField<String> = nil, areRemindersEnabled: Bool? = nil, name: String? = nil, prefillTags: [SignRequestPrefillTag]? = nil, daysValid: TriStateField<Int64> = nil, externalId: TriStateField<String> = nil, templateId: TriStateField<String> = nil, externalSystemName: TriStateField<String> = nil) {
         self.isDocumentPreparationNeeded = isDocumentPreparationNeeded
-        _redirectUrl = CodableTriState(state: redirectUrl)
-        _declinedRedirectUrl = CodableTriState(state: declinedRedirectUrl)
+        self._redirectUrl = CodableTriState(state: redirectUrl)
+        self._declinedRedirectUrl = CodableTriState(state: declinedRedirectUrl)
         self.areTextSignaturesEnabled = areTextSignaturesEnabled
-        _emailSubject = CodableTriState(state: emailSubject)
-        _emailMessage = CodableTriState(state: emailMessage)
+        self._emailSubject = CodableTriState(state: emailSubject)
+        self._emailMessage = CodableTriState(state: emailMessage)
         self.areRemindersEnabled = areRemindersEnabled
         self.name = name
         self.prefillTags = prefillTags
-        _daysValid = CodableTriState(state: daysValid)
-        _externalId = CodableTriState(state: externalId)
-        _templateId = CodableTriState(state: templateId)
-        _externalSystemName = CodableTriState(state: externalSystemName)
+        self._daysValid = CodableTriState(state: daysValid)
+        self._externalId = CodableTriState(state: externalId)
+        self._templateId = CodableTriState(state: templateId)
+        self._externalSystemName = CodableTriState(state: externalSystemName)
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         isDocumentPreparationNeeded = try container.decodeIfPresent(Bool.self, forKey: .isDocumentPreparationNeeded)
         redirectUrl = try container.decodeIfPresent(String.self, forKey: .redirectUrl)
@@ -122,4 +131,19 @@ public class SignRequestBase: Codable {
         try container.encode(field: _templateId.state, forKey: .templateId)
         try container.encode(field: _externalSystemName.state, forKey: .externalSystemName)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

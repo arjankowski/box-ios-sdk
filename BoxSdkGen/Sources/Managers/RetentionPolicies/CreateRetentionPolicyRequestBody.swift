@@ -1,6 +1,6 @@
 import Foundation
 
-public class CreateRetentionPolicyRequestBody: Codable {
+public class CreateRetentionPolicyRequestBody: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case policyName = "policy_name"
         case policyType = "policy_type"
@@ -13,7 +13,16 @@ public class CreateRetentionPolicyRequestBody: Codable {
         case customNotificationRecipients = "custom_notification_recipients"
     }
 
-    /// The name for the retention policy
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
+
+    /// The name for the retention policy.
     public let policyName: String
 
     /// The type of the retention policy. A retention
@@ -43,13 +52,13 @@ public class CreateRetentionPolicyRequestBody: Codable {
     public let retentionLength: String?
 
     /// Specifies the retention type:
-    ///
+    /// 
     /// * `modifiable`: You can modify the retention policy. For example,
     /// you can add or remove folders, shorten or lengthen
     /// the policy duration, or delete the assignment.
     /// Use this type if your retention policy
     /// is not related to any regulatory purposes.
-    ///
+    /// 
     /// * `non_modifiable`: You can modify the retention policy
     /// only in a limited way: add a folder, lengthen the duration,
     /// retire the policy, change the disposition action
@@ -74,7 +83,7 @@ public class CreateRetentionPolicyRequestBody: Codable {
     /// Initializer for a CreateRetentionPolicyRequestBody.
     ///
     /// - Parameters:
-    ///   - policyName: The name for the retention policy
+    ///   - policyName: The name for the retention policy.
     ///   - policyType: The type of the retention policy. A retention
     ///     policy type can either be `finite`, where a
     ///     specific amount of time to retain the content is known
@@ -94,13 +103,13 @@ public class CreateRetentionPolicyRequestBody: Codable {
     ///     `indefinite`, the `retention_length` will also be
     ///     `indefinite`.
     ///   - retentionType: Specifies the retention type:
-    ///
+    ///     
     ///     * `modifiable`: You can modify the retention policy. For example,
     ///     you can add or remove folders, shorten or lengthen
     ///     the policy duration, or delete the assignment.
     ///     Use this type if your retention policy
     ///     is not related to any regulatory purposes.
-    ///
+    ///     
     ///     * `non_modifiable`: You can modify the retention policy
     ///     only in a limited way: add a folder, lengthen the duration,
     ///     retire the policy, change the disposition action
@@ -126,7 +135,7 @@ public class CreateRetentionPolicyRequestBody: Codable {
         self.customNotificationRecipients = customNotificationRecipients
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         policyName = try container.decode(String.self, forKey: .policyName)
         policyType = try container.decode(CreateRetentionPolicyRequestBodyPolicyTypeField.self, forKey: .policyType)
@@ -151,4 +160,19 @@ public class CreateRetentionPolicyRequestBody: Codable {
         try container.encodeIfPresent(areOwnersNotified, forKey: .areOwnersNotified)
         try container.encodeIfPresent(customNotificationRecipients, forKey: .customNotificationRecipients)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

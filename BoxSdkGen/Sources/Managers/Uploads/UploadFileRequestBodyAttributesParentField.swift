@@ -1,9 +1,18 @@
 import Foundation
 
-public class UploadFileRequestBodyAttributesParentField: Codable {
+public class UploadFileRequestBodyAttributesParentField: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case id
     }
+
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
 
     /// The id of the parent folder. Use
     /// `0` for the user's root folder.
@@ -18,7 +27,7 @@ public class UploadFileRequestBodyAttributesParentField: Codable {
         self.id = id
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
     }
@@ -27,4 +36,19 @@ public class UploadFileRequestBodyAttributesParentField: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

@@ -3,10 +3,10 @@ import Foundation
 /// A list of files, folders and web links that matched the search query,
 /// including the additional information about any shared links through
 /// which the item has been shared with the user.
-///
+/// 
 /// This response format is only returned when the `include_recent_shared_links`
 /// query parameter has been set to `true`.
-public class SearchResultsWithSharedLinks: Codable {
+public class SearchResultsWithSharedLinks: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case totalCount = "total_count"
         case limit
@@ -14,6 +14,15 @@ public class SearchResultsWithSharedLinks: Codable {
         case type
         case entries
     }
+
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
 
     /// One greater than the offset of the last entry in the search results.
     /// The total number of entries in the collection may be less than
@@ -29,7 +38,7 @@ public class SearchResultsWithSharedLinks: Codable {
     /// as the `offset` query parameter used.
     public let offset: Int64?
 
-    /// Specifies the response as search result items with shared links
+    /// Specifies the response as search result items with shared links.
     public let type: SearchResultsWithSharedLinksTypeField
 
     /// The search results for the query provided, including the
@@ -48,7 +57,7 @@ public class SearchResultsWithSharedLinks: Codable {
     ///     allowed.
     ///   - offset: The 0-based offset of the first entry in this set. This will be the same
     ///     as the `offset` query parameter used.
-    ///   - type: Specifies the response as search result items with shared links
+    ///   - type: Specifies the response as search result items with shared links.
     ///   - entries: The search results for the query provided, including the
     ///     additional information about any shared links through
     ///     which the item has been shared with the user.
@@ -60,7 +69,7 @@ public class SearchResultsWithSharedLinks: Codable {
         self.entries = entries
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         totalCount = try container.decodeIfPresent(Int64.self, forKey: .totalCount)
         limit = try container.decodeIfPresent(Int64.self, forKey: .limit)
@@ -77,4 +86,19 @@ public class SearchResultsWithSharedLinks: Codable {
         try container.encode(type, forKey: .type)
         try container.encodeIfPresent(entries, forKey: .entries)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

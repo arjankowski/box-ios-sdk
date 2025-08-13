@@ -22,8 +22,9 @@ public enum ApplyMetadataCascadePolicyRequestBodyConflictResolutionField: Codabl
             return "none"
         case .overwrite:
             return "overwrite"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

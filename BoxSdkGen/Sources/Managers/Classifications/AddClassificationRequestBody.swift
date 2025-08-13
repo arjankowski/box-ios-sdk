@@ -1,11 +1,20 @@
 import Foundation
 
-public class AddClassificationRequestBody: Codable {
+public class AddClassificationRequestBody: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case data
         case op
         case fieldKey
     }
+
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
 
     /// The details of the classification to add.
     public let data: AddClassificationRequestBodyDataField
@@ -14,7 +23,7 @@ public class AddClassificationRequestBody: Codable {
     /// object.
     public let op: AddClassificationRequestBodyOpField
 
-    /// Defines classifications
+    /// Defines classifications 
     /// available in the enterprise.
     public let fieldKey: AddClassificationRequestBodyFieldKeyField
 
@@ -24,7 +33,7 @@ public class AddClassificationRequestBody: Codable {
     ///   - data: The details of the classification to add.
     ///   - op: The type of change to perform on the classification
     ///     object.
-    ///   - fieldKey: Defines classifications
+    ///   - fieldKey: Defines classifications 
     ///     available in the enterprise.
     public init(data: AddClassificationRequestBodyDataField, op: AddClassificationRequestBodyOpField = AddClassificationRequestBodyOpField.addEnumOption, fieldKey: AddClassificationRequestBodyFieldKeyField = AddClassificationRequestBodyFieldKeyField.boxSecurityClassificationKey) {
         self.data = data
@@ -32,7 +41,7 @@ public class AddClassificationRequestBody: Codable {
         self.fieldKey = fieldKey
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         data = try container.decode(AddClassificationRequestBodyDataField.self, forKey: .data)
         op = try container.decode(AddClassificationRequestBodyOpField.self, forKey: .op)
@@ -45,4 +54,19 @@ public class AddClassificationRequestBody: Codable {
         try container.encode(op, forKey: .op)
         try container.encode(fieldKey, forKey: .fieldKey)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

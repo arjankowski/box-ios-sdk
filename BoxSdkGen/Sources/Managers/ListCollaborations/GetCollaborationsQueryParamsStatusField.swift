@@ -17,8 +17,9 @@ public enum GetCollaborationsQueryParamsStatusField: CodableStringEnum {
         switch self {
         case .pending:
             return "pending"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

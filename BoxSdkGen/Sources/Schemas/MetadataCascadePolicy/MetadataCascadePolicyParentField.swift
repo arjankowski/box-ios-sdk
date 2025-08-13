@@ -1,12 +1,21 @@
 import Foundation
 
-public class MetadataCascadePolicyParentField: Codable {
+public class MetadataCascadePolicyParentField: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case type
         case id
     }
 
-    /// `folder`
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
+
+    /// The value will always be `folder`.
     public let type: MetadataCascadePolicyParentTypeField?
 
     /// The ID of the folder the policy is applied to.
@@ -15,14 +24,14 @@ public class MetadataCascadePolicyParentField: Codable {
     /// Initializer for a MetadataCascadePolicyParentField.
     ///
     /// - Parameters:
-    ///   - type: `folder`
+    ///   - type: The value will always be `folder`.
     ///   - id: The ID of the folder the policy is applied to.
     public init(type: MetadataCascadePolicyParentTypeField? = nil, id: String? = nil) {
         self.type = type
         self.id = id
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         type = try container.decodeIfPresent(MetadataCascadePolicyParentTypeField.self, forKey: .type)
         id = try container.decodeIfPresent(String.self, forKey: .id)
@@ -33,4 +42,19 @@ public class MetadataCascadePolicyParentField: Codable {
         try container.encodeIfPresent(type, forKey: .type)
         try container.encodeIfPresent(id, forKey: .id)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

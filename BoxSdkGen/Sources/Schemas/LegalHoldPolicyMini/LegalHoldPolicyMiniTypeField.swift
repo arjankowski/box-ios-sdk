@@ -17,8 +17,9 @@ public enum LegalHoldPolicyMiniTypeField: CodableStringEnum {
         switch self {
         case .legalHoldPolicy:
             return "legal_hold_policy"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

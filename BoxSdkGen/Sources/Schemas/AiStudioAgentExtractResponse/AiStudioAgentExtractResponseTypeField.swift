@@ -17,8 +17,9 @@ public enum AiStudioAgentExtractResponseTypeField: CodableStringEnum {
         switch self {
         case .aiAgentExtract:
             return "ai_agent_extract"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

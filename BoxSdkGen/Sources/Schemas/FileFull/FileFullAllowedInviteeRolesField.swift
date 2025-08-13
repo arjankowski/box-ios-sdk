@@ -47,8 +47,9 @@ public enum FileFullAllowedInviteeRolesField: CodableStringEnum {
             return "viewer uploader"
         case .coOwner:
             return "co-owner"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

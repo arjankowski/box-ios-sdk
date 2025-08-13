@@ -27,8 +27,9 @@ public enum MetadataFilterScopeField: CodableStringEnum {
             return "enterprise"
         case .enterpriseEnterpriseId:
             return "enterprise_{enterprise_id}"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

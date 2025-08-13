@@ -1,6 +1,6 @@
 import Foundation
 
-/// A standard representation of a file version
+/// A standard representation of a file version.
 public class FileVersion: FileVersionMini {
     private enum CodingKeys: String, CodingKey {
         case name
@@ -16,16 +16,25 @@ public class FileVersion: FileVersionMini {
         case uploaderDisplayName = "uploader_display_name"
     }
 
-    /// The name of the file version
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public override var rawData: [String: Any]? {
+        return _rawData
+    }
+
+
+    /// The name of the file version.
     public let name: String?
 
-    /// Size of the file version in bytes
+    /// Size of the file version in bytes.
     public let size: Int64?
 
-    /// When the file version object was created
+    /// When the file version object was created.
     public let createdAt: Date?
 
-    /// When the file version object was last updated
+    /// When the file version object was last updated.
     public let modifiedAt: Date?
 
     public let modifiedBy: UserMini?
@@ -49,36 +58,36 @@ public class FileVersion: FileVersionMini {
     ///
     /// - Parameters:
     ///   - id: The unique identifier that represent a file version.
-    ///   - type: `file_version`
+    ///   - type: The value will always be `file_version`.
     ///   - sha1: The SHA1 hash of this version of the file.
-    ///   - name: The name of the file version
-    ///   - size: Size of the file version in bytes
-    ///   - createdAt: When the file version object was created
-    ///   - modifiedAt: When the file version object was last updated
-    ///   - modifiedBy:
+    ///   - name: The name of the file version.
+    ///   - size: Size of the file version in bytes.
+    ///   - createdAt: When the file version object was created.
+    ///   - modifiedAt: When the file version object was last updated.
+    ///   - modifiedBy: 
     ///   - trashedAt: When the file version object was trashed.
-    ///   - trashedBy:
+    ///   - trashedBy: 
     ///   - restoredAt: When the file version was restored from the trash.
-    ///   - restoredBy:
+    ///   - restoredBy: 
     ///   - purgedAt: When the file version object will be permanently deleted.
-    ///   - uploaderDisplayName:
+    ///   - uploaderDisplayName: 
     public init(id: String, type: FileVersionBaseTypeField = FileVersionBaseTypeField.fileVersion, sha1: String? = nil, name: String? = nil, size: Int64? = nil, createdAt: Date? = nil, modifiedAt: Date? = nil, modifiedBy: UserMini? = nil, trashedAt: TriStateField<Date> = nil, trashedBy: UserMini? = nil, restoredAt: TriStateField<Date> = nil, restoredBy: UserMini? = nil, purgedAt: TriStateField<Date> = nil, uploaderDisplayName: String? = nil) {
         self.name = name
         self.size = size
         self.createdAt = createdAt
         self.modifiedAt = modifiedAt
         self.modifiedBy = modifiedBy
-        _trashedAt = CodableTriState(state: trashedAt)
+        self._trashedAt = CodableTriState(state: trashedAt)
         self.trashedBy = trashedBy
-        _restoredAt = CodableTriState(state: restoredAt)
+        self._restoredAt = CodableTriState(state: restoredAt)
         self.restoredBy = restoredBy
-        _purgedAt = CodableTriState(state: purgedAt)
+        self._purgedAt = CodableTriState(state: purgedAt)
         self.uploaderDisplayName = uploaderDisplayName
 
         super.init(id: id, type: type, sha1: sha1)
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         name = try container.decodeIfPresent(String.self, forKey: .name)
         size = try container.decodeIfPresent(Int64.self, forKey: .size)
@@ -95,7 +104,7 @@ public class FileVersion: FileVersionMini {
         try super.init(from: decoder)
     }
 
-    override public func encode(to encoder: Encoder) throws {
+    public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(name, forKey: .name)
         try container.encodeIfPresent(size, forKey: .size)
@@ -110,4 +119,19 @@ public class FileVersion: FileVersionMini {
         try container.encodeIfPresent(uploaderDisplayName, forKey: .uploaderDisplayName)
         try super.encode(to: encoder)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    override func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    override func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

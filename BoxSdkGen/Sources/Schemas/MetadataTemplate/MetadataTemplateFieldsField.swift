@@ -1,6 +1,6 @@
 import Foundation
 
-public class MetadataTemplateFieldsField: Codable {
+public class MetadataTemplateFieldsField: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case type
         case key
@@ -11,14 +11,23 @@ public class MetadataTemplateFieldsField: Codable {
         case id
     }
 
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
+
     /// The type of field. The basic fields are a `string` field for text, a
     /// `float` field for numbers, and a `date` fields to present the user with a
     /// date-time picker.
-    ///
+    /// 
     /// Additionally, metadata templates support an `enum` field for a basic list
     /// of items, and ` multiSelect` field for a similar list of items where the
     /// user can select more than one value.
-    ///
+    /// 
     /// **Note**: The `integer` value is deprecated.
     /// It is still present in the response,
     /// but cannot be used in the POST request.
@@ -52,11 +61,11 @@ public class MetadataTemplateFieldsField: Codable {
     ///   - type: The type of field. The basic fields are a `string` field for text, a
     ///     `float` field for numbers, and a `date` fields to present the user with a
     ///     date-time picker.
-    ///
+    ///     
     ///     Additionally, metadata templates support an `enum` field for a basic list
     ///     of items, and ` multiSelect` field for a similar list of items where the
     ///     user can select more than one value.
-    ///
+    ///     
     ///     **Note**: The `integer` value is deprecated.
     ///     It is still present in the response,
     ///     but cannot be used in the POST request.
@@ -80,7 +89,7 @@ public class MetadataTemplateFieldsField: Codable {
         self.id = id
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         type = try container.decode(MetadataTemplateFieldsTypeField.self, forKey: .type)
         key = try container.decode(String.self, forKey: .key)
@@ -101,4 +110,19 @@ public class MetadataTemplateFieldsField: Codable {
         try container.encodeIfPresent(options, forKey: .options)
         try container.encodeIfPresent(id, forKey: .id)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

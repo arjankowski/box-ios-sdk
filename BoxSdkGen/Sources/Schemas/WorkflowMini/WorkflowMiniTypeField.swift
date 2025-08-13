@@ -17,8 +17,9 @@ public enum WorkflowMiniTypeField: CodableStringEnum {
         switch self {
         case .workflow:
             return "workflow"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

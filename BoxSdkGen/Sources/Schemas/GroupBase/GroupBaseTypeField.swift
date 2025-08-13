@@ -17,8 +17,9 @@ public enum GroupBaseTypeField: CodableStringEnum {
         switch self {
         case .group:
             return "group"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

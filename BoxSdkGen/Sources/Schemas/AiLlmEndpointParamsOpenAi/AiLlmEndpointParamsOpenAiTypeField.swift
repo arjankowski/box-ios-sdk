@@ -17,8 +17,9 @@ public enum AiLlmEndpointParamsOpenAiTypeField: CodableStringEnum {
         switch self {
         case .openaiParams:
             return "openai_params"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

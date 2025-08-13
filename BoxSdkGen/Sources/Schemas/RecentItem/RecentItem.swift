@@ -1,7 +1,7 @@
 import Foundation
 
 /// A recent item accessed by a user.
-public class RecentItem: Codable {
+public class RecentItem: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case type
         case item
@@ -10,7 +10,16 @@ public class RecentItem: Codable {
         case interactionSharedLink = "interaction_shared_link"
     }
 
-    /// `recent_item`
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
+
+    /// The value will always be `recent_item`.
     public let type: String?
 
     public let item: FileFullOrFolderFullOrWebLink?
@@ -29,8 +38,8 @@ public class RecentItem: Codable {
     /// Initializer for a RecentItem.
     ///
     /// - Parameters:
-    ///   - type: `recent_item`
-    ///   - item:
+    ///   - type: The value will always be `recent_item`.
+    ///   - item: 
     ///   - interactionType: The most recent type of access the user performed on
     ///     the item.
     ///   - interactedAt: The time of the most recent interaction.
@@ -44,7 +53,7 @@ public class RecentItem: Codable {
         self.interactionSharedLink = interactionSharedLink
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         type = try container.decodeIfPresent(String.self, forKey: .type)
         item = try container.decodeIfPresent(FileFullOrFolderFullOrWebLink.self, forKey: .item)
@@ -61,4 +70,19 @@ public class RecentItem: Codable {
         try container.encodeDateTimeIfPresent(field: interactedAt, forKey: .interactedAt)
         try container.encodeIfPresent(interactionSharedLink, forKey: .interactionSharedLink)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

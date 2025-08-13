@@ -10,4 +10,5 @@ public protocol Authentication {
     func revokeToken(networkSession: NetworkSession?) async throws
 
     func downscopeToken(scopes: [String], resource: String?, sharedLink: String?, networkSession: NetworkSession?) async throws -> AccessToken
+
 }

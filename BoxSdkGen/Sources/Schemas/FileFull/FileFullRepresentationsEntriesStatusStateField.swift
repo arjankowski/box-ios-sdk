@@ -32,8 +32,9 @@ public enum FileFullRepresentationsEntriesStatusStateField: CodableStringEnum {
             return "pending"
         case .none:
             return "none"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

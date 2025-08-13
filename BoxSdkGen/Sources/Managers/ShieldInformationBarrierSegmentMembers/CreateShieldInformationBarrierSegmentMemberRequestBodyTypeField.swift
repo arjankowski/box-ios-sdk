@@ -17,8 +17,9 @@ public enum CreateShieldInformationBarrierSegmentMemberRequestBodyTypeField: Cod
         switch self {
         case .shieldInformationBarrierSegmentMember:
             return "shield_information_barrier_segment_member"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }

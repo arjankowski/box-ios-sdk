@@ -39,24 +39,27 @@ public enum AiAgentAskOrAiAgentExtractOrAiAgentExtractStructuredOrAiAgentTextGen
                     }
 
                 default:
-                    throw DecodingError.typeMismatch(AiAgentAskOrAiAgentExtractOrAiAgentExtractStructuredOrAiAgentTextGen.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "The Decoded object contains an unexpected value for key type"))
+                    break
                 }
             }
+
         }
 
         throw DecodingError.typeMismatch(AiAgentAskOrAiAgentExtractOrAiAgentExtractStructuredOrAiAgentTextGen.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "The type of the decoded object cannot be determined."))
+
     }
 
     public func encode(to encoder: Encoder) throws {
         switch self {
-        case let .aiAgentAsk(aiAgentAsk):
+        case .aiAgentAsk(let aiAgentAsk):
             try aiAgentAsk.encode(to: encoder)
-        case let .aiAgentExtract(aiAgentExtract):
+        case .aiAgentExtract(let aiAgentExtract):
             try aiAgentExtract.encode(to: encoder)
-        case let .aiAgentExtractStructured(aiAgentExtractStructured):
+        case .aiAgentExtractStructured(let aiAgentExtractStructured):
             try aiAgentExtractStructured.encode(to: encoder)
-        case let .aiAgentTextGen(aiAgentTextGen):
+        case .aiAgentTextGen(let aiAgentTextGen):
             try aiAgentTextGen.encode(to: encoder)
         }
     }
+
 }

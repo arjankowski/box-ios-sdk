@@ -1,7 +1,7 @@
 import Foundation
 
 /// Represents a trashed folder.
-public class TrashFolder: Codable {
+public class TrashFolder: Codable, RawJSONReadable {
     private enum CodingKeys: String, CodingKey {
         case id
         case name
@@ -26,8 +26,17 @@ public class TrashFolder: Codable {
         case parent
     }
 
+    /// Internal backing store for rawData. Used to store raw dictionary data associated with the instance.
+    private var _rawData: [String: Any]?
+
+    /// Returns the raw dictionary data associated with the instance. This is a read-only property.
+    public var rawData: [String: Any]? {
+        return _rawData
+    }
+
+
     /// The unique identifier that represent a folder.
-    ///
+    /// 
     /// The ID for any folder can be determined
     /// by visiting a folder in the web application
     /// and copying the ID from the URL. For example,
@@ -41,7 +50,7 @@ public class TrashFolder: Codable {
     public let description: String
 
     /// The folder size in bytes.
-    ///
+    /// 
     /// Be careful parsing this integer as its
     /// value can get very large.
     public let size: Int64
@@ -55,7 +64,7 @@ public class TrashFolder: Codable {
     public let ownedBy: UserMini
 
     /// Defines if this item has been deleted or not.
-    ///
+    /// 
     /// * `active` when the item has is not in the trash
     /// * `trashed` when the item has been moved to the trash but not deleted
     /// * `deleted` when the item has been permanently deleted.
@@ -66,7 +75,7 @@ public class TrashFolder: Codable {
     /// perform changes on the folder if (no) changes have happened.
     @CodableTriState public private(set) var etag: String?
 
-    /// `folder`
+    /// The value will always be `folder`.
     public let type: TrashFolderTypeField
 
     public let sequenceId: String?
@@ -111,32 +120,32 @@ public class TrashFolder: Codable {
     ///
     /// - Parameters:
     ///   - id: The unique identifier that represent a folder.
-    ///
+    ///     
     ///     The ID for any folder can be determined
     ///     by visiting a folder in the web application
     ///     and copying the ID from the URL. For example,
     ///     for the URL `https://*.app.box.com/folders/123`
     ///     the `folder_id` is `123`.
     ///   - name: The name of the folder.
-    ///   - description:
+    ///   - description: 
     ///   - size: The folder size in bytes.
-    ///
+    ///     
     ///     Be careful parsing this integer as its
     ///     value can get very large.
-    ///   - pathCollection:
-    ///   - createdBy:
-    ///   - modifiedBy:
-    ///   - ownedBy:
+    ///   - pathCollection: 
+    ///   - createdBy: 
+    ///   - modifiedBy: 
+    ///   - ownedBy: 
     ///   - itemStatus: Defines if this item has been deleted or not.
-    ///
+    ///     
     ///     * `active` when the item has is not in the trash
     ///     * `trashed` when the item has been moved to the trash but not deleted
     ///     * `deleted` when the item has been permanently deleted.
     ///   - etag: The HTTP `etag` of this folder. This can be used within some API
     ///     endpoints in the `If-Match` and `If-None-Match` headers to only
     ///     perform changes on the folder if (no) changes have happened.
-    ///   - type: `folder`
-    ///   - sequenceId:
+    ///   - type: The value will always be `folder`.
+    ///   - sequenceId: 
     ///   - createdAt: The date and time when the folder was created. This value may
     ///     be `null` for some folders such as the root folder or the trash
     ///     folder.
@@ -155,7 +164,7 @@ public class TrashFolder: Codable {
     ///   - folderUploadEmail: The folder upload email for this folder. This will
     ///     be `null` if a folder has been trashed, since the upload will no longer
     ///     work.
-    ///   - parent:
+    ///   - parent: 
     public init(id: String, name: String, description: String, size: Int64, pathCollection: TrashFolderPathCollectionField, createdBy: UserMini, modifiedBy: UserMini, ownedBy: UserMini, itemStatus: TrashFolderItemStatusField, etag: TriStateField<String> = nil, type: TrashFolderTypeField = TrashFolderTypeField.folder, sequenceId: String? = nil, createdAt: TriStateField<Date> = nil, modifiedAt: TriStateField<Date> = nil, trashedAt: TriStateField<Date> = nil, purgedAt: TriStateField<Date> = nil, contentCreatedAt: TriStateField<Date> = nil, contentModifiedAt: TriStateField<Date> = nil, sharedLink: TriStateField<String> = nil, folderUploadEmail: TriStateField<String> = nil, parent: FolderMini? = nil) {
         self.id = id
         self.name = name
@@ -166,21 +175,21 @@ public class TrashFolder: Codable {
         self.modifiedBy = modifiedBy
         self.ownedBy = ownedBy
         self.itemStatus = itemStatus
-        _etag = CodableTriState(state: etag)
+        self._etag = CodableTriState(state: etag)
         self.type = type
         self.sequenceId = sequenceId
-        _createdAt = CodableTriState(state: createdAt)
-        _modifiedAt = CodableTriState(state: modifiedAt)
-        _trashedAt = CodableTriState(state: trashedAt)
-        _purgedAt = CodableTriState(state: purgedAt)
-        _contentCreatedAt = CodableTriState(state: contentCreatedAt)
-        _contentModifiedAt = CodableTriState(state: contentModifiedAt)
-        _sharedLink = CodableTriState(state: sharedLink)
-        _folderUploadEmail = CodableTriState(state: folderUploadEmail)
+        self._createdAt = CodableTriState(state: createdAt)
+        self._modifiedAt = CodableTriState(state: modifiedAt)
+        self._trashedAt = CodableTriState(state: trashedAt)
+        self._purgedAt = CodableTriState(state: purgedAt)
+        self._contentCreatedAt = CodableTriState(state: contentCreatedAt)
+        self._contentModifiedAt = CodableTriState(state: contentModifiedAt)
+        self._sharedLink = CodableTriState(state: sharedLink)
+        self._folderUploadEmail = CodableTriState(state: folderUploadEmail)
         self.parent = parent
     }
 
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
         name = try container.decode(String.self, forKey: .name)
@@ -229,4 +238,19 @@ public class TrashFolder: Codable {
         try container.encode(field: _folderUploadEmail.state, forKey: .folderUploadEmail)
         try container.encodeIfPresent(parent, forKey: .parent)
     }
+
+    /// Sets the raw JSON data.
+    ///
+    /// - Parameters:
+    ///   - rawData: A dictionary containing the raw JSON data
+    func setRawData(rawData: [String: Any]?) {
+        self._rawData = rawData
+    }
+
+    /// Gets the raw JSON data
+    /// - Returns: The `[String: Any]?`.
+    func getRawData() -> [String: Any]? {
+        return self._rawData
+    }
+
 }

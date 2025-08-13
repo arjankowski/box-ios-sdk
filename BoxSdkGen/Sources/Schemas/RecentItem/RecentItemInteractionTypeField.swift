@@ -37,8 +37,9 @@ public enum RecentItemInteractionTypeField: CodableStringEnum {
             return "item_open"
         case .itemModify:
             return "item_modify"
-        case let .customValue(value):
+        case .customValue(let value):
             return value
         }
     }
+
 }
