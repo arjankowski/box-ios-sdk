@@ -1,0 +1,6 @@
+version: "Swift version 5.8.1 (swift-5.8.1-RELEASE)"
+options: "378e765badb4c9a266fbd49a3abc6ad69adf439ea97b5b0ad61114180fa1a607"
+build_start_time: [1755253325, 55997000]
+build_end_time: [1755253327, 507353000]
+inputs:
+  "/swift/BoxSDKSuite/Sources/BoxSDKSuite.swift": [1755184624, 0]

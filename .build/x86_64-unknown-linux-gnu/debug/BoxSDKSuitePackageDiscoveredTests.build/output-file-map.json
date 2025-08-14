@@ -1,0 +1,17 @@
+{
+  "": {
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKSuitePackageDiscoveredTests.build/master.swiftdeps"
+  },
+  "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKSuitePackageDiscoveredTests.derived/BoxSDKGenTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKSuitePackageDiscoveredTests.build/BoxSDKGenTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKSuitePackageDiscoveredTests.build/BoxSDKGenTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKSuitePackageDiscoveredTests.build/BoxSDKGenTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKSuitePackageDiscoveredTests.build/BoxSDKGenTests.swiftdeps"
+  },
+  "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKSuitePackageDiscoveredTests.derived/all-discovered-tests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKSuitePackageDiscoveredTests.build/all-discovered-tests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKSuitePackageDiscoveredTests.build/all-discovered-tests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKSuitePackageDiscoveredTests.build/all-discovered-tests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKSuitePackageDiscoveredTests.build/all-discovered-tests.swiftdeps"
+  }
+}

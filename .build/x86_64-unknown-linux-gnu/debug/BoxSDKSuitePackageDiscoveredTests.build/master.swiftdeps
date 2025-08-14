@@ -1,0 +1,7 @@
+version: "Swift version 5.8.1 (swift-5.8.1-RELEASE)"
+options: "ddff5edec7666e4b5f591d9c63e4a10b85d6eb58c6dc80a010543fec4fed8a28"
+build_start_time: [1755253344, 832096000]
+build_end_time: [1755253350, 5330000]
+inputs:
+  "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKSuitePackageDiscoveredTests.derived/BoxSDKGenTests.swift": [1755253344, 0]
+  "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKSuitePackageDiscoveredTests.derived/all-discovered-tests.swift": [1755253344, 0]

@@ -1,0 +1,503 @@
+{
+  "": {
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/master.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/Ai/AiManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Ai/AiManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Ai/AiManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Ai/AiManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Ai/AiManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/AiStudio/AiStudioManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/AiStudio/AiStudioManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/AiStudio/AiStudioManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/AiStudio/AiStudioManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/AiStudio/AiStudioManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/AppItemAssociations/AppItemAssociationsManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/AppItemAssociations/AppItemAssociationsManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/AppItemAssociations/AppItemAssociationsManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/AppItemAssociations/AppItemAssociationsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/AppItemAssociations/AppItemAssociationsManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/Archives/ArchivesManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Archives/ArchivesManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Archives/ArchivesManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Archives/ArchivesManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Archives/ArchivesManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/Auth/AuthManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Auth/AuthManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Auth/AuthManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Auth/AuthManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Auth/AuthManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/Avatars/AvatarsManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Avatars/AvatarsManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Avatars/AvatarsManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Avatars/AvatarsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Avatars/AvatarsManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/ChunkedUploads/ChunkedUploadsManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/ChunkedUploads/ChunkedUploadsManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/ChunkedUploads/ChunkedUploadsManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/ChunkedUploads/ChunkedUploadsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/ChunkedUploads/ChunkedUploadsManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/ChunkedUploads/TestPartAccumulator.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/ChunkedUploads/TestPartAccumulator.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/ChunkedUploads/TestPartAccumulator.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/ChunkedUploads/TestPartAccumulator~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/ChunkedUploads/TestPartAccumulator.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/Classifications/ClassificationsManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Classifications/ClassificationsManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Classifications/ClassificationsManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Classifications/ClassificationsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Classifications/ClassificationsManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/Client/ClientManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Client/ClientManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Client/ClientManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Client/ClientManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Client/ClientManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/CollaborationAllowlistEntries/CollaborationAllowlistEntriesManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/CollaborationAllowlistEntries/CollaborationAllowlistEntriesManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/CollaborationAllowlistEntries/CollaborationAllowlistEntriesManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/CollaborationAllowlistEntries/CollaborationAllowlistEntriesManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/CollaborationAllowlistEntries/CollaborationAllowlistEntriesManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/CollaborationAllowlistExemptTargets/CollaborationAllowlistExemptTargetsManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/CollaborationAllowlistExemptTargets/CollaborationAllowlistExemptTargetsManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/CollaborationAllowlistExemptTargets/CollaborationAllowlistExemptTargetsManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/CollaborationAllowlistExemptTargets/CollaborationAllowlistExemptTargetsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/CollaborationAllowlistExemptTargets/CollaborationAllowlistExemptTargetsManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/Collections/CollectionsManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Collections/CollectionsManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Collections/CollectionsManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Collections/CollectionsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Collections/CollectionsManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/Comments/CommentsManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Comments/CommentsManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Comments/CommentsManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Comments/CommentsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Comments/CommentsManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/Commons/CommonsManager.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Commons/CommonsManager.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Commons/CommonsManager.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Commons/CommonsManager~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Commons/CommonsManager.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/DevicePinners/DevicePinnersManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/DevicePinners/DevicePinnersManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/DevicePinners/DevicePinnersManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/DevicePinners/DevicePinnersManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/DevicePinners/DevicePinnersManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/Docgen/DocgenManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Docgen/DocgenManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Docgen/DocgenManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Docgen/DocgenManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Docgen/DocgenManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/DocgenTemplate/DocgenTemplateManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/DocgenTemplate/DocgenTemplateManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/DocgenTemplate/DocgenTemplateManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/DocgenTemplate/DocgenTemplateManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/DocgenTemplate/DocgenTemplateManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/Downloads/DownloadsManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Downloads/DownloadsManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Downloads/DownloadsManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Downloads/DownloadsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Downloads/DownloadsManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/EmailAliases/EmailAliasesManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/EmailAliases/EmailAliasesManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/EmailAliases/EmailAliasesManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/EmailAliases/EmailAliasesManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/EmailAliases/EmailAliasesManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/Events/EventsManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Events/EventsManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Events/EventsManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Events/EventsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Events/EventsManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/FileClassifications/FileClassificationsManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/FileClassifications/FileClassificationsManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/FileClassifications/FileClassificationsManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/FileClassifications/FileClassificationsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/FileClassifications/FileClassificationsManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/FileMetadata/FileMetadataManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/FileMetadata/FileMetadataManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/FileMetadata/FileMetadataManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/FileMetadata/FileMetadataManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/FileMetadata/FileMetadataManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/FileRequests/FileRequestsManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/FileRequests/FileRequestsManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/FileRequests/FileRequestsManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/FileRequests/FileRequestsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/FileRequests/FileRequestsManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/FileVersionLegalHolds/FileVersionLegalHoldsManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/FileVersionLegalHolds/FileVersionLegalHoldsManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/FileVersionLegalHolds/FileVersionLegalHoldsManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/FileVersionLegalHolds/FileVersionLegalHoldsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/FileVersionLegalHolds/FileVersionLegalHoldsManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/FileVersionRetentions/FileVersionRetentionsManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/FileVersionRetentions/FileVersionRetentionsManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/FileVersionRetentions/FileVersionRetentionsManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/FileVersionRetentions/FileVersionRetentionsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/FileVersionRetentions/FileVersionRetentionsManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/FileVersions/FileVersionsManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/FileVersions/FileVersionsManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/FileVersions/FileVersionsManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/FileVersions/FileVersionsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/FileVersions/FileVersionsManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/FileWatermarks/FileWatermarksManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/FileWatermarks/FileWatermarksManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/FileWatermarks/FileWatermarksManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/FileWatermarks/FileWatermarksManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/FileWatermarks/FileWatermarksManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/Files/FilesManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Files/FilesManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Files/FilesManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Files/FilesManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Files/FilesManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/FolderClassifications/FolderClassificationsManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/FolderClassifications/FolderClassificationsManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/FolderClassifications/FolderClassificationsManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/FolderClassifications/FolderClassificationsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/FolderClassifications/FolderClassificationsManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/FolderLocks/FolderLocksManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/FolderLocks/FolderLocksManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/FolderLocks/FolderLocksManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/FolderLocks/FolderLocksManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/FolderLocks/FolderLocksManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/FolderMetadata/FolderMetadataManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/FolderMetadata/FolderMetadataManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/FolderMetadata/FolderMetadataManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/FolderMetadata/FolderMetadataManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/FolderMetadata/FolderMetadataManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/FolderWatermarks/FolderWatermarksManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/FolderWatermarks/FolderWatermarksManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/FolderWatermarks/FolderWatermarksManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/FolderWatermarks/FolderWatermarksManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/FolderWatermarks/FolderWatermarksManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/Folders/FoldersManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Folders/FoldersManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Folders/FoldersManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Folders/FoldersManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Folders/FoldersManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/Groups/GroupsManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Groups/GroupsManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Groups/GroupsManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Groups/GroupsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Groups/GroupsManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/HubCollaborations/HubCollaborationsManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/HubCollaborations/HubCollaborationsManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/HubCollaborations/HubCollaborationsManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/HubCollaborations/HubCollaborationsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/HubCollaborations/HubCollaborationsManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/HubItems/HubItemsManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/HubItems/HubItemsManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/HubItems/HubItemsManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/HubItems/HubItemsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/HubItems/HubItemsManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/Hubs/HubsManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Hubs/HubsManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Hubs/HubsManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Hubs/HubsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Hubs/HubsManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/IntegrationMappings/IntegrationMappingsManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/IntegrationMappings/IntegrationMappingsManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/IntegrationMappings/IntegrationMappingsManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/IntegrationMappings/IntegrationMappingsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/IntegrationMappings/IntegrationMappingsManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/Invites/InvitesManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Invites/InvitesManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Invites/InvitesManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Invites/InvitesManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Invites/InvitesManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/LegalHoldPolicies/LegalHoldPoliciesManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/LegalHoldPolicies/LegalHoldPoliciesManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/LegalHoldPolicies/LegalHoldPoliciesManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/LegalHoldPolicies/LegalHoldPoliciesManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/LegalHoldPolicies/LegalHoldPoliciesManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/LegalHoldPolicyAssignments/LegalHoldPolicyAssignmentsManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/LegalHoldPolicyAssignments/LegalHoldPolicyAssignmentsManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/LegalHoldPolicyAssignments/LegalHoldPolicyAssignmentsManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/LegalHoldPolicyAssignments/LegalHoldPolicyAssignmentsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/LegalHoldPolicyAssignments/LegalHoldPolicyAssignmentsManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/ListCollaborations/ListCollaborationsManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/ListCollaborations/ListCollaborationsManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/ListCollaborations/ListCollaborationsManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/ListCollaborations/ListCollaborationsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/ListCollaborations/ListCollaborationsManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/Memberships/MembershipsManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Memberships/MembershipsManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Memberships/MembershipsManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Memberships/MembershipsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Memberships/MembershipsManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/MetadataCascadePolicies/MetadataCascadePoliciesManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/MetadataCascadePolicies/MetadataCascadePoliciesManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/MetadataCascadePolicies/MetadataCascadePoliciesManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/MetadataCascadePolicies/MetadataCascadePoliciesManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/MetadataCascadePolicies/MetadataCascadePoliciesManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/MetadataTemplates/MetadataTemplatesManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/MetadataTemplates/MetadataTemplatesManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/MetadataTemplates/MetadataTemplatesManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/MetadataTemplates/MetadataTemplatesManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/MetadataTemplates/MetadataTemplatesManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/RecentItems/RecentItemsManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/RecentItems/RecentItemsManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/RecentItems/RecentItemsManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/RecentItems/RecentItemsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/RecentItems/RecentItemsManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/RetentionPolicies/RetentionPoliciesManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/RetentionPolicies/RetentionPoliciesManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/RetentionPolicies/RetentionPoliciesManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/RetentionPolicies/RetentionPoliciesManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/RetentionPolicies/RetentionPoliciesManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/RetentionPolicyAssignments/RetentionPolicyAssignmentsManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/RetentionPolicyAssignments/RetentionPolicyAssignmentsManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/RetentionPolicyAssignments/RetentionPolicyAssignmentsManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/RetentionPolicyAssignments/RetentionPolicyAssignmentsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/RetentionPolicyAssignments/RetentionPolicyAssignmentsManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/RetryableTestCase.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/RetryableTestCase.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/RetryableTestCase.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/RetryableTestCase~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/RetryableTestCase.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/Search/SearchManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Search/SearchManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Search/SearchManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Search/SearchManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Search/SearchManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/SessionTermination/SessionTerminationManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/SessionTermination/SessionTerminationManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/SessionTermination/SessionTerminationManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/SessionTermination/SessionTerminationManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/SessionTermination/SessionTerminationManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/SharedLinksAppItems/SharedLinksAppItemsManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/SharedLinksAppItems/SharedLinksAppItemsManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/SharedLinksAppItems/SharedLinksAppItemsManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/SharedLinksAppItems/SharedLinksAppItemsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/SharedLinksAppItems/SharedLinksAppItemsManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/SharedLinksFiles/SharedLinksFilesManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/SharedLinksFiles/SharedLinksFilesManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/SharedLinksFiles/SharedLinksFilesManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/SharedLinksFiles/SharedLinksFilesManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/SharedLinksFiles/SharedLinksFilesManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/SharedLinksFolders/SharedLinksFoldersManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/SharedLinksFolders/SharedLinksFoldersManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/SharedLinksFolders/SharedLinksFoldersManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/SharedLinksFolders/SharedLinksFoldersManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/SharedLinksFolders/SharedLinksFoldersManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/SharedLinksWebLinks/SharedLinksWebLinksManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/SharedLinksWebLinks/SharedLinksWebLinksManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/SharedLinksWebLinks/SharedLinksWebLinksManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/SharedLinksWebLinks/SharedLinksWebLinksManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/SharedLinksWebLinks/SharedLinksWebLinksManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/ShieldInformationBarrierReports/ShieldInformationBarrierReportsManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/ShieldInformationBarrierReports/ShieldInformationBarrierReportsManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/ShieldInformationBarrierReports/ShieldInformationBarrierReportsManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/ShieldInformationBarrierReports/ShieldInformationBarrierReportsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/ShieldInformationBarrierReports/ShieldInformationBarrierReportsManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/ShieldInformationBarrierSegmentMembers/ShieldInformationBarrierSegmentMembersManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/ShieldInformationBarrierSegmentMembers/ShieldInformationBarrierSegmentMembersManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/ShieldInformationBarrierSegmentMembers/ShieldInformationBarrierSegmentMembersManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/ShieldInformationBarrierSegmentMembers/ShieldInformationBarrierSegmentMembersManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/ShieldInformationBarrierSegmentMembers/ShieldInformationBarrierSegmentMembersManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/ShieldInformationBarrierSegmentRestrictions/ShieldInformationBarrierSegmentRestrictionsManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/ShieldInformationBarrierSegmentRestrictions/ShieldInformationBarrierSegmentRestrictionsManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/ShieldInformationBarrierSegmentRestrictions/ShieldInformationBarrierSegmentRestrictionsManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/ShieldInformationBarrierSegmentRestrictions/ShieldInformationBarrierSegmentRestrictionsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/ShieldInformationBarrierSegmentRestrictions/ShieldInformationBarrierSegmentRestrictionsManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/ShieldInformationBarrierSegments/ShieldInformationBarrierSegmentsManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/ShieldInformationBarrierSegments/ShieldInformationBarrierSegmentsManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/ShieldInformationBarrierSegments/ShieldInformationBarrierSegmentsManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/ShieldInformationBarrierSegments/ShieldInformationBarrierSegmentsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/ShieldInformationBarrierSegments/ShieldInformationBarrierSegmentsManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/ShieldInformationBarriers/ShieldInformationBarriersManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/ShieldInformationBarriers/ShieldInformationBarriersManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/ShieldInformationBarriers/ShieldInformationBarriersManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/ShieldInformationBarriers/ShieldInformationBarriersManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/ShieldInformationBarriers/ShieldInformationBarriersManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/SignRequests/SignRequestsManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/SignRequests/SignRequestsManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/SignRequests/SignRequestsManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/SignRequests/SignRequestsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/SignRequests/SignRequestsManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/SignTemplates/SignTemplatesManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/SignTemplates/SignTemplatesManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/SignTemplates/SignTemplatesManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/SignTemplates/SignTemplatesManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/SignTemplates/SignTemplatesManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/StoragePolicicyAssignments/StoragePolicicyAssignmentsManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/StoragePolicicyAssignments/StoragePolicicyAssignmentsManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/StoragePolicicyAssignments/StoragePolicicyAssignmentsManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/StoragePolicicyAssignments/StoragePolicicyAssignmentsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/StoragePolicicyAssignments/StoragePolicicyAssignmentsManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/StoragePolicies/StoragePoliciesManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/StoragePolicies/StoragePoliciesManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/StoragePolicies/StoragePoliciesManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/StoragePolicies/StoragePoliciesManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/StoragePolicies/StoragePoliciesManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/TaskAssignments/TaskAssignmentsManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/TaskAssignments/TaskAssignmentsManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/TaskAssignments/TaskAssignmentsManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/TaskAssignments/TaskAssignmentsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/TaskAssignments/TaskAssignmentsManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/Tasks/TasksManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Tasks/TasksManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Tasks/TasksManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Tasks/TasksManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Tasks/TasksManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/TermsOfServiceUserStatuses/TermsOfServiceUserStatusesManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/TermsOfServiceUserStatuses/TermsOfServiceUserStatusesManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/TermsOfServiceUserStatuses/TermsOfServiceUserStatusesManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/TermsOfServiceUserStatuses/TermsOfServiceUserStatusesManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/TermsOfServiceUserStatuses/TermsOfServiceUserStatusesManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/TermsOfServices/TermsOfServicesManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/TermsOfServices/TermsOfServicesManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/TermsOfServices/TermsOfServicesManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/TermsOfServices/TermsOfServicesManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/TermsOfServices/TermsOfServicesManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/Transfer/TransferManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Transfer/TransferManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Transfer/TransferManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Transfer/TransferManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Transfer/TransferManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/TrashedFiles/TrashedFilesManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/TrashedFiles/TrashedFilesManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/TrashedFiles/TrashedFilesManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/TrashedFiles/TrashedFilesManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/TrashedFiles/TrashedFilesManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/TrashedFolders/TrashedFoldersManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/TrashedFolders/TrashedFoldersManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/TrashedFolders/TrashedFoldersManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/TrashedFolders/TrashedFoldersManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/TrashedFolders/TrashedFoldersManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/TrashedItems/TrashedItemsManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/TrashedItems/TrashedItemsManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/TrashedItems/TrashedItemsManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/TrashedItems/TrashedItemsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/TrashedItems/TrashedItemsManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/TrashedWebLinks/TrashedWebLinksManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/TrashedWebLinks/TrashedWebLinksManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/TrashedWebLinks/TrashedWebLinksManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/TrashedWebLinks/TrashedWebLinksManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/TrashedWebLinks/TrashedWebLinksManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/URL+Extensions.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/URL+Extensions.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/URL+Extensions.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/URL+Extensions~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/URL+Extensions.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/Uploads/UploadsManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Uploads/UploadsManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Uploads/UploadsManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Uploads/UploadsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Uploads/UploadsManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/UserCollaborations/UserCollaborationsManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/UserCollaborations/UserCollaborationsManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/UserCollaborations/UserCollaborationsManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/UserCollaborations/UserCollaborationsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/UserCollaborations/UserCollaborationsManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/Users/UsersManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Users/UsersManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Users/UsersManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Users/UsersManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Users/UsersManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/Webhooks/WebhooksManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Webhooks/WebhooksManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Webhooks/WebhooksManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Webhooks/WebhooksManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Webhooks/WebhooksManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/Weblinks/WeblinksManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Weblinks/WeblinksManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Weblinks/WeblinksManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Weblinks/WeblinksManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Weblinks/WeblinksManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/Workflows/WorkflowsManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Workflows/WorkflowsManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Workflows/WorkflowsManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Workflows/WorkflowsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/Workflows/WorkflowsManagerTests.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/XCTest+Extensions.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/XCTest+Extensions.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/XCTest+Extensions.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/XCTest+Extensions~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/XCTest+Extensions.swiftdeps"
+  },
+  "/swift/BoxSDKGen/Tests/ZipDownloads/ZipDownloadsManagerTests.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/ZipDownloads/ZipDownloadsManagerTests.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/ZipDownloads/ZipDownloadsManagerTests.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/ZipDownloads/ZipDownloadsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKGenTests.build/ZipDownloads/ZipDownloadsManagerTests.swiftdeps"
+  }
+}

@@ -1,0 +1,503 @@
+{
+  "": {
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/master.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/Ai/AiManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/AiManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/AiManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/AiManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/AiManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/AiStudio/AiStudioManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/AiStudioManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/AiStudioManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/AiStudioManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/AiStudioManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/AppItemAssociations/AppItemAssociationsManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/AppItemAssociationsManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/AppItemAssociationsManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/AppItemAssociationsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/AppItemAssociationsManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/Archives/ArchivesManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/ArchivesManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/ArchivesManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/ArchivesManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/ArchivesManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/Auth/AuthManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/AuthManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/AuthManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/AuthManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/AuthManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/Avatars/AvatarsManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/AvatarsManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/AvatarsManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/AvatarsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/AvatarsManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/ChunkedUploads/ChunkedUploadsManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/ChunkedUploadsManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/ChunkedUploadsManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/ChunkedUploadsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/ChunkedUploadsManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/ChunkedUploads/TestPartAccumulator.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/TestPartAccumulator.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/TestPartAccumulator.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/TestPartAccumulator~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/TestPartAccumulator.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/Classifications/ClassificationsManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/ClassificationsManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/ClassificationsManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/ClassificationsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/ClassificationsManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/Client/ClientManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/ClientManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/ClientManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/ClientManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/ClientManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/CollaborationAllowlistEntries/CollaborationAllowlistEntriesManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/CollaborationAllowlistEntriesManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/CollaborationAllowlistEntriesManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/CollaborationAllowlistEntriesManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/CollaborationAllowlistEntriesManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/CollaborationAllowlistExemptTargets/CollaborationAllowlistExemptTargetsManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/CollaborationAllowlistExemptTargetsManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/CollaborationAllowlistExemptTargetsManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/CollaborationAllowlistExemptTargetsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/CollaborationAllowlistExemptTargetsManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/Collections/CollectionsManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/CollectionsManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/CollectionsManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/CollectionsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/CollectionsManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/Comments/CommentsManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/CommentsManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/CommentsManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/CommentsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/CommentsManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/Commons/CommonsManager.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/CommonsManager.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/CommonsManager.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/CommonsManager~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/CommonsManager.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/DevicePinners/DevicePinnersManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/DevicePinnersManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/DevicePinnersManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/DevicePinnersManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/DevicePinnersManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/Docgen/DocgenManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/DocgenManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/DocgenManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/DocgenManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/DocgenManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/DocgenTemplate/DocgenTemplateManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/DocgenTemplateManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/DocgenTemplateManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/DocgenTemplateManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/DocgenTemplateManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/Downloads/DownloadsManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/DownloadsManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/DownloadsManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/DownloadsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/DownloadsManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/EmailAliases/EmailAliasesManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/EmailAliasesManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/EmailAliasesManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/EmailAliasesManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/EmailAliasesManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/Events/EventsManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/EventsManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/EventsManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/EventsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/EventsManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/FileClassifications/FileClassificationsManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/FileClassificationsManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/FileClassificationsManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/FileClassificationsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/FileClassificationsManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/FileMetadata/FileMetadataManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/FileMetadataManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/FileMetadataManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/FileMetadataManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/FileMetadataManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/FileRequests/FileRequestsManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/FileRequestsManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/FileRequestsManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/FileRequestsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/FileRequestsManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/FileVersionLegalHolds/FileVersionLegalHoldsManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/FileVersionLegalHoldsManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/FileVersionLegalHoldsManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/FileVersionLegalHoldsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/FileVersionLegalHoldsManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/FileVersionRetentions/FileVersionRetentionsManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/FileVersionRetentionsManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/FileVersionRetentionsManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/FileVersionRetentionsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/FileVersionRetentionsManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/FileVersions/FileVersionsManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/FileVersionsManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/FileVersionsManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/FileVersionsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/FileVersionsManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/FileWatermarks/FileWatermarksManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/FileWatermarksManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/FileWatermarksManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/FileWatermarksManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/FileWatermarksManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/Files/FilesManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/FilesManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/FilesManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/FilesManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/FilesManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/FolderClassifications/FolderClassificationsManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/FolderClassificationsManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/FolderClassificationsManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/FolderClassificationsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/FolderClassificationsManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/FolderLocks/FolderLocksManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/FolderLocksManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/FolderLocksManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/FolderLocksManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/FolderLocksManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/FolderMetadata/FolderMetadataManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/FolderMetadataManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/FolderMetadataManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/FolderMetadataManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/FolderMetadataManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/FolderWatermarks/FolderWatermarksManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/FolderWatermarksManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/FolderWatermarksManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/FolderWatermarksManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/FolderWatermarksManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/Folders/FoldersManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/FoldersManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/FoldersManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/FoldersManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/FoldersManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/Groups/GroupsManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/GroupsManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/GroupsManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/GroupsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/GroupsManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/HubCollaborations/HubCollaborationsManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/HubCollaborationsManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/HubCollaborationsManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/HubCollaborationsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/HubCollaborationsManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/HubItems/HubItemsManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/HubItemsManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/HubItemsManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/HubItemsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/HubItemsManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/Hubs/HubsManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/HubsManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/HubsManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/HubsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/HubsManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/IntegrationMappings/IntegrationMappingsManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/IntegrationMappingsManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/IntegrationMappingsManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/IntegrationMappingsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/IntegrationMappingsManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/Invites/InvitesManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/InvitesManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/InvitesManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/InvitesManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/InvitesManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/LegalHoldPolicies/LegalHoldPoliciesManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/LegalHoldPoliciesManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/LegalHoldPoliciesManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/LegalHoldPoliciesManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/LegalHoldPoliciesManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/LegalHoldPolicyAssignments/LegalHoldPolicyAssignmentsManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/LegalHoldPolicyAssignmentsManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/LegalHoldPolicyAssignmentsManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/LegalHoldPolicyAssignmentsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/LegalHoldPolicyAssignmentsManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/ListCollaborations/ListCollaborationsManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/ListCollaborationsManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/ListCollaborationsManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/ListCollaborationsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/ListCollaborationsManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/Memberships/MembershipsManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/MembershipsManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/MembershipsManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/MembershipsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/MembershipsManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/MetadataCascadePolicies/MetadataCascadePoliciesManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/MetadataCascadePoliciesManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/MetadataCascadePoliciesManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/MetadataCascadePoliciesManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/MetadataCascadePoliciesManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/MetadataTemplates/MetadataTemplatesManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/MetadataTemplatesManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/MetadataTemplatesManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/MetadataTemplatesManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/MetadataTemplatesManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/RecentItems/RecentItemsManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/RecentItemsManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/RecentItemsManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/RecentItemsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/RecentItemsManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/RetentionPolicies/RetentionPoliciesManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/RetentionPoliciesManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/RetentionPoliciesManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/RetentionPoliciesManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/RetentionPoliciesManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/RetentionPolicyAssignments/RetentionPolicyAssignmentsManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/RetentionPolicyAssignmentsManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/RetentionPolicyAssignmentsManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/RetentionPolicyAssignmentsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/RetentionPolicyAssignmentsManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/RetryableTestCase.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/RetryableTestCase.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/RetryableTestCase.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/RetryableTestCase~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/RetryableTestCase.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/Search/SearchManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/SearchManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/SearchManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/SearchManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/SearchManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/SessionTermination/SessionTerminationManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/SessionTerminationManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/SessionTerminationManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/SessionTerminationManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/SessionTerminationManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/SharedLinksAppItems/SharedLinksAppItemsManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/SharedLinksAppItemsManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/SharedLinksAppItemsManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/SharedLinksAppItemsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/SharedLinksAppItemsManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/SharedLinksFiles/SharedLinksFilesManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/SharedLinksFilesManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/SharedLinksFilesManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/SharedLinksFilesManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/SharedLinksFilesManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/SharedLinksFolders/SharedLinksFoldersManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/SharedLinksFoldersManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/SharedLinksFoldersManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/SharedLinksFoldersManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/SharedLinksFoldersManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/SharedLinksWebLinks/SharedLinksWebLinksManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/SharedLinksWebLinksManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/SharedLinksWebLinksManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/SharedLinksWebLinksManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/SharedLinksWebLinksManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/ShieldInformationBarrierReports/ShieldInformationBarrierReportsManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/ShieldInformationBarrierReportsManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/ShieldInformationBarrierReportsManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/ShieldInformationBarrierReportsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/ShieldInformationBarrierReportsManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/ShieldInformationBarrierSegmentMembers/ShieldInformationBarrierSegmentMembersManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/ShieldInformationBarrierSegmentMembersManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/ShieldInformationBarrierSegmentMembersManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/ShieldInformationBarrierSegmentMembersManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/ShieldInformationBarrierSegmentMembersManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/ShieldInformationBarrierSegmentRestrictions/ShieldInformationBarrierSegmentRestrictionsManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/ShieldInformationBarrierSegmentRestrictionsManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/ShieldInformationBarrierSegmentRestrictionsManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/ShieldInformationBarrierSegmentRestrictionsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/ShieldInformationBarrierSegmentRestrictionsManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/ShieldInformationBarrierSegments/ShieldInformationBarrierSegmentsManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/ShieldInformationBarrierSegmentsManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/ShieldInformationBarrierSegmentsManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/ShieldInformationBarrierSegmentsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/ShieldInformationBarrierSegmentsManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/ShieldInformationBarriers/ShieldInformationBarriersManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/ShieldInformationBarriersManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/ShieldInformationBarriersManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/ShieldInformationBarriersManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/ShieldInformationBarriersManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/SignRequests/SignRequestsManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/SignRequestsManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/SignRequestsManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/SignRequestsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/SignRequestsManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/SignTemplates/SignTemplatesManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/SignTemplatesManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/SignTemplatesManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/SignTemplatesManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/SignTemplatesManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/StoragePolicicyAssignments/StoragePolicicyAssignmentsManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/StoragePolicicyAssignmentsManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/StoragePolicicyAssignmentsManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/StoragePolicicyAssignmentsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/StoragePolicicyAssignmentsManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/StoragePolicies/StoragePoliciesManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/StoragePoliciesManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/StoragePoliciesManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/StoragePoliciesManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/StoragePoliciesManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/TaskAssignments/TaskAssignmentsManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/TaskAssignmentsManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/TaskAssignmentsManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/TaskAssignmentsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/TaskAssignmentsManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/Tasks/TasksManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/TasksManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/TasksManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/TasksManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/TasksManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/TermsOfServiceUserStatuses/TermsOfServiceUserStatusesManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/TermsOfServiceUserStatusesManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/TermsOfServiceUserStatusesManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/TermsOfServiceUserStatusesManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/TermsOfServiceUserStatusesManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/TermsOfServices/TermsOfServicesManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/TermsOfServicesManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/TermsOfServicesManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/TermsOfServicesManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/TermsOfServicesManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/Transfer/TransferManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/TransferManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/TransferManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/TransferManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/TransferManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/TrashedFiles/TrashedFilesManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/TrashedFilesManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/TrashedFilesManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/TrashedFilesManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/TrashedFilesManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/TrashedFolders/TrashedFoldersManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/TrashedFoldersManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/TrashedFoldersManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/TrashedFoldersManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/TrashedFoldersManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/TrashedItems/TrashedItemsManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/TrashedItemsManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/TrashedItemsManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/TrashedItemsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/TrashedItemsManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/TrashedWebLinks/TrashedWebLinksManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/TrashedWebLinksManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/TrashedWebLinksManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/TrashedWebLinksManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/TrashedWebLinksManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/URL+Extensions.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/URL+Extensions.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/URL+Extensions.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/URL+Extensions~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/URL+Extensions.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/Uploads/UploadsManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/UploadsManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/UploadsManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/UploadsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/UploadsManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/UserCollaborations/UserCollaborationsManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/UserCollaborationsManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/UserCollaborationsManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/UserCollaborationsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/UserCollaborationsManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/Users/UsersManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/UsersManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/UsersManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/UsersManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/UsersManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/Webhooks/WebhooksManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/WebhooksManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/WebhooksManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/WebhooksManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/WebhooksManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/Weblinks/WeblinksManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/WeblinksManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/WeblinksManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/WeblinksManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/WeblinksManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/Workflows/WorkflowsManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/WorkflowsManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/WorkflowsManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/WorkflowsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/WorkflowsManagerTests.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/XCTest+Extensions.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/XCTest+Extensions.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/XCTest+Extensions.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/XCTest+Extensions~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/XCTest+Extensions.swiftdeps"
+  },
+  "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/BoxSDKGen/Tests/ZipDownloads/ZipDownloadsManagerTests.swift": {
+    "dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/ZipDownloadsManagerTests.d",
+    "object": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/ZipDownloadsManagerTests.swift.o",
+    "swiftmodule": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/ZipDownloadsManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/ajankowski/work/sdk/box-codegen/scripts/v10-monday/swift/.build/arm64-apple-macosx/debug/BoxSDKGenTests.build/ZipDownloadsManagerTests.swiftdeps"
+  }
+}

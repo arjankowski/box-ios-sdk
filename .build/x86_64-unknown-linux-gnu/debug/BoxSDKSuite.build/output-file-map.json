@@ -1,0 +1,11 @@
+{
+  "": {
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKSuite.build/master.swiftdeps"
+  },
+  "/swift/BoxSDKSuite/Sources/BoxSDKSuite.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKSuite.build/BoxSDKSuite.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKSuite.build/BoxSDKSuite.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKSuite.build/BoxSDKSuite~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKSuite.build/BoxSDKSuite.swiftdeps"
+  }
+}

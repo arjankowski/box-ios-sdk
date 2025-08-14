@@ -1,0 +1,6 @@
+version: "Swift version 5.8.1 (swift-5.8.1-RELEASE)"
+options: "dbb24308e19b01cde3e728775965b354982d96fe877106c7137415a1c7fdaeb2"
+build_start_time: [1755253350, 564916000]
+build_end_time: [1755253352, 527368000]
+inputs:
+  "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKSuitePackageTests.derived/runner.swift": [1755253349, 0]

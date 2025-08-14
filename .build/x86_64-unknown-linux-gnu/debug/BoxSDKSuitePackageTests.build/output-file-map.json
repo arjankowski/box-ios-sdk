@@ -1,0 +1,11 @@
+{
+  "": {
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKSuitePackageTests.build/master.swiftdeps"
+  },
+  "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKSuitePackageTests.derived/runner.swift": {
+    "dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKSuitePackageTests.build/runner.d",
+    "object": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKSuitePackageTests.build/runner.swift.o",
+    "swiftmodule": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKSuitePackageTests.build/runner~partial.swiftmodule",
+    "swift-dependencies": "/swift/.build/x86_64-unknown-linux-gnu/debug/BoxSDKSuitePackageTests.build/runner.swiftdeps"
+  }
+}
